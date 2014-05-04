@@ -10,4 +10,8 @@
 
 @interface AES : NSObject
 
+int p();
+
+int aes();
+
 @end

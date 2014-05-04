@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CA66238190F5417001D6114 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA66237190F5417001D6114 /* AES.m */; };
+		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
+		6CA6623C190F5636001D6114 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA6623A190F5636001D6114 /* libssl.a */; };
+		6CA6623F190F7CAA001D6114 /* TestAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA6623E190F7CAA001D6114 /* TestAES.m */; };
 		B8537C1F190B7769000F353D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C1E190B7769000F353D /* Foundation.framework */; };
 		B8537C21190B7769000F353D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C20190B7769000F353D /* CoreGraphics.framework */; };
 		B8537C23190B7769000F353D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C22190B7769000F353D /* UIKit.framework */; };
@@ -89,6 +93,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6CA66236190F5417001D6114 /* AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
+		6CA66237190F5417001D6114 /* AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
+		6CA66239190F5636001D6114 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = lib/libcrypto.a; sourceTree = "<group>"; };
+		6CA6623A190F5636001D6114 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = lib/libssl.a; sourceTree = "<group>"; };
+		6CA6623D190F7CAA001D6114 /* TestAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAES.h; sourceTree = "<group>"; };
+		6CA6623E190F7CAA001D6114 /* TestAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAES.m; sourceTree = "<group>"; };
 		B8537C1B190B7769000F353D /* POS4iPhone_PeoplePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS4iPhone_PeoplePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8537C1E190B7769000F353D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B8537C20190B7769000F353D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -211,6 +221,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */,
+				6CA6623C190F5636001D6114 /* libssl.a in Frameworks */,
 				B8537D51190B83E5000F353D /* CoreText.framework in Frameworks */,
 				B8537D4F190B83CD000F353D /* libz.1.2.5.dylib in Frameworks */,
 				B8537D4D190B83C3000F353D /* CFNetwork.framework in Frameworks */,
@@ -260,6 +272,8 @@
 		B8537C1D190B7769000F353D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6CA66239190F5636001D6114 /* libcrypto.a */,
+				6CA6623A190F5636001D6114 /* libssl.a */,
 				B8537D53190B841A000F353D /* libstdc++.dylib */,
 				B8537D50190B83E5000F353D /* CoreText.framework */,
 				B8537D4E190B83CD000F353D /* libz.1.2.5.dylib */,
@@ -303,6 +317,10 @@
 		B8537C65190B7CDB000F353D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6CA66236190F5417001D6114 /* AES.h */,
+				6CA66237190F5417001D6114 /* AES.m */,
+				6CA6623D190F7CAA001D6114 /* TestAES.h */,
+				6CA6623E190F7CAA001D6114 /* TestAES.m */,
 				B8537C66190B7CDB000F353D /* AppDelegate.h */,
 				B8537C67190B7CDB000F353D /* AppDelegate.m */,
 				B8537D55190B93D6000F353D /* AppDataCenter.h */,
@@ -703,6 +721,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CA66238190F5417001D6114 /* AES.m in Sources */,
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
@@ -729,6 +748,7 @@
 				B8537C7E190B7DE8000F353D /* Transfer.m in Sources */,
 				B8537D3A190B8150000F353D /* StaticTools.m in Sources */,
 				B8537D2C190B7EC4000F353D /* XYAlertViewManager.m in Sources */,
+				6CA6623F190F7CAA001D6114 /* TestAES.m in Sources */,
 				B8537D2B190B7EC4000F353D /* XYAlertView.m in Sources */,
 				B8537D12190B7EC4000F353D /* TBXML+HTTP.m in Sources */,
 				B8537D3E190B8163000F353D /* StaticTools+UIOperation.m in Sources */,
@@ -860,14 +880,20 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "POS4iPhone_PeoplePay/POS4iPhone_PeoplePay-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/include",
+				);
 				INFOPLIST_FILE = "POS4iPhone_PeoplePay/POS4iPhone_PeoplePay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Resources/External/WeiChat",
+					"$(PROJECT_DIR)/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
+				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -878,20 +904,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chao Hou (87AJP22Y78)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "POS4iPhone_PeoplePay/POS4iPhone_PeoplePay-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(SRCROOT)/include",
+				);
 				INFOPLIST_FILE = "POS4iPhone_PeoplePay/POS4iPhone_PeoplePay-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Resources/External/WeiChat",
+					"$(PROJECT_DIR)/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
+				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
+				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

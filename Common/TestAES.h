@@ -10,4 +10,6 @@
 
 @interface TestAES : NSObject
 
++(NSString *)testAES:(NSString *)string;
+
 @end

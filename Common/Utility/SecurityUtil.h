@@ -30,5 +30,9 @@
 
 + (NSData *) encryptXORAndMac:(NSString *) data withKey:(NSString *) macKey;
 
++ (NSString *) encryptUseAES:(NSString *) plainText withKey:(NSString *) key;
+
++ (NSString *) decryptUseAES:(NSString *) clearText withKey:(NSString *) key;
+
 
 @end
