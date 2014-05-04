@@ -33,12 +33,19 @@
 
 #define kOnePageSize                    @"5"
 
+//银行卡相关
+#define kCardNum                        @"CARDNUM"
+#define kCardTrac                       @"CARDTRAC"
+#define kCardPin                        @"CARDPIN"
+#define kMacKey                         @"MACKEY"
+#define kPsamNum                        @"PSAMNUM"
+#define kTids                           @"TIDS"
 
 //登录相关
 #define kUSERID                         @"userId"         //用户id
 #define KUSERNAME                       @"userName"       //用户名
 #define kPASSWORD                       @"password"       //用户密码
-#define kLastLoginTime                  @"LastLoginTime"  //上次登录时间
+#define kMoveUnlockPsw                  @"MOVEUNLOCKPSW"  //滑动解锁手势密码 number类型
 #define kREMEBERPWD                     @"remeberPWD"     //是否记住密码 @"1"：记住  @"0":不记住
 #define kAUTOLOGIN                      @"autoLogin"      //是否自动登录 @"1"：自动登录  @"0":不自动登录
 
