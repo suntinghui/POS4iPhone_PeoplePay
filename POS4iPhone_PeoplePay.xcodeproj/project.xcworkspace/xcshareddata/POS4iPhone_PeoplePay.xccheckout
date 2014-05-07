@@ -5,19 +5,19 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>A6C3816A-DD15-4942-AF72-048F0E5F83CF</string>
+	<string>ED6DB5D3-8CB0-452B-984E-4312AF9A3BD4</string>
 	<key>IDESourceControlProjectName</key>
 	<string>POS4iPhone_PeoplePay</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>E19ACDF1-C498-4284-B91C-136823A2A6DF</key>
+		<key>2C837378-6F17-42EB-8E17-2BC77445B060</key>
 		<string>ssh://github.com/suntinghui/POS4iPhone_PeoplePay.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>POS4iPhone_PeoplePay.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>E19ACDF1-C498-4284-B91C-136823A2A6DF</key>
+		<key>2C837378-6F17-42EB-8E17-2BC77445B060</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>E19ACDF1-C498-4284-B91C-136823A2A6DF</string>
+	<string>2C837378-6F17-42EB-8E17-2BC77445B060</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>E19ACDF1-C498-4284-B91C-136823A2A6DF</string>
+			<string>2C837378-6F17-42EB-8E17-2BC77445B060</string>
 			<key>IDESourceControlWCCName</key>
 			<string>POS4iPhone_PeoplePay</string>
 		</dict>

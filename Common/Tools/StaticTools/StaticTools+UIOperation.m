@@ -7,7 +7,7 @@
 //
 
 #import "StaticTools+UIOperation.h"
-
+#import "LockViewController.h"
 
 @implementation StaticTools (UIOperation)
 
@@ -71,5 +71,12 @@
     return YES;
 }
 
++ (void)showLockView
+{
+    LockViewController *lockViewController = [[LockViewController alloc]initWithNibName:@"LockViewController" bundle:nil];
+    [ApplicationDelegate.window addSubview:lockViewController.view];
+    
+    
+}
 
 @end

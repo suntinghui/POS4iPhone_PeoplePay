@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "HomeViewController.h"
 
 @interface LoginViewController ()
 
@@ -29,17 +30,22 @@
     // Do any additional setup after loading the view from its nib.
     
     [self loginAction];
-    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-    
+    // Dispose of any resources that can be recreated
 }
 
-#pragma mark--HTTP请求
+#pragma mark- 按钮点击事件
+- (IBAction)buttonClickHandle:(id)sender
+{
+    HomeViewController *homeController = [[HomeViewController alloc]initWithNibName:@"HomeViewController" bundle:nil];
+    [self.navigationController pushViewController:homeController animated:YES];
+}
+
+#pragma mark- HTTP请求
 - (void)loginAction
 {
     //测试账号：
