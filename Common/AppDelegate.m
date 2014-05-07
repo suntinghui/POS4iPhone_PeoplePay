@@ -8,9 +8,6 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "SecurityUtil.h"
-#import "AES.h"
-#import "TestAES.h"
 
 @implementation AppDelegate
 
@@ -25,10 +22,7 @@
     self.window.rootViewController = nav;
     
     [self.window makeKeyAndVisible];
-    
-    aes();
-    
-    
+
     return YES;
 }
 							

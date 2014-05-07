@@ -13,6 +13,7 @@
 #import "Reachability.h"
 #import "FileManagerUtil.h"
 #import "GTMNSString+HTML.h"
+#import "AESUtil.h"
 
 #define KB      (1024.0)
 #define MB      (1024.0 * 1024.0)
@@ -285,6 +286,7 @@ static NSString *totalSize = nil;
         
         
         NSLog(@"Response: %@", respXML);
+        NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
 
         id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString:respXML];
         success(obj);
