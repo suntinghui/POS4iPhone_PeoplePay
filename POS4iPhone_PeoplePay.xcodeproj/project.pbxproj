@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A8C5E1919BBAE00598F39 /* AESUtil.m */; };
 		B81C9F8E190CF7D7004239FF /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F8D190CF7D7004239FF /* MediaPlayer.framework */; };
 		B81C9F90190CF7E1004239FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F8F190CF7E1004239FF /* Security.framework */; };
 		B81C9F92190CF7E8004239FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F91190CF7E8004239FF /* AVFoundation.framework */; };
@@ -27,7 +28,6 @@
 		6CA66238190F5417001D6114 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA66237190F5417001D6114 /* AES.m */; };
 		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
 		6CA6623C190F5636001D6114 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA6623A190F5636001D6114 /* libssl.a */; };
-		6CA6623F190F7CAA001D6114 /* TestAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA6623E190F7CAA001D6114 /* TestAES.m */; };
 		B8537C1F190B7769000F353D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C1E190B7769000F353D /* Foundation.framework */; };
 		B8537C21190B7769000F353D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C20190B7769000F353D /* CoreGraphics.framework */; };
 		B8537C23190B7769000F353D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C22190B7769000F353D /* UIKit.framework */; };
@@ -110,6 +110,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C3A8C5D1919BBAE00598F39 /* AESUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESUtil.h; sourceTree = "<group>"; };
+		6C3A8C5E1919BBAE00598F39 /* AESUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESUtil.m; sourceTree = "<group>"; };
 		B81C9F8B190CF7CC004239FF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B81C9F8D190CF7D7004239FF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B81C9F8F190CF7E1004239FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -141,8 +143,6 @@
 		6CA66237190F5417001D6114 /* AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
 		6CA66239190F5636001D6114 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = lib/libcrypto.a; sourceTree = "<group>"; };
 		6CA6623A190F5636001D6114 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = lib/libssl.a; sourceTree = "<group>"; };
-		6CA6623D190F7CAA001D6114 /* TestAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAES.h; sourceTree = "<group>"; };
-		6CA6623E190F7CAA001D6114 /* TestAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAES.m; sourceTree = "<group>"; };
 		B8537C1B190B7769000F353D /* POS4iPhone_PeoplePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS4iPhone_PeoplePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8537C1E190B7769000F353D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B8537C20190B7769000F353D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -428,10 +428,6 @@
 		B8537C65190B7CDB000F353D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6CA66236190F5417001D6114 /* AES.h */,
-				6CA66237190F5417001D6114 /* AES.m */,
-				6CA6623D190F7CAA001D6114 /* TestAES.h */,
-				6CA6623E190F7CAA001D6114 /* TestAES.m */,
 				B8537C66190B7CDB000F353D /* AppDelegate.h */,
 				B8537C67190B7CDB000F353D /* AppDelegate.m */,
 				B8537D55190B93D6000F353D /* AppDataCenter.h */,
@@ -709,6 +705,8 @@
 				B8537D5C190B982C000F353D /* SecurityUtil.m */,
 				B8537D5D190B982C000F353D /* Base64.h */,
 				B8537D5E190B982C000F353D /* Base64.m */,
+				6C3A8C5D1919BBAE00598F39 /* AESUtil.h */,
+				6C3A8C5E1919BBAE00598F39 /* AESUtil.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -833,7 +831,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CA66238190F5417001D6114 /* AES.m in Sources */,
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
@@ -868,7 +865,6 @@
 				B8537D3A190B8150000F353D /* StaticTools.m in Sources */,
 				B843D156190F77F10000A60A /* SPLine.m in Sources */,
 				B8537D2C190B7EC4000F353D /* XYAlertViewManager.m in Sources */,
-				6CA6623F190F7CAA001D6114 /* TestAES.m in Sources */,
 				B8537D2B190B7EC4000F353D /* XYAlertView.m in Sources */,
 				B8537D12190B7EC4000F353D /* TBXML+HTTP.m in Sources */,
 				B8537D3E190B8163000F353D /* StaticTools+UIOperation.m in Sources */,
@@ -879,6 +875,7 @@
 				B8537C76190B7CDB000F353D /* LoginViewController.m in Sources */,
 				B8537D5F190B982C000F353D /* ConvertUtil.m in Sources */,
 				B8537D60190B982C000F353D /* SecurityUtil.m in Sources */,
+				6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */,
 				B8537CFE190B7EC4000F353D /* AFPropertyListRequestOperation.m in Sources */,
 				B8537D2D190B7EC4000F353D /* XYLoadingView.m in Sources */,
 				B8537CF9190B7EC4000F353D /* AFHTTPClient.m in Sources */,

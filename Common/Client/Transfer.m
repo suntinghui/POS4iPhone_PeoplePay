@@ -13,6 +13,7 @@
 #import "Reachability.h"
 #import "FileManagerUtil.h"
 #import "GTMNSString+HTML.h"
+#import "AESUtil.h"
 
 #define KB      (1024.0)
 #define MB      (1024.0 * 1024.0)
@@ -191,9 +192,6 @@ static NSString *totalSize = nil;
         //增加公共参数
         [tempDic setObject:[reqDic objectForKey:kTranceCode] forKey:@"TRANCODE"];
         
-        //先将该字段置为空  对整个报文做md5后  将值传入该字段
-        [tempDic setObject:@"" forKey:@"PACKAGEMAC"];
-        
         for (NSString *key in [tempDic allKeys]) {
             
             id obj = [tempDic objectForKey:key];
@@ -208,19 +206,21 @@ static NSString *totalSize = nil;
             
         }
         
-        NSString *mac = [SecurityUtil md5Crypto:mutString];
-        [mutString replaceOccurrencesOfString:@"<PACKAGEMAC></PACKAGEMAC>" withString:[NSString stringWithFormat:@"<PACKAGEMAC>%@</PACKAGEMAC>" ,mac] options:1 range:NSMakeRange(0, mutString.length)];
-        
         return mutString;
     };
     
     
-    NSString *httpBodyString = [NSString stringWithFormat:
+    NSMutableString *httpBodyString = [NSMutableString stringWithFormat:
                                 @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
                                 "<EPOSPROTOCOL>"
                                 "%@"
                                 "</EPOSPROTOCOL>", dic2XML()];
-
+    
+    //对整个报文做md5后  将值传入该字段
+    NSString *mac = [SecurityUtil md5Crypto:httpBodyString];
+    NSString *packmac = [NSString stringWithFormat:@"<PACKAGEMAC>%@</PACKAGEMAC>" ,mac];
+    [httpBodyString insertString:packmac atIndex:[httpBodyString rangeOfString:@"</EPOSPROTOCOL>"].location];
+    
     [[Transfer sharedClient] setDefaultHeader:@"Content-Type" value:@"text/xml; charset=utf-8"];
     [[Transfer sharedClient] setDefaultHeader:@"Content-Length" value:[NSString stringWithFormat:@"%d",[httpBodyString length]]];
     
@@ -285,6 +285,7 @@ static NSString *totalSize = nil;
         
         
         NSLog(@"Response: %@", respXML);
+        NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
 
         id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString:respXML];
         success(obj);
