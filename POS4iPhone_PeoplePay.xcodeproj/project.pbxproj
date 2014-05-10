@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A8C5E1919BBAE00598F39 /* AESUtil.m */; };
+		6C3A8C63191A101900598F39 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3A8C61191A101900598F39 /* libZftQposLib.a */; };
+		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
+		6CA6623C190F5636001D6114 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA6623A190F5636001D6114 /* libssl.a */; };
 		B81C9F8E190CF7D7004239FF /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F8D190CF7D7004239FF /* MediaPlayer.framework */; };
 		B81C9F90190CF7E1004239FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F8F190CF7E1004239FF /* Security.framework */; };
 		B81C9F92190CF7E8004239FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F91190CF7E8004239FF /* AVFoundation.framework */; };
-		B81C9F96190CF816004239FF /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F95190CF816004239FF /* libZftQposLib.a */; };
 		B81C9F99190CF834004239FF /* DeviceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B81C9F98190CF834004239FF /* DeviceHelper.m */; };
 		B81C9F9B190CF864004239FF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F9A190CF864004239FF /* AudioToolbox.framework */; };
 		B81C9F9D190CF880004239FF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B81C9F9C190CF880004239FF /* CoreLocation.framework */; };
@@ -25,9 +27,6 @@
 		B843D158190F77F10000A60A /* SPLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D154190F77F10000A60A /* SPLockScreen.m */; };
 		B843D15D190FB4BA0000A60A /* InputMoneyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D15B190FB4BA0000A60A /* InputMoneyViewController.m */; };
 		B843D15E190FB4BA0000A60A /* InputMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B843D15C190FB4BA0000A60A /* InputMoneyViewController.xib */; };
-		6CA66238190F5417001D6114 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CA66237190F5417001D6114 /* AES.m */; };
-		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
-		6CA6623C190F5636001D6114 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA6623A190F5636001D6114 /* libssl.a */; };
 		B8537C1F190B7769000F353D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C1E190B7769000F353D /* Foundation.framework */; };
 		B8537C21190B7769000F353D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C20190B7769000F353D /* CoreGraphics.framework */; };
 		B8537C23190B7769000F353D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C22190B7769000F353D /* UIKit.framework */; };
@@ -112,12 +111,14 @@
 /* Begin PBXFileReference section */
 		6C3A8C5D1919BBAE00598F39 /* AESUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESUtil.h; sourceTree = "<group>"; };
 		6C3A8C5E1919BBAE00598F39 /* AESUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESUtil.m; sourceTree = "<group>"; };
+		6C3A8C61191A101900598F39 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
+		6C3A8C62191A101900598F39 /* Qpost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qpost.h; sourceTree = "<group>"; };
+		6CA66239190F5636001D6114 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = lib/libcrypto.a; sourceTree = "<group>"; };
+		6CA6623A190F5636001D6114 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = lib/libssl.a; sourceTree = "<group>"; };
 		B81C9F8B190CF7CC004239FF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		B81C9F8D190CF7D7004239FF /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B81C9F8F190CF7E1004239FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B81C9F91190CF7E8004239FF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		B81C9F94190CF816004239FF /* Qpost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qpost.h; sourceTree = "<group>"; };
-		B81C9F95190CF816004239FF /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
 		B81C9F97190CF834004239FF /* DeviceHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceHelper.h; sourceTree = "<group>"; };
 		B81C9F98190CF834004239FF /* DeviceHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceHelper.m; sourceTree = "<group>"; };
 		B81C9F9A190CF864004239FF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -139,10 +140,6 @@
 		B843D15A190FB4BA0000A60A /* InputMoneyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputMoneyViewController.h; sourceTree = "<group>"; };
 		B843D15B190FB4BA0000A60A /* InputMoneyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputMoneyViewController.m; sourceTree = "<group>"; };
 		B843D15C190FB4BA0000A60A /* InputMoneyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputMoneyViewController.xib; sourceTree = "<group>"; };
-		6CA66236190F5417001D6114 /* AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
-		6CA66237190F5417001D6114 /* AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
-		6CA66239190F5636001D6114 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = lib/libcrypto.a; sourceTree = "<group>"; };
-		6CA6623A190F5636001D6114 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = lib/libssl.a; sourceTree = "<group>"; };
 		B8537C1B190B7769000F353D /* POS4iPhone_PeoplePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS4iPhone_PeoplePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8537C1E190B7769000F353D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B8537C20190B7769000F353D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -275,13 +272,13 @@
 				B8537D51190B83E5000F353D /* CoreText.framework in Frameworks */,
 				B8537D4F190B83CD000F353D /* libz.1.2.5.dylib in Frameworks */,
 				B8537D4D190B83C3000F353D /* CFNetwork.framework in Frameworks */,
-				B81C9F96190CF816004239FF /* libZftQposLib.a in Frameworks */,
 				B8537D4B190B83BE000F353D /* SystemConfiguration.framework in Frameworks */,
 				B8537D49190B83B6000F353D /* MobileCoreServices.framework in Frameworks */,
 				B8537D47190B83B0000F353D /* QuartzCore.framework in Frameworks */,
 				B8537D45190B83A9000F353D /* CoreFoundation.framework in Frameworks */,
 				B8537D43190B82D7000F353D /* libxml2.2.dylib in Frameworks */,
 				B8537C21190B7769000F353D /* CoreGraphics.framework in Frameworks */,
+				6C3A8C63191A101900598F39 /* libZftQposLib.a in Frameworks */,
 				B8537C23190B7769000F353D /* UIKit.framework in Frameworks */,
 				B8537C1F190B7769000F353D /* Foundation.framework in Frameworks */,
 			);
@@ -300,11 +297,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B81C9F93190CF80B004239FF /* QPOS */ = {
+		6C3A8C60191A101900598F39 /* QPOS */ = {
 			isa = PBXGroup;
 			children = (
-				B81C9F94190CF816004239FF /* Qpost.h */,
-				B81C9F95190CF816004239FF /* libZftQposLib.a */,
+				6C3A8C61191A101900598F39 /* libZftQposLib.a */,
+				6C3A8C62191A101900598F39 /* Qpost.h */,
 			);
 			path = QPOS;
 			sourceTree = "<group>";
@@ -516,7 +513,7 @@
 		B8537C73190B7CDB000F353D /* External */ = {
 			isa = PBXGroup;
 			children = (
-				B81C9F93190CF80B004239FF /* QPOS */,
+				6C3A8C60191A101900598F39 /* QPOS */,
 				B8537C83190B7EC4000F353D /* AFNetworking */,
 				B8537C9D190B7EC4000F353D /* HTMLEncode */,
 				B8537CA2190B7EC4000F353D /* JSBadgeView */,
@@ -1006,9 +1003,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Resources/External/WeiChat",
-					"$(PROJECT_DIR)/Resources/External/QPOS",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/Resources/External/QPOS",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
@@ -1039,9 +1035,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Resources/External/WeiChat",
-					"$(PROJECT_DIR)/Resources/External/QPOS",
 					"$(PROJECT_DIR)/lib",
+					"$(PROJECT_DIR)/Resources/External/QPOS",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";

@@ -50,9 +50,9 @@
 {
     //测试账号：
     NSDictionary *dict = @{kTranceCode:@"199002",
-                           kParamName:@{@"PHONENUMBER":@"15900715775",
-                                        @"PASSWORD":@"ASdf1234",
-                                        @"PCSIM":@"获取不到"}};
+                           kParamName:@{@"PHONENUMBER":@"13838387438",
+                                        @"PASSWORD":@"88888888",
+                                        @"PCSIM":@"不能获取"}};
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil
