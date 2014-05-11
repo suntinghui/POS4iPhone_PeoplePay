@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic)  SPLockScreen *lockView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 
 - (IBAction)buttonClickHandle:(id)sender;
 @end

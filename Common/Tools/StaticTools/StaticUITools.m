@@ -108,9 +108,10 @@
 /*
  @abstract 设置导航栏背景颜色
  */
-+ (void)navigationBarSetBackgroundImage:(UINavigationBar *)navigationBar{
++ (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar withImg:(NSString*)name
+{
     if ([navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
-		[navigationBar setBackgroundImage:[UIImage imageNamed:@"bg_viewnav"] forBarMetrics:UIBarMetricsDefault];
+		[navigationBar setBackgroundImage:[UIImage imageNamed:name] forBarMetrics:UIBarMetricsDefault];
         //navigationBar.tintColor=[UIColor redColor];
         
         //[UIColor colorWithRed:139.0/255 green:178.0/255 blue:38.0/255 alpha:1];
@@ -123,7 +124,7 @@
 + (UINavigationController *)pushNavController:(UIViewController *)viewController
 {
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-    [self navigationBarSetBackgroundImage:navController.navigationBar];
+//    [self navigationBarSetBackgroundImage:navController.navigationBar];
     return navController;
 }
 

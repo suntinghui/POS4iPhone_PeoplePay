@@ -221,8 +221,11 @@ static NSString *totalSize = nil;
     NSString *packmac = [NSString stringWithFormat:@"<PACKAGEMAC>%@</PACKAGEMAC>" ,mac];
     [httpBodyString insertString:packmac atIndex:[httpBodyString rangeOfString:@"</EPOSPROTOCOL>"].location];
     
-    [[Transfer sharedClient] setDefaultHeader:@"Content-Type" value:@"text/xml; charset=utf-8"];
     [[Transfer sharedClient] setDefaultHeader:@"Content-Length" value:[NSString stringWithFormat:@"%d",[httpBodyString length]]];
+    
+    NSLog(@"Request:%@", httpBodyString);
+    
+    httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
     
     NSLog(@"Request:%@", httpBodyString);
     
@@ -258,8 +261,11 @@ static NSString *totalSize = nil;
 
     NSLog(@"url is %@",request.URL);
     
-    //CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000)
+    httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
+    
     request.HTTPBody = [httpBodyString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
     [request setTimeoutInterval:20];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];

@@ -57,7 +57,7 @@ typedef enum
 /*
  @abstract 设置导航栏背景颜色
  */
-+ (void)navigationBarSetBackgroundImage:(UINavigationBar *)navigationBar;
++ (void)setNavigationBarBackgroundImage:(UINavigationBar *)navigationBar withImg:(NSString*)name;
 
 /*
  @abstract 给View添加navigation
