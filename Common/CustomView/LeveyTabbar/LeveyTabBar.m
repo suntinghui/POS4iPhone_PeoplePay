@@ -66,7 +66,7 @@
     {
         [_delegate tabBar:self didSelectIndex:btn.tag];
     }
-    NSLog(@"Select index: %d",btn.tag);
+//    NSLog(@"Select index: %d",btn.tag);
 }
 
 - (void)removeTabAtIndex:(NSInteger)index

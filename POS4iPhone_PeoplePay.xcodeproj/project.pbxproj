@@ -398,6 +398,7 @@
 		B843D14B190F77F10000A60A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				B89CEA06191F68FF008DFF31 /* ELCUIApplication */,
 				B82609D0191E1985003FE222 /* LeveyTabbar */,
 				B843D14C190F77F10000A60A /* SPLockScreen */,
 			);
@@ -803,6 +804,13 @@
 				B8537D6A190B9970000F353D /* NSData+NSString.m */,
 			);
 			path = ClassCategory;
+			sourceTree = "<group>";
+		};
+		B89CEA06191F68FF008DFF31 /* ELCUIApplication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ELCUIApplication;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

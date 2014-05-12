@@ -12,6 +12,10 @@
 
 #define Button_Tag_Logout   100  //退出登录
 
+#define Alert_Tag_Logout    200  //退出登录alert
+
+#define View_Tag_StateImg   300
+
 @interface MerchantViewController ()
 
 @end
@@ -86,7 +90,11 @@
     {
         case Button_Tag_Logout: //退出登录
         {
-            [StaticTools showLockView];
+            [StaticTools showAlertWithTag:Alert_Tag_Logout
+                                    title:nil
+                                  message:@"您确定要退出吗？"
+                                AlertType:CAlertTypeCacel
+                                SuperView:self];
         }
             break;
             
@@ -94,6 +102,17 @@
             break;
     }
 }
+
+#pragma mark - UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag==Alert_Tag_Logout&&buttonIndex!=alertView.cancelButtonIndex)
+    {
+        UINavigationController *rootNav = (UINavigationController*)ApplicationDelegate.window.rootViewController;
+        [rootNav popToRootViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark -UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -127,22 +146,7 @@
 }
 - (UIView*)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *headView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
-    UIButton *headBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    headBtn.frame = CGRectMake(0, 0, headView.frame.size.width, headView.frame.size.height);
-    [headView addSubview:headBtn];
-    
-    UIImageView *headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 10, 20, 19)];
-    headImgView.backgroundColor = [UIColor lightGrayColor];
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(50, 10, 200, 30)];
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.font = [UIFont systemFontOfSize:16];
-    
-    if (section==0)
-    {
-        
-    }
+
     return [[UIView alloc]initWithFrame:CGRectZero];
 }
 
@@ -221,15 +225,9 @@
             
             UIImageView *stateImgView = [[UIImageView alloc]initWithFrame:CGRectMake(280, 10, 25, 25)];
             stateImgView.image = [UIImage imageNamed:@"ip-shjt"];
+            stateImgView.tag = View_Tag_StateImg;
             stateImgView.backgroundColor = [UIColor clearColor];
-            if (state==0)
-            {
-                
-            }
-            else
-            {
-                
-            }
+           
             [cell.contentView addSubview:stateImgView];
         
         }
@@ -271,6 +269,27 @@
     {
         state = (state==0?1:0);
         [self.listTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
+//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+//        UIImageView *imgView  = (UIImageView*)[cell.contentView viewWithTag:View_Tag_StateImg];
+//        
+//        CABasicAnimation* rotationAnimation;
+//        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//        if (state==0)
+//        {
+//              rotationAnimation.toValue = [NSNumber numberWithFloat: -M_PI];
+//        }
+//        else
+//        {
+//              rotationAnimation.toValue = [NSNumber numberWithFloat:M_PI];
+//        }
+//      
+//        rotationAnimation.duration = 0.3;
+//        rotationAnimation.cumulative = YES;
+//        rotationAnimation.delegate = self;
+////        rotationAnimation.repeatCount = repeat;
+//         [imgView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+
     }
     else if (indexPath.section==1)
     {
@@ -281,4 +300,18 @@
         }
     }
 }
+//
+//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
+//{
+//    UITableViewCell *cell = [self.listTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
+//    UIImageView *imgView  = (UIImageView*)[cell.contentView viewWithTag:View_Tag_StateImg];
+//    if (state ==1)
+//    {
+//         imgView.transform = CGAffineTransformMakeRotation(M_PI);
+//    }
+//    else
+//    {
+//         imgView.transform = CGAffineTransformMakeRotation(0);
+//    }
+//}
 @end

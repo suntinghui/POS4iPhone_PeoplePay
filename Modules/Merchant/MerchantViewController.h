@@ -19,7 +19,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MerchantViewController : BaseViewController<UITableViewDataSource,
-    UITableViewDelegate>
+    UITableViewDelegate,
+    UIAlertViewDelegate>
 {
     int state;  //0:未展开  1：展开
 }

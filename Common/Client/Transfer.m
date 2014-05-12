@@ -60,6 +60,10 @@ static NSString *totalSize = nil;
     
     return nil;
 }
+- (void)setRequestUrl:(NSString*)url
+{
+    client.baseURL = [NSURL URLWithString:url];
+}
 
 + (NSString *) getHost
 {
@@ -185,6 +189,8 @@ static NSString *totalSize = nil;
         
     }
     
+  
+    
     NSString* (^dic2XML) (void) = ^(void){
         NSMutableString *mutString = [NSMutableString string];
         NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:[reqDic objectForKey:kParamName]];
@@ -192,14 +198,18 @@ static NSString *totalSize = nil;
         //增加公共参数
         [tempDic setObject:[reqDic objectForKey:kTranceCode] forKey:@"TRANCODE"];
         
-        for (NSString *key in [tempDic allKeys]) {
+        for (NSString *key in [tempDic allKeys])
+        {
             
             id obj = [tempDic objectForKey:key];
             
-            if ([obj isKindOfClass:[NSDictionary class]]) {
+            if ([obj isKindOfClass:[NSDictionary class]])
+            {
                 [mutString appendFormat:@"<%@>%@</%@>", key, [XMLWriter XMLStringFromDictionary:obj], key];
                 
-            } else if ([obj isKindOfClass:[NSString class]]) {
+            }
+            else if ([obj isKindOfClass:[NSString class]])
+            {
                 
                  [mutString appendFormat:@"<%@>%@</%@>", key, obj, key];
             }
@@ -211,7 +221,7 @@ static NSString *totalSize = nil;
     
     
     NSMutableString *httpBodyString = [NSMutableString stringWithFormat:
-                                @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+                                @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
                                 "<EPOSPROTOCOL>"
                                 "%@"
                                 "</EPOSPROTOCOL>", dic2XML()];
@@ -227,7 +237,7 @@ static NSString *totalSize = nil;
     
     httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
     
-    NSLog(@"Request:%@", httpBodyString);
+//    NSLog(@"Request:%@", httpBodyString);
     
     /***
     // don't work
@@ -251,13 +261,29 @@ static NSString *totalSize = nil;
     }];
      ****/
     
-    NSString *postType = @"posm";
-    if ([[reqDic objectForKey:kTranceCode] isEqualToString:@"199009"])
+    NSString *postType = @"posp";
+    NSString *endType = @"tran";
+    NSString *rspCode = [reqDic objectForKey:kTranceCode];
+    
+    if ([rspCode isEqualToString:@"199002"]|| //登录
+        [rspCode isEqualToString:@"199018"]|| //获取短信验证码
+        [rspCode isEqualToString:@"199018"])  //忘记密码
     {
-        postType = @"posp";
+        postType = @"posm";
+        endType = @"tran5";
     }
     
-    NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:[NSString stringWithFormat:@"%@/%@.tran5",postType,[reqDic objectForKey:kTranceCode]] parameters:nil];
+    if ([postType isEqualToString:@"posm"])
+    {
+        [self setRequestUrl:@"http://211.147.87.24:8092/"];
+    }
+    else
+    {
+         [self setRequestUrl:@"http://211.147.87.23:8088/"];
+    }
+    
+    
+    NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:[NSString stringWithFormat:@"%@/%@.%@",postType,[reqDic objectForKey:kTranceCode],endType] parameters:nil];
 
     NSLog(@"url is %@",request.URL);
     
@@ -290,10 +316,10 @@ static NSString *totalSize = nil;
 //        }
         
         
-        NSLog(@"Response: %@", respXML);
+//        NSLog(@"Response: %@", respXML);
         NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
 
-        id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString:respXML];
+        id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: [AESUtil decryptUseAES:respXML]];
         success(obj);
             
         

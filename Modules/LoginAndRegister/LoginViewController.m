@@ -47,6 +47,9 @@
     [self.nameTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     
+    self.nameTxtField.text = @"18811068526";
+    self.pwdTxtField.text = @"88888888";
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -77,6 +80,7 @@
 
 - (void)gotoHome
 {
+    
     InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];
     [StaticTools setNavigationBarBackgroundImage:nav1.navigationBar withImg:@"ip_title"];
@@ -173,7 +177,7 @@
 #pragma mark- HTTP请求
 - (void)loginAction
 {
-    //测试账号：13838387438 88888888
+    //测试账号：13838387438 88888888   18811068526 88888888
     NSDictionary *dict = @{kTranceCode:@"199002",
                            kParamName:@{@"PHONENUMBER":self.nameTxtField.text,
                                         @"PASSWORD":self.pwdTxtField.text,
@@ -183,21 +187,23 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj isKindOfClass:[NSArray class]])
+                                             if ([obj isKindOfClass:[NSDictionary class]])
                                              {
-                                                 NSArray *array = (NSArray*)obj;
-                                                 NSString *state = array[0];
-                                                 if ([state isEqualToString:@"0"])
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
-                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
+                                                     [UserDefaults setObject:obj[@"PHONENUMBER"] forKey:KUSERNAME];
+                                                     [UserDefaults synchronize];
                                                      
+                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+                                                     [self gotoHome];
                                                      
+                                                   
                                                  }
                                                  else
                                                  {
-                                                     [SVProgressHUD showErrorWithStatus:array[1]];
-                                                     
+                                                     [SVProgressHUD showSuccessWithStatus:obj[@"RSPMSG"]];
                                                  }
+                                                 
                                              }
                                              
                                          }

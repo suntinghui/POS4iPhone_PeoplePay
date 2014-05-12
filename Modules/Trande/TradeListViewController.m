@@ -35,6 +35,7 @@
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
     
+    [self getTradeList];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,7 +43,37 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark -http请求
+/**
+ *  提交 获取系统返回的密码
+ */
+- (void)getTradeList
+{
+    NSDictionary *dict = @{kTranceCode:@"199008",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME]}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj[@"RSPMSG"] isEqualToString:@"00000"])
+                                             {
+                                                 
+                                             }
+                                             else
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                             }
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"登录失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在提交..." completeBlock:^(NSArray *operations) {
+    }];
+}
 #pragma mark -UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

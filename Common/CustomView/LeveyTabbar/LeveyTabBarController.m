@@ -211,7 +211,7 @@ static LeveyTabBarController *leveyTabBarController;
         }
         return;
     }
-    NSLog(@"Display View.");
+//    NSLog(@"Display View.");
     _selectedIndex = index;
     
 	[_transitionView.subviews makeObjectsPerformSelector:@selector(setHidden:) withObject:(id)YES];
