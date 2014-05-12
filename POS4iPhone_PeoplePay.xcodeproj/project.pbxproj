@@ -27,6 +27,10 @@
 		B82609DC191E1A99003FE222 /* ToolsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82609DA191E1A99003FE222 /* ToolsViewController.xib */; };
 		B82609E0191E1AC1003FE222 /* TradeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82609DE191E1AC1003FE222 /* TradeListViewController.m */; };
 		B82609E1191E1AC1003FE222 /* TradeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82609DF191E1AC1003FE222 /* TradeListViewController.xib */; };
+		B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47D81920CA6A00D0D356 /* AbountViewController.m */; };
+		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
+		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
+		B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */; };
 		B843D149190F740A0000A60A /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D147190F740A0000A60A /* LockViewController.m */; };
 		B843D14A190F740A0000A60A /* LockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B843D148190F740A0000A60A /* LockViewController.xib */; };
 		B843D155190F77F10000A60A /* NormalCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D14E190F77F10000A60A /* NormalCircle.m */; };
@@ -152,6 +156,12 @@
 		B82609DD191E1AC1003FE222 /* TradeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeListViewController.h; sourceTree = "<group>"; };
 		B82609DE191E1AC1003FE222 /* TradeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeListViewController.m; sourceTree = "<group>"; };
 		B82609DF191E1AC1003FE222 /* TradeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeListViewController.xib; sourceTree = "<group>"; };
+		B82E47D71920CA6A00D0D356 /* AbountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountViewController.h; sourceTree = "<group>"; };
+		B82E47D81920CA6A00D0D356 /* AbountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbountViewController.m; sourceTree = "<group>"; };
+		B82E47D91920CA6A00D0D356 /* AbountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbountViewController.xib; sourceTree = "<group>"; };
+		B82E47DC1920CA8E00D0D356 /* SettingMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingMainViewController.h; sourceTree = "<group>"; };
+		B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingMainViewController.m; sourceTree = "<group>"; };
+		B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingMainViewController.xib; sourceTree = "<group>"; };
 		B843D146190F740A0000A60A /* LockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockViewController.h; sourceTree = "<group>"; };
 		B843D147190F740A0000A60A /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		B843D148190F740A0000A60A /* LockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LockViewController.xib; sourceTree = "<group>"; };
@@ -381,6 +391,19 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		B82E47D61920CA4700D0D356 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				B82E47DC1920CA8E00D0D356 /* SettingMainViewController.h */,
+				B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */,
+				B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */,
+				B82E47D71920CA6A00D0D356 /* AbountViewController.h */,
+				B82E47D81920CA6A00D0D356 /* AbountViewController.m */,
+				B82E47D91920CA6A00D0D356 /* AbountViewController.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
 		B843D140190F73710000A60A /* LockViewAndPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -574,6 +597,7 @@
 				B82609C4191E103C003FE222 /* Merchant */,
 				B843D159190FB4A40000A60A /* Trande */,
 				B843D140190F73710000A60A /* LockViewAndPassword */,
+				B82E47D61920CA4700D0D356 /* Setting */,
 			);
 			name = Modules;
 			path = ../Modules;
@@ -896,8 +920,10 @@
 				B8537D20190B7EC4000F353D /* alertView_bg.png in Resources */,
 				B8537D29190B7EC4000F353D /* alertView_button_green_pressed@2x.png in Resources */,
 				B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */,
+				B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */,
 				B843D14A190F740A0000A60A /* LockViewController.xib in Resources */,
 				B89CE9F8191F1CB7008DFF31 /* ForgetPasswordViewController.xib in Resources */,
+				B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */,
 				B8537D2A190B7EC4000F353D /* alertView_loading@2x.png in Resources */,
 				B82609CA191E103C003FE222 /* InputMoneyViewController.xib in Resources */,
 				B8537C29190B7769000F353D /* InfoPlist.strings in Resources */,
@@ -930,6 +956,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
+				B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
 				B8537D06190B7EC4000F353D /* JSBadgeView.m in Sources */,
@@ -980,6 +1007,7 @@
 				B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */,
 				B8537D60190B982C000F353D /* SecurityUtil.m in Sources */,
 				B82609CE191E1090003FE222 /* MerchantViewController.m in Sources */,
+				B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */,
 				6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */,
 				B8537CFE190B7EC4000F353D /* AFPropertyListRequestOperation.m in Sources */,
 				B82609DB191E1A99003FE222 /* ToolsViewController.m in Sources */,

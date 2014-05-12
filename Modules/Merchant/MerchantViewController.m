@@ -9,6 +9,7 @@
 #import "MerchantViewController.h"
 #import "InputMoneyViewController.h"
 #import "ForgetPasswordViewController.h"
+#import "SettingMainViewController.h"
 
 #define Button_Tag_Logout   100  //退出登录
 
@@ -297,6 +298,15 @@
         {
             ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
             [self.navigationController pushViewController:forgetPswController animated:YES];
+        }
+        else if(indexPath.row==1) //更多设置
+        {
+            SettingMainViewController *settingMainController = [[SettingMainViewController alloc]init];
+            [self.navigationController pushViewController:settingMainController animated:YES];
+        }
+        else if(indexPath.row==2) //联系客服
+        {
+            
         }
     }
 }

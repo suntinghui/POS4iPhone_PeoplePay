@@ -67,22 +67,25 @@
                                          }
                                                                                   failure:^(NSString *errMsg)
                                          {
-                                             [SVProgressHUD showErrorWithStatus:@"登录失败，请稍后再试!"];
+                                             [SVProgressHUD showErrorWithStatus:@"加载失败，请稍后再试!"];
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在提交..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
     }];
 }
+
 #pragma mark -UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return 5;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -103,6 +106,7 @@
     
     return cell;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TradeDetailViewController *tradeDetailCotnroller = [[TradeDetailViewController alloc]init];
