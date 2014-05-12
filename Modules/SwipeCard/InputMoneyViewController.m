@@ -81,6 +81,27 @@
             {
                 self.inputTxtField.text = @"";
             }
+            else if([self.inputTxtField.text rangeOfString:@"."].location!=NSNotFound)
+            {
+                NSString *end = [self.inputTxtField.text componentsSeparatedByString:@"."][1];
+                if (end.length>=2)
+                {
+                    return;
+                }
+                
+                if (self.inputTxtField.text.length>=15)
+                {
+                    return;
+                }
+            }
+            else if([self.inputTxtField.text rangeOfString:@"."].location==NSNotFound)
+            {
+                if (self.inputTxtField.text.length>=12)
+                {
+                    return;
+                }
+            }
+            
             self.inputTxtField.text = [NSString stringWithFormat:@"%@%d",self.inputTxtField.text, button.tag-100];
         }
             break;
