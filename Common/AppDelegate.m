@@ -8,23 +8,30 @@
 
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-
+#import "TimedoutUtil.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[CusWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController ];
+    [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
     nav.navigationBarHidden = YES;
     self.window.rootViewController = nav;
     
+    //第一次进入软件时  滑动解锁设置为关闭状态
+    if ([UserDefaults objectForKey:kMoveUnlockState]==nil)
+    {
+        [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
+    }
+    
     [self.window makeKeyAndVisible];
-
+    
     return YES;
 }
 							
@@ -54,5 +61,15 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+/**
+ *  长时间未操作
+ */
+- (void)unTouchedTimeUp
+{
+    [StaticTools showLockView];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 
 @end

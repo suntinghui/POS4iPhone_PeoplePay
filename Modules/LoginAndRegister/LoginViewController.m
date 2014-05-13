@@ -12,6 +12,8 @@
 #import "InputMoneyViewController.h"
 #import "TradeListViewController.h"
 #import "ToolsViewController.h"
+#import "TimedoutUtil.h"
+#import "ForgetPasswordViewController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101
@@ -50,6 +52,25 @@
     self.nameTxtField.text = @"18811068526";
     self.pwdTxtField.text = @"88888888";
     
+  
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (!isGohome)
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,8 +99,12 @@
     return YES;
 }
 
+
 - (void)gotoHome
 {
+
+    isGohome = YES;
+     [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
     
     InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];
@@ -122,9 +147,8 @@
     LeveyTabBarController *leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctlArr imageArray:imgArr];
 //	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarbg.png"]];
 	[leveyTabBarController setTabBarTransparent:YES];
-    
+    [AppDataCenter sharedAppDataCenter].leveyTabBar = leveyTabBarController;
     [self.navigationController pushViewController:leveyTabBarController animated:YES];
-//    [self.view addSubview:leveyTabBarController.view];
 }
 #pragma mark- 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
@@ -143,7 +167,10 @@
             break;
         case Button_Tag_ForgetPwd: //忘记密码
         {
-            [self gotoHome];
+             isGohome = NO;
+            ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
+            [self.navigationController pushViewController:forgetPswController animated:YES];
+           
         }
             break;
             

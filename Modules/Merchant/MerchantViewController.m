@@ -10,6 +10,7 @@
 #import "InputMoneyViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "SettingMainViewController.h"
+#import "ChangePasswordViewController.h"
 
 #define Button_Tag_Logout   100  //退出登录
 
@@ -45,12 +46,14 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:NO animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -111,6 +114,8 @@
     {
         UINavigationController *rootNav = (UINavigationController*)ApplicationDelegate.window.rootViewController;
         [rootNav popToRootViewControllerAnimated:YES];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:ApplicationDelegate];
     }
 }
 
@@ -170,7 +175,7 @@
     }
     
     cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.selectionStyle = UITableViewCellSelectionStyleGray;
     
     for (UIView *view in cell.contentView.subviews)
     {
@@ -179,7 +184,9 @@
     
     if (indexPath.section==0&&indexPath.row==1)
     {
-       
+      
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 5, 100, 20)];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.font = [UIFont systemFontOfSize:15];
@@ -296,8 +303,8 @@
     {
         if (indexPath.row==0) //修改密码
         {
-            ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
-            [self.navigationController pushViewController:forgetPswController animated:YES];
+            ChangePasswordViewController *changePswController = [[ChangePasswordViewController alloc]init];
+            [self.navigationController pushViewController:changePswController animated:YES];
         }
         else if(indexPath.row==1) //更多设置
         {

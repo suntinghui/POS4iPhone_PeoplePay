@@ -36,6 +36,10 @@
         {
             return [self getRradeList:rootElement];
         }
+        else if([reqName isEqualToString:@"199003"]) //修改密码
+        {
+            return [self changePassword:rootElement];
+        }
     }
     
      return nil;
@@ -67,6 +71,19 @@
 
 #pragma mark -交易列表查询
 - (id) getRradeList:(TBXMLElement *) bodyElement
+{
+    
+    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
+    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setObject:rspCode forKey:@"RSPCOD"];
+    [dict setObject:rspMess forKey:@"RSPMSG"];
+    
+    return dict;
+}
+
+#pragma mark -修改密码
+- (id) changePassword:(TBXMLElement *) bodyElement
 {
     
     NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];

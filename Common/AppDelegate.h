@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CusWindow.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+- (void)unTouchedTimeUp;
 
 @end

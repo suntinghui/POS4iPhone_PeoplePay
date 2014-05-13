@@ -8,8 +8,8 @@
 
 #import "ForgetPasswordViewController.h"
 
-#define Button_Tag_GetCode  100
-#define Button_Tag_Commit   101
+#define Button_Tag_GetCode  100  //获取验证码
+#define Button_Tag_Commit   101  //提交
 
 @interface ForgetPasswordViewController ()
 
@@ -64,7 +64,12 @@
             break;
         case Button_Tag_Commit:
         {
-            if ([StaticTools isEmptyString:self.codeTxtField.text])
+            if ([StaticTools isEmptyString:self.phoneTxtField.text])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+                return;
+            }
+            else if ([StaticTools isEmptyString:self.codeTxtField.text])
             {
                 [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
                 return;
@@ -83,7 +88,12 @@
 {
     [self.view endEditing:YES];
 }
-
+#pragma mark -UITextfieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self.view endEditing:YES];
+    return YES;
+}
 #pragma mark -http请求
 /**
  *  获取短信验证码

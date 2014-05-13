@@ -19,14 +19,14 @@
 #define Button_Tag_Eight 108  //8
 #define Button_Tag_Nine  109  //9
 
-#define Button_Tag_Plus  110  //加
-#define Button_Tag_Minus 111  //减
-#define Button_Tag_Multiply 112 //乘
-#define Button_Tag_Division 113 //除
-#define Button_Tag_Delete   114 //删除
-#define Button_Tag_SwipeCard 115 //点击刷卡
-#define Button_Tag_KeepAccount 116 //现金记账
-#define Button_Tag_Point       117 //点
+#define Button_Tag_Plus         110 //加
+#define Button_Tag_Minus        111 //减
+#define Button_Tag_Multiply     112 //乘
+#define Button_Tag_Division     113 //除
+#define Button_Tag_Delete       114 //删除
+#define Button_Tag_SwipeCard    115 //点击刷卡
+#define Button_Tag_KeepAccount  116 //现金记账
+#define Button_Tag_Point        117 //点
 
 
 @interface InputMoneyViewController ()
@@ -66,7 +66,7 @@
     UIButton *button = (UIButton*)sender;
     switch (button.tag)
     {
-        case Button_Tag_One: //数字输入
+        case Button_Tag_One: //数字输入 最多输入两位小数 最多输入12位（不包括小数部分）
         case Button_Tag_Two:
         case Button_Tag_Three:
         case Button_Tag_Four:

@@ -19,7 +19,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController<UITextFieldDelegate>
-
+{
+    BOOL isGohome;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTxtField;

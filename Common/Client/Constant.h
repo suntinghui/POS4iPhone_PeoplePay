@@ -46,6 +46,7 @@
 #define KUSERNAME                       @"userName"       //用户名
 #define kPASSWORD                       @"password"       //用户密码
 #define kMoveUnlockPsw                  @"MOVEUNLOCKPSW"  //滑动解锁手势密码 number类型
+#define kMoveUnlockState                @"MOVEUNLOCKSTATE"//滑动解锁开关 @"0" 关闭 @"1" 打开
 #define kREMEBERPWD                     @"remeberPWD"     //是否记住密码 @"1"：记住  @"0":不记住
 #define kAUTOLOGIN                      @"autoLogin"      //是否自动登录 @"1"：自动登录  @"0":不自动登录
 

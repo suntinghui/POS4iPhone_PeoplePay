@@ -18,6 +18,13 @@
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
 
-@interface SettingMainViewController : BaseViewController
+@interface SettingMainViewController : BaseViewController<UITableViewDataSource,
+    UITableViewDelegate>
+{
+    int touchNum;
+    UISwitch *lockSwitch;
+}
+
+@property (weak, nonatomic) IBOutlet UITableView *listTableView;
 
 @end

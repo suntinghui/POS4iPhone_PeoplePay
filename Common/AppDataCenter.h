@@ -17,9 +17,12 @@
  //
  ----------------------------------------------------------------*/
 #import <Foundation/Foundation.h>
+#import "LeveyTabBarController.h"
 
 @interface AppDataCenter : NSObject
 
 + (AppDataCenter *) sharedAppDataCenter;
+
+@property (assign, nonatomic) LeveyTabBarController *leveyTabBar; //底部tabbar
 
 @end

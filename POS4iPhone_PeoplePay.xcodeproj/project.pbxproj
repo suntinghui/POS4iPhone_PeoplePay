@@ -106,6 +106,10 @@
 		B8537D61190B982C000F353D /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8537D5E190B982C000F353D /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8537D67190B9913000F353D /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = B8537D66190B9913000F353D /* Util.mm */; };
 		B8537D6B190B9970000F353D /* NSData+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = B8537D6A190B9970000F353D /* NSData+NSString.m */; };
+		B85D4BE619210701008241E0 /* CusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B85D4BE519210701008241E0 /* CusWindow.m */; };
+		B85D4BE919210857008241E0 /* TimedoutUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B85D4BE819210857008241E0 /* TimedoutUtil.m */; };
+		B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85D4BEB19211CD7008241E0 /* ChangePasswordViewController.m */; };
+		B85D4BEE19211CD7008241E0 /* ChangePasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85D4BEC19211CD7008241E0 /* ChangePasswordViewController.xib */; };
 		B89CE9F7191F1CB7008DFF31 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */; };
 		B89CE9F8191F1CB7008DFF31 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */; };
 		B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CE9FA191F1D01008DFF31 /* BaseViewController.m */; };
@@ -113,6 +117,8 @@
 		B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9FE191F271C008DFF31 /* TradeCell.xib */; };
 		B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */; };
 		B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */; };
+		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
+		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -288,6 +294,13 @@
 		B8537D66190B9913000F353D /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		B8537D69190B9970000F353D /* NSData+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSString.h"; sourceTree = "<group>"; };
 		B8537D6A190B9970000F353D /* NSData+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSString.m"; sourceTree = "<group>"; };
+		B85D4BE419210701008241E0 /* CusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusWindow.h; sourceTree = "<group>"; };
+		B85D4BE519210701008241E0 /* CusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusWindow.m; sourceTree = "<group>"; };
+		B85D4BE719210857008241E0 /* TimedoutUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedoutUtil.h; sourceTree = "<group>"; };
+		B85D4BE819210857008241E0 /* TimedoutUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimedoutUtil.m; sourceTree = "<group>"; };
+		B85D4BEA19211CD7008241E0 /* ChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePasswordViewController.h; sourceTree = "<group>"; };
+		B85D4BEB19211CD7008241E0 /* ChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePasswordViewController.m; sourceTree = "<group>"; };
+		B85D4BEC19211CD7008241E0 /* ChangePasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChangePasswordViewController.xib; sourceTree = "<group>"; };
 		B89CE9F4191F1CB7008DFF31 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
@@ -299,6 +312,9 @@
 		B89CEA01191F2F2E008DFF31 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 		B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
+		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
+		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
+		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,9 +426,15 @@
 				B843D146190F740A0000A60A /* LockViewController.h */,
 				B843D147190F740A0000A60A /* LockViewController.m */,
 				B843D148190F740A0000A60A /* LockViewController.xib */,
+				B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */,
+				B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */,
+				B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */,
 				B89CE9F4191F1CB7008DFF31 /* ForgetPasswordViewController.h */,
 				B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */,
 				B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */,
+				B85D4BEA19211CD7008241E0 /* ChangePasswordViewController.h */,
+				B85D4BEB19211CD7008241E0 /* ChangePasswordViewController.m */,
+				B85D4BEC19211CD7008241E0 /* ChangePasswordViewController.xib */,
 			);
 			name = LockViewAndPassword;
 			path = HomeAndLock;
@@ -421,7 +443,7 @@
 		B843D14B190F77F10000A60A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
-				B89CEA06191F68FF008DFF31 /* ELCUIApplication */,
+				B85D4BE3192106E2008241E0 /* CusWindow */,
 				B82609D0191E1985003FE222 /* LeveyTabbar */,
 				B843D14C190F77F10000A60A /* SPLockScreen */,
 			);
@@ -817,6 +839,8 @@
 				B8537D5E190B982C000F353D /* Base64.m */,
 				6C3A8C5D1919BBAE00598F39 /* AESUtil.h */,
 				6C3A8C5E1919BBAE00598F39 /* AESUtil.m */,
+				B85D4BE719210857008241E0 /* TimedoutUtil.h */,
+				B85D4BE819210857008241E0 /* TimedoutUtil.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -830,11 +854,13 @@
 			path = ClassCategory;
 			sourceTree = "<group>";
 		};
-		B89CEA06191F68FF008DFF31 /* ELCUIApplication */ = {
+		B85D4BE3192106E2008241E0 /* CusWindow */ = {
 			isa = PBXGroup;
 			children = (
+				B85D4BE419210701008241E0 /* CusWindow.h */,
+				B85D4BE519210701008241E0 /* CusWindow.m */,
 			);
-			path = ELCUIApplication;
+			path = CusWindow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -927,12 +953,14 @@
 				B8537D2A190B7EC4000F353D /* alertView_loading@2x.png in Resources */,
 				B82609CA191E103C003FE222 /* InputMoneyViewController.xib in Resources */,
 				B8537C29190B7769000F353D /* InfoPlist.strings in Resources */,
+				B85D4BEE19211CD7008241E0 /* ChangePasswordViewController.xib in Resources */,
 				B8537D26190B7EC4000F353D /* alertView_button_green.png in Resources */,
 				B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */,
 				B8537C77190B7CDB000F353D /* LoginViewController.xib in Resources */,
 				B8537D27190B7EC4000F353D /* alertView_button_green@2x.png in Resources */,
 				B8537D0F190B7EC4000F353D /* SVProgressHUD.bundle in Resources */,
 				B8537D22190B7EC4000F353D /* alertView_button_gray.png in Resources */,
+				B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */,
 				B8537D21190B7EC4000F353D /* alertView_bg@2x.png in Resources */,
 				B82609CF191E1090003FE222 /* MerchantViewController.xib in Resources */,
 				B8537D28190B7EC4000F353D /* alertView_button_green_pressed.png in Resources */,
@@ -956,6 +984,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
+				B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */,
 				B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
@@ -969,6 +998,7 @@
 				B8537C75190B7CDB000F353D /* AppDelegate.m in Sources */,
 				B8537D05190B7EC4000F353D /* NSString+HTML.m in Sources */,
 				B8537D00190B7EC4000F353D /* AFXMLRequestOperation.m in Sources */,
+				B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */,
 				B8537C2B190B7769000F353D /* main.m in Sources */,
 				B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */,
 				B843D157190F77F10000A60A /* SPLockOverlay.m in Sources */,
@@ -984,6 +1014,7 @@
 				B8537CFF190B7EC4000F353D /* AFURLConnectionOperation.m in Sources */,
 				B843D158190F77F10000A60A /* SPLockScreen.m in Sources */,
 				B81C9F99190CF834004239FF /* DeviceHelper.m in Sources */,
+				B85D4BE619210701008241E0 /* CusWindow.m in Sources */,
 				B8537CFD190B7EC4000F353D /* AFNetworkActivityIndicatorManager.m in Sources */,
 				B8537D0C190B7EC4000F353D /* MProgressAlertView.m in Sources */,
 				B8537D39190B8150000F353D /* StaticFormatTools.m in Sources */,
@@ -1008,6 +1039,7 @@
 				B8537D60190B982C000F353D /* SecurityUtil.m in Sources */,
 				B82609CE191E1090003FE222 /* MerchantViewController.m in Sources */,
 				B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */,
+				B85D4BE919210857008241E0 /* TimedoutUtil.m in Sources */,
 				6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */,
 				B8537CFE190B7EC4000F353D /* AFPropertyListRequestOperation.m in Sources */,
 				B82609DB191E1A99003FE222 /* ToolsViewController.m in Sources */,
