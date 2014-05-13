@@ -10,4 +10,7 @@
 
 @interface ToolsViewController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UIImageView *topImgView;
+@property (weak, nonatomic) IBOutlet UIView *toolsView;
+
 @end

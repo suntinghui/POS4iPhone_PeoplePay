@@ -119,6 +119,15 @@
     }
 }
 
+
+#pragma mark -UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:4006269987"]];
+    }
+}
 #pragma mark -UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -313,10 +322,14 @@
         }
         else if(indexPath.row==2) //联系客服
         {
+         
+            UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"客服热线" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打--4006269987", nil];
+            [sheet showInView:self.view.window];
             
         }
     }
 }
+
 //
 //- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 //{

@@ -22,8 +22,7 @@
 @interface SetMoveLockViewController : BaseViewController<LockScreenDelegate>
 {
     int state; //0：输入原始手势  1：第一次输入新手势  2：第二次输入新手势
-    
-
+    NSString *titleStr;
 }
 @property (strong, nonatomic)  SPLockScreen *lockView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
