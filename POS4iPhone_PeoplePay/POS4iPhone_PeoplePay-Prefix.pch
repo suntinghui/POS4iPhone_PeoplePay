@@ -20,4 +20,5 @@
     #import "AppDataCenter.h"
     #import "ConvertUtil.h"
     #import "SecurityUtil.h"
+    #import "BaseViewController.h"
 #endif

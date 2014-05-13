@@ -20,10 +20,12 @@
 #import <UIKit/UIKit.h>
 #import "SPLockScreen.h"
 
-@interface LockViewController : UIViewController<LockScreenDelegate>
+@interface LockViewController : BaseViewController<LockScreenDelegate>
 
 @property (strong, nonatomic)  SPLockScreen *lockView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
+@property (assign, nonatomic) int pageType; //0:解锁页面  1：设置滑动解锁手势
 
 - (IBAction)buttonClickHandle:(id)sender;
 @end

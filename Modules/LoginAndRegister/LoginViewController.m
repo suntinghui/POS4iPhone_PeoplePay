@@ -7,7 +7,16 @@
 //
 
 #import "LoginViewController.h"
-#import "HomeViewController.h"
+#import "MerchantViewController.h"
+#import "LeveyTabBarController.h"
+#import "InputMoneyViewController.h"
+#import "TradeListViewController.h"
+#import "ToolsViewController.h"
+#import "TimedoutUtil.h"
+#import "ForgetPasswordViewController.h"
+
+#define Button_Tag_Login  100
+#define Button_Tag_ForgetPwd 101
 
 @interface LoginViewController ()
 
@@ -28,8 +37,40 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    if (IsIPhone5)
+    {
+        self.bgImgView.image = [UIImage imageNamed:@"ip_dl-bj5"];
+    }
+    else
+    {
+        self.bgImgView.image = [UIImage imageNamed:@"ip_dl-bj4"];
+    }
     
-    [self loginAction];
+    [self.nameTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
+    [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
+    
+    self.nameTxtField.text = @"18811068526";
+    self.pwdTxtField.text = @"88888888";
+    
+  
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    if (!isGohome)
+    {
+        [self.navigationController setNavigationBarHidden:NO animated:animated];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,41 +79,158 @@
     // Dispose of any resources that can be recreated
 }
 
+#pragma mark - 功能函数
+- (BOOL)checkInputValue
+{
+    NSString *err = nil;
+    if ([StaticTools isEmptyString:self.nameTxtField.text])
+    {
+        err = @"请输入用户名";
+    }
+    else if([StaticTools isEmptyString:self.pwdTxtField.text])
+    {
+        err = @"请输入密码";
+    }
+    if (err!=nil)
+    {
+        [SVProgressHUD showErrorWithStatus:err];
+        return NO;
+    }
+    return YES;
+}
+
+
+- (void)gotoHome
+{
+
+    isGohome = YES;
+     [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
+    
+    InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
+    UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];
+    [StaticTools setNavigationBarBackgroundImage:nav1.navigationBar withImg:@"ip_title"];
+    
+    TradeListViewController *tardeListController = [[TradeListViewController alloc]init];
+    UINavigationController *nav2 = [[UINavigationController alloc]initWithRootViewController:tardeListController];
+    [StaticTools setNavigationBarBackgroundImage:nav2.navigationBar withImg:@"ip_title"];
+    
+    MerchantViewController *merchantController = [[MerchantViewController alloc] init];
+    UINavigationController *nav3 = [[UINavigationController alloc]initWithRootViewController:merchantController];
+    [nav3 setNavigationBarHidden:YES];
+    [StaticTools setNavigationBarBackgroundImage:nav3.navigationBar withImg:@"ip_title"];
+    
+    ToolsViewController *toolsController = [[ToolsViewController alloc]init];
+    UINavigationController *nav4 = [[UINavigationController alloc]initWithRootViewController:toolsController];
+    [StaticTools setNavigationBarBackgroundImage:nav4.navigationBar withImg:@"ip_title"];
+    
+    NSArray *ctlArr = @[nav1,nav2,nav3,nav4];
+    
+    NSMutableDictionary *imgDic1 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic1 setObject:[UIImage imageNamed:@"ip_sk"] forKey:@"Default"];
+	[imgDic1 setObject:[UIImage imageNamed:@"ip_sk"] forKey:@"Highlighted"];
+	[imgDic1 setObject:[UIImage imageNamed:@"ip_sk2"] forKey:@"Seleted"];
+	NSMutableDictionary *imgDic2 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic2 setObject:[UIImage imageNamed:@"ip_ls"] forKey:@"Default"];
+	[imgDic2 setObject:[UIImage imageNamed:@"ip_ls"] forKey:@"Highlighted"];
+	[imgDic2 setObject:[UIImage imageNamed:@"ip_ls2"] forKey:@"Seleted"];
+	NSMutableDictionary *imgDic3 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic3 setObject:[UIImage imageNamed:@"ip_sh"] forKey:@"Default"];
+	[imgDic3 setObject:[UIImage imageNamed:@"ip_sh"] forKey:@"Highlighted"];
+	[imgDic3 setObject:[UIImage imageNamed:@"ip_sh2"] forKey:@"Seleted"];
+	NSMutableDictionary *imgDic4 = [NSMutableDictionary dictionaryWithCapacity:3];
+	[imgDic4 setObject:[UIImage imageNamed:@"ip_gj"] forKey:@"Default"];
+	[imgDic4 setObject:[UIImage imageNamed:@"ip_gj"] forKey:@"Highlighted"];
+	[imgDic4 setObject:[UIImage imageNamed:@"ip_gj2"] forKey:@"Seleted"];
+
+    
+    NSArray *imgArr = @[imgDic1,imgDic2,imgDic3,imgDic4];
+    LeveyTabBarController *leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctlArr imageArray:imgArr];
+//	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarbg.png"]];
+	[leveyTabBarController setTabBarTransparent:YES];
+    [AppDataCenter sharedAppDataCenter].leveyTabBar = leveyTabBarController;
+    [self.navigationController pushViewController:leveyTabBarController animated:YES];
+}
 #pragma mark- 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
 {
-    HomeViewController *homeController = [[HomeViewController alloc]initWithNibName:@"HomeViewController" bundle:nil];
-    [self.navigationController pushViewController:homeController animated:YES];
+    UIButton *button = (UIButton*)sender;
+    switch (button.tag)
+    {
+        case Button_Tag_Login: //登录
+        {
+         
+            if ([self checkInputValue])
+            {
+                [self loginAction];
+            }
+        }
+            break;
+        case Button_Tag_ForgetPwd: //忘记密码
+        {
+             isGohome = NO;
+            ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
+            [self.navigationController pushViewController:forgetPswController animated:YES];
+           
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.nameTxtField.isFirstResponder||self.pwdTxtField.isFirstResponder)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            [self.view endEditing:YES];
+        }];
+    }
+    
+}
+
+#pragma mark -UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+  
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.frame = CGRectMake(0, -100, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+    
+}
 #pragma mark- HTTP请求
 - (void)loginAction
 {
-    //测试账号：
+    //测试账号：13838387438 88888888   18811068526 88888888
     NSDictionary *dict = @{kTranceCode:@"199002",
-                           kParamName:@{@"PHONENUMBER":@"13838387438",
-                                        @"PASSWORD":@"88888888",
+                           kParamName:@{@"PHONENUMBER":self.nameTxtField.text,
+                                        @"PASSWORD":self.pwdTxtField.text,
                                         @"PCSIM":@"不能获取"}};
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj isKindOfClass:[NSArray class]])
+                                             if ([obj isKindOfClass:[NSDictionary class]])
                                              {
-                                                 NSArray *array = (NSArray*)obj;
-                                                 NSString *state = array[0];
-                                                 if ([state isEqualToString:@"0"])
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
-                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功!"];
+                                                     [UserDefaults setObject:obj[@"PHONENUMBER"] forKey:KUSERNAME];
+                                                     [UserDefaults synchronize];
                                                      
+                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+                                                     [self gotoHome];
                                                      
+                                                   
                                                  }
                                                  else
                                                  {
-                                                     [SVProgressHUD showErrorWithStatus:array[1]];
-                                                     
+                                                     [SVProgressHUD showSuccessWithStatus:obj[@"RSPMSG"]];
                                                  }
+                                                 
                                              }
                                              
                                          }

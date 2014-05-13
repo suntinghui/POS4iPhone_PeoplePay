@@ -9,44 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Common/Client/Transfer.m"
-            timestampString = "420281812.951552"
+            filePath = "Common/Client/Transfer+Parser.m"
+            timestampString = "421515341.688835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
-            landmarkName = "-TransferWithRequestDic:prompt:alertError:success:failure:"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-ParseXMLWithReqCode:xmlString:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[Transfer TransferWithRequestDic:prompt:alertError:success:failure:]"
-                  moduleName = "POS4iPhone_PeoplePay"
-                  urlString = "file:///Users/wenbin/%E5%B7%A5%E7%A8%8B/IOS/POS4iPhone_PeoplePay/Common/Client/Transfer.m"
-                  timestampString = "420282424.413996"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "806">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__69-[Transfer TransferWithRequestDic:prompt:alertError:success:failure:]_block_invoke93"
-                  moduleName = "POS4iPhone_PeoplePay"
-                  urlString = "file:///Users/wenbin/%E5%B7%A5%E7%A8%8B/IOS/POS4iPhone_PeoplePay/Common/Client/Transfer.m"
-                  timestampString = "420282424.414221"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "62">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Common/Utility/AESUtil.m"
+            timestampString = "421515638.583367"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "+decryptUseAES:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Common/Utility/AESUtil.m"
+            timestampString = "421565739.408355"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
+            landmarkName = "+decryptUseAES:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

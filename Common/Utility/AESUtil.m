@@ -129,9 +129,8 @@ char *hex2bin(char *hex,unsigned int hex_len)
 	const char *hex = [clearText UTF8String];
 	
     unsigned char* out = hex2bin(hex, strlen((char *)hex));
-    
     unsigned char de[1024];
-    int len,outl=strlen(out);
+    int len,outl= strlen(out);
     int del = 0;
 	
     EVP_CIPHER_CTX             ctx;

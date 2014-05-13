@@ -149,7 +149,7 @@
 	self.oldCellIndex = self.currentCellIndex;
 	NSInteger cellPos = [self indexForPoint:point];
 	
-	if(cellPos >=0 && cellPos != self.oldCellIndex)
+	if(cellPos >=0 && cellPos != self.oldCellIndex&&![self hasCurrent:@(self.currentCellIndex)])
 		[self.cellsInOrder addObject:@(self.currentCellIndex)];
 	
 	if(cellPos < 0 && self.oldCellIndex < 0) return;
@@ -181,6 +181,17 @@
 	}
 }
 
+- (BOOL)hasCurrent:(NSNumber*)number
+{
+    for (NSNumber *num in self.cellsInOrder)
+    {
+        if ([num integerValue]==[number integerValue])
+        {
+            return YES;
+        }
+    }
+    return NO;
+}
 - (void)endPattern
 {
 	NSLog(@"PATTERN: %@",[self patternToUniqueId]);
@@ -242,7 +253,7 @@
 	else {
 		NSInteger cellPos = [self indexForPoint:point];
 		self.oldCellIndex = self.currentCellIndex;
-		if(cellPos >=0) {
+		if(cellPos >=0&&![self hasCurrent:@(self.currentCellIndex)]) {
 			[self.cellsInOrder addObject:@(self.currentCellIndex)];
 			[self performSelector:@selector(endPattern) withObject:nil afterDelay:0.3];
 		}

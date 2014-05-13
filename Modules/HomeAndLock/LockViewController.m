@@ -7,7 +7,8 @@
 //
 
 #import "LockViewController.h"
-
+#import "ForgetPasswordViewController.h"
+#import "TimedoutUtil.h"
 
 @interface LockViewController ()
 
@@ -28,6 +29,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"锁屏手势";
+    
+    if (IsIPhone5)
+    {
+        self.bgImgView.image = [UIImage imageNamed:@"ip-ssmm-bj5"];
+    }
+    else
+    {
+        self.bgImgView.image = [UIImage imageNamed:@"ip-ssmm-bj4"];
+    }
     
 	self.lockView = [[SPLockScreen alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
 	self.lockView.center = CGPointMake(160, self.headImgView.frame.size.height+self.headImgView.frame.origin.y+10+160);
@@ -45,16 +56,19 @@
 #pragma -LockScreenDelegate
 - (void)lockScreen:(SPLockScreen *)lockScreen didEndWithPattern:(NSNumber *)patternNumber
 {
-    if ([patternNumber isEqualToNumber:@(1234)])
+    if ([patternNumber isEqualToNumber:@(123)])
     {
         [self.view removeFromSuperview];
+        
+         [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
     }
 }
 
 #pragma mark- 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
 {
-    
+    ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
+    [self.navigationController pushViewController:forgetPswController animated:YES];
 }
 
 @end

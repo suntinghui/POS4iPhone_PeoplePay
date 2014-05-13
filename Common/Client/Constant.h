@@ -25,7 +25,7 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
 
-#define DEFAULTHOST                     @"http://211.147.87.22:8092/"
+#define DEFAULTHOST                     @"http://211.147.87.24:8092/"
 #define kHostAddress                    @"HOSTADDRESS"
 
 #define kTranceCode                     @"TANCECODE" //交易码
@@ -46,6 +46,7 @@
 #define KUSERNAME                       @"userName"       //用户名
 #define kPASSWORD                       @"password"       //用户密码
 #define kMoveUnlockPsw                  @"MOVEUNLOCKPSW"  //滑动解锁手势密码 number类型
+#define kMoveUnlockState                @"MOVEUNLOCKSTATE"//滑动解锁开关 @"0" 关闭 @"1" 打开
 #define kREMEBERPWD                     @"remeberPWD"     //是否记住密码 @"1"：记住  @"0":不记住
 #define kAUTOLOGIN                      @"autoLogin"      //是否自动登录 @"1"：自动登录  @"0":不自动登录
 
