@@ -21,7 +21,6 @@
 @interface SettingMainViewController : BaseViewController<UITableViewDataSource,
     UITableViewDelegate>
 {
-    int touchNum;
     UISwitch *lockSwitch;
 }
 
