@@ -37,8 +37,17 @@
     
     lockSwitch = [[UISwitch alloc]initWithFrame:CGRectMake(215, 8, 60, 30)];
     [lockSwitch addTarget:self action:@selector(lockValueChange:) forControlEvents:UIControlEventValueChanged];
+  
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     NSString *state = [UserDefaults objectForKey:kMoveUnlockState];
-    if ([state isEqualToString:@"0"])
+    NSString *movePsw = [UserDefaults objectForKey:kMoveUnlockPsw];
+    if ([state isEqualToString:@"0"]||movePsw==nil)
     {
         [lockSwitch setOn:NO];
     }
@@ -48,7 +57,6 @@
     }
     
 }
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -57,8 +65,17 @@
 #pragma mark - 按钮点击
 - (void)lockValueChange:(id)sender
 {
+   
     if (lockSwitch.isOn)
     {
+        //第一次进入 还没有设置默认手势
+        if ([UserDefaults objectForKey:kMoveUnlockPsw]==nil)
+        {
+            SetMoveLockViewController *setMoveLockController = [[SetMoveLockViewController alloc]init];
+            [self.navigationController pushViewController:setMoveLockController animated:YES];
+            return;
+        }
+        
         [UserDefaults setObject:@"1" forKey:kMoveUnlockState];
     }
     else

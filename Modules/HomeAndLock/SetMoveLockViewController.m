@@ -79,7 +79,7 @@
     shake.toValue = [NSNumber numberWithFloat:+0.1];
     shake.duration = 0.07;
     shake.autoreverses = YES; //是否重复
-    shake.repeatCount = 4;
+    shake.repeatCount = 6;
     [lable.layer addAnimation:shake forKey:nil];
 
     

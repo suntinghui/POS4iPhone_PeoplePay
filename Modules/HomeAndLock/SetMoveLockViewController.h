@@ -24,9 +24,10 @@
     int state; //0：输入原始手势  1：第一次输入新手势  2：第二次输入新手势
     NSString *titleStr;
 }
+
 @property (strong, nonatomic)  SPLockScreen *lockView;
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 @property (weak, nonatomic) IBOutlet UILabel *messLabel;
-@property (strong, nonatomic) NSNumber *firstInput; //第一次输入的新手势
+@property (strong, nonatomic) NSNumber *firstInput; //第一次输入的新手势 用来判断两次输入的手势是否一致
 
 @end

@@ -56,11 +56,24 @@
 #pragma -LockScreenDelegate
 - (void)lockScreen:(SPLockScreen *)lockScreen didEndWithPattern:(NSNumber *)patternNumber
 {
-    if ([patternNumber isEqualToNumber:@(123)])
+    NSNumber *pswNum = [UserDefaults objectForKey:kMoveUnlockPsw];
+    if ([patternNumber intValue] == [pswNum intValue])
     {
         [self.view removeFromSuperview];
         
          [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
+    }
+    else
+    {
+        CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        //设置抖动幅度
+        shake.delegate = self;
+        shake.fromValue = [NSNumber numberWithFloat:-0.1];
+        shake.toValue = [NSNumber numberWithFloat:+0.1];
+        shake.duration = 0.07;
+        shake.autoreverses = YES; //是否重复
+        shake.repeatCount = 6;
+        [self.headImgView.layer addAnimation:shake forKey:nil];
     }
 }
 

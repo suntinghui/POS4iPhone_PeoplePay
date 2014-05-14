@@ -22,6 +22,7 @@
 {
     BOOL isGohome;
 }
+
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTxtField;
