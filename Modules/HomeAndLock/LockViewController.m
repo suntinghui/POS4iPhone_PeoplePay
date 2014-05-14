@@ -44,7 +44,7 @@
 	self.lockView.center = CGPointMake(160, self.headImgView.frame.size.height+self.headImgView.frame.origin.y+10+160);
 	self.lockView.delegate = self;
 	self.lockView.backgroundColor = [UIColor clearColor];
-	[self.view addSubview:self.lockView];
+	[self.view insertSubview:self.lockView atIndex:1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,8 +80,12 @@
 #pragma mark- 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
 {
-    ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
-    [self.navigationController pushViewController:forgetPswController animated:YES];
+    [self.view removeFromSuperview];
+    
+    UINavigationController *rootNav =(UINavigationController*)ApplicationDelegate.window.rootViewController;
+    [rootNav popToRootViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:ApplicationDelegate];
 }
 
 @end
