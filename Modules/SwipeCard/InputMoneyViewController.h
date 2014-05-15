@@ -21,6 +21,7 @@
 @interface InputMoneyViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UITextField *inputTxtField;
+@property (weak, nonatomic) IBOutlet UIView *numView;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

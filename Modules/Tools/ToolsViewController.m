@@ -28,6 +28,12 @@
     self.navigationItem.hidesBackButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    if (IsIPhone5)
+    {
+        self.toolsView.frame = CGRectMake(0, 240, self.toolsView.frame.size.width, self.toolsView.frame.size.height);
+        self.topImgView.frame = CGRectMake(0, self.topImgView.frame.origin.y, self.topImgView.frame.size.width, self.topImgView.frame.size.height+50);
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

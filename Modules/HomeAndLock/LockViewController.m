@@ -44,7 +44,7 @@
 	self.lockView.center = CGPointMake(160, self.headImgView.frame.size.height+self.headImgView.frame.origin.y+10+160);
 	self.lockView.delegate = self;
 	self.lockView.backgroundColor = [UIColor clearColor];
-	[self.view addSubview:self.lockView];
+	[self.view insertSubview:self.lockView atIndex:1];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,19 +56,36 @@
 #pragma -LockScreenDelegate
 - (void)lockScreen:(SPLockScreen *)lockScreen didEndWithPattern:(NSNumber *)patternNumber
 {
-    if ([patternNumber isEqualToNumber:@(123)])
+    NSNumber *pswNum = [UserDefaults objectForKey:kMoveUnlockPsw];
+    if ([patternNumber intValue] == [pswNum intValue])
     {
         [self.view removeFromSuperview];
         
          [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
+    }
+    else
+    {
+        CABasicAnimation* shake = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        //设置抖动幅度
+        shake.delegate = self;
+        shake.fromValue = [NSNumber numberWithFloat:-0.1];
+        shake.toValue = [NSNumber numberWithFloat:+0.1];
+        shake.duration = 0.07;
+        shake.autoreverses = YES; //是否重复
+        shake.repeatCount = 6;
+        [self.headImgView.layer addAnimation:shake forKey:nil];
     }
 }
 
 #pragma mark- 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
 {
-    ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
-    [self.navigationController pushViewController:forgetPswController animated:YES];
+    [self.view removeFromSuperview];
+    
+    UINavigationController *rootNav =(UINavigationController*)ApplicationDelegate.window.rootViewController;
+    [rootNav popToRootViewControllerAnimated:YES];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:ApplicationDelegate];
 }
 
 @end

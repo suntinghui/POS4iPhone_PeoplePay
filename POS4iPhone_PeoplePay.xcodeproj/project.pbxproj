@@ -120,6 +120,7 @@
 		B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */; };
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
+		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -318,6 +319,7 @@
 		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
+		B8F5C21B19223683006B199F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -544,6 +546,7 @@
 		B8537C25190B7769000F353D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B8F5C21B19223683006B199F /* Default-568h@2x.png */,
 				B8537C39190B7769000F353D /* Images.xcassets */,
 				B8537C26190B7769000F353D /* POS4iPhone_PeoplePay-Info.plist */,
 				B8537C27190B7769000F353D /* InfoPlist.strings */,
@@ -949,6 +952,7 @@
 				B8537D25190B7EC4000F353D /* alertView_button_gray_pressed@2x.png in Resources */,
 				B8537D23190B7EC4000F353D /* alertView_button_gray@2x.png in Resources */,
 				B8537D20190B7EC4000F353D /* alertView_bg.png in Resources */,
+				B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */,
 				B8537D29190B7EC4000F353D /* alertView_button_green_pressed@2x.png in Resources */,
 				B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */,
 				B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */,

@@ -20,7 +20,8 @@
 
 @interface MerchantViewController : BaseViewController<UITableViewDataSource,
     UITableViewDelegate,
-    UIAlertViewDelegate>
+    UIAlertViewDelegate,
+    UIActionSheetDelegate>
 {
     int state;  //0:未展开  1：展开
 }

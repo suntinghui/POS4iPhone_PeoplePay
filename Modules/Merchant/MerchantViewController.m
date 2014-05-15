@@ -77,6 +77,7 @@
     logOutBtn.frame = CGRectMake(14, 10, 292, 43) ;
     logOutBtn.tag = Button_Tag_Logout;
     [logOutBtn setBackgroundImage:[UIImage imageNamed:@"ip_button"] forState:UIControlStateNormal];
+    [logOutBtn setBackgroundImage:[UIImage imageNamed:@"ip_button2"] forState:UIControlStateHighlighted];
     [logOutBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
     [logOutBtn setTitle:@"安全退出" forState:UIControlStateNormal];
     [footView addSubview:logOutBtn];
@@ -119,6 +120,15 @@
     }
 }
 
+
+#pragma mark -UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0)
+    {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:4006269987"]];
+    }
+}
 #pragma mark -UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -235,6 +245,17 @@
             stateImgView.image = [UIImage imageNamed:@"ip-shjt"];
             stateImgView.tag = View_Tag_StateImg;
             stateImgView.backgroundColor = [UIColor clearColor];
+            float angel = 0;
+            if (state==0) {
+                
+                angel = 0;
+            }
+            else
+            {
+                angel = M_PI;
+            }
+            stateImgView.transform = CGAffineTransformMakeRotation(angel);
+         
            
             [cell.contentView addSubview:stateImgView];
         
@@ -278,8 +299,8 @@
         state = (state==0?1:0);
         [self.listTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         
-//        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//        UIImageView *imgView  = (UIImageView*)[cell.contentView viewWithTag:View_Tag_StateImg];
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        UIImageView *imgView  = (UIImageView*)[cell.contentView viewWithTag:View_Tag_StateImg];
 //        
 //        CABasicAnimation* rotationAnimation;
 //        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -297,6 +318,20 @@
 //        rotationAnimation.delegate = self;
 ////        rotationAnimation.repeatCount = repeat;
 //         [imgView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+        
+//        float angel = 0;
+//        if (state==0) {
+//            
+//            angel = 0;
+//        }
+//        else
+//        {
+//            angel = M_PI;
+//        }
+//        [UIView beginAnimations:nil context:NULL];
+//        [UIView setAnimationDuration:0.5];
+//        imgView.transform = CGAffineTransformMakeRotation(angel);
+//        [UIView commitAnimations];
 
     }
     else if (indexPath.section==1)
@@ -313,10 +348,14 @@
         }
         else if(indexPath.row==2) //联系客服
         {
+         
+            UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"客服热线" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打--4006269987", nil];
+            [sheet showInView:self.view.window];
             
         }
     }
 }
+
 //
 //- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
 //{

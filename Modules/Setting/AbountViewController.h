@@ -20,4 +20,6 @@
 
 @interface AbountViewController : BaseViewController
 
+- (IBAction)buttonClickHandle:(id)sender;
+
 @end

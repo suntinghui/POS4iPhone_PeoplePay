@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define kMaxMin  30  //用户不操作时 退出到登陆页面的时间（分钟）
+#define kMaxMin  1  //用户不操作时 退出到登陆页面的时间（分钟）
 
 #define kNotificationTimeUp @"UNTOUCHEDTIMEUP"//到达最大时间时 发出的通知
 

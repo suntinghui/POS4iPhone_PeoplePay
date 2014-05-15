@@ -51,6 +51,10 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"刷卡";
     self.inputTxtField.text = @"0";
+    if (IsIPhone5)
+    {
+        self.numView.frame = CGRectMake(0, self.numView.frame.origin.y+90, self.numView.frame.size.width, self.numView.frame.size.height);
+    }
 }
 
 
