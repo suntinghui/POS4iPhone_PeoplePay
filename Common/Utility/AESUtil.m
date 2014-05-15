@@ -61,29 +61,29 @@ uint BIN2HEX(uint8 * p_binstr, uint bin_len, uint8 * p_hexstr)
 
 char *hex2bin(char *hex,unsigned int hex_len)
 {
-    int pos = 0;
-    int offset = 0;
-    long long_char;
-    char *endptr;
-    char temp_hex[3] = "\0\0";
-    char *bin;
-    bin = malloc(hex_len/2 + 1);
-    memset(bin,0,hex_len/2 + 1);
-    while(pos <= hex_len)
-    {
-        memcpy(temp_hex,hex+pos,2);
-        long_char = strtol(temp_hex, &endptr, 16);
-        if(long_char)
-        {
-            offset += sprintf(bin + offset, "%c", (unsigned char)long_char);
-        }
-        else
-        {
-            offset++;
-        }
-        pos += 2;
-    }
-    return bin;
+	int pos = 0;
+	int offset = 0;
+	long long_char;
+	char *endptr;
+	char temp_hex[3] = "\0\0";
+	char *bin;
+	bin = malloc(hex_len/2 + 1);
+	memset(bin,0,hex_len/2 + 1);
+	while(pos <= hex_len)
+	{
+		memcpy(temp_hex,hex+pos,2);
+		long_char = strtol(temp_hex, &endptr, 16);
+		if(long_char)
+		{
+			offset += sprintf(bin + offset, "%c", (unsigned char)long_char);
+		}
+		else
+		{
+			offset++;
+		}
+		pos += 2;
+	}
+	return bin;
 }
 
 + (NSString *) encryptUseAES:(NSString *) plainText
