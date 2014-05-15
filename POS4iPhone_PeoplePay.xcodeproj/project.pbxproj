@@ -117,6 +117,8 @@
 		B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9FE191F271C008DFF31 /* TradeCell.xib */; };
 		B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */; };
 		B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */; };
+		B89E14721924613900358617 /* SwipeCardNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89E14701924613900358617 /* SwipeCardNoticeViewController.m */; };
+		B89E14731924613A00358617 /* SwipeCardNoticeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89E14711924613900358617 /* SwipeCardNoticeViewController.xib */; };
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
 		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
@@ -313,6 +315,9 @@
 		B89CEA01191F2F2E008DFF31 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 		B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
+		B89E146F1924613900358617 /* SwipeCardNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeCardNoticeViewController.h; sourceTree = "<group>"; };
+		B89E14701924613900358617 /* SwipeCardNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeCardNoticeViewController.m; sourceTree = "<group>"; };
+		B89E14711924613900358617 /* SwipeCardNoticeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwipeCardNoticeViewController.xib; sourceTree = "<group>"; };
 		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
@@ -617,6 +622,7 @@
 			isa = PBXGroup;
 			children = (
 				B8537C6E190B7CDB000F353D /* LoginAndRegister */,
+				B89E146E1924610A00358617 /* Animontion */,
 				B82609C5191E103C003FE222 /* SwipeCard */,
 				B82609D7191E1A7E003FE222 /* Tools */,
 				B82609C4191E103C003FE222 /* Merchant */,
@@ -866,6 +872,16 @@
 			path = CusWindow;
 			sourceTree = "<group>";
 		};
+		B89E146E1924610A00358617 /* Animontion */ = {
+			isa = PBXGroup;
+			children = (
+				B89E146F1924613900358617 /* SwipeCardNoticeViewController.h */,
+				B89E14701924613900358617 /* SwipeCardNoticeViewController.m */,
+				B89E14711924613900358617 /* SwipeCardNoticeViewController.xib */,
+			);
+			name = Animontion;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -942,6 +958,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B89E14731924613A00358617 /* SwipeCardNoticeViewController.xib in Resources */,
 				B8537C3A190B7769000F353D /* Images.xcassets in Resources */,
 				B8537D24190B7EC4000F353D /* alertView_button_gray_pressed.png in Resources */,
 				B8537D25190B7EC4000F353D /* alertView_button_gray_pressed@2x.png in Resources */,
@@ -1016,6 +1033,7 @@
 				B8537D57190B93D6000F353D /* AppDataCenter.m in Sources */,
 				B8537D04190B7EC4000F353D /* GTMNSString+HTML.m in Sources */,
 				B8537CFF190B7EC4000F353D /* AFURLConnectionOperation.m in Sources */,
+				B89E14721924613900358617 /* SwipeCardNoticeViewController.m in Sources */,
 				B843D158190F77F10000A60A /* SPLockScreen.m in Sources */,
 				B81C9F99190CF834004239FF /* DeviceHelper.m in Sources */,
 				B85D4BE619210701008241E0 /* CusWindow.m in Sources */,

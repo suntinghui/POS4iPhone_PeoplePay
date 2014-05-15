@@ -261,6 +261,33 @@
     
     return resultingImage;
 }
+
+/**
+ *  将图片裁剪成圆形
+ *
+ *  @param image 图片
+ *  @param inset
+ *
+ *  @return
+ */
++ (UIImage*) circleImage:(UIImage*) image withParam:(CGFloat) inset
+{
+    UIGraphicsBeginImageContext(image.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(context, 2);
+    CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+    CGRect rect = CGRectMake(inset, inset, image.size.width - inset * 2.0f, image.size.height - inset * 2.0f);
+    CGContextAddEllipseInRect(context, rect);
+    CGContextClip(context);
+    
+    [image drawInRect:rect];
+    CGContextAddEllipseInRect(context, rect);
+    CGContextStrokePath(context);
+    UIImage *newimg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newimg;
+}
+
 /*
  *屏幕旋转
  */

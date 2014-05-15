@@ -40,6 +40,14 @@
         {
             return [self changePassword:rootElement];
         }
+        else if([reqName isEqualToString:@"200000"]) //头像上传
+        {
+            [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"200001"]) //头像下载
+        {
+            return [self getHeadImg:rootElement];
+        }
     }
     
      return nil;
@@ -94,4 +102,38 @@
     
     return dict;
 }
+
+#pragma mark- 通用解析（只返回RSPCOD和RSPMSG时调用）
+- (id) getCustomMess:(TBXMLElement *) bodyElement
+{
+    
+    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
+    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+    [dict setObject:rspCode forKey:@"RSPCOD"];
+    [dict setObject:rspMess forKey:@"RSPMSG"];
+
+    
+    return dict;
+}
+
+/**
+ *  头像下载
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) getHeadImg:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"HEADIMG" parentElement:bodyElement]] forKey:@"HEADIMG"];
+    }
+    
+    return dict;
+}
+
 @end

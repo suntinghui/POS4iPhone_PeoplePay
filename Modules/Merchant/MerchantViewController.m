@@ -11,8 +11,10 @@
 #import "ForgetPasswordViewController.h"
 #import "SettingMainViewController.h"
 #import "ChangePasswordViewController.h"
+#import "Base64.h"
 
 #define Button_Tag_Logout   100  //退出登录
+#define Button_Tag_ChangeHeadImg 101 //修改头像
 
 #define Alert_Tag_Logout    200  //退出登录alert
 
@@ -80,12 +82,26 @@
     [logOutBtn setBackgroundImage:[UIImage imageNamed:@"ip_button2"] forState:UIControlStateHighlighted];
     [logOutBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
     [logOutBtn setTitle:@"安全退出" forState:UIControlStateNormal];
-    [footView addSubview:logOutBtn];
+    [footView addSubview:logOutBtn]; imagePickerController = [[UIImagePickerController alloc] init];
+    
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     [logOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     logOutBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     self.listTableView.tableFooterView = footView;
     
+    
+    imagePickerController = [[UIImagePickerController alloc] init];
+    
+    imagePickerController.delegate = self;
+    imagePickerController.allowsEditing = YES;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    
+    [self downLoadHeadImg]; 
+    
 }
+
 
 #pragma mark - 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
@@ -102,12 +118,133 @@
                                 SuperView:self];
         }
             break;
+        case Button_Tag_ChangeHeadImg: //修改头像
+        {
+             [self presentViewController:imagePickerController animated:YES completion:^{}];
+        }
+            break;
             
         default:
             break;
     }
 }
 
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(30, 30)];
+    
+//    self.headImgView.image = [StaticTools circleImage:image withParam:0];
+    [self upLoadHeadImage:image];
+    
+	[picker dismissViewControllerAnimated:YES completion:^{}];
+   
+}
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+	[self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+	UIGraphicsBeginImageContext(newSize);
+	[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+	UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	return newImage;
+}
+
+#pragma mark- HTTP请求
+/**
+ *  头像上传
+ *
+ *  @param image
+ */
+- (void)upLoadHeadImage:(UIImage*)image
+{
+    NSDictionary *dict = @{kTranceCode:@"200000",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"HEADIMG":[Base64 encode:UIImagePNGRepresentation(image)],
+                                        @"operationId":@"setHeadImg"}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                  
+                                                     self.headImgView.image = image;
+                                                     [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
+                                                     
+                                                 }
+                                                 else
+                                                 {
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"上传失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在上传..." completeBlock:^(NSArray *operations) {
+    }];
+    
+}
+
+/**
+ *  头像下载
+ *
+ *  @param image
+ */
+- (void)downLoadHeadImg
+{
+    NSDictionary *dict = @{kTranceCode:@"200001",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"operationId":@"getHeadImg"}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                     NSString *headStr = obj[@"HEADIMG"];
+                                                     
+                                                     NSData *data = [Base64 decode:headStr];
+                                                    UIImage *image = [UIImage imageWithData:data scale:1];
+                                                     self.headImgView.image = image;
+                                                     
+                                                 }
+                                                 else
+                                                 {
+                                                     [SVProgressHUD showSuccessWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"头像下载失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    }];
+    
+}
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

@@ -67,8 +67,25 @@
  */
 - (void)unTouchedTimeUp
 {
-    [StaticTools showLockView];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if ([[UserDefaults objectForKey:kMoveUnlockState] isEqualToString:@"1"])
+    {
+        [StaticTools showLockView];
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+    else
+    {
+        [StaticTools showAlertWithTag:0
+                                title:nil
+                              message:@"由于您长时间未操作，系统自动退出。"
+                            AlertType:CAlertTypeDefault
+                            SuperView:nil];
+        
+        UINavigationController *rootNav =(UINavigationController*)self.window.rootViewController;
+        [rootNav popToRootViewControllerAnimated:YES];
+        
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
+    }
+   
 }
 
 

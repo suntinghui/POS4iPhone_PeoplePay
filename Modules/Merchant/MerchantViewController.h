@@ -21,11 +21,15 @@
 @interface MerchantViewController : BaseViewController<UITableViewDataSource,
     UITableViewDelegate,
     UIAlertViewDelegate,
-    UIActionSheetDelegate>
+    UIActionSheetDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate>
 {
     int state;  //0:未展开  1：展开
+    UIImagePickerController *imagePickerController;
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *headImgView;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

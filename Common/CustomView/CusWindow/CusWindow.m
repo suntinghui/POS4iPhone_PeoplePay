@@ -33,13 +33,8 @@
 {
     [super sendEvent:event];
     
-    //打开了滑动解锁
-    if ([[UserDefaults objectForKey:kMoveUnlockState] isEqualToString:@"1"])
-    {
-       [[TimedoutUtil sharedInstance] startTimer];
-    }
-    
-    
+    [[TimedoutUtil sharedInstance] startTimer];
+
 }
 
 @end

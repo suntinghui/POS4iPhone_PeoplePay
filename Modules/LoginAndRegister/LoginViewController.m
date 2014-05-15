@@ -14,6 +14,7 @@
 #import "ToolsViewController.h"
 #import "TimedoutUtil.h"
 #import "ForgetPasswordViewController.h"
+#import "SwipeCardNoticeViewController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101
@@ -50,7 +51,7 @@
     [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     
     self.nameTxtField.text = @"18811068526";
-    self.pwdTxtField.text = @"88888888";
+    self.pwdTxtField.text = @"1234qwer";
     
   
     
@@ -158,6 +159,9 @@
     {
         case Button_Tag_Login: //登录
         {
+//            SwipeCardNoticeViewController *swipCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
+//            [self.navigationController pushViewController:swipCardNoticeController animated:YES];
+//            return;
          
             if ([self checkInputValue])
             {

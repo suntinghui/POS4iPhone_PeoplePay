@@ -233,10 +233,9 @@ static NSString *totalSize = nil;
     
     [[Transfer sharedClient] setDefaultHeader:@"Content-Length" value:[NSString stringWithFormat:@"%d",[httpBodyString length]]];
     
-    NSLog(@"Request:%@", httpBodyString);
-    
-    httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
-    
+ 
+ 
+   
 //    NSLog(@"Request:%@", httpBodyString);
     
     /***
@@ -273,22 +272,44 @@ static NSString *totalSize = nil;
         postType = @"posm";
         endType = @"tran5";
     }
+    else if([rspCode isEqualToString:@"200000"]||//头像上传
+            [rspCode isEqualToString:@"200001"]) //头像下载
+    {
+        postType = @"";
+        endType = @"";
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"%@/%@.%@",postType,[reqDic objectForKey:kTranceCode],endType];
     
     if ([postType isEqualToString:@"posm"])
     {
         [self setRequestUrl:@"http://211.147.87.24:8092/"];
+    }
+    else if ([postType isEqualToString:@""]) //内部服务区地址
+    {
+        [self setRequestUrl:@"http://59.49.20.154:8586/"];
+        path = @"zfb/mpos/transProcess.do";
     }
     else
     {
          [self setRequestUrl:@"http://211.147.87.23:8088/"];
     }
     
+    NSLog(@"Request:%@ ", httpBodyString);
     
-    NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:[NSString stringWithFormat:@"%@/%@.%@",postType,[reqDic objectForKey:kTranceCode],endType] parameters:nil];
-
-    NSLog(@"url is %@",request.URL);
+    //内部服务器数据交换不采用加密
+//    if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
+//    {
+        httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
+        
+//    }
+ 
     
     httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
+    
+    NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
+
+    NSLog(@"url is %@",request.URL);
     
     request.HTTPBody = [httpBodyString dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -318,9 +339,22 @@ static NSString *totalSize = nil;
         
         
 //        NSLog(@"Response: %@", respXML);
-        NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
+        
+        NSString *xmlStr;
+        //内部服务器数据交换不采用加密
+        if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
+        {
+             NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
+            xmlStr = [AESUtil decryptUseAES:respXML];
+        }
+        else
+        {
+             NSLog(@"Response: %@",respXML);
+            xmlStr = respXML;
+        }
+       
 
-        id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: [AESUtil decryptUseAES:respXML]];
+        id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: xmlStr];
         success(obj);
             
         

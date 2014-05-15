@@ -81,7 +81,6 @@
     else
     {
         [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
-        [[TimedoutUtil sharedInstance] stopTimer];
     }
     
     [UserDefaults synchronize];
