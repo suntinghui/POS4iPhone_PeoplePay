@@ -38,11 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Merchant/MerchantViewController.m"
-            timestampString = "421834540.626828"
+            timestampString = "421898284.661568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-downLoadHeadImg"
             landmarkType = "5">
          </BreakpointContent>
@@ -53,13 +53,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Common/Client/Transfer.m"
-            timestampString = "421835706.475512"
+            filePath = "Modules/Merchant/MerchantViewController.m"
+            timestampString = "421898037.694969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "303"
-            endingLineNumber = "303"
-            landmarkName = "-TransferWithRequestDic:prompt:alertError:success:failure:"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "-upLoadHeadImage:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -69,13 +69,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Common/Utility/AESUtil.m"
-            timestampString = "421835816.319795"
+            filePath = "Common/Client/Transfer+Parser.m"
+            timestampString = "421898112.763327"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "+encryptUseAES:"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-getCustomMess:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

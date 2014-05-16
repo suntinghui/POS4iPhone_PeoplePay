@@ -42,7 +42,7 @@
         }
         else if([reqName isEqualToString:@"200000"]) //头像上传
         {
-            [self getCustomMess:rootElement];
+            return [self getCustomMess:rootElement];
         }
         else if([reqName isEqualToString:@"200001"]) //头像下载
         {

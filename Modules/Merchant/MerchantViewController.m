@@ -133,7 +133,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
      UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(30, 30)];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(10,10)];
     
 //    self.headImgView.image = [StaticTools circleImage:image withParam:0];
     [self upLoadHeadImage:image];
@@ -178,7 +178,8 @@
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
                                                   
-                                                     self.headImgView.image = image;
+                                                     UIImage  *imageChange = [StaticTools circleImage:image withParam:0];
+                                                     self.headImgView.image = imageChange;
                                                      [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
                                                      
                                                  }
@@ -224,6 +225,8 @@
                                                      
                                                      NSData *data = [Base64 decode:headStr];
                                                     UIImage *image = [UIImage imageWithData:data scale:1];
+                                                     
+                                                     image = [StaticTools circleImage:image withParam:0];
                                                      self.headImgView.image = image;
                                                      
                                                  }
