@@ -15,6 +15,7 @@
 #import "TimedoutUtil.h"
 #import "ForgetPasswordViewController.h"
 #import "SwipeCardNoticeViewController.h"
+#import "ConnectTypeSelectViewController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101
@@ -104,8 +105,14 @@
 - (void)gotoHome
 {
 
+    ConnectTypeSelectViewController *connectTypeSelectController = [[ConnectTypeSelectViewController alloc]init];
+    [self.navigationController pushViewController:connectTypeSelectController animated:YES];
+    
     isGohome = YES;
-     [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
+    return;
+    
+   
     
     InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];
@@ -159,10 +166,6 @@
     {
         case Button_Tag_Login: //登录
         {
-//            SwipeCardNoticeViewController *swipCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
-//            [self.navigationController pushViewController:swipCardNoticeController animated:YES];
-//            return;
-         
             if ([self checkInputValue])
             {
                 [self loginAction];

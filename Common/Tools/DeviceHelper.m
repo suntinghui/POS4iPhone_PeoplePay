@@ -63,6 +63,9 @@ static DeviceHelper *instance = nil;
 {
     NSLog(@"cardNum:%@\n,cardTrac:%@\n,cardPin:%@\n",cardNum,cardTrac,cardPin);
     
+    [self.infoDict setObject:cardNum forKey:kCardNum];
+    [self.infoDict setObject:cardTrac forKey:kCardTrac];
+    [self.infoDict setObject:cardPin forKey:kCardPin];
     
 }
 
@@ -71,6 +74,16 @@ static DeviceHelper *instance = nil;
     [SVProgressHUD dismiss];
     
     NSLog(@"mac:%@\n,psam:%@\n,tids:%@\n",mac,psam,tids);
+    
+    [self.infoDict setObject:mac forKey:kMacKey];
+    [self.infoDict setObject:psam forKey:kPsamNum];
+    [self.infoDict setObject:tids forKey:kTids];
+    
+    if (self.onePrameBlock)
+    {
+        self.onePrameBlock(self.infoDict);
+        self.onePrameBlock = nil;
+    }
 }
 
 -(void)onError:(NSString*)errmsg
@@ -157,12 +170,30 @@ static DeviceHelper *instance = nil;
 }
 
 /**
+ *  获取psamid
+ *
+ *  @param Sucblock  获取成功的回调
+ *  @param failBlock 获取失败的回调 传nil时采用默认处理：弹框提示错误信息
+ */
+- (void)getPsamIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock
+{
+    NSString *idStr = [qpostLib getPsamID];
+    if (self.onePrameBlock)
+    {
+        self.onePrameBlock(idStr);
+        self.onePrameBlock  = nil;
+    }
+    
+    NSLog(@"psam id %@",idStr);
+}
+
+/**
  *  签到操作
  *
  *  @param block 成功的回调
  *  @param failBlock 失败的回调 传nil时采用默认处理：弹框提示错误信息
  */
--(void)doSignInWithComplete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock
+-(void)doSignInWithMess:(NSString*)mess Complete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock
 {
     [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
     
@@ -170,7 +201,7 @@ static DeviceHelper *instance = nil;
     self.failBlock = failBlock;
     
     //TODO 传入参数作用？？
-    [qpostLib doSignIn:@""];
+    [qpostLib doSignIn:mess];
 }
 
 /**
@@ -201,6 +232,10 @@ static DeviceHelper *instance = nil;
           andFail:(OnePramaBlock)failBlock
 {
     [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
+    
+    self.infoDict = [[NSMutableDictionary alloc]init];
+    self.onePrameBlock = sucBlock;
+    self.failBlock = failBlock;
     
     int state = [qpostLib doTradeEx:amountString andType:type andRandom:random andextraString:extraString andTimesOut:timeout];
     
