@@ -69,13 +69,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Common/Client/Transfer+Parser.m"
-            timestampString = "421898112.763327"
+            filePath = "Common/Tools/DeviceHelper.m"
+            timestampString = "422268691.051238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-getCustomMess:"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "-onTradeInfo:andpsam:andtids:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -85,13 +85,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Common/Tools/DeviceHelper.m"
-            timestampString = "422244314.201206"
+            filePath = "Modules/SwipeCard/InputMoneyViewController.m"
+            timestampString = "422270998.082992"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "-getPsamIDWithComplete:Fail:"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-doTrade"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

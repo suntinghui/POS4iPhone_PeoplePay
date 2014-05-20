@@ -75,7 +75,7 @@ static DeviceHelper *instance = nil;
     
     NSLog(@"mac:%@\n,psam:%@\n,tids:%@\n",mac,psam,tids);
     
-    [self.infoDict setObject:mac forKey:kMacKey];
+    [self.infoDict setObject:mac forKey:kCardMc];
     [self.infoDict setObject:psam forKey:kPsamNum];
     [self.infoDict setObject:tids forKey:kTids];
     
@@ -108,7 +108,6 @@ static DeviceHelper *instance = nil;
     if (self.onePrameBlock)
     {
         self.onePrameBlock(status);
-        self.onePrameBlock = nil;
     }
     
     NSLog(@"do signstatus %@",status);
@@ -117,15 +116,25 @@ static DeviceHelper *instance = nil;
 #pragma mark - devicehelper 内部函数
 - (void)doGetTerminalID
 {
+    
     [SVProgressHUD dismiss];
     NSString *idStr = [qpostLib getTerminalID];
-    if (self.onePrameBlock)
-    {
-        self.onePrameBlock(idStr);
-        self.onePrameBlock  = nil;
-    }
-    
     NSLog(@"termina id %@",idStr);
+    if ([StaticTools isEmptyString:idStr])
+    {
+        if (self.failBlock)
+        {
+            self.failBlock(@"终端id获取失败");
+        }
+    }
+    else
+    {
+        if (self.onePrameBlock)
+        {
+            self.onePrameBlock(idStr);
+//            self.onePrameBlock  = nil;
+        }
+    }
 }
 
 #pragma mark - devicehelper对外函数

@@ -22,6 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *inputTxtField;
 @property (weak, nonatomic) IBOutlet UIView *numView;
+@property (strong, nonatomic) NSString *tidStr;
+@property (strong, nonatomic) NSString *pidStr;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

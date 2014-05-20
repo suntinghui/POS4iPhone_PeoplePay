@@ -1,5 +1,5 @@
 //
-//  ConnectTypeSelectViewController.h
+//  FeedBckViewController.h
 //  POS4iPhone_PeoplePay
 //
 //  Created by 文彬 on 14-5-20.
@@ -8,7 +8,7 @@
 /*----------------------------------------------------------------
  // Copyright (C) 众人科技
  //
- // 文件功能描述：连接类型选择页面---暂时没用到
+ // 文件功能描述：意见反馈页面
  
  // 创建标识：
  // 修改标识：
@@ -17,13 +17,13 @@
  //
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
-#import <GameKit/GameKit.h>
+#import "SKPSMTPMessage.h"
 
-@interface ConnectTypeSelectViewController : BaseViewController<GKPeerPickerControllerDelegate,
-    GKSessionDelegate>
+@interface FeedBckViewController : BaseViewController<UITextViewDelegate,
+    SKPSMTPMessageDelegate>
 
-@property (nonatomic, strong) GKSession *currentSession;
-@property (nonatomic, strong) GKPeerPickerController *picker;
+@property (weak, nonatomic) IBOutlet UITextView *inputTxtView;
+@property (weak, nonatomic) IBOutlet UILabel *messLabel;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

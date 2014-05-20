@@ -104,15 +104,8 @@
 
 - (void)gotoHome
 {
-
-    ConnectTypeSelectViewController *connectTypeSelectController = [[ConnectTypeSelectViewController alloc]init];
-    [self.navigationController pushViewController:connectTypeSelectController animated:YES];
-    
     isGohome = YES;
     [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
-    return;
-    
-   
     
     InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];

@@ -48,6 +48,14 @@
         {
             return [self getHeadImg:rootElement];
         }
+        else if([reqName isEqualToString:@"199020"]) //签到
+        {
+            return [self doSign:rootElement];
+        }
+        else if([reqName isEqualToString:@"199005"]) //消费
+        {
+            return [self getCustomMess:rootElement];
+        }
     }
     
      return nil;
@@ -136,4 +144,24 @@
     return dict;
 }
 
+/**
+ *  用户签到
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) doSign:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"PINKEY" parentElement:bodyElement]] forKey:@"PINKEY"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MACKEY" parentElement:bodyElement]] forKey:@"MACKEY"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ENCRYPTKEY" parentElement:bodyElement]] forKey:@"ENCRYPTKEY"];
+    }
+    
+    return dict;
+}
 @end
