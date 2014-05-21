@@ -31,6 +31,9 @@
                             <state key="normal" backgroundImage="ip_jyfx">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="K2V-Ah-wX7"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1cP-BA-LPP">
                             <rect key="frame" x="215" y="174" width="94" height="75"/>
@@ -38,6 +41,9 @@
                             <state key="normal" backgroundImage="ip_zfb">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="l6F-VJ-kxK"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yjd-qm-05u">
                             <rect key="frame" x="11" y="174" width="94" height="75"/>
@@ -45,6 +51,9 @@
                             <state key="normal" backgroundImage="ip_xyk">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="o1R-nf-lbS"/>
+                            </connections>
                         </button>
                         <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CcI-7V-N3h">
                             <rect key="frame" x="215" y="8" width="94" height="75"/>
@@ -72,6 +81,9 @@
                             <state key="normal" backgroundImage="ip_ckxx">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="JBi-Mt-KhR"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uoG-EL-vG9">
                             <rect key="frame" x="10" y="8" width="94" height="75"/>
@@ -79,6 +91,9 @@
                             <state key="normal" backgroundImage="ip_yecx">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="nFV-3E-Pbt"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SlD-FG-r0l">
                             <rect key="frame" x="11" y="91" width="94" height="75"/>
@@ -86,6 +101,9 @@
                             <state key="normal" backgroundImage="ip_kkzz">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="KUq-H5-uYr"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oPd-Li-iqi">
                             <rect key="frame" x="113" y="174" width="94" height="75"/>
@@ -93,6 +111,9 @@
                             <state key="normal" backgroundImage="ip_sjcz">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="5Cb-lg-yVP"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

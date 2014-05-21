@@ -63,6 +63,9 @@
 - (IBAction)buttonClickHandle:(id)sender
 {
     UIButton *button = (UIButton*)sender;
+    
+    [StaticTools tapAnimationWithView:button];
+    
     switch (button.tag)
     {
         case Button_Tag_Weibo:

@@ -172,7 +172,8 @@ typedef enum
 + (void)showFavoriteTip:(NSString *)tip img:(NSString *)img;
 
 
-
+//给一个view增加点击缩放效果
++ (void)tapAnimationWithView:(UIView*)view;
 
 #pragma mark -
 #pragma mark 添加Notification
