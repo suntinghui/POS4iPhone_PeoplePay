@@ -355,12 +355,12 @@
                                             @"TRACK":[mess[kCardTrac] substringFromIndex:2],
                                             @"CTXNAT":moneyStr, //消费金额
                                             @"TPINBLK":mess[kCardPin],//支付密码
-                                            @"CRDNO":mess[kCardNum],  //卡号
+                                            @"CRDNO":@"",  //卡号
                                             @"CHECKX":@"0.0", //横坐标
                                             @"APPTOKEN":@"APPTOKEN",
                                             @"TTXNTM":time, //交易时间
                                             @"TTXNDT":date, //交易日期
-                                            @"MAC": mess[kCardMc]
+                                            @"MAC": [StringUtil stringFromHexString:mess[kMacKey]]
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict

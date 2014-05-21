@@ -31,6 +31,8 @@
 
 + (NSString *) ASCII2Hex:(NSString *) asciiStr;
 
+// 十六进制转换为普通字符串的。
++ (NSString *)stringFromHexString:(NSString *)hexString;
 // NSString to char *
 + (char *) string2char:(NSString *) str;
 
