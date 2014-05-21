@@ -265,6 +265,7 @@
                                                      if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                      {
                                                          self.infoDict = [NSDictionary dictionaryWithDictionary:obj];
+                                                        
                                                          self.nameLabel.text = self.infoDict[@"MERNAM"];
                                                          [self.listTableView reloadData];
                                                          
@@ -386,7 +387,19 @@
         UILabel *cardNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 300, 20)];
         cardNumLabel.backgroundColor = [UIColor clearColor];
         cardNumLabel.font = [UIFont systemFontOfSize:15];
-        cardNumLabel.text = [NSString stringWithFormat:@"银行卡号：%@",[self getText:self.infoDict[@"ACTNO"]]];
+        
+        if ([StaticTools isEmptyString:self.infoDict[@"ACTNO"]])
+        {
+            cardNumLabel.text = @"银行卡号：";
+
+        }
+        else
+        {
+            NSString *num = self.infoDict[@"ACTNO"];
+            NSString *cardNum =[NSString stringWithFormat:@"%@*****%@",[num substringToIndex:4],[num substringFromIndex:num.length-4]];
+            cardNumLabel.text = [NSString stringWithFormat:@"银行卡号：%@",cardNum];
+        }
+     
         [cell.contentView addSubview:cardNumLabel];
         cardNumLabel.textColor = [UIColor lightGrayColor];
         
