@@ -101,20 +101,22 @@
     return (__bridge_transfer NSString *)string;
 }
 
-+ (NSString *) ASCII2Hex:(NSString *) asciiStr
++ (NSString *) stringToHexStr:(NSString *)str
 {
-    NSMutableString * newString = [[NSMutableString alloc] init];
-    int i = 0;
-    while (i < [asciiStr length])
-    {
-        NSString * hexChar = [asciiStr substringWithRange: NSMakeRange(i, 2)];
-        int value = 0;
-        sscanf([hexChar cStringUsingEncoding:NSASCIIStringEncoding], "%x", &value);
-        [newString appendFormat:@"%c", (char)value];
-        i+=2;
-    }
+    NSUInteger len = [str length];
+    unichar *chars = malloc(len * sizeof(unichar));
+    [str getCharacters:chars];
     
-    return newString;
+    NSMutableString *hexString = [[NSMutableString alloc] init];
+    
+    for(NSUInteger i = 0; i < len; i++ )
+    {
+        // [hexString [NSString stringWithFormat:@"%02x", chars[i]]]; /*previous input*/
+        [hexString appendFormat:@"%02x", chars[i]]; /*EDITED PER COMMENT BELOW*/
+    }
+    free(chars);
+    
+    return hexString ;
 }
 
 // 十六进制转换为普通字符串的。
