@@ -22,14 +22,11 @@
 #define Button_Tag_Eight 108  //8
 #define Button_Tag_Nine  109  //9
 
-#define Button_Tag_Plus         110 //加
-#define Button_Tag_Minus        111 //减
-#define Button_Tag_Multiply     112 //乘
-#define Button_Tag_Division     113 //除
-#define Button_Tag_Delete       114 //删除
-#define Button_Tag_SwipeCard    115 //点击刷卡
-#define Button_Tag_KeepAccount  116 //现金记账
-#define Button_Tag_Point        117 //点
+#define Button_Tag_Point        110 //点
+#define Button_Tag_Delete       111 //删除
+#define Button_Tag_SwipeCard    112 //点击刷卡
+#define Button_Tag_KeepAccount  113 //现金记账
+
 
 
 @interface InputMoneyViewController ()
@@ -58,6 +55,21 @@
     {
         self.numView.frame = CGRectMake(0, self.numView.frame.origin.y+90, self.numView.frame.size.width, self.numView.frame.size.height);
     }
+    
+    //美工未提供点击的灰色背景图片 自己绘制一张图片
+    UIGraphicsBeginImageContext(CGSizeMake(100, 100));
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [UIColor lightGrayColor].CGColor);
+    CGContextFillRect(context, CGRectMake(0, 0, 100, 100));
+    UIImage *newimg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    for (int i=100; i<112; i++)
+    {
+        UIButton *button = (UIButton*)[self.numView viewWithTag:i];
+        [button setBackgroundImage:newimg forState:UIControlStateHighlighted];
+    }
+   
 }
 
 - (void)viewWillAppear:(BOOL)animated

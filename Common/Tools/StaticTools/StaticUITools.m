@@ -470,7 +470,26 @@
 
 }
 
-
+/**
+ *  给一个view增加点击缩放效果
+ *
+ *  @param view
+ */
++ (void)tapAnimationWithView:(UIView*)view
+{
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
+	animation.duration = 0.50;
+	animation.delegate = self;
+	animation.removedOnCompletion = YES;
+	animation.fillMode = kCAFillModeForwards;
+	NSMutableArray *values = [NSMutableArray array];
+	[values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.1, 0.1, 1.0)]];
+	[values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.2, 1.2, 1.0)]];
+	[values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(0.9, 0.9, 0.9)]];
+	[values addObject:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.0, 1.0, 1.0)]];
+	animation.values = values;
+	[view.layer addAnimation:animation forKey:nil];
+}
 #pragma mark -
 #pragma mark 添加Notification
 /*
