@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputMoneyViewController">
             <connections>
                 <outlet property="inputTxtField" destination="F7K-DU-xPq" id="ynA-kV-KQz"/>
+                <outlet property="moneyView" destination="efp-SN-CJG" id="bKD-ms-sH4"/>
                 <outlet property="numView" destination="tNQ-R0-vzl" id="RDt-5I-owU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

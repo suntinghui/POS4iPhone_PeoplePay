@@ -171,28 +171,9 @@
 //                
 //            }];
 //            return;
-            if ([self.inputTxtField.text floatValue] ==0)
-            {
-                [SVProgressHUD showErrorWithStatus:@"刷卡金额必须大于0"];
-                return;
-            }
-            if (![[DeviceHelper shareDeviceHelper] ispluged])
-            {
-                [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
-                return;
-            }
-            
-            NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
-            NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
-            //一天内只用签到一次
-            if (lastSignTime==nil||![currentTime isEqualToString:lastSignTime])
-            {
-                [self deviceOperatWithType:0];
-            }
-            else
-            {
-                 [self deviceOperatWithType:1];
-            }
+            [StaticTools tapAnimationWithView:self.moneyView];
+            [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];
+
             
         }
             break;
@@ -208,6 +189,31 @@
     }
 }
 
+- (void)swipeCard
+{
+    if ([self.inputTxtField.text floatValue] ==0)
+    {
+        [SVProgressHUD showErrorWithStatus:@"刷卡金额必须大于0"];
+        return;
+    }
+    if (![[DeviceHelper shareDeviceHelper] ispluged])
+    {
+        [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
+        return;
+    }
+    
+    NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
+    NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
+    //一天内只用签到一次
+    if (lastSignTime==nil||![currentTime isEqualToString:lastSignTime])
+    {
+        [self deviceOperatWithType:0];
+    }
+    else
+    {
+        [self deviceOperatWithType:1];
+    }
+}
 #pragma mark -http请求
 
 /**
