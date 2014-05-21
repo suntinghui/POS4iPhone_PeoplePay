@@ -267,7 +267,8 @@ static NSString *totalSize = nil;
     if ([rspCode isEqualToString:@"199002"]|| //登录
         [rspCode isEqualToString:@"199018"]|| //获取短信验证码
         [rspCode isEqualToString:@"199018"]|| //忘记密码
-        [rspCode isEqualToString:@"199003"])  //修改密码
+        [rspCode isEqualToString:@"199003"] //修改密码
+        )
     {
         postType = @"posm";
         endType = @"tran5";

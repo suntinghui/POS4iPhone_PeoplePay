@@ -36,6 +36,8 @@
 		B8263C61192C33FC009EFABC /* DeviceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C5F192C33FC009EFABC /* DeviceSearchViewController.m */; };
 		B8263C62192C33FC009EFABC /* DeviceSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */; };
 		B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = B8263C64192C54DF009EFABC /* StringUtil.mm */; };
+		B8263C69192C6FFF009EFABC /* SNSlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C67192C6FFF009EFABC /* SNSlistViewController.m */; };
+		B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */; };
 		B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47D81920CA6A00D0D356 /* AbountViewController.m */; };
 		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
@@ -192,6 +194,9 @@
 		B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceSearchViewController.xib; sourceTree = "<group>"; };
 		B8263C63192C54DF009EFABC /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		B8263C64192C54DF009EFABC /* StringUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StringUtil.mm; sourceTree = "<group>"; };
+		B8263C66192C6FFF009EFABC /* SNSlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSlistViewController.h; sourceTree = "<group>"; };
+		B8263C67192C6FFF009EFABC /* SNSlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSlistViewController.m; sourceTree = "<group>"; };
+		B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSlistViewController.xib; sourceTree = "<group>"; };
 		B82E47D71920CA6A00D0D356 /* AbountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountViewController.h; sourceTree = "<group>"; };
 		B82E47D81920CA6A00D0D356 /* AbountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbountViewController.m; sourceTree = "<group>"; };
 		B82E47D91920CA6A00D0D356 /* AbountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbountViewController.xib; sourceTree = "<group>"; };
@@ -458,6 +463,9 @@
 				B82609D8191E1A99003FE222 /* ToolsViewController.h */,
 				B82609D9191E1A99003FE222 /* ToolsViewController.m */,
 				B82609DA191E1A99003FE222 /* ToolsViewController.xib */,
+				B8263C66192C6FFF009EFABC /* SNSlistViewController.h */,
+				B8263C67192C6FFF009EFABC /* SNSlistViewController.m */,
+				B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1024,6 +1032,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8537C3A190B7769000F353D /* Images.xcassets in Resources */,
+				B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */,
 				B8D717E8192B330000868678 /* help.html in Resources */,
 				B8537D24190B7EC4000F353D /* alertView_button_gray_pressed.png in Resources */,
 				B813BB13192B2BD700654A45 /* WebViewViewController.xib in Resources */,
@@ -1102,6 +1111,7 @@
 				B8537D30190B803E000F353D /* FileManagerUtil.m in Sources */,
 				B8537D67190B9913000F353D /* Util.mm in Sources */,
 				B82609D6191E1985003FE222 /* LeveyTabBarController.m in Sources */,
+				B8263C69192C6FFF009EFABC /* SNSlistViewController.m in Sources */,
 				B8537D13190B7EC4000F353D /* TBXML.m in Sources */,
 				B82609C9191E103C003FE222 /* InputMoneyViewController.m in Sources */,
 				B8537D57190B93D6000F353D /* AppDataCenter.m in Sources */,

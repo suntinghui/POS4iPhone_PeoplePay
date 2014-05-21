@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="headImgView" destination="YzZ-eG-V29" id="INq-1u-siX"/>
                 <outlet property="listTableView" destination="dUu-Do-Ma1" id="IA2-83-KZh"/>
+                <outlet property="nameLabel" destination="zi6-PY-bGv" id="8co-Rw-cV7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,7 +38,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎登陆" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zi6-PY-bGv">
-                    <rect key="frame" x="105" y="123" width="111" height="21"/>
+                    <rect key="frame" x="5" y="123" width="311" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

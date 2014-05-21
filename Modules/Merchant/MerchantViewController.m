@@ -102,7 +102,14 @@
     
 }
 
-
+- (NSString*)getText:(NSString*)text
+{
+    if ([StaticTools isEmptyString:text])
+    {
+        return @"";
+    }
+    return text;
+}
 #pragma mark - 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender
 {
@@ -197,6 +204,8 @@
                                              
                                          }];
     
+    
+    
     [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在上传..." completeBlock:^(NSArray *operations) {
     }];
     
@@ -244,7 +253,37 @@
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    NSDictionary *infodict = @{kTranceCode:@"199011",
+                               kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME]}};
+    
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 if ([obj isKindOfClass:[NSDictionary class]])
+                                                 {
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                     {
+                                                         self.infoDict = [NSDictionary dictionaryWithDictionary:obj];
+                                                         self.nameLabel.text = self.infoDict[@"MERNAM"];
+                                                         [self.listTableView reloadData];
+                                                         
+                                                     }
+                                                     else
+                                                     {
+                                                         [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     }
+                                                     
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:^(NSString *errMsg)
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:@"商户信息查询失败!"];
+                                                 
+                                             }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation,infoOperation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
     }];
     
 }
@@ -347,21 +386,22 @@
         UILabel *cardNumLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 30, 300, 20)];
         cardNumLabel.backgroundColor = [UIColor clearColor];
         cardNumLabel.font = [UIFont systemFontOfSize:15];
-        cardNumLabel.text = [NSString stringWithFormat:@"银行卡号：%@",@"430******123141"];
+        cardNumLabel.text = [NSString stringWithFormat:@"银行卡号：%@",[self getText:self.infoDict[@"ACTNO"]]];
         [cell.contentView addSubview:cardNumLabel];
         cardNumLabel.textColor = [UIColor lightGrayColor];
         
         UILabel *nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 55, 300, 20)];
         nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.font = [UIFont systemFontOfSize:15];
-        nameLabel.text = [NSString stringWithFormat:@"开户名：   %@",@"wenbin"];
+        nameLabel.text = [NSString stringWithFormat:@"开户名：   %@",[self getText:self.infoDict[@"ACTNAM"]]];
         [cell.contentView addSubview:nameLabel];
         nameLabel.textColor = [UIColor lightGrayColor];
         
         UILabel *bankLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, 300, 20)];
         bankLabel.backgroundColor = [UIColor clearColor];
         bankLabel.font = [UIFont systemFontOfSize:15];
-        bankLabel.text = [NSString stringWithFormat:@"开户银行：%@",@"农业银行"];
+        
+        bankLabel.text = [NSString stringWithFormat:@"开户银行：%@",[self getText:self.infoDict[@"OPNBNK"]]];
         [cell.contentView addSubview:bankLabel];
         bankLabel.textColor = [UIColor lightGrayColor];
         

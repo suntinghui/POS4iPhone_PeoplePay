@@ -7,6 +7,10 @@
 //
 
 #import "ToolsViewController.h"
+#import "SNSlistViewController.h"
+
+#define Button_Tag_Weibo   100
+#define Button_Tag_Tuijian 101
 
 @interface ToolsViewController ()
 
@@ -53,4 +57,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -按钮点击
+- (IBAction)buttonClickHandle:(id)sender
+{
+    UIButton *button = (UIButton*)sender;
+    switch (button.tag)
+    {
+        case Button_Tag_Weibo:
+        {
+            
+        }
+            break;
+        case Button_Tag_Tuijian:
+        {
+            SNSlistViewController *snsListController = [[SNSlistViewController alloc]init];
+            [self.navigationController pushViewController:snsListController animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 @end

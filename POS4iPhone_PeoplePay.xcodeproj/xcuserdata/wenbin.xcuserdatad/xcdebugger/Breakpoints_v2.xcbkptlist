@@ -38,27 +38,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Merchant/MerchantViewController.m"
-            timestampString = "421898284.661568"
+            timestampString = "422342270.614468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "-downLoadHeadImg"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Modules/Merchant/MerchantViewController.m"
-            timestampString = "421898037.694969"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "-upLoadHeadImage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -86,12 +70,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/SwipeCard/InputMoneyViewController.m"
-            timestampString = "422334899.786382"
+            timestampString = "422340628.827906"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "-doTrade"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Modules/Merchant/MerchantViewController.m"
+            timestampString = "422342270.614468"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "-downLoadHeadImg"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Common/Client/Transfer+Parser.m"
+            timestampString = "422341801.30411"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "-getMerchantInfo:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

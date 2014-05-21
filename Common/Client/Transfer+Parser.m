@@ -56,6 +56,10 @@
         {
             return [self getCustomMess:rootElement];
         }
+        else if([reqName isEqualToString:@"199011"]) //商户信息查询
+        {
+            return [self getMerchantInfo:rootElement];
+        }
     }
     
      return nil;
@@ -96,6 +100,7 @@
     return dict;
 }
 
+#pragma mark -头像下载
 /**
  *  头像下载
  *
@@ -115,6 +120,7 @@
     return dict;
 }
 
+#pragma mark -用户签到
 /**
  *  用户签到
  *
@@ -131,6 +137,29 @@
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"PINKEY" parentElement:bodyElement]] forKey:@"PINKEY"];
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MACKEY" parentElement:bodyElement]] forKey:@"MACKEY"];
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ENCRYPTKEY" parentElement:bodyElement]] forKey:@"ENCRYPTKEY"];
+    }
+    
+    return dict;
+}
+
+#pragma mark -商户信息查询
+/**
+ *  商户信息查询
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) getMerchantInfo:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MERNAM" parentElement:bodyElement]] forKey:@"MERNAM"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNAM" parentElement:bodyElement]] forKey:@"ACTNAM"];
+         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"OPNBNK" parentElement:bodyElement]] forKey:@"OPNBNK"];
     }
     
     return dict;

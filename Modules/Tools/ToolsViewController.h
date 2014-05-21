@@ -21,4 +21,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *topImgView;
 @property (weak, nonatomic) IBOutlet UIView *toolsView;
 
+- (IBAction)buttonClickHandle:(id)sender;
+
 @end
