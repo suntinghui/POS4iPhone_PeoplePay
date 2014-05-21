@@ -30,7 +30,7 @@
         }
         else if([reqName isEqualToString:@"199018"]) //获取短信验证码
         {
-            return [self getVerCode:rootElement];
+            return [self getCustomMess:rootElement];
         }
         else if([reqName isEqualToString:@"199008"]) //流水查询
         {
@@ -38,7 +38,7 @@
         }
         else if([reqName isEqualToString:@"199003"]) //修改密码
         {
-            return [self changePassword:rootElement];
+            return [self getCustomMess:rootElement];
         }
         else if([reqName isEqualToString:@"200000"]) //头像上传
         {
@@ -72,46 +72,17 @@
     return @{@"PHONENUMBER":phoneNum,@"RSPCOD":rspCode,@"RSPMSG":rspMess,@"PACKAGEMAC":mac};
 }
 
-#pragma mark -获取短信验证码
-- (id) getVerCode:(TBXMLElement *) bodyElement
-{
-
-    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
-    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:rspCode forKey:@"RSPCOD"];
-    [dict setObject:rspMess forKey:@"RSPMSG"];
-    
-    return dict;
-}
 
 #pragma mark -交易列表查询
 - (id) getRradeList:(TBXMLElement *) bodyElement
 {
     
-    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
-    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:rspCode forKey:@"RSPCOD"];
-    [dict setObject:rspMess forKey:@"RSPMSG"];
+   NSMutableDictionary * dict= [self getCustomMess:bodyElement];
     
     return dict;
 }
 
-#pragma mark -修改密码
-- (id) changePassword:(TBXMLElement *) bodyElement
-{
-    
-    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
-    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:rspCode forKey:@"RSPCOD"];
-    [dict setObject:rspMess forKey:@"RSPMSG"];
-    
-    return dict;
-}
-
-#pragma mark- 通用解析（只返回RSPCOD和RSPMSG时调用）
+#pragma mark- 通用解析（返回RSPCOD和RSPMSG时调用）
 - (id) getCustomMess:(TBXMLElement *) bodyElement
 {
     

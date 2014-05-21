@@ -232,7 +232,7 @@
                                                  }
                                                  else
                                                  {
-                                                     [SVProgressHUD showSuccessWithStatus:obj[@"RSPMSG"]];
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                                  }
                                                  
                                              }

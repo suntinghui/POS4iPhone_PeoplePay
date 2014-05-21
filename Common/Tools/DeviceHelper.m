@@ -213,7 +213,7 @@ static DeviceHelper *instance = nil;
 -(void)doSignInWithMess:(NSString*)mess Complete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock
 {
 //    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
-    
+    NSLog(@"设备开始签到");
     self.onePrameBlock = block;
     self.failBlock = failBlock;
     

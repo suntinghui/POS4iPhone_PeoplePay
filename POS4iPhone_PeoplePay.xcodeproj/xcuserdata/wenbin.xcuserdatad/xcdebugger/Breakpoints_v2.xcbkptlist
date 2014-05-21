@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/SwipeCard/InputMoneyViewController.m"
-            timestampString = "422330407.246361"
+            timestampString = "422331648.301896"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "-doTrade"
             landmarkType = "5">
          </BreakpointContent>

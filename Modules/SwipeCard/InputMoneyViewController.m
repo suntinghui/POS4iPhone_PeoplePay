@@ -57,11 +57,14 @@
     {
         self.numView.frame = CGRectMake(0, self.numView.frame.origin.y+90, self.numView.frame.size.width, self.numView.frame.size.height);
     }
-    
- 
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -149,13 +152,17 @@
         case Button_Tag_SwipeCard: //刷卡
         {
 
-
 //            [[DeviceHelper shareDeviceHelper] getPsamIDWithComplete:^(id mess) {
 //                
 //            } Fail:^(id mess) {
 //                
 //            }];
 //            return;
+            if (![[DeviceHelper shareDeviceHelper] ispluged])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
+                return;
+            }
             
             NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
             NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
@@ -166,7 +173,7 @@
             }
             else
             {
-                 [self deviceOperatWithType:1];
+                 [self deviceOperatWithType:0];
             }
             
         }
