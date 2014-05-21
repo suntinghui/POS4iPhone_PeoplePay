@@ -29,7 +29,7 @@
 
 + (NSString *) getUUID;
 
-+ (NSString *) ASCII2Hex:(NSString *) asciiStr;
++ (NSString *) stringToHexStr:(NSString *)str;
 
 // 十六进制转换为普通字符串的。
 + (NSString *)stringFromHexString:(NSString *)hexString;

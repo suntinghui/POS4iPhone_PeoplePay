@@ -335,7 +335,7 @@
     
     NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
     NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
-    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@%@",@"199005",moneyStr,posNum,time,date,[StringUtil ASCII2Hex:[self.pidStr stringByReplacingOccurrencesOfString:@"UN" withString:@""]]];
+    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@%@",@"199005",moneyStr,posNum,time,date,[StringUtil stringToHexStr:[self.pidStr stringByReplacingOccurrencesOfString:@"UN" withString:@""]]];
     
     NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
     [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
