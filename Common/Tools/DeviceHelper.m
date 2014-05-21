@@ -19,6 +19,8 @@ static DeviceHelper *instance = nil;
         if (nil == instance)
         {
             instance = [[DeviceHelper alloc] init];
+            
+        
         }
     }
     
@@ -31,6 +33,12 @@ static DeviceHelper *instance = nil;
     {
         qpostLib = [ZftQposLib getInstance];
         [qpostLib setLister:self];
+        
+        self.failBlock = ^(id mess) {
+            
+            [SVProgressHUD showErrorWithStatus:mess];
+            
+        };
     }
     return self;
 }
@@ -71,7 +79,7 @@ static DeviceHelper *instance = nil;
 
 -(void)onTradeInfo:(NSString*)mac andpsam:(NSString*)psam andtids:(NSString*)tids
 {
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
     
     NSLog(@"mac:%@\n,psam:%@\n,tids:%@\n",mac,psam,tids);
     
@@ -88,12 +96,11 @@ static DeviceHelper *instance = nil;
 
 -(void)onError:(NSString*)errmsg
 {
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
     
     if (self.failBlock)
     {
         self.failBlock(errmsg);
-        self.failBlock = nil;
     }
     else //错误的默认处理
     {
@@ -104,7 +111,8 @@ static DeviceHelper *instance = nil;
 
 -(void)doSignInStatus:(NSString *) status
 {
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
+    
     if (self.onePrameBlock)
     {
         self.onePrameBlock(status);
@@ -117,14 +125,15 @@ static DeviceHelper *instance = nil;
 - (void)doGetTerminalID
 {
     
-    [SVProgressHUD dismiss];
+//    [SVProgressHUD dismiss];
+    
     NSString *idStr = [qpostLib getTerminalID];
     NSLog(@"termina id %@",idStr);
     if ([StaticTools isEmptyString:idStr])
     {
         if (self.failBlock)
         {
-            self.failBlock(@"终端id获取失败");
+            self.failBlock(@"终端id获取失败,请重试。");
         }
     }
     else
@@ -168,7 +177,7 @@ static DeviceHelper *instance = nil;
  */
 - (void)getTerminalIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock
 {
-    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
     
     self.onePrameBlock = Sucblock;
     self.failBlock = failBlock;
@@ -190,7 +199,6 @@ static DeviceHelper *instance = nil;
     if (self.onePrameBlock)
     {
         self.onePrameBlock(idStr);
-        self.onePrameBlock  = nil;
     }
     
     NSLog(@"psam id %@",idStr);
@@ -204,12 +212,11 @@ static DeviceHelper *instance = nil;
  */
 -(void)doSignInWithMess:(NSString*)mess Complete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock
 {
-    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
     
     self.onePrameBlock = block;
     self.failBlock = failBlock;
     
-    //TODO 传入参数作用？？
     [qpostLib doSignIn:mess];
 }
 
@@ -240,7 +247,7 @@ static DeviceHelper *instance = nil;
          Complete:(OnePramaBlock)sucBlock
           andFail:(OnePramaBlock)failBlock
 {
-    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
+//    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
     
     self.infoDict = [[NSMutableDictionary alloc]init];
     self.onePrameBlock = sucBlock;
@@ -248,10 +255,12 @@ static DeviceHelper *instance = nil;
     
     int state = [qpostLib doTradeEx:amountString andType:type andRandom:random andextraString:extraString andTimesOut:timeout];
     
+    NSLog(@"state back %d",state);
+    
     //TODO 返回状态同步？？
     if (state == 0)
     {
-        
+       
     }
     else if(state==1)
     {

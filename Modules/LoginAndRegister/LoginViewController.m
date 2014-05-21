@@ -15,7 +15,6 @@
 #import "TimedoutUtil.h"
 #import "ForgetPasswordViewController.h"
 #import "SwipeCardNoticeViewController.h"
-#import "ConnectTypeSelectViewController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101

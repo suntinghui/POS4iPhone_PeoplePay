@@ -133,7 +133,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
      UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(10,10)];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(50,50)];
     
 //    self.headImgView.image = [StaticTools circleImage:image withParam:0];
     [self upLoadHeadImage:image];

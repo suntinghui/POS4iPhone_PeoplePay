@@ -28,6 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationItem.title = @"刷卡";
     NSMutableArray *imgArr = [[NSMutableArray alloc] init];
     for (int i=1;i<9; i++)
     {

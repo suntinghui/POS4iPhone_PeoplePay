@@ -7,6 +7,8 @@
 //
 
 #import "InputMoneyViewController.h"
+#import "DeviceSearchViewController.h"
+#import "SwipeCardNoticeViewController.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -143,9 +145,17 @@
             }
          
         }
+            break;
         case Button_Tag_SwipeCard: //刷卡
         {
 
+
+//            [[DeviceHelper shareDeviceHelper] getPsamIDWithComplete:^(id mess) {
+//                
+//            } Fail:^(id mess) {
+//                
+//            }];
+//            return;
             
             NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
             NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
@@ -156,7 +166,7 @@
             }
             else
             {
-                 [self deviceOperatWithType:0];
+                 [self deviceOperatWithType:1];
             }
             
         }
@@ -182,6 +192,11 @@
  */
 - (void)deviceOperatWithType:(int)type
 {
+    //加载雷达转圈页面
+    DeviceSearchViewController *deviceSearchController = [[DeviceSearchViewController alloc]init];
+    [self.navigationController pushViewController:deviceSearchController animated:NO];
+    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
+    
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
         self.tidStr = mess;
@@ -196,6 +211,10 @@
         }
     } Fail:^(id mess) {
         
+        //移除雷达转圈页面
+        [SVProgressHUD showErrorWithStatus:mess];
+        [self.navigationController popViewControllerAnimated:NO];
+        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
     }];
 }
 /**
@@ -230,6 +249,8 @@
                                                      
                                                  } Fail:^(id mess) {
                                                      
+                                                     [SVProgressHUD showErrorWithStatus:mess];
+                                                     
                                                  }];
                                                  
                                              }
@@ -256,9 +277,21 @@
 - (void)doTrade
 {
  
+    //移除雷达转圈页面
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    //加载刷卡提示动画页面
+    SwipeCardNoticeViewController *swipeCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
+    [self.navigationController pushViewController:swipeCardNoticeController animated:NO];
+    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
+    
     NSString *num = self.inputTxtField.text;
     [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:@"123" extraString:nil TimesOut:30 Complete:^(id mess) {
     
+        //移除刷卡提示动画页面
+        [self.navigationController popViewControllerAnimated:NO];
+        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        
         NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
         NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
         date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -286,6 +319,8 @@
                                                                                        prompt:nil
                                                                                       success:^(id obj)
                                              {
+                                                 
+                                                 
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                  {
                                                      
@@ -307,6 +342,10 @@
         
     } andFail:^(id mess) {
         
+        [SVProgressHUD showErrorWithStatus:mess];
+        //移除刷卡提示动画页面
+        [self.navigationController popViewControllerAnimated:NO];
+        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
     }];
 
 
