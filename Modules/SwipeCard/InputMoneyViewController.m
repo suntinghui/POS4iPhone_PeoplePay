@@ -9,6 +9,7 @@
 #import "InputMoneyViewController.h"
 #import "DeviceSearchViewController.h"
 #import "SwipeCardNoticeViewController.h"
+#import "StringUtil.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -291,35 +292,39 @@
     SwipeCardNoticeViewController *swipeCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
     [self.navigationController pushViewController:swipeCardNoticeController animated:NO];
     [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
+
+    NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
+    NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
+    date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    NSString *time = [dateStr substringFromIndex:11];
+    time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
     
-    NSString *num = self.inputTxtField.text;
-    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:@"123" extraString:nil TimesOut:30 Complete:^(id mess) {
+    NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
+    NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
+    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@%@",@"199005",moneyStr,posNum,time,date,[self.pidStr substringFromIndex:4]];
+    [[DeviceHelper shareDeviceHelper] doTradeEx:@"1" andType:1 Random:@"123" extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
         [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         
-        NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
-        NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
-        date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
-        NSString *time = [dateStr substringFromIndex:11];
-        time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
+       
         
         NSDictionary *dict = @{kTranceCode:@"199005",
                                kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
                                             @"TERMINALNUMBER":self.tidStr,
                                             @"PSAMCARDNO":self.pidStr,
-                                            @"TSEQNO":[[AppDataCenter sharedAppDataCenter] getTradeNumber],
+                                            @"TSEQNO":posNum,
                                             @"PCSIM":@"获取不到",
-                                            @"TRACK":mess[kCardTrac],
-                                            @"CTXNAT":num, //消费金额
+                                            @"TRACK":[mess[kCardTrac] substringFromIndex:2],
+                                            @"CTXNAT":moneyStr, //消费金额
                                             @"TPINBLK":mess[kCardPin],//支付密码
                                             @"CRDNO":mess[kCardNum],  //卡号
                                             @"CHECKX":@"0.0", //横坐标
                                             @"APPTOKEN":@"APPTOKEN",
                                             @"TTXNTM":time, //交易时间
                                             @"TTXNDT":date, //交易日期
-                                            @"MAC":mess[kCardMc]
+                                            @"MAC": [self ToHex:[mess[kCardMc] longLongValue]]
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
@@ -356,5 +361,39 @@
     }];
 
 
+}
+
+-(NSString *)ToHex:(long long int)tmpid
+{
+    NSString *nLetterValue;
+    NSString *str =@"";
+    long long int ttmpig;
+    for (int i = 0; i<9; i++) {
+        ttmpig=tmpid%16;
+        tmpid=tmpid/16;
+        switch (ttmpig)
+        {
+            case 10:
+                nLetterValue =@"A";break;
+            case 11:
+                nLetterValue =@"B";break;
+            case 12:
+                nLetterValue =@"C";break;
+            case 13:
+                nLetterValue =@"D";break;
+            case 14:
+                nLetterValue =@"E";break;
+            case 15:
+                nLetterValue =@"F";break;
+            default:nLetterValue=[[NSString alloc]initWithFormat:@"%i",ttmpig];
+                
+        }
+        str = [nLetterValue stringByAppendingString:str];
+        if (tmpid == 0) {
+            break;  
+        }  
+        
+    }  
+    return str;  
 }
 @end

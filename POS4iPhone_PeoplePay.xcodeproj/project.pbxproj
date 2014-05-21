@@ -35,6 +35,7 @@
 		B82609E1191E1AC1003FE222 /* TradeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82609DF191E1AC1003FE222 /* TradeListViewController.xib */; };
 		B8263C61192C33FC009EFABC /* DeviceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C5F192C33FC009EFABC /* DeviceSearchViewController.m */; };
 		B8263C62192C33FC009EFABC /* DeviceSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */; };
+		B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = B8263C64192C54DF009EFABC /* StringUtil.mm */; };
 		B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47D81920CA6A00D0D356 /* AbountViewController.m */; };
 		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
@@ -189,6 +190,8 @@
 		B8263C5E192C33FC009EFABC /* DeviceSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSearchViewController.h; sourceTree = "<group>"; };
 		B8263C5F192C33FC009EFABC /* DeviceSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceSearchViewController.m; sourceTree = "<group>"; };
 		B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceSearchViewController.xib; sourceTree = "<group>"; };
+		B8263C63192C54DF009EFABC /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
+		B8263C64192C54DF009EFABC /* StringUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StringUtil.mm; sourceTree = "<group>"; };
 		B82E47D71920CA6A00D0D356 /* AbountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountViewController.h; sourceTree = "<group>"; };
 		B82E47D81920CA6A00D0D356 /* AbountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbountViewController.m; sourceTree = "<group>"; };
 		B82E47D91920CA6A00D0D356 /* AbountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbountViewController.xib; sourceTree = "<group>"; };
@@ -895,6 +898,8 @@
 				6C3A8C5E1919BBAE00598F39 /* AESUtil.m */,
 				B85D4BE719210857008241E0 /* TimedoutUtil.h */,
 				B85D4BE819210857008241E0 /* TimedoutUtil.m */,
+				B8263C63192C54DF009EFABC /* StringUtil.h */,
+				B8263C64192C54DF009EFABC /* StringUtil.mm */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1071,6 +1076,7 @@
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
 				B813BB0D192B25C600654A45 /* FeedBckViewController.m in Sources */,
 				B8D717E3192B2D7500868678 /* SKPSMTPMessage.m in Sources */,
+				B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */,
 				B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */,
 				B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
