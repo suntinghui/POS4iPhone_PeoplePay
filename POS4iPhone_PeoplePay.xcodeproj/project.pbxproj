@@ -38,6 +38,8 @@
 		B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = B8263C64192C54DF009EFABC /* StringUtil.mm */; };
 		B8263C69192C6FFF009EFABC /* SNSlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C67192C6FFF009EFABC /* SNSlistViewController.m */; };
 		B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */; };
+		B8263C6E192C8F33009EFABC /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C6C192C8F33009EFABC /* ErrorViewController.m */; };
+		B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C6D192C8F33009EFABC /* ErrorViewController.xib */; };
 		B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47D81920CA6A00D0D356 /* AbountViewController.m */; };
 		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
@@ -197,6 +199,9 @@
 		B8263C66192C6FFF009EFABC /* SNSlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSlistViewController.h; sourceTree = "<group>"; };
 		B8263C67192C6FFF009EFABC /* SNSlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSlistViewController.m; sourceTree = "<group>"; };
 		B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSlistViewController.xib; sourceTree = "<group>"; };
+		B8263C6B192C8F33009EFABC /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
+		B8263C6C192C8F33009EFABC /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
+		B8263C6D192C8F33009EFABC /* ErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
 		B82E47D71920CA6A00D0D356 /* AbountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountViewController.h; sourceTree = "<group>"; };
 		B82E47D81920CA6A00D0D356 /* AbountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbountViewController.m; sourceTree = "<group>"; };
 		B82E47D91920CA6A00D0D356 /* AbountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbountViewController.xib; sourceTree = "<group>"; };
@@ -422,6 +427,9 @@
 				B8263C5E192C33FC009EFABC /* DeviceSearchViewController.h */,
 				B8263C5F192C33FC009EFABC /* DeviceSearchViewController.m */,
 				B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */,
+				B8263C6B192C8F33009EFABC /* ErrorViewController.h */,
+				B8263C6C192C8F33009EFABC /* ErrorViewController.m */,
+				B8263C6D192C8F33009EFABC /* ErrorViewController.xib */,
 			);
 			path = Animotion;
 			sourceTree = "<group>";
@@ -1054,6 +1062,7 @@
 				B8537D26190B7EC4000F353D /* alertView_button_green.png in Resources */,
 				B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */,
 				B8537C77190B7CDB000F353D /* LoginViewController.xib in Resources */,
+				B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */,
 				B8537D27190B7EC4000F353D /* alertView_button_green@2x.png in Resources */,
 				B8537D0F190B7EC4000F353D /* SVProgressHUD.bundle in Resources */,
 				B8537D22190B7EC4000F353D /* alertView_button_gray.png in Resources */,
@@ -1142,6 +1151,7 @@
 				B8537D61190B982C000F353D /* Base64.m in Sources */,
 				B8537CFC190B7EC4000F353D /* AFJSONRequestOperation.m in Sources */,
 				B8537D3B190B8150000F353D /* StaticUITools.m in Sources */,
+				B8263C6E192C8F33009EFABC /* ErrorViewController.m in Sources */,
 				B8537C76190B7CDB000F353D /* LoginViewController.m in Sources */,
 				B8537D5F190B982C000F353D /* ConvertUtil.m in Sources */,
 				B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */,

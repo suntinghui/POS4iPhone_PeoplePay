@@ -219,10 +219,15 @@
         }
     } Fail:^(id mess) {
         
-        //移除雷达转圈页面
-        [SVProgressHUD showErrorWithStatus:mess];
-        [self.navigationController popViewControllerAnimated:NO];
-        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        
+//           [SVProgressHUD showErrorWithStatus:mess];
+        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+            
+            //移除雷达转圈页面
+            [self.navigationController popViewControllerAnimated:NO];
+            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        }];
+        
     }];
 }
 /**
@@ -257,20 +262,32 @@
                                                      
                                                  } Fail:^(id mess) {
                                                      
-                                                     [SVProgressHUD showErrorWithStatus:mess];
+                                                    
+//                                                     [SVProgressHUD showErrorWithStatus:mess];
+                                                     
+                                                     [StaticTools showErrorPageWithMess:mess clickHandle:^{
+                                                         
+                                                         //移除刷卡提示动画页面
+                                                         [self.navigationController popViewControllerAnimated:NO];
+                                                         [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+                                                     }];
                                                      
                                                  }];
                                                  
                                              }
                                              else
                                              {
-                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+//                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 
+                                                 [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
                                              }
                                              
                                          }
                                                                                   failure:^(NSString *errMsg)
                                          {
-                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+//                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:nil];
                                              
                                          }];
     
@@ -301,7 +318,7 @@
     
     NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
     NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
-    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@%@",@"199005",moneyStr,posNum,time,date,[self.pidStr substringFromIndex:4]];
+    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@UN%@",@"199005",moneyStr,posNum,time,date,[self.pidStr substringFromIndex:4]];
     [[DeviceHelper shareDeviceHelper] doTradeEx:@"1" andType:1 Random:@"123" extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
@@ -339,13 +356,16 @@
                                                  }
                                                  else
                                                  {
-                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+//                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
                                                  }
                                                  
                                              }
                                                                                       failure:^(NSString *errMsg)
                                              {
-                                                 [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+//                                                 [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                                 
+                                                 [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
                                                  
                                              }];
         
@@ -354,10 +374,15 @@
         
     } andFail:^(id mess) {
         
-        [SVProgressHUD showErrorWithStatus:mess];
-        //移除刷卡提示动画页面
-        [self.navigationController popViewControllerAnimated:NO];
-        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+//        [SVProgressHUD showErrorWithStatus:mess];
+        
+        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+            //移除刷卡提示动画页面
+            [self.navigationController popViewControllerAnimated:NO];
+            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        }];
+        
+       
     }];
 
 
