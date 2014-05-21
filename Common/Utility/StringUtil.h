@@ -35,4 +35,6 @@
 + (char *) string2char:(NSString *) str;
 
 + (id)stringWithMoney:(NSNumber *)money locale:(NSString*)locale;
+
++(NSString *)longToHex:(long long int)tmpid;
 @end
