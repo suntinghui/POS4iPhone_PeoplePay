@@ -37,7 +37,7 @@
 #define kCardNum                        @"CARDNUM"
 #define kCardTrac                       @"CARDTRAC"
 #define kCardPin                        @"CARDPIN"
-#define kMacKey                         @"MACKEY"
+#define kCardMc                         @"MACKEY"
 #define kPsamNum                        @"PSAMNUM"
 #define kTids                           @"TIDS"
 
@@ -49,5 +49,12 @@
 #define kMoveUnlockState                @"MOVEUNLOCKSTATE"//滑动解锁开关 @"0" 关闭 @"1" 打开
 #define kREMEBERPWD                     @"remeberPWD"     //是否记住密码 @"1"：记住  @"0":不记住
 #define kAUTOLOGIN                      @"autoLogin"      //是否自动登录 @"1"：自动登录  @"0":不自动登录
+
+#define kLastSignTime                   @"LASTSIGNTIME"   //上次签到时间
+#define kTradeNum                       @"TRADENUM"       //交易流水号
+
+#define kPinKey                         @"PINKEY"
+#define kMacKey                         @"MACKEY"
+#define kEncryptKey                     @"ENCRYPTKEY"
 
 

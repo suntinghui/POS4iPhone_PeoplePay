@@ -18,7 +18,7 @@
  //
  ----------------------------------------------------------------*/
 #import "StaticTools.h"
-
+#import "ErrorViewController.h"
 
 @interface StaticTools (UIOperation)
 
@@ -27,6 +27,9 @@
  */
 + (BOOL)checkTimeWithStart:(NSString*)startTime end:(NSString*)endTime;
 
+//显示宫格解锁页面
 + (void)showLockView;
 
+//显示错误提示页面
++ (void)showErrorPageWithMess:(NSString*)mess clickHandle:(ButtonClickBlock)block;
 @end

@@ -21,4 +21,5 @@
     #import "ConvertUtil.h"
     #import "SecurityUtil.h"
     #import "BaseViewController.h"
+    #import "DeviceHelper.h"
 #endif

@@ -7,6 +7,9 @@
 //
 
 #import "InputMoneyViewController.h"
+#import "DeviceSearchViewController.h"
+#import "SwipeCardNoticeViewController.h"
+#import "StringUtil.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -57,7 +60,12 @@
     }
 }
 
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -141,8 +149,38 @@
             }
          
         }
+            break;
         case Button_Tag_SwipeCard: //刷卡
         {
+
+//            [[DeviceHelper shareDeviceHelper] getPsamIDWithComplete:^(id mess) {
+//                
+//            } Fail:^(id mess) {
+//                
+//            }];
+//            return;
+            if ([self.inputTxtField.text floatValue] ==0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"刷卡金额必须大于0"];
+                return;
+            }
+            if (![[DeviceHelper shareDeviceHelper] ispluged])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
+                return;
+            }
+            
+            NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
+            NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
+            //一天内只用签到一次
+            if (lastSignTime==nil||![currentTime isEqualToString:lastSignTime])
+            {
+                [self deviceOperatWithType:0];
+            }
+            else
+            {
+                 [self deviceOperatWithType:1];
+            }
             
         }
             break;
@@ -157,5 +195,205 @@
             break;
     }
 }
+
+#pragma mark -http请求
+
+/**
+ *  读取设备id和psamdid  然后根据type做处理
+ *
+ *  @param type 0：发送签到请求  1：发送消费请求
+ */
+- (void)deviceOperatWithType:(int)type
+{
+    //加载雷达转圈页面
+    DeviceSearchViewController *deviceSearchController = [[DeviceSearchViewController alloc]init];
+    [self.navigationController pushViewController:deviceSearchController animated:NO];
+    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
+    
+    [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
+        
+        self.tidStr = mess;
+        self.pidStr = @"UN201410000046"; //TODO
+        if (type==0)
+        {
+            [self doSign];
+        }
+        else if(type==1)
+        {
+            [self doTrade];
+        }
+    } Fail:^(id mess) {
+        
+        
+//           [SVProgressHUD showErrorWithStatus:mess];
+        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+            
+            //移除雷达转圈页面
+            [self.navigationController popViewControllerAnimated:NO];
+            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        }];
+        
+    }];
+}
+/**
+ *  签到请求
+ */
+- (void)doSign
+{
+    NSDictionary *dict = @{kTranceCode:@"199020",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"TERMINALNUMBER":self.tidStr,
+                                        @"PSAMCARDNO":self.pidStr,
+                                        @"TERMINALSERIANO":[[AppDataCenter sharedAppDataCenter] getTradeNumber]}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                             {
+                                                [UserDefaults setObject:obj[@"PINKEY"] forKey:kPinKey];
+                                                [UserDefaults setObject:obj[@"MACKEY"] forKey:kMacKey];
+                                                [UserDefaults setObject:obj[@"ENCRYPTKEY"] forKey:kEncryptKey];
+                                                 
+                                                 //记录本次签到时间 一天内只用签到一次
+                                                 [UserDefaults setObject:[StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO] forKey:kLastSignTime];
+                                                 [UserDefaults synchronize];
+                                                 
+                                                 NSString *key = [NSString stringWithFormat:@"%@%@%@",obj[@"ENCRYPTKEY"],obj[@"PINKEY"],obj[@"MACKEY"]];
+                                                 [[DeviceHelper shareDeviceHelper]doSignInWithMess:key Complete:^(id mess) {
+                                                     
+                                                     [self doTrade];
+                                                     
+                                                 } Fail:^(id mess) {
+                                                     
+                                                    
+//                                                     [SVProgressHUD showErrorWithStatus:mess];
+                                                     
+                                                     [StaticTools showErrorPageWithMess:mess clickHandle:^{
+                                                         
+                                                         //移除刷卡提示动画页面
+                                                         [self.navigationController popViewControllerAnimated:NO];
+                                                         [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+                                                     }];
+                                                     
+                                                 }];
+                                                 
+                                             }
+                                             else
+                                             {
+//                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 
+                                                 [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+//                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:nil];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在签到..." completeBlock:^(NSArray *operations) {
+    }];
+    
+}
+
+/**
+ *  刷卡消费请求
+ */
+- (void)doTrade
+{
+ 
+    //移除雷达转圈页面
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    //加载刷卡提示动画页面
+    SwipeCardNoticeViewController *swipeCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
+    [self.navigationController pushViewController:swipeCardNoticeController animated:NO];
+    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
+
+    NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
+    NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
+    date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    NSString *time = [dateStr substringFromIndex:11];
+    time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
+    
+    NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
+    NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
+    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@UN%@",@"199005",moneyStr,posNum,time,date,[self.pidStr substringFromIndex:4]];
+    
+    NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
+    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:@"123" extraString:mac TimesOut:30 Complete:^(id mess) {
+    
+        //移除刷卡提示动画页面
+        [self.navigationController popViewControllerAnimated:NO];
+        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        
+       
+        
+        NSDictionary *dict = @{kTranceCode:@"199005",
+                               kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                            @"TERMINALNUMBER":self.tidStr,
+                                            @"PSAMCARDNO":self.pidStr,
+                                            @"TSEQNO":posNum,
+                                            @"PCSIM":@"获取不到",
+                                            @"TRACK":[mess[kCardTrac] substringFromIndex:2],
+                                            @"CTXNAT":moneyStr, //消费金额
+                                            @"TPINBLK":mess[kCardPin],//支付密码
+                                            @"CRDNO":mess[kCardNum],  //卡号
+                                            @"CHECKX":@"0.0", //横坐标
+                                            @"APPTOKEN":@"APPTOKEN",
+                                            @"TTXNTM":time, //交易时间
+                                            @"TTXNDT":date, //交易日期
+                                            @"MAC": [StringUtil longToHex:[mess[kCardMc] longLongValue]]
+                                            }};
+        
+        AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 
+                                                 
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                 {
+                                                     
+                                                 }
+                                                 else
+                                                 {
+//                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:^(NSString *errMsg)
+                                             {
+//                                                 [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                                 
+                                                 [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
+                                                 
+                                             }];
+        
+        [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+        }];
+        
+    } andFail:^(id mess) {
+        
+//        [SVProgressHUD showErrorWithStatus:mess];
+        
+        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+            //移除刷卡提示动画页面
+            [self.navigationController popViewControllerAnimated:NO];
+            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+        }];
+        
+       
+    }];
+
+
+}
+
 
 @end

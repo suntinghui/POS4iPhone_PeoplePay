@@ -50,4 +50,26 @@ static AppDataCenter *instance = nil;
     
     return nil;
 }
+
+/**
+ *  获取交易流水号
+ *
+ *  @return 
+ */
+- (NSString *)getTradeNumber
+{
+    NSInteger number = [UserDefaults integerForKey:kTradeNum];
+    if (number == 0) {
+        number = 1;
+    }
+    
+    [UserDefaults setInteger:(number+1)==1000000?1:(number+1) forKey:kTradeNum];
+    [UserDefaults synchronize];
+    
+    number +=980000;
+    
+    self.tradeNum = [NSString stringWithFormat:@"%06ld", (long)number];
+    
+    return self.tradeNum;
+}
 @end

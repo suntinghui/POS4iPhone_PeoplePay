@@ -7,6 +7,10 @@
 //
 
 #import "ToolsViewController.h"
+#import "SNSlistViewController.h"
+
+#define Button_Tag_Weibo   100
+#define Button_Tag_Tuijian 101
 
 @interface ToolsViewController ()
 
@@ -40,12 +44,14 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -53,4 +59,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -按钮点击
+- (IBAction)buttonClickHandle:(id)sender
+{
+    UIButton *button = (UIButton*)sender;
+    switch (button.tag)
+    {
+        case Button_Tag_Weibo:
+        {
+            
+        }
+            break;
+        case Button_Tag_Tuijian:
+        {
+            SNSlistViewController *snsListController = [[SNSlistViewController alloc]init];
+            [self.navigationController pushViewController:snsListController animated:YES];
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 @end

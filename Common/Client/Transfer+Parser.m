@@ -30,7 +30,7 @@
         }
         else if([reqName isEqualToString:@"199018"]) //获取短信验证码
         {
-            return [self getVerCode:rootElement];
+            return [self getCustomMess:rootElement];
         }
         else if([reqName isEqualToString:@"199008"]) //流水查询
         {
@@ -38,7 +38,27 @@
         }
         else if([reqName isEqualToString:@"199003"]) //修改密码
         {
-            return [self changePassword:rootElement];
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"200000"]) //头像上传
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"200001"]) //头像下载
+        {
+            return [self getHeadImg:rootElement];
+        }
+        else if([reqName isEqualToString:@"199020"]) //签到
+        {
+            return [self doSign:rootElement];
+        }
+        else if([reqName isEqualToString:@"199005"]) //消费
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"199011"]) //商户信息查询
+        {
+            return [self getMerchantInfo:rootElement];
         }
     }
     
@@ -56,34 +76,18 @@
     return @{@"PHONENUMBER":phoneNum,@"RSPCOD":rspCode,@"RSPMSG":rspMess,@"PACKAGEMAC":mac};
 }
 
-#pragma mark -获取短信验证码
-- (id) getVerCode:(TBXMLElement *) bodyElement
-{
-
-    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
-    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:rspCode forKey:@"RSPCOD"];
-    [dict setObject:rspMess forKey:@"RSPMSG"];
-    
-    return dict;
-}
 
 #pragma mark -交易列表查询
 - (id) getRradeList:(TBXMLElement *) bodyElement
 {
     
-    NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
-    NSString *rspMess = [TBXML textForElement:[TBXML childElementNamed:@"RSPMSG" parentElement:bodyElement]];
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-    [dict setObject:rspCode forKey:@"RSPCOD"];
-    [dict setObject:rspMess forKey:@"RSPMSG"];
+   NSMutableDictionary * dict= [self getCustomMess:bodyElement];
     
     return dict;
 }
 
-#pragma mark -修改密码
-- (id) changePassword:(TBXMLElement *) bodyElement
+#pragma mark- 通用解析（返回RSPCOD和RSPMSG时调用）
+- (id) getCustomMess:(TBXMLElement *) bodyElement
 {
     
     NSString *rspCode = [TBXML textForElement:[TBXML childElementNamed:@"RSPCOD" parentElement:bodyElement]];
@@ -91,6 +95,72 @@
     NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
     [dict setObject:rspCode forKey:@"RSPCOD"];
     [dict setObject:rspMess forKey:@"RSPMSG"];
+
+    
+    return dict;
+}
+
+#pragma mark -头像下载
+/**
+ *  头像下载
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) getHeadImg:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"HEADIMG" parentElement:bodyElement]] forKey:@"HEADIMG"];
+    }
+    
+    return dict;
+}
+
+#pragma mark -用户签到
+/**
+ *  用户签到
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) doSign:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"PINKEY" parentElement:bodyElement]] forKey:@"PINKEY"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MACKEY" parentElement:bodyElement]] forKey:@"MACKEY"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ENCRYPTKEY" parentElement:bodyElement]] forKey:@"ENCRYPTKEY"];
+    }
+    
+    return dict;
+}
+
+#pragma mark -商户信息查询
+/**
+ *  商户信息查询
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) getMerchantInfo:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MERNAM" parentElement:bodyElement]] forKey:@"MERNAM"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNAM" parentElement:bodyElement]] forKey:@"ACTNAM"];
+         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"OPNBNK" parentElement:bodyElement]] forKey:@"OPNBNK"];
+    }
     
     return dict;
 }

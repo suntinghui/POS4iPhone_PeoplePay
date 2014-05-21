@@ -32,6 +32,8 @@ typedef void(^OnePramaBlock)(id mess);
 @property (strong, nonatomic) OnePramaBlock onePrameBlock;
 @property (strong, nonatomic) OnePramaBlock failBlock;
 
+@property (strong, nonatomic) NSMutableDictionary *infoDict;
+
 +(DeviceHelper*)shareDeviceHelper;
 
 //获取设备版本号
@@ -40,11 +42,14 @@ typedef void(^OnePramaBlock)(id mess);
 //获取设备终端号码
 - (void)getTerminalIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock;
 
+//获取psamid
+- (void)getPsamIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock;
+
 //判断设备是否插入
 - (BOOL)ispluged;
 
 //签到
--(void)doSignInWithComplete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock;
+-(void)doSignInWithMess:(NSString*)mess Complete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock;
 
 //刷卡等操作
 -(void) doTradeEx:(NSString*)amountString

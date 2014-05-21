@@ -21,11 +21,17 @@
 @interface MerchantViewController : BaseViewController<UITableViewDataSource,
     UITableViewDelegate,
     UIAlertViewDelegate,
-    UIActionSheetDelegate>
+    UIActionSheetDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate>
 {
     int state;  //0:未展开  1：展开
+    UIImagePickerController *imagePickerController;
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
+@property (weak, nonatomic) IBOutlet UIImageView *headImgView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) NSDictionary *infoDict; //商户信息
 
 - (IBAction)buttonClickHandle:(id)sender;
 

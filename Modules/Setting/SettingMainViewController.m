@@ -11,6 +11,8 @@
 #import "LockViewController.h"
 #import "TimedoutUtil.h"
 #import "SetMoveLockViewController.h"
+#import "FeedBckViewController.h"
+#import "WebViewViewController.h"
 
 @interface SettingMainViewController ()
 
@@ -81,7 +83,6 @@
     else
     {
         [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
-        [[TimedoutUtil sharedInstance] stopTimer];
     }
     
     [UserDefaults synchronize];
@@ -199,6 +200,17 @@
             AbountViewController *aboutController = [[AbountViewController alloc]init];
             [self.navigationController pushViewController:aboutController animated:YES];
 
+        }
+        else if(indexPath.row==1) //意见反馈
+        {
+            FeedBckViewController *feedBackController = [[FeedBckViewController alloc]init];
+            [self.navigationController pushViewController:feedBackController animated:YES];
+            
+        }
+        else if(indexPath.row == 3)
+        {
+            WebViewViewController *webViewController = [[WebViewViewController alloc]init];
+            [self.navigationController pushViewController:webViewController animated:YES];
         }
     }
 

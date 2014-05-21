@@ -46,19 +46,25 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CcI-7V-N3h">
+                        <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CcI-7V-N3h">
                             <rect key="frame" x="215" y="8" width="94" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" backgroundImage="ip_gfwb">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="Cyd-RT-ISu"/>
+                            </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bhd-pO-qYC">
+                        <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bhd-pO-qYC">
                             <rect key="frame" x="215" y="91" width="94" height="75"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" backgroundImage="ip_tjwm">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="9ye-AP-kiz"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="w3u-yq-pUh">
                             <rect key="frame" x="113" y="8" width="94" height="75"/>
@@ -102,7 +108,7 @@
         <image name="ip_gfwb" width="94" height="75"/>
         <image name="ip_jyfx" width="94" height="75"/>
         <image name="ip_kkzz" width="94" height="75"/>
-        <image name="ip_sjcz" width="94" height="75"/>
+        <image name="ip_sjcz" width="188" height="151"/>
         <image name="ip_sygg" width="320" height="222"/>
         <image name="ip_tjwm" width="94" height="75"/>
         <image name="ip_xyk" width="94" height="75"/>

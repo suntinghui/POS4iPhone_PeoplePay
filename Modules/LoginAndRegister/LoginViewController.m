@@ -14,6 +14,7 @@
 #import "ToolsViewController.h"
 #import "TimedoutUtil.h"
 #import "ForgetPasswordViewController.h"
+#import "SwipeCardNoticeViewController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101
@@ -50,7 +51,7 @@
     [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     
     self.nameTxtField.text = @"18811068526";
-    self.pwdTxtField.text = @"88888888";
+    self.pwdTxtField.text = @"1234qwer";
     
   
     
@@ -102,9 +103,8 @@
 
 - (void)gotoHome
 {
-
     isGohome = YES;
-     [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
     
     InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];
@@ -158,7 +158,6 @@
     {
         case Button_Tag_Login: //登录
         {
-         
             if ([self checkInputValue])
             {
                 [self loginAction];
@@ -228,7 +227,7 @@
                                                  }
                                                  else
                                                  {
-                                                     [SVProgressHUD showSuccessWithStatus:obj[@"RSPMSG"]];
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                                  }
                                                  
                                              }

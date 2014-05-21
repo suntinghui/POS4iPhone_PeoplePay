@@ -118,6 +118,12 @@ typedef enum
                        withSize:(CGSize)resultSize;
 
 /*
+ *
+ * 将一张图片裁剪成圆形
+ */
++ (UIImage*) circleImage:(UIImage*) image withParam:(CGFloat) inset;
+
+/*
  *屏幕旋转
  */
 + (CGAffineTransform)transformForOrientation;

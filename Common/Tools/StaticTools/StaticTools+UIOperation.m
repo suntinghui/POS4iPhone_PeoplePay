@@ -71,12 +71,28 @@
     return YES;
 }
 
+/**
+ *  显示宫格解锁页面
+ */
 + (void)showLockView
 {
     LockViewController *lockViewController = [[LockViewController alloc]initWithNibName:@"LockViewController" bundle:nil];
     [ApplicationDelegate.window addSubview:lockViewController.view];
-    
-    
+}
+
+/**
+ *  显示错误提示页面
+ *
+ *  @param mess  错误信息
+ *  @param block 点击确定按钮后的操作
+ */
++ (void)showErrorPageWithMess:(NSString*)mess clickHandle:(ButtonClickBlock)block
+{
+    ErrorViewController *errController = [[ErrorViewController alloc]initWithNibName:@"ErrorViewController" bundle:nil];
+    errController.clickBlock = block;
+    UINavigationController *rootNav = (UINavigationController*)ApplicationDelegate.window.rootViewController;
+    [rootNav pushViewController:errController animated:YES];
+    errController.messLabel.text = mess;
 }
 
 @end
