@@ -319,7 +319,9 @@
     NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
     NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
     NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@UN%@",@"199005",moneyStr,posNum,time,date,[self.pidStr substringFromIndex:4]];
-    [[DeviceHelper shareDeviceHelper] doTradeEx:@"1" andType:1 Random:@"123" extraString:mac TimesOut:30 Complete:^(id mess) {
+    
+    NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
+    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:@"123" extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
