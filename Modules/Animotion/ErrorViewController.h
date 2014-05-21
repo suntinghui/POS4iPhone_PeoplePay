@@ -16,10 +16,11 @@
 //
 //----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
 typedef void(^ButtonClickBlock)();
 
-@interface ErrorViewController : UIViewController
+@interface ErrorViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *messLabel;
 @property (strong, nonatomic) ButtonClickBlock clickBlock;
