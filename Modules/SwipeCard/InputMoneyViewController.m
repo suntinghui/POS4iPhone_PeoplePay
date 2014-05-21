@@ -159,6 +159,11 @@
 //                
 //            }];
 //            return;
+            if ([self.inputTxtField.text floatValue] ==0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"刷卡金额必须大于0"];
+                return;
+            }
             if (![[DeviceHelper shareDeviceHelper] ispluged])
             {
                 [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
@@ -174,7 +179,7 @@
             }
             else
             {
-                 [self deviceOperatWithType:0];
+                 [self deviceOperatWithType:1];
             }
             
         }

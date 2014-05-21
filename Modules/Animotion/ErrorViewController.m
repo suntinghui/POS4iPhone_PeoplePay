@@ -44,12 +44,12 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 - (IBAction)buttonClickHandle:(id)sender
 {

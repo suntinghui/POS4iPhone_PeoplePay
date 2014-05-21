@@ -22,5 +22,6 @@
 @interface DeviceSearchViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
+@property (weak, nonatomic) IBOutlet UIImageView *deviceImgView;
 
 @end
