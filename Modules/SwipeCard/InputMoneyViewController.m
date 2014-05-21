@@ -341,10 +341,10 @@
     
     NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
     NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
-    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@UN%@",@"199005",moneyStr,posNum,time,date,[self.pidStr substringFromIndex:4]];
+    NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@%@",@"199005",moneyStr,posNum,time,date,[StringUtil ASCII2Hex:[self.pidStr stringByReplacingOccurrencesOfString:@"UN" withString:@""]]];
     
     NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
-    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:@"123" extraString:mac TimesOut:30 Complete:^(id mess) {
+    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
@@ -366,7 +366,7 @@
                                             @"APPTOKEN":@"APPTOKEN",
                                             @"TTXNTM":time, //交易时间
                                             @"TTXNDT":date, //交易日期
-                                            @"MAC": [StringUtil longToHex:[mess[kCardMc] longLongValue]]
+                                            @"MAC": mess[kCardMc]
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict

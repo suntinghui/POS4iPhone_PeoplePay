@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6C1B0801192233F00023FCD8 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1B0800192233F00023FCD8 /* Test.m */; };
 		6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A8C5E1919BBAE00598F39 /* AESUtil.m */; };
 		6C3A8C63191A101900598F39 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3A8C61191A101900598F39 /* libZftQposLib.a */; };
 		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
@@ -152,6 +153,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6C1B07FF192233F00023FCD8 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		6C1B0800192233F00023FCD8 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		6C3A8C5D1919BBAE00598F39 /* AESUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESUtil.h; sourceTree = "<group>"; };
 		6C3A8C5E1919BBAE00598F39 /* AESUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESUtil.m; sourceTree = "<group>"; };
 		6C3A8C61191A101900598F39 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
@@ -632,6 +635,8 @@
 		B8537C65190B7CDB000F353D /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				6C1B07FF192233F00023FCD8 /* Test.h */,
+				6C1B0800192233F00023FCD8 /* Test.m */,
 				B8537C66190B7CDB000F353D /* AppDelegate.h */,
 				B8537C67190B7CDB000F353D /* AppDelegate.m */,
 				B8537D55190B93D6000F353D /* AppDataCenter.h */,
@@ -1092,6 +1097,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
+				6C1B0801192233F00023FCD8 /* Test.m in Sources */,
 				B813BB0D192B25C600654A45 /* FeedBckViewController.m in Sources */,
 				B8D717E3192B2D7500868678 /* SKPSMTPMessage.m in Sources */,
 				B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */,
@@ -1296,7 +1302,7 @@
 					"$(PROJECT_DIR)/Resources/External/QPOS",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
+				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1328,7 +1334,7 @@
 					"$(PROJECT_DIR)/Resources/External/QPOS",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
+				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

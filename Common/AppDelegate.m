@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TimedoutUtil.h"
+#import "Test.h"
 
 @implementation AppDelegate
 
@@ -31,6 +32,9 @@
     }
     
     [self.window makeKeyAndVisible];
+    
+    
+    ppp();
     
     return YES;
 }
