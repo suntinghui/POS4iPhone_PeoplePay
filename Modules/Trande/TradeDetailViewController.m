@@ -49,6 +49,11 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+        [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:NO];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -335,7 +340,12 @@
                                                  
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                  {
-                                                     
+                                                     if ([self.fatherController respondsToSelector:@selector(refreshList)])
+                                                     {
+                                                         [self.fatherController performSelector:@selector(refreshList) withObject:nil];
+                                                         [self.navigationController popViewControllerAnimated:YES];
+                                                         [SVProgressHUD showSuccessWithStatus:@"撤销成功"];
+                                                     }
                                                  }
                                                  else
                                                  {

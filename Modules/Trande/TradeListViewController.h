@@ -31,4 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel; //金额
 @property (strong, nonatomic) NSMutableArray *trades;
 
+//刷新列表
+- (void)refreshList;
+
 @end

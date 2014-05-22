@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *merchantNameLabel; //商户姓名
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIButton *candleBtn;
+@property (assign, nonatomic) UIViewController *fatherController;
 
 @property (strong, nonatomic) NSString *tidStr;
 @property (strong, nonatomic) NSString *pidStr;

@@ -40,8 +40,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
     [self addHeader];
     
-    [headerView beginRefreshing];
-    [self getTradeList];
+    [self refreshList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -97,6 +96,11 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     headerView = header;
 }
 
+- (void)refreshList
+{
+    [headerView beginRefreshing];
+    [self getTradeList];
+}
 #pragma mark -http请求
 /**
  *  获取交易列表
@@ -184,6 +188,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     NSDictionary *dict = self.trades[indexPath.row];
     TradeDetailViewController *tradeDetailCotnroller = [[TradeDetailViewController alloc]init];
     tradeDetailCotnroller.infoDict = dict;
+    tradeDetailCotnroller.fatherController = self;
     [self.navigationController pushViewController:tradeDetailCotnroller animated:YES];
 }
 
