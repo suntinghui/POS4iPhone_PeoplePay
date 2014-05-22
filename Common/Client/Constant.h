@@ -58,3 +58,27 @@
 #define kEncryptKey                     @"ENCRYPTKEY"
 
 
+//*********新浪微博*************************
+#define kAppKey             @"1288753078"
+#define kAppSecret          @"ed8d44e640de2aed3888eeea19dbc24b"
+#define kAppRedirectURI     @"http://www.baidu.com"
+
+//#define kAppKey             @"4156530697"
+//#define kAppSecret          @"63b17a75c4c04e959006090b5cb07b2f"
+//#define kAppRedirectURI     @"http://www.boc.cn"
+
+#import "SinaWeibo.h"
+#import "SinaWeiboRequest.h"
+//***************************************
+
+
+//*********腾讯微博**********************
+
+#define WiressSDKDemoAppKey     @"801379028"
+#define WiressSDKDemoAppSecret  @"3b3b300f243b5eb75e9badb0d98a13bb"
+#define REDIRECTURI             @"https://jf365.boc.cn/BOCGIFTORDERNET/pages/bfsh.jsp"
+
+#import "TCWBEngine.h"
+//*************************************
+
+
