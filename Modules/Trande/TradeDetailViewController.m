@@ -38,7 +38,14 @@
     self.stateLabel.text =  [StaticTools getTradeMessWithCode:self.infoDict[@"TXNCD"] state:self.infoDict[@"TXNSTS"]];
     
     self.moneyLabel.text = [StringUtil string2SymbolAmount:self.infoDict[@"TXNAMT"]];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@    %@",[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail],[StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail]]]];
+    
+    NSString *fullDate = self.infoDict[@"SYSDAT"];
+    NSMutableString *time = [[NSMutableString alloc]initWithString:[fullDate substringFromIndex:8]];
+    [time insertString:@":" atIndex:2];
+    [time insertString:@":" atIndex:5];
+    
+    
+    self.dateLabel.text = [NSString stringWithFormat:@"%@ %@   %@",[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail],time,[StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail]]]];
     self.cardLabel.text = [StaticTools insertComaInCardNumber:self.infoDict[@"CRDNO"]];
     self.merchantNameLabel.text = self.infoDict[@"MERNAM"];
     
