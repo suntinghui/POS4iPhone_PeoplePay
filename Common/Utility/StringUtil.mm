@@ -8,6 +8,7 @@
 
 #import "StringUtil.h"
 #import "JSONKit.h"
+#import "Util.h"
 
 @implementation StringUtil
 
@@ -103,39 +104,32 @@
 
 + (NSString *) stringToHexStr:(NSString *)str
 {
-    NSUInteger len = [str length];
-    unichar *chars = malloc(len * sizeof(unichar));
-    [str getCharacters:chars];
+    NSMutableString *mutableStr = [NSMutableString string];
     
-    NSMutableString *hexString = [[NSMutableString alloc] init];
-    
-    for(NSUInteger i = 0; i < len; i++ )
-    {
-        // [hexString [NSString stringWithFormat:@"%02x", chars[i]]]; /*previous input*/
-        [hexString appendFormat:@"%02x", chars[i]]; /*EDITED PER COMMENT BELOW*/
+    const char *tempChar = [str cStringUsingEncoding:NSUTF8StringEncoding];
+    int len = strlen(tempChar);
+    for (int i=0; i<len; i++) {
+        char c = tempChar[i];
+        char cc = AscToHex(c);
+        NSString* string = [NSString stringWithFormat:@"%c" , cc];
+        [mutableStr appendString:string];
     }
-    free(chars);
     
-    return hexString ;
+    return mutableStr;
 }
 
 // 十六进制转换为普通字符串的。
-+ (NSString *)stringFromHexString:(NSString *)hexString {
++ (NSString *)stringFromHexString:(NSString *)hexString
+{
+    NSMutableString *tempStr = [NSMutableString string];
     
-    char *myBuffer = (char *)malloc((int)[hexString length] / 2 + 1);
-    bzero(myBuffer, [hexString length] / 2 + 1);
-    for (int i = 0; i < [hexString length] - 1; i += 2) {
-        unsigned int anInt;
-        NSString * hexCharStr = [hexString substringWithRange:NSMakeRange(i, 2)];
-        NSScanner * scanner = [[NSScanner alloc] initWithString:hexCharStr];
-        [scanner scanHexInt:&anInt];
-        myBuffer[i / 2] = (char)anInt;
+    for (int i=0; i<hexString.length; i++){
+        int asciiCode = [[hexString substringWithRange:NSMakeRange(i, 2)] intValue];
+        NSString *string = [NSString stringWithFormat:@"%c", asciiCode];
+        [tempStr appendString:string];
     }
-    NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
-    NSLog(@"------字符串=======%@",unicodeString);
-    return unicodeString;
     
-    
+    return tempStr;
 }
 
 + (char *) string2char:(NSString *) str
