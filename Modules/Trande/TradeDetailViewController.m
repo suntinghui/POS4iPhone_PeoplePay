@@ -28,6 +28,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"交易明细详情";
+    
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
