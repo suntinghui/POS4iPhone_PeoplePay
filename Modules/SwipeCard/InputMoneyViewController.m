@@ -192,7 +192,7 @@
 {
     if ([self.inputTxtField.text floatValue] ==0)
     {
-        [SVProgressHUD showErrorWithStatus:@"刷卡金额必须大于0"];
+        [SVProgressHUD showErrorWithStatus:@"输入的金额不合法"];
         return;
     }
     if (![[DeviceHelper shareDeviceHelper] ispluged])
