@@ -29,5 +29,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLabel; //交易笔数
 @property (weak, nonatomic) IBOutlet UILabel *txtLabel; // “笔”文字
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel; //金额
+@property (strong, nonatomic) NSMutableArray *trades;
 
 @end

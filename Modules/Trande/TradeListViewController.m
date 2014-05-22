@@ -9,6 +9,7 @@
 #import "TradeListViewController.h"
 #import "TradeCell.h"
 #import "TradeDetailViewController.h"
+#import "StringUtil.h"
 
 NSString *const MJTableViewCellIdentifier = @"Cell";
 
@@ -110,15 +111,24 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                                                                                   success:^(id obj)
                                          {
                                              [headerView endRefreshing];
+                                             NSArray *arr = (NSArray*)obj;
+                                             self.trades = [[NSMutableArray alloc]init];
+                                             for (int i=arr.count-1;i>=0;i--)
+                                             {
+                                                 [self.trades addObject:arr[i]];
+                                             }
+                                             self.numLabel.text = [NSString stringWithFormat:@"%d",self.trades.count];
+                                             self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x, self.numLabel.frame.origin.y, [StaticTools getLabelWidth:self.numLabel.text defautWidth:320 defautHeight:self.numLabel.frame.size.height fontSize:self.numLabel.font.pointSize], self.numLabel.frame.size.height);
+                                             self.txtLabel.frame = CGRectMake(self.numLabel.frame.origin.x+self.numLabel.frame.size.width+3, self.txtLabel.frame.origin.y, self.txtLabel.frame.size.width, self.txtLabel.frame.size.height);
+                                             [self.listTableView reloadData];
                                              
-                                             if ([obj[@"RSPMSG"] isEqualToString:@"00000"])
+                                             float count = 0;
+                                             for (NSDictionary *dict in obj)
                                              {
-                                                 
+                                                 count+=[[StringUtil string2AmountFloat:dict[@"TXNAMT"]] floatValue];
                                              }
-                                             else
-                                             {
-                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
-                                             }
+                                             
+                                             self.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",count];
                                          }
                                                                                   failure:^(NSString *errMsg)
                                          {
@@ -140,7 +150,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return self.trades.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,7 +168,12 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TradeCell" owner:nil options:nil]objectAtIndex:0];
     }
-    
+    NSDictionary *dict = self.trades[indexPath.row];
+    cell.dateLabel.text = [StaticTools insertCharactorWithDateStr:dict[@"LOGDAT"] andSeper:kSeperTypeRail];
+    cell.cardLabel.text = [StaticTools insertComaInCardNumber:dict[@"CRDNO"]];
+    cell.stateLabel.text = [StaticTools getTradeMessWithCode:dict[@"TXNCD"] state:dict[@"TXNSTS"]];
+    cell.monyeLabel.text = [StringUtil string2SymbolAmount:dict[@"TXNAMT"]];
+    cell.weakLabel.text = [StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:cell.dateLabel.text]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -166,7 +181,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *dict = self.trades[indexPath.row];
     TradeDetailViewController *tradeDetailCotnroller = [[TradeDetailViewController alloc]init];
+    tradeDetailCotnroller.infoDict = dict;
     [self.navigationController pushViewController:tradeDetailCotnroller animated:YES];
 }
 

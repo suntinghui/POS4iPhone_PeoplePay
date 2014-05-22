@@ -140,7 +140,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
      UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(50,50)];
+    image = [self imageWithImage:image scaledToSize:CGSizeMake(100,100)];
     
 //    self.headImgView.image = [StaticTools circleImage:image withParam:0];
     [self upLoadHeadImage:image];
@@ -186,7 +186,8 @@
                                                  {
                                                   
                                                      UIImage  *imageChange = [StaticTools circleImage:image withParam:0];
-                                                     self.headImgView.image = imageChange;
+//                                                     self.headImgView.image = imageChange;
+                                                     [self.headBtn setBackgroundImage:imageChange forState:UIControlStateNormal];
                                                      [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
                                                      
                                                  }
@@ -236,7 +237,8 @@
                                                     UIImage *image = [UIImage imageWithData:data scale:1];
                                                      
                                                      image = [StaticTools circleImage:image withParam:0];
-                                                     self.headImgView.image = image;
+//                                                     self.headImgView.image = image;
+                                                     [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
                                                      
                                                  }
                                                  else
@@ -284,7 +286,7 @@
                                                  
                                              }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation,infoOperation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation,infoOperation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
     
 }
@@ -395,9 +397,7 @@
         }
         else
         {
-            NSString *num = self.infoDict[@"ACTNO"];
-            NSString *cardNum =[NSString stringWithFormat:@"%@*****%@",[num substringToIndex:4],[num substringFromIndex:num.length-4]];
-            cardNumLabel.text = [NSString stringWithFormat:@"银行卡号：%@",cardNum];
+            cardNumLabel.text = [NSString stringWithFormat:@"银行卡号：%@",[StaticTools insertComaInCardNumber:self.infoDict[@"ACTNO"]]];
         }
      
         [cell.contentView addSubview:cardNumLabel];

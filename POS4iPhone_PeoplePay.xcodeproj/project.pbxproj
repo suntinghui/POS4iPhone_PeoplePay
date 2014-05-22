@@ -41,6 +41,7 @@
 		B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */; };
 		B8263C6E192C8F33009EFABC /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C6C192C8F33009EFABC /* ErrorViewController.m */; };
 		B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C6D192C8F33009EFABC /* ErrorViewController.xib */; };
+		B82A9587192DA2DF0099E97E /* DeviceHelper+SwipeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A9586192DA2DF0099E97E /* DeviceHelper+SwipeCard.m */; };
 		B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47D81920CA6A00D0D356 /* AbountViewController.m */; };
 		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
@@ -210,6 +211,8 @@
 		B8263C6B192C8F33009EFABC /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		B8263C6C192C8F33009EFABC /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
 		B8263C6D192C8F33009EFABC /* ErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
+		B82A9585192DA2DF0099E97E /* DeviceHelper+SwipeCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DeviceHelper+SwipeCard.h"; sourceTree = "<group>"; };
+		B82A9586192DA2DF0099E97E /* DeviceHelper+SwipeCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DeviceHelper+SwipeCard.m"; sourceTree = "<group>"; };
 		B82E47D71920CA6A00D0D356 /* AbountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountViewController.h; sourceTree = "<group>"; };
 		B82E47D81920CA6A00D0D356 /* AbountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbountViewController.m; sourceTree = "<group>"; };
 		B82E47D91920CA6A00D0D356 /* AbountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AbountViewController.xib; sourceTree = "<group>"; };
@@ -702,6 +705,8 @@
 				B8537D31190B8124000F353D /* StaticTools */,
 				B81C9F97190CF834004239FF /* DeviceHelper.h */,
 				B81C9F98190CF834004239FF /* DeviceHelper.m */,
+				B82A9585192DA2DF0099E97E /* DeviceHelper+SwipeCard.h */,
+				B82A9586192DA2DF0099E97E /* DeviceHelper+SwipeCard.m */,
 				B8537D2E190B803E000F353D /* FileManagerUtil.h */,
 				B8537D2F190B803E000F353D /* FileManagerUtil.m */,
 			);
@@ -1154,6 +1159,7 @@
 				B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */,
 				B8537C2B190B7769000F353D /* main.m in Sources */,
 				B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */,
+				B82A9587192DA2DF0099E97E /* DeviceHelper+SwipeCard.m in Sources */,
 				B813BB12192B2BD700654A45 /* WebViewViewController.m in Sources */,
 				B843D157190F77F10000A60A /* SPLockOverlay.m in Sources */,
 				B8C66C11192D82EC0050BE5A /* MJRefreshHeaderView.m in Sources */,

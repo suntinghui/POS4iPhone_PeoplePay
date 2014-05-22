@@ -7,11 +7,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TradeDetailViewController">
             <connections>
+                <outlet property="candleBtn" destination="K77-2B-Oy8" id="Gbk-lD-2pd"/>
                 <outlet property="cardLabel" destination="NsW-jb-Ijj" id="gee-jc-NlW"/>
                 <outlet property="dateLabel" destination="AMl-WQ-0zz" id="mQb-pS-lcK"/>
                 <outlet property="lineView" destination="VMh-Fb-mDl" id="a7n-3Y-gGN"/>
                 <outlet property="merchantNameLabel" destination="5Ae-H8-FlY" id="1Gc-Ta-nsb"/>
                 <outlet property="moneyLabel" destination="70G-sc-7DI" id="Ff0-Mg-YYQ"/>
+                <outlet property="stateLabel" destination="Xuw-uT-g8K" id="WjR-An-0O1"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -100,6 +102,18 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="K77-2B-Oy8">
+                    <rect key="frame" x="17" y="434" width="293" height="43"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="撤销" backgroundImage="ip_button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="ip_button2"/>
+                    <connections>
+                        <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="5eF-qH-BqC"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -107,6 +121,8 @@
         </view>
     </objects>
     <resources>
+        <image name="ip_button" width="292" height="43"/>
+        <image name="ip_button2" width="584" height="86"/>
         <image name="ip_jycg2" width="23" height="23"/>
     </resources>
 </document>

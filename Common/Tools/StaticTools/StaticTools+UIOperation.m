@@ -95,4 +95,58 @@
     errController.messLabel.text = mess;
 }
 
+/**
+ *  根据交易码和交易状态获取交易信息
+ *
+ *  @param code  交易码
+ *  @param state 交易状态
+ *
+ *  @return
+ */
++ (NSString*)getTradeMessWithCode:(NSString*)code state:(NSString*)state
+{
+    NSString *type = @"";
+    if ([code isEqualToString:@"0200000000"])
+    {
+        type = @"消费";
+    }
+    else if([code isEqualToString:@"0200200000"])
+    {
+        type = @"消费撤销";
+    }
+    
+    NSString *stateStr = @"";
+    if ([state isEqualToString:@"0"])
+    {
+        stateStr = @"预计";
+    }
+    else if ([state isEqualToString:@"S"])
+    {
+        stateStr = @"成功";
+    }
+    else if ([state isEqualToString:@"R"])
+    {
+        stateStr = @"撤销";
+    }
+    else if ([state isEqualToString:@"C"])
+    {
+        stateStr = @"冲正";
+    }
+    else if ([state isEqualToString:@"T"])
+    {
+        stateStr = @"超时";
+    }
+    else if ([state isEqualToString:@"F"])
+    {
+        stateStr = @"失败";
+    }
+    else if ([state isEqualToString:@"E"])
+    {
+        stateStr = @"完成";
+    }
+    
+    return [NSString stringWithFormat:@"%@%@",type,stateStr];
+    
+}
+
 @end

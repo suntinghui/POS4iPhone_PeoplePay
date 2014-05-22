@@ -31,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UIButton *headBtn;
 @property (strong, nonatomic) NSDictionary *infoDict; //商户信息
 
 - (IBAction)buttonClickHandle:(id)sender;

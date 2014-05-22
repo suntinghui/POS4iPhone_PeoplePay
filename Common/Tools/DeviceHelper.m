@@ -133,7 +133,7 @@ static DeviceHelper *instance = nil;
     {
         if (self.failBlock)
         {
-            self.failBlock(@"终端id获取失败,请重试。");
+            self.failBlock(@"终端号获取失败,请重试。");
         }
     }
     else

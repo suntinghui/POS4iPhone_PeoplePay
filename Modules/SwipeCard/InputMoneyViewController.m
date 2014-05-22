@@ -10,6 +10,7 @@
 #import "DeviceSearchViewController.h"
 #import "SwipeCardNoticeViewController.h"
 #import "StringUtil.h"
+#import "DeviceHelper+SwipeCard.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -201,6 +202,68 @@
         return;
     }
     
+    
+//    [[DeviceHelper shareDeviceHelper]swipeCardWithControler:self money:self.inputTxtField.text sucBlock:^(id mess) {
+//        
+//        NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
+//        NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
+//        date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
+//        NSString *time = [dateStr substringFromIndex:11];
+//        time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
+//        
+////        NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
+//        NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
+//        
+//        NSDictionary *dict = @{kTranceCode:@"199005",
+//                               kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+//                                            @"TERMINALNUMBER":[DeviceHelper shareDeviceHelper].tidStr,
+//                                            @"PSAMCARDNO":[DeviceHelper shareDeviceHelper].pidStr,
+//                                            @"TSEQNO":mess[@"TSEQNO"],
+//                                            @"PCSIM":@"获取不到",
+//                                            @"TRACK":[mess[kCardTrac] substringFromIndex:2],
+//                                            @"CTXNAT":moneyStr, //消费金额
+//                                            @"TPINBLK":mess[kCardPin],//支付密码
+//                                            @"CRDNO":@"",  //卡号
+//                                            @"CHECKX":@"0.0", //横坐标
+//                                            @"APPTOKEN":@"APPTOKEN",
+//                                            @"TTXNTM":mess[@"TTXNTM"], //交易时间
+//                                            @"TTXNDT":mess[@"TTXNDT"], //交易日期
+//                                            @"MAC": [StringUtil stringFromHexString:mess[kMacKey]]
+//                                            }};
+//        
+//        AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+//                                                                                       prompt:nil
+//                                                                                      success:^(id obj)
+//                                             {
+//                                                 
+//                                                 
+//                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+//                                                 {
+//                                                     
+//                                                 }
+//                                                 else
+//                                                 {
+//                                                     //                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+//                                                     [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
+//                                                 }
+//                                                 
+//                                             }
+//                                                                                      failure:^(NSString *errMsg)
+//                                             {
+//                                                 //                                                 [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+//                                                 
+//                                                 [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
+//                                                 
+//                                             }];
+//        
+//        [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+//        }];
+//
+//    }];
+//    return;
+    
+    
+    
     NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
     NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
     //一天内只用签到一次
@@ -213,6 +276,8 @@
         [self deviceOperatWithType:1];
     }
 }
+
+
 #pragma mark -http请求
 
 /**
@@ -341,6 +406,9 @@
     NSString *posNum = [[AppDataCenter sharedAppDataCenter] getTradeNumber];
     NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
     NSString *mac = [NSString stringWithFormat:@"%@%@%@%@%@%@",@"199005",moneyStr,posNum,time,date,[StringUtil stringToHexStr:[self.pidStr stringByReplacingOccurrencesOfString:@"UN" withString:@""]]];
+   
+    NSLog(@"self.pidStr is %@ self.tidStr is %@",self.pidStr,self.tidStr);
+    NSLog(@"mac is %@",mac);
     
     NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
     [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
@@ -408,7 +476,6 @@
         
        
     }];
-
 
 }
 

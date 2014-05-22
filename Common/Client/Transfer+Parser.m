@@ -56,6 +56,10 @@
         {
             return [self getCustomMess:rootElement];
         }
+        else if([reqName isEqualToString:@"199006"]) //消费撤销
+        {
+            return [self getCustomMess:rootElement];
+        }
         else if([reqName isEqualToString:@"199011"]) //商户信息查询
         {
             return [self getMerchantInfo:rootElement];
@@ -81,9 +85,33 @@
 - (id) getRradeList:(TBXMLElement *) bodyElement
 {
     
-   NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
     
-    return dict;
+    TBXMLElement *listElement = [TBXML childElementNamed:@"TRANDETAILS" parentElement:bodyElement];
+    if (listElement)
+    {
+        TBXMLElement *itemElement = [TBXML childElementNamed:@"TRANDETAIL" parentElement:listElement];
+        
+        while (itemElement) {
+               
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"SYSDAT" parentElement:itemElement]] forKey:@"SYSDAT"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MERNAM" parentElement:itemElement]] forKey:@"MERNAM"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"LOGDAT" parentElement:itemElement]] forKey:@"LOGDAT"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"LOGNO" parentElement:itemElement]] forKey:@"LOGNO"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TXNCD" parentElement:itemElement]] forKey:@"TXNCD"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TXNSTS" parentElement:itemElement]] forKey:@"TXNSTS"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TXNAMT" parentElement:itemElement]] forKey:@"TXNAMT"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CRDNO" parentElement:itemElement]] forKey:@"CRDNO"];
+            
+            [arr addObject:dict];
+            
+        
+            itemElement = [TBXML nextSiblingNamed:@"TRANDETAIL" searchFromElement:itemElement];
+           }
+    }
+    
+    return arr;
 }
 
 #pragma mark- 通用解析（返回RSPCOD和RSPMSG时调用）

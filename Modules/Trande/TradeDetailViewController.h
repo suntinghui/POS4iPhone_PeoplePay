@@ -19,12 +19,19 @@
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
 
-@interface TradeDetailViewController : BaseViewController
+@interface TradeDetailViewController : BaseViewController<UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cardLabel;
-@property (weak, nonatomic) IBOutlet UILabel *merchantNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;  //状态
+@property (weak, nonatomic) IBOutlet UILabel *moneyLabel;  //金额
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;   //日期
+@property (weak, nonatomic) IBOutlet UILabel *cardLabel;   //卡号
+@property (weak, nonatomic) IBOutlet UILabel *merchantNameLabel; //商户姓名
 @property (weak, nonatomic) IBOutlet UIView *lineView;
+@property (weak, nonatomic) IBOutlet UIButton *candleBtn;
 
+@property (strong, nonatomic) NSString *tidStr;
+@property (strong, nonatomic) NSString *pidStr;
+@property (strong, nonatomic) NSDictionary *infoDict;
+
+- (IBAction)buttonClickHandle:(id)sender;
 @end
