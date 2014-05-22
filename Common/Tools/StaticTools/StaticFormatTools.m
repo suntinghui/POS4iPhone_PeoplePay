@@ -179,6 +179,48 @@
     
 }
 
+//根据日期获取到星期几
++ (NSString*)getWeakWithDate:(NSDate*)date
+{
+    NSCalendar*calendar = [NSCalendar currentCalendar];
+    NSDateComponents*comps;
+    
+    comps =[calendar components:(NSWeekCalendarUnit | NSWeekdayCalendarUnit |NSWeekdayOrdinalCalendarUnit)
+            
+                       fromDate:date];
+    int weak = [comps weekday]; // 星期几（注意，周日是“1”，周一是“2”。。。。
+    if (weak==1)
+    {
+        return @"星期日";
+    }
+    else  if (weak==2)
+    {
+        return @"星期一";
+    }
+    else  if (weak==3)
+    {
+        return @"星期二";
+    }
+    else  if (weak==4)
+    {
+        return @"星期三";
+    }
+    else  if (weak==5)
+    {
+        return @"星期四";
+    }
+    else  if (weak==6)
+    {
+        return @"星期五";
+    }
+    else  if (weak==7)
+    {
+        return @"星期六";
+    }
+    
+    return @"";
+}
+
 /**
  *	@brief	判断一个字符串是否为整型数字
  *
@@ -308,4 +350,13 @@
     return resultStr;
 }
 
+//给一个银行卡号插入星号
++ (NSString*)insertComaInCardNumber:(NSString*)number
+{
+    if (number.length<5)
+    {
+        return number;
+    }
+    return [NSString stringWithFormat:@"%@*****%@",[number substringToIndex:4],[number substringFromIndex:number.length-4]];
+}
 @end

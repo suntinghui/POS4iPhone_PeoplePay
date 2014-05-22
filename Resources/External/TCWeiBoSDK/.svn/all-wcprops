@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK
+END
+FileStreame.h
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/FileStreame.h
+END
+ImageDownloader.h
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/ImageDownloader.h
+END
+SFHFKeychainUtils.h
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/SFHFKeychainUtils.h
+END
+FileStreame.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/FileStreame.m
+END
+Language.strings
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/Language.strings
+END
+ImageDownloader.m
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/ImageDownloader.m
+END
+SFHFKeychainUtils.m
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/SFHFKeychainUtils.m
+END
+key.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/mlife/!svn/ver/29302/trunk/HManager/Resources/Lib/TCWeiBoSDK/key.h
+END

@@ -8,7 +8,6 @@
 
 #import "StringUtil.h"
 #import "JSONKit.h"
-#import "Util.h"
 
 @implementation StringUtil
 
@@ -64,7 +63,7 @@
     }
     
     tempMutableStr = [NSMutableString stringWithString:[tempMutableStr stringByReplacingOccurrencesOfString:@"." withString:@""]];
-
+    
     int l = 12 - [tempMutableStr length];
     for (int i=0; i<l; i++) {
         [tempMutableStr insertString:@"0" atIndex:0];
@@ -104,32 +103,39 @@
 
 + (NSString *) stringToHexStr:(NSString *)str
 {
-    NSMutableString *mutableStr = [NSMutableString string];
+    NSUInteger len = [str length];
+    unichar *chars = (unichar *)malloc(len * sizeof(unichar));
+    [str getCharacters:chars];
     
-    const char *tempChar = [str cStringUsingEncoding:NSUTF8StringEncoding];
-    int len = strlen(tempChar);
-    for (int i=0; i<len; i++) {
-        char c = tempChar[i];
-        char cc = AscToHex(c);
-        NSString* string = [NSString stringWithFormat:@"%c" , cc];
-        [mutableStr appendString:string];
+    NSMutableString *hexString = [[NSMutableString alloc] init];
+    
+    for(NSUInteger i = 0; i < len; i++ )
+    {
+        // [hexString [NSString stringWithFormat:@"%02x", chars[i]]]; /*previous input*/
+        [hexString appendFormat:@"%02x", chars[i]]; /*EDITED PER COMMENT BELOW*/
     }
+    free(chars);
     
-    return mutableStr;
+    return hexString ;
 }
 
 // 十六进制转换为普通字符串的。
-+ (NSString *)stringFromHexString:(NSString *)hexString
-{
-    NSMutableString *tempStr = [NSMutableString string];
++ (NSString *)stringFromHexString:(NSString *)hexString {
     
-    for (int i=0; i<hexString.length; i++){
-        int asciiCode = [[hexString substringWithRange:NSMakeRange(i, 2)] intValue];
-        NSString *string = [NSString stringWithFormat:@"%c", asciiCode];
-        [tempStr appendString:string];
+    char *myBuffer = (char *)malloc((int)[hexString length] / 2 + 1);
+    bzero(myBuffer, [hexString length] / 2 + 1);
+    for (int i = 0; i < [hexString length] - 1; i += 2) {
+        unsigned int anInt;
+        NSString * hexCharStr = [hexString substringWithRange:NSMakeRange(i, 2)];
+        NSScanner * scanner = [[NSScanner alloc] initWithString:hexCharStr];
+        [scanner scanHexInt:&anInt];
+        myBuffer[i / 2] = (char)anInt;
     }
+    NSString *unicodeString = [NSString stringWithCString:myBuffer encoding:4];
+    NSLog(@"------字符串=======%@",unicodeString);
+    return unicodeString;
     
-    return tempStr;
+    
 }
 
 + (char *) string2char:(NSString *) str

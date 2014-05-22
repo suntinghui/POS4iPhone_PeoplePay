@@ -8,7 +8,7 @@
 /*----------------------------------------------------------------
  // Copyright (C) 众人科技
  //
- // 文件功能描述：qpost操作类
+ // 文件功能描述：qpos操作类 对pos包的封装
  
  // 创建标识：
  // 修改标识：
@@ -31,8 +31,14 @@ typedef void(^OnePramaBlock)(id mess);
 
 @property (strong, nonatomic) OnePramaBlock onePrameBlock;
 @property (strong, nonatomic) OnePramaBlock failBlock;
-
 @property (strong, nonatomic) NSMutableDictionary *infoDict;
+
+//分类不支持添加属性  暂时放这定义
+@property (strong, nonatomic) NSString *tidStr;
+@property (strong, nonatomic) NSString *pidStr;
+@property (strong, nonatomic) NSString *moneyCount;
+@property (assign, nonatomic) UIViewController *controller;
+@property (strong, nonatomic) OnePramaBlock sucBlock;
 
 +(DeviceHelper*)shareDeviceHelper;
 

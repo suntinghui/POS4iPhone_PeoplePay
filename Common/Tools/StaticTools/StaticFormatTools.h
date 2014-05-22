@@ -34,6 +34,10 @@ typedef enum  //给无分隔符日期如：20121212 插入的分割符的类型
 
 //指定开始时间和间隔月数  返回从开始时间开始 months个月后的日期  若结束日期超过当前日期  则返回当前日期
 + (NSString*)getEndTimeWithStartTime:(NSString*) time Month:(int)months;
+
+//根据日期获取到星期几
++ (NSString*)getWeakWithDate:(NSDate*)date;
+
 //判断一个字符串是否为整型数字
 + (BOOL) isPUreInt:(NSString*)string;
 
@@ -51,5 +55,8 @@ typedef enum  //给无分隔符日期如：20121212 插入的分割符的类型
 
 //给一个金额字符串插入逗号分隔
 + (NSString*)insertCommaInNumStr:(NSString*)number;
+
+//给一个银行卡号插入星号
++ (NSString*)insertComaInCardNumber:(NSString*)number;
 @end
 

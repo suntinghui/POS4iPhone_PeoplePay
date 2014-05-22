@@ -11,6 +11,7 @@
 #import "TimedoutUtil.h"
 #import "Test.h"
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -35,6 +36,8 @@
     
     
     ppp();
+    
+    [WXApi registerApp:@"wx41fecbb18f303ee2"];
     
     return YES;
 }
@@ -66,6 +69,130 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+#pragma mark--
+#pragma mark--微信相关函数
+- (void) viewContent:(WXMediaMessage *) msg
+{
+    //显示微信传过来的内容
+    WXAppExtendObject *obj = msg.mediaObject;
+    
+    NSString *strTitle = [NSString stringWithFormat:@"消息来自微信"];
+    NSString *strMsg = [NSString stringWithFormat:@"标题：%@ \n内容：%@ \n附带信息：%@ \n缩略图:%u bytes\n\n", msg.title, msg.description, obj.extInfo, msg.thumbData.length];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
+}
+-(void) onShowMediaMessage:(WXMediaMessage *) message
+{
+    // 微信启动， 有消息内容。
+    [self viewContent:message];
+}
+
+-(void) onRequestAppMessage
+{
+    // 微信请求App提供内容， 需要app提供内容后使用sendRsp返回
+    
+    //    RespForWeChatViewController* controller = [[RespForWeChatViewController alloc]autorelease];
+    //    controller.delegate = self;
+    //    [self.viewController presentModalViewController:controller animated:YES];
+    
+}
+-(void) onReq:(BaseReq*)req
+{
+    if([req isKindOfClass:[GetMessageFromWXReq class]])
+    {
+        [self onRequestAppMessage];
+    }
+    else if([req isKindOfClass:[ShowMessageFromWXReq class]])
+    {
+        ShowMessageFromWXReq* temp = (ShowMessageFromWXReq*)req;
+        [self onShowMediaMessage:temp.message];
+    }
+    
+}
+
+-(void) onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        //        NSString *strTitle = [NSString stringWithFormat:@"发送结果"];
+        //        NSString *strMsg = [NSString stringWithFormat:@"发送微信消息结果:%d 响应id：%d", resp.errCode,resp.type];
+        //
+        //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        //        [alert show];
+        //        [alert release];
+        
+        if (resp.errCode ==0) {
+            
+//            [self getGoldWithName:[[NSUserDefaults standardUserDefaults]objectForKey:@"UserName"] rsptype:@"15" PostType:@"通过微信分享获得积分"];
+//            [self showLoadingView:NO];
+        }
+    }
+    //    else if([resp isKindOfClass:[SendAuthResp class]])
+    //    {
+    //        NSString *strTitle = [NSString stringWithFormat:@"Auth结果"];
+    //        NSString *strMsg = [NSString stringWithFormat:@"Auth结果:%d", resp.errCode];
+    //
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle message:strMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    //        [alert show];
+    //        [alert release];
+    //    }
+}
+
+
+/**
+ *	@brief	发送新闻消息
+ *
+  *	@param 	scene 	分享类型  WXSceneSession:会话 WXSceneTimeline:朋友圈
+ *	@param 	title 	标题
+ *	@param 	descrip 	详情
+ *	@param 	img 	图片 不能超过32k
+ *  @param 	url 	微信上点击的详情页url 必须赋值（可赋值为空） 否则无法进入微信程序
+ */
+- (void) sendNewsContentwithType:(int)type
+                           Title:(NSString*)title
+                     description:(NSString*)descrip
+                      thumbimage:(UIImage*)img
+                   withDetailUrl:(NSString*)url
+
+{
+    WXMediaMessage *message = [WXMediaMessage message];
+    if (title!=nil) {
+        message.title = title;
+    }
+    if (descrip!=nil) {
+        message.description = descrip;
+    }
+    
+    if (img!=nil) {
+        [message setThumbImage:img];
+    }
+    
+    WXWebpageObject *ext = [WXWebpageObject object];
+    ext.webpageUrl = url;
+    
+    message.mediaObject = ext;
+    
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.bText = NO;
+    req.message = message;
+    req.scene = type;
+    
+    [WXApi sendReq:req];
+}
+
+#pragma mark-长时间未操作的回调
 /**
  *  长时间未操作
  */

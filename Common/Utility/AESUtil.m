@@ -91,12 +91,18 @@ char *hex2bin(char *hex,unsigned int hex_len)
     const EVP_CIPHER *cipher;
     unsigned char key[17]="AA70CD77125FC304";
 	unsigned char iv[17]="0102030405060708";
-	unsigned char out[1024];
     
     const char *in = [plainText cStringUsingEncoding:NSUTF8StringEncoding];
     int len,inl=strlen((char *)in);
+	unsigned char *out=malloc(inl+128);
+	if (out==NULL)
+		return NULL;
 	int outl=0;
-	unsigned char hexstr[1024];
+	unsigned char *hexstr=malloc(2*inl+256);
+	if (hexstr==NULL){
+		free(out);
+		return NULL;
+	}
 	
     EVP_CIPHER_CTX             ctx;
     EVP_CIPHER_CTX_init(&ctx);
@@ -115,9 +121,10 @@ char *hex2bin(char *hex,unsigned int hex_len)
     EVP_CIPHER_CTX_cleanup(&ctx);
 	
 	BIN2HEX(out, len, hexstr);
-	//printf("hexstr:%s\n", hexstr);
     
 	NSString *result = [[NSString alloc] initWithCString:(const char*)hexstr encoding:NSUTF8StringEncoding];
+	free(out);
+	free(hexstr);
     return result;
 }
 
@@ -129,9 +136,11 @@ char *hex2bin(char *hex,unsigned int hex_len)
 	const char *hex = [clearText UTF8String];
 	
     unsigned char* out = hex2bin(hex, strlen((char *)hex));
-    unsigned char de[1024];
-    int len,outl= strlen(out);
+    int len,outl= strlen(hex)/2;
     int del = 0;
+    unsigned char *de = malloc(outl+128);
+	if(de == NULL)
+		return NULL;
 	
     EVP_CIPHER_CTX             ctx;
    	
@@ -150,7 +159,6 @@ char *hex2bin(char *hex,unsigned int hex_len)
     len+=del;
     de[len]=0;
     EVP_CIPHER_CTX_cleanup(&ctx);
-	//printf("%s\n", de);
     
     NSString *result = [[NSString alloc] initWithUTF8String:de];
 	return result;

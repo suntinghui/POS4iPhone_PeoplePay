@@ -7,6 +7,7 @@
 //
 
 #import "SNSlistViewController.h"
+#import "SNSshareViewController.h"
 
 @interface SNSlistViewController ()
 
@@ -101,6 +102,35 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row==0)
+    {
+        SNSshareViewController *snsShareController = [[SNSshareViewController alloc]init];
+        [self.navigationController pushViewController:snsShareController animated:YES];
+    }
+    else if(indexPath.row==1||indexPath.row==2)
+    {
+        if (![WXApi isWXAppInstalled])
+        {
+         
+            [SVProgressHUD showErrorWithStatus:@"请先安装微信客户端"];
+            return;
+        }
+        if ([WXApi openWXApp])
+        {
+            //通过微信邀请客户
+            [ApplicationDelegate  sendNewsContentwithType:indexPath.row==1?WXSceneSession:WXSceneTimeline
+                                                    Title:nil
+                                              description:@"众付宝"
+                                               thumbimage:[UIImage imageNamed:@"ip_gyxtlogo"]
+                                            withDetailUrl:@"www.baidu.com"];
+            
+        
+        }else
+        {
+            [SVProgressHUD showErrorWithStatus:@"微信启动失败"];
+        }
+    }
     
 }
 @end

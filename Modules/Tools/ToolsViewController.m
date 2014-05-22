@@ -65,8 +65,12 @@
     UIButton *button = (UIButton*)sender;
     
     [StaticTools tapAnimationWithView:button];
-    
-    switch (button.tag)
+    [self performSelector:@selector(handleWithTag:) withObject:[NSNumber numberWithInt:button.tag] afterDelay:0.5];
+}
+
+- (void)handleWithTag:(NSNumber*)tag
+{
+    switch ([tag intValue])
     {
         case Button_Tag_Weibo:
         {

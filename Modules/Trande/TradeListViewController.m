@@ -9,6 +9,9 @@
 #import "TradeListViewController.h"
 #import "TradeCell.h"
 #import "TradeDetailViewController.h"
+#import "StringUtil.h"
+
+NSString *const MJTableViewCellIdentifier = @"Cell";
 
 @interface TradeListViewController ()
 
@@ -34,8 +37,10 @@
     
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
+    [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
+    [self addHeader];
     
-    [self getTradeList];
+    [self refreshList];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -54,9 +59,51 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -功能函数
+- (void)addHeader
+{
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.listTableView;
+    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        // 进入刷新状态就会回调这个Block
+        NSLog(@"%@----开始进入刷新状态", refreshView.class);
+        
+        [self getTradeList];
+    };
+    header.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
+        // 刷新完毕就会回调这个Block
+        NSLog(@"%@----刷新完毕", refreshView.class);
+    };
+    header.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
+        // 控件的刷新状态切换了就会调用这个block
+        switch (state) {
+            case MJRefreshStateNormal:
+                NSLog(@"%@----切换到：普通状态", refreshView.class);
+                break;
+                
+            case MJRefreshStatePulling:
+                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+                break;
+                
+            case MJRefreshStateRefreshing:
+                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+                break;
+            default:
+                break;
+        }
+    };
+    headerView = header;
+}
+
+- (void)refreshList
+{
+    [headerView beginRefreshing];
+    [self getTradeList];
+}
 #pragma mark -http请求
 /**
- *  提交 获取系统返回的密码
+ *  获取交易列表
  */
 - (void)getTradeList
 {
@@ -67,22 +114,35 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPMSG"] isEqualToString:@"00000"])
+                                             [headerView endRefreshing];
+                                             NSArray *arr = (NSArray*)obj;
+                                             self.trades = [[NSMutableArray alloc]init];
+                                             for (int i=arr.count-1;i>=0;i--)
                                              {
-                                                 
+                                                 [self.trades addObject:arr[i]];
                                              }
-                                             else
+                                             self.numLabel.text = [NSString stringWithFormat:@"%d",self.trades.count];
+                                             self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x, self.numLabel.frame.origin.y, [StaticTools getLabelWidth:self.numLabel.text defautWidth:320 defautHeight:self.numLabel.frame.size.height fontSize:self.numLabel.font.pointSize], self.numLabel.frame.size.height);
+                                             self.txtLabel.frame = CGRectMake(self.numLabel.frame.origin.x+self.numLabel.frame.size.width+3, self.txtLabel.frame.origin.y, self.txtLabel.frame.size.width, self.txtLabel.frame.size.height);
+                                             [self.listTableView reloadData];
+                                             
+                                             float count = 0;
+                                             for (NSDictionary *dict in obj)
                                              {
-                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 count+=[[StringUtil string2AmountFloat:dict[@"TXNAMT"]] floatValue];
                                              }
+                                             
+                                             self.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",count];
                                          }
                                                                                   failure:^(NSString *errMsg)
                                          {
                                              [SVProgressHUD showErrorWithStatus:@"加载失败，请稍后再试!"];
                                              
+                                            [headerView endRefreshing];
+                                             
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
 }
 
@@ -94,7 +154,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return self.trades.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -112,7 +172,12 @@
     {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"TradeCell" owner:nil options:nil]objectAtIndex:0];
     }
-    
+    NSDictionary *dict = self.trades[indexPath.row];
+    cell.dateLabel.text = [StaticTools insertCharactorWithDateStr:dict[@"LOGDAT"] andSeper:kSeperTypeRail];
+    cell.cardLabel.text = [StaticTools insertComaInCardNumber:dict[@"CRDNO"]];
+    cell.stateLabel.text = [StaticTools getTradeMessWithCode:dict[@"TXNCD"] state:dict[@"TXNSTS"]];
+    cell.monyeLabel.text = [StringUtil string2SymbolAmount:dict[@"TXNAMT"]];
+    cell.weakLabel.text = [StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:cell.dateLabel.text]];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
@@ -120,7 +185,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *dict = self.trades[indexPath.row];
     TradeDetailViewController *tradeDetailCotnroller = [[TradeDetailViewController alloc]init];
+    tradeDetailCotnroller.infoDict = dict;
+    tradeDetailCotnroller.fatherController = self;
     [self.navigationController pushViewController:tradeDetailCotnroller animated:YES];
 }
 
