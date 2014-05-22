@@ -18,10 +18,13 @@
  //
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
+#import "MJRefresh.h"
 
 @interface TradeListViewController : BaseViewController<UITableViewDataSource,
     UITableViewDelegate>
-
+{
+    MJRefreshHeaderView *headerView;
+}
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel; //交易笔数
 @property (weak, nonatomic) IBOutlet UILabel *txtLabel; // “笔”文字

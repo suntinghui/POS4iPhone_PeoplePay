@@ -104,7 +104,7 @@
 + (NSString *) stringToHexStr:(NSString *)str
 {
     NSUInteger len = [str length];
-    unichar *chars = malloc(len * sizeof(unichar));
+    unichar *chars = (unichar *)malloc(len * sizeof(unichar));
     [str getCharacters:chars];
     
     NSMutableString *hexString = [[NSMutableString alloc] init];

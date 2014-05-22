@@ -131,6 +131,11 @@
 		B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9FE191F271C008DFF31 /* TradeCell.xib */; };
 		B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */; };
 		B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */; };
+		B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */; };
+		B8C66C0E192D82EC0050BE5A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C66C06192D82EC0050BE5A /* MJRefreshBaseView.m */; };
+		B8C66C0F192D82EC0050BE5A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C66C08192D82EC0050BE5A /* MJRefreshConst.m */; };
+		B8C66C10192D82EC0050BE5A /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C66C0A192D82EC0050BE5A /* MJRefreshFooterView.m */; };
+		B8C66C11192D82EC0050BE5A /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C66C0C192D82EC0050BE5A /* MJRefreshHeaderView.m */; };
 		B8D717DF192B2D7500868678 /* Base64Transcoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D717D6192B2D7500868678 /* Base64Transcoder.m */; };
 		B8D717E0192B2D7500868678 /* HSK_CFUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D717D8192B2D7500868678 /* HSK_CFUtilities.m */; };
 		B8D717E1192B2D7500868678 /* NSData+Base64Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D717DA192B2D7500868678 /* NSData+Base64Additions.m */; };
@@ -355,6 +360,16 @@
 		B89CEA01191F2F2E008DFF31 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 		B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
+		B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		B8C66C04192D82EC0050BE5A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		B8C66C05192D82EC0050BE5A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		B8C66C06192D82EC0050BE5A /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		B8C66C07192D82EC0050BE5A /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		B8C66C08192D82EC0050BE5A /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		B8C66C09192D82EC0050BE5A /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		B8C66C0A192D82EC0050BE5A /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		B8C66C0B192D82EC0050BE5A /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		B8C66C0C192D82EC0050BE5A /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
 		B8D717D5192B2D7500868678 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
 		B8D717D6192B2D7500868678 /* Base64Transcoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64Transcoder.m; sourceTree = "<group>"; };
 		B8D717D7192B2D7500868678 /* HSK_CFUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSK_CFUtilities.h; sourceTree = "<group>"; };
@@ -732,6 +747,7 @@
 		B8537C73190B7CDB000F353D /* External */ = {
 			isa = PBXGroup;
 			children = (
+				B8C66C02192D82EC0050BE5A /* MJRefresh */,
 				B8D717D4192B2D7500868678 /* SKPSMTPMessage */,
 				6C3A8C60191A101900598F39 /* QPOS */,
 				B8537C83190B7EC4000F353D /* AFNetworking */,
@@ -943,6 +959,23 @@
 			path = CusWindow;
 			sourceTree = "<group>";
 		};
+		B8C66C02192D82EC0050BE5A /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */,
+				B8C66C04192D82EC0050BE5A /* MJRefresh.h */,
+				B8C66C05192D82EC0050BE5A /* MJRefreshBaseView.h */,
+				B8C66C06192D82EC0050BE5A /* MJRefreshBaseView.m */,
+				B8C66C07192D82EC0050BE5A /* MJRefreshConst.h */,
+				B8C66C08192D82EC0050BE5A /* MJRefreshConst.m */,
+				B8C66C09192D82EC0050BE5A /* MJRefreshFooterView.h */,
+				B8C66C0A192D82EC0050BE5A /* MJRefreshFooterView.m */,
+				B8C66C0B192D82EC0050BE5A /* MJRefreshHeaderView.h */,
+				B8C66C0C192D82EC0050BE5A /* MJRefreshHeaderView.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
 		B8D717D4192B2D7500868678 /* SKPSMTPMessage */ = {
 			isa = PBXGroup;
 			children = (
@@ -1070,6 +1103,7 @@
 				B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */,
 				B8537D27190B7EC4000F353D /* alertView_button_green@2x.png in Resources */,
 				B8537D0F190B7EC4000F353D /* SVProgressHUD.bundle in Resources */,
+				B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */,
 				B8537D22190B7EC4000F353D /* alertView_button_gray.png in Resources */,
 				B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */,
 				B8537D21190B7EC4000F353D /* alertView_bg@2x.png in Resources */,
@@ -1113,6 +1147,7 @@
 				B89CE9F7191F1CB7008DFF31 /* ForgetPasswordViewController.m in Sources */,
 				B8537C82190B7E34000F353D /* Transfer+Parser.m in Sources */,
 				B8537C75190B7CDB000F353D /* AppDelegate.m in Sources */,
+				B8C66C0E192D82EC0050BE5A /* MJRefreshBaseView.m in Sources */,
 				B8537D05190B7EC4000F353D /* NSString+HTML.m in Sources */,
 				B8D717E0192B2D7500868678 /* HSK_CFUtilities.m in Sources */,
 				B8537D00190B7EC4000F353D /* AFXMLRequestOperation.m in Sources */,
@@ -1121,6 +1156,8 @@
 				B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */,
 				B813BB12192B2BD700654A45 /* WebViewViewController.m in Sources */,
 				B843D157190F77F10000A60A /* SPLockOverlay.m in Sources */,
+				B8C66C11192D82EC0050BE5A /* MJRefreshHeaderView.m in Sources */,
+				B8C66C0F192D82EC0050BE5A /* MJRefreshConst.m in Sources */,
 				B843D149190F740A0000A60A /* LockViewController.m in Sources */,
 				B8537D01190B7EC4000F353D /* UIImageView+AFNetworking.m in Sources */,
 				B8537D30190B803E000F353D /* FileManagerUtil.m in Sources */,
@@ -1163,6 +1200,7 @@
 				B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */,
 				B8537D60190B982C000F353D /* SecurityUtil.m in Sources */,
 				B82609CE191E1090003FE222 /* MerchantViewController.m in Sources */,
+				B8C66C10192D82EC0050BE5A /* MJRefreshFooterView.m in Sources */,
 				B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */,
 				B8263C61192C33FC009EFABC /* DeviceSearchViewController.m in Sources */,
 				B85D4BE919210857008241E0 /* TimedoutUtil.m in Sources */,

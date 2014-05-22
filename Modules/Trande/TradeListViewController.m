@@ -10,6 +10,8 @@
 #import "TradeCell.h"
 #import "TradeDetailViewController.h"
 
+NSString *const MJTableViewCellIdentifier = @"Cell";
+
 @interface TradeListViewController ()
 
 @end
@@ -34,7 +36,10 @@
     
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
+    [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
+    [self addHeader];
     
+    [headerView beginRefreshing];
     [self getTradeList];
 }
 
@@ -54,9 +59,46 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark -功能函数
+- (void)addHeader
+{
+    MJRefreshHeaderView *header = [MJRefreshHeaderView header];
+    header.scrollView = self.listTableView;
+    header.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+        // 进入刷新状态就会回调这个Block
+        NSLog(@"%@----开始进入刷新状态", refreshView.class);
+        
+        [self getTradeList];
+    };
+    header.endStateChangeBlock = ^(MJRefreshBaseView *refreshView) {
+        // 刷新完毕就会回调这个Block
+        NSLog(@"%@----刷新完毕", refreshView.class);
+    };
+    header.refreshStateChangeBlock = ^(MJRefreshBaseView *refreshView, MJRefreshState state) {
+        // 控件的刷新状态切换了就会调用这个block
+        switch (state) {
+            case MJRefreshStateNormal:
+                NSLog(@"%@----切换到：普通状态", refreshView.class);
+                break;
+                
+            case MJRefreshStatePulling:
+                NSLog(@"%@----切换到：松开即可刷新的状态", refreshView.class);
+                break;
+                
+            case MJRefreshStateRefreshing:
+                NSLog(@"%@----切换到：正在刷新状态", refreshView.class);
+                break;
+            default:
+                break;
+        }
+    };
+    headerView = header;
+}
+
 #pragma mark -http请求
 /**
- *  提交 获取系统返回的密码
+ *  获取交易列表
  */
 - (void)getTradeList
 {
@@ -67,6 +109,8 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
+                                             [headerView endRefreshing];
+                                             
                                              if ([obj[@"RSPMSG"] isEqualToString:@"00000"])
                                              {
                                                  
@@ -80,9 +124,11 @@
                                          {
                                              [SVProgressHUD showErrorWithStatus:@"加载失败，请稍后再试!"];
                                              
+                                            [headerView endRefreshing];
+                                             
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
 }
 
