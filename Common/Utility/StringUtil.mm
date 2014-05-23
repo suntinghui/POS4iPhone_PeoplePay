@@ -63,7 +63,7 @@
     }
     
     tempMutableStr = [NSMutableString stringWithString:[tempMutableStr stringByReplacingOccurrencesOfString:@"." withString:@""]];
-
+    
     int l = 12 - [tempMutableStr length];
     for (int i=0; i<l; i++) {
         [tempMutableStr insertString:@"0" atIndex:0];
