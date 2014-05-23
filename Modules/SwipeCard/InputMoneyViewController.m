@@ -11,6 +11,7 @@
 #import "SwipeCardNoticeViewController.h"
 #import "StringUtil.h"
 #import "DeviceHelper+SwipeCard.h"
+#import "CaculateViewController.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -27,6 +28,7 @@
 #define Button_Tag_Delete       111 //删除
 #define Button_Tag_SwipeCard    112 //点击刷卡
 #define Button_Tag_KeepAccount  113 //现金记账
+#define Button_Tag_Cacualte     114 //显示计算器
 
 
 @interface InputMoneyViewController ()
@@ -56,6 +58,13 @@
         self.numView.frame = CGRectMake(0, self.numView.frame.origin.y+90, self.numView.frame.size.width, self.numView.frame.size.height);
     }
     
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.tag = Button_Tag_Cacualte;
+    button.frame = CGRectMake(0, 5, 40, 30);
+    [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
+    
     //美工未提供点击的灰色背景图片 自己绘制一张图片
     UIGraphicsBeginImageContext(CGSizeMake(100, 100));
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -75,8 +84,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:NO animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -108,7 +122,7 @@
             else if([self.inputTxtField.text rangeOfString:@"."].location!=NSNotFound)
             {
                 NSString *end = [self.inputTxtField.text componentsSeparatedByString:@"."][1];
-                if (end.length>=2)
+                if (end.length>=4)
                 {
                     return;
                 }
@@ -120,7 +134,7 @@
             }
             else if([self.inputTxtField.text rangeOfString:@"."].location==NSNotFound)
             {
-                if (self.inputTxtField.text.length>=12)
+                if (self.inputTxtField.text.length>=10)
                 {
                     return;
                 }
@@ -185,6 +199,14 @@
                 return;
             }
             [self doCashAccount];
+        }
+            break;
+        case Button_Tag_Cacualte: //计算器
+        {
+            CaculateViewController *caculateController = [[CaculateViewController alloc]init];
+            [self.navigationController pushViewController:caculateController animated:YES];
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            
         }
             break;
             

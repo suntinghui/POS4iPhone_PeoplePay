@@ -19,6 +19,7 @@
  ----------------------------------------------------------------*/
 #import "StaticTools.h"
 #import "ErrorViewController.h"
+#import "CaculateViewController.h"
 
 @interface StaticTools (UIOperation)
 
@@ -35,4 +36,5 @@
 
 //根据交易码和交易状态获取交易信息
 + (NSString*)getTradeMessWithCode:(NSString*)code state:(NSString*)state;
+
 @end
