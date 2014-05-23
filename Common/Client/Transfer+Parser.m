@@ -64,6 +64,10 @@
         {
             return [self getMerchantInfo:rootElement];
         }
+        else if([reqName isEqual:@"200002"]) //现金记账
+        {
+            return [self getCustomMess:rootElement];
+        }
         else if([reqName isEqual:@"200003"]) //现金流水列表
         {
             return [self getCashList:rootElement];
@@ -204,28 +208,37 @@
     
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
     
-    TBXMLElement *listElement = [TBXML childElementNamed:@"LIST" parentElement:bodyElement];
-    if (listElement)
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
     {
-        TBXMLElement *itemElement = [TBXML childElementNamed:@"ROW" parentElement:listElement];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALPAGE" parentElement:bodyElement]] forKey:@"TOTALPAGE"];
         
-        while (itemElement) {
+        TBXMLElement *listElement = [TBXML childElementNamed:@"LIST" parentElement:bodyElement];
+        if (listElement)
+        {
+            TBXMLElement *itemElement = [TBXML childElementNamed:@"ROW" parentElement:listElement];
             
-            NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
-            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSID" parentElement:itemElement]] forKey:@"TRANSID"];
-            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTYPE" parentElement:itemElement]] forKey:@"TRANSTYPE"];
-            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSAMT" parentElement:itemElement]] forKey:@"TRANSAMT"];
-            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CURTYPE" parentElement:itemElement]] forKey:@"CURTYPE"];
-            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSDATE" parentElement:itemElement]] forKey:@"TRANSDATE"];
-            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTIME" parentElement:itemElement]] forKey:@"TRANSTIME"];
-           
-            [arr addObject:dict];
-            
-            
-            itemElement = [TBXML nextSiblingNamed:@"ROW" searchFromElement:itemElement];
+            while (itemElement) {
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSID" parentElement:itemElement]] forKey:@"TRANSID"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTYPE" parentElement:itemElement]] forKey:@"TRANSTYPE"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSAMT" parentElement:itemElement]] forKey:@"TRANSAMT"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CURTYPE" parentElement:itemElement]] forKey:@"CURTYPE"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSDATE" parentElement:itemElement]] forKey:@"TRANSDATE"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTIME" parentElement:itemElement]] forKey:@"TRANSTIME"];
+                
+                [arr addObject:dict];
+                
+                
+                itemElement = [TBXML nextSiblingNamed:@"ROW" searchFromElement:itemElement];
+            }
         }
+
+        
     }
+    [dict setObject:arr forKey:@"LIST"];
     
-    return arr;
+    return dict;
 }
 @end

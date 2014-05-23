@@ -225,6 +225,8 @@
 		B8F12C7C192EDF51008928C8 /* ScrollSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F12C7B192EDF51008928C8 /* ScrollSelectView.m */; };
 		B8F12C80192EEFD5008928C8 /* CashTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F12C7E192EEFD5008928C8 /* CashTableViewCell.m */; };
 		B8F12C81192EEFD5008928C8 /* CashTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F12C7F192EEFD5008928C8 /* CashTableViewCell.xib */; };
+		B8F12C86192F1D93008928C8 /* CaculateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F12C84192F1D93008928C8 /* CaculateViewController.m */; };
+		B8F12C87192F1D93008928C8 /* CaculateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F12C85192F1D93008928C8 /* CaculateViewController.xib */; };
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
 		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
@@ -576,6 +578,9 @@
 		B8F12C7D192EEFD5008928C8 /* CashTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashTableViewCell.h; sourceTree = "<group>"; };
 		B8F12C7E192EEFD5008928C8 /* CashTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashTableViewCell.m; sourceTree = "<group>"; };
 		B8F12C7F192EEFD5008928C8 /* CashTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashTableViewCell.xib; sourceTree = "<group>"; };
+		B8F12C83192F1D93008928C8 /* CaculateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaculateViewController.h; sourceTree = "<group>"; };
+		B8F12C84192F1D93008928C8 /* CaculateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaculateViewController.m; sourceTree = "<group>"; };
+		B8F12C85192F1D93008928C8 /* CaculateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaculateViewController.xib; sourceTree = "<group>"; };
 		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
@@ -1078,6 +1083,7 @@
 				B82609C4191E103C003FE222 /* Merchant */,
 				B843D159190FB4A40000A60A /* Trande */,
 				B843D140190F73710000A60A /* LockViewAndPassword */,
+				B8F12C82192F1D6D008928C8 /* Caculater */,
 				B82E47D61920CA4700D0D356 /* Setting */,
 			);
 			name = Modules;
@@ -1373,6 +1379,16 @@
 			path = ScrollSelectView;
 			sourceTree = "<group>";
 		};
+		B8F12C82192F1D6D008928C8 /* Caculater */ = {
+			isa = PBXGroup;
+			children = (
+				B8F12C83192F1D93008928C8 /* CaculateViewController.h */,
+				B8F12C84192F1D93008928C8 /* CaculateViewController.m */,
+				B8F12C85192F1D93008928C8 /* CaculateViewController.xib */,
+			);
+			path = Caculater;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1525,6 +1541,7 @@
 				B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */,
 				B8537D22190B7EC4000F353D /* alertView_button_gray.png in Resources */,
 				B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */,
+				B8F12C87192F1D93008928C8 /* CaculateViewController.xib in Resources */,
 				B82A9617192DDE840099E97E /* composepic_biankuang.png in Resources */,
 				B82A95F4192DDE840099E97E /* SinaWeibo.bundle in Resources */,
 				B82A961F192DDE840099E97E /* composesentbtnhover.png in Resources */,
@@ -1573,6 +1590,7 @@
 				B8F12C80192EEFD5008928C8 /* CashTableViewCell.m in Sources */,
 				B82A963C192DDE840099E97E /* TCWBAuthorizeViewController.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
+				B8F12C86192F1D93008928C8 /* CaculateViewController.m in Sources */,
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
 				B8537D06190B7EC4000F353D /* JSBadgeView.m in Sources */,
 				B82A963A192DDE840099E97E /* AuthorizeDelegate.m in Sources */,

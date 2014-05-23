@@ -34,7 +34,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     self.navigationItem.hidesBackButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"交易明细列表";
+    self.navigationItem.title = @"流水列表";
+    
+     self.cashs = [[NSMutableArray alloc]init];
     
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
@@ -46,6 +48,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [self.view addSubview:scrollSelectView];
     
     [self addHeader];
+    
+    [self addFooter];
     
     [self refreshList];
 }
@@ -76,13 +80,14 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         // 进入刷新状态就会回调这个Block
         NSLog(@"%@----开始进入刷新状态", refreshView.class);
         
+        isFresh = YES;
+        
         if (operateType==0)
         {
             [self getTradeList];
         }
         else if(operateType==1)
         {
-            
             [self getCashAccount];
         }
     };
@@ -111,19 +116,28 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     headerView = header;
 }
 
+- (void)addFooter
+{
+    MJRefreshFooterView *footer = [MJRefreshFooterView footer];
+    footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
+
+        if (currentPage==totalPage)
+        {
+            [SVProgressHUD showErrorWithStatus:@"无更多信息"];
+            [footView endRefreshing];
+            return ;
+        }
+        
+        [self getCashAccount];
+        
+    };
+    footView = footer;
+}
+
+
 - (void)refreshList
 {
     [headerView beginRefreshing];
-    
-    if (operateType==0)
-    {
-        [self getTradeList];
-    }
-    else if(operateType==1)
-    {
-     
-        [self getCashAccount];
-    }
     
 }
 
@@ -175,14 +189,17 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         {
             [self refreshList];
         }
+        footView.scrollView = nil;
     }
     else //现金流水
     {
         operateType = 1;
-        if (self.cashs==nil)
+        if (self.cashs.count==0)
         {
             [self refreshList];
         }
+        
+        footView.scrollView = self.listTableView;
     }
     
     [self setTitleCount];
@@ -235,19 +252,43 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 {
     NSDictionary *dict = @{kTranceCode:@"200003",
                            kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
-                                        @"operationId":@"getTransaction"}};
+                                        @"operationId":@"getTransaction",
+                                        @"pageIndex":[NSString stringWithFormat:@"%d",isFresh?0:currentPage],
+                                        @"pageSize":kOnePageSize}};
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
                                              [headerView endRefreshing];
+                                             [footView endRefreshing];
                                              
-                                             self.cashs = [NSMutableArray arrayWithArray:obj];
-                                             NSLog(@"cahs %@",self.cashs);
-                                             [self setTitleCount];
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                             {
+                                                
+                                                 totalPage = [obj[@"TOTALPAGE"] intValue];
+                                                 
+                                                if (isFresh)
+                                                 {
+                                                     currentPage=0;
+                                                     [self.cashs removeAllObjects];
+                                                    
+                                                 }
+                                                 
+                                                  currentPage++;
+                                                 
+                                                 [self.cashs addObjectsFromArray:obj[@"LIST"]];
+                                                 
+                                                 [self setTitleCount];
+                                                 
+                                                 [self.listTableView reloadData];
+                                             }
+                                             else
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                             }
                                              
-                                             [self.listTableView reloadData];
+                                              isFresh = NO;
                                              
                                              
                                          }
@@ -255,6 +296,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                                          {
                                              [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                              [headerView endRefreshing];
+                                             [footView endRefreshing];
+                                             
+                                              isFresh = NO;
                                              
                                          }];
     

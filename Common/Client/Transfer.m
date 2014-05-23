@@ -301,14 +301,9 @@ static NSString *totalSize = nil;
     
     NSLog(@"Request:%@ ", httpBodyString);
     
-    //内部服务器数据交换不采用加密
-//    if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
-//    {
-        httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
-        
-//    }
- 
-    
+
+    httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
+
     httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
     
     NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
@@ -344,19 +339,9 @@ static NSString *totalSize = nil;
         
 //        NSLog(@"Response: %@", respXML);
         
-        NSString *xmlStr;
-        //内部服务器数据交换不采用加密
-//        if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
-//        {
-             NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
-            xmlStr = [AESUtil decryptUseAES:respXML];
-//        }
-//        else
-//        {
-//             NSLog(@"Response: %@",respXML);
-//            xmlStr = respXML;
-//        }
-       
+
+         NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
+         NSString *xmlStr = [AESUtil decryptUseAES:respXML];
 
         id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: xmlStr];
         success(obj);

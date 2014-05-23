@@ -57,6 +57,8 @@
 #define kMacKey                         @"MACKEY"
 #define kEncryptKey                     @"ENCRYPTKEY"
 
+#define kOnePageSize                    @"5"
+
 
 //*********新浪微博*************************
 #define kAppKey             @"1288753078"

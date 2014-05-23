@@ -26,7 +26,11 @@
     ScrollSelectDelegate>
 {
     MJRefreshHeaderView *headerView;
+    MJRefreshFooterView *footView;
     int operateType;   //0:交易流水 1：现金流水
+    int currentPage;  //从0开始 第一页传0
+    int totalPage;
+    BOOL isFresh;  //是否为下拉刷新
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel; //交易笔数
