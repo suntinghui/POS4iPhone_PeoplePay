@@ -123,7 +123,7 @@
                                                     Title:nil
                                               description:@"众付宝"
                                                thumbimage:[UIImage imageNamed:@"ip_gyxtlogo"]
-                                            withDetailUrl:@"www.baidu.com"];
+                                            withDetailUrl:@"http://www.people2000.net"];
             
         
         }else

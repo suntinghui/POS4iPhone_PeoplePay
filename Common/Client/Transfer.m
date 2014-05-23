@@ -274,7 +274,9 @@ static NSString *totalSize = nil;
         endType = @"tran5";
     }
     else if([rspCode isEqualToString:@"200000"]||//头像上传
-            [rspCode isEqualToString:@"200001"]) //头像下载
+            [rspCode isEqualToString:@"200001"]||//头像下载
+            [rspCode isEqualToString:@"200002"]||//现金记账
+            [rspCode isEqualToString:@"200003"]) //现金流水列表
     {
         postType = @"";
         endType = @"";
@@ -288,7 +290,8 @@ static NSString *totalSize = nil;
     }
     else if ([postType isEqualToString:@""]) //内部服务区地址
     {
-        [self setRequestUrl:@"http://59.49.20.154:8586/"]; //http://192.168.1.46:8080
+        //http://192.168.1.46:8080  http://59.49.20.154:8586/
+        [self setRequestUrl:@"http://192.168.1.46:8080/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else
@@ -343,16 +346,16 @@ static NSString *totalSize = nil;
         
         NSString *xmlStr;
         //内部服务器数据交换不采用加密
-        if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
-        {
+//        if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
+//        {
              NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
             xmlStr = [AESUtil decryptUseAES:respXML];
-        }
-        else
-        {
-             NSLog(@"Response: %@",respXML);
-            xmlStr = respXML;
-        }
+//        }
+//        else
+//        {
+//             NSLog(@"Response: %@",respXML);
+//            xmlStr = respXML;
+//        }
        
 
         id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: xmlStr];

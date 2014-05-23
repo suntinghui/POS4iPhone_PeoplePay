@@ -179,8 +179,12 @@
             break;
         case Button_Tag_KeepAccount: //现金记账
         {
-            [SVProgressHUD showSuccessWithStatus:@"记账成功"];
-            
+            if ([self.inputTxtField.text floatValue] ==0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"输入的金额不合法"];
+                return;
+            }
+            [self doCashAccount];
         }
             break;
             
@@ -411,7 +415,7 @@
     NSLog(@"mac is %@",mac);
     
     NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
-    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
+    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:0 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
@@ -479,5 +483,44 @@
 
 }
 
+/**
+ *  现金记账
+ */
+- (void)doCashAccount
+{
+    NSDictionary *dict = @{kTranceCode:@"200002",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"curType":@"CNY",
+                                        @"transAmt":self.inputTxtField.text,
+                                        @"operationId":@"addTransaction"}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                    
+                                                     
+                                                 }
+                                                 else
+                                                 {
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    }];
+}
 
 @end

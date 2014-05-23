@@ -41,6 +41,6 @@
 #pragma mark - 按钮点击
 - (IBAction)buttonClickHandle:(id)sender
 {
-    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"www.baidu.com"]];
+    [[UIApplication sharedApplication]openURL:[NSURL URLWithString:@"http://www.people2000.net"]];
 }
 @end

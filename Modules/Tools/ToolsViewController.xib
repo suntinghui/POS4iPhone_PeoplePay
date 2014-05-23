@@ -22,7 +22,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <view contentMode="scaleToFill" id="lVk-bl-edt">
-                    <rect key="frame" x="0.0" y="163" width="320" height="254"/>
+                    <rect key="frame" x="0.0" y="157" width="320" height="254"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GDP-Js-juQ">
@@ -125,15 +125,15 @@
         </view>
     </objects>
     <resources>
-        <image name="ip_ckxx" width="94" height="75"/>
+        <image name="ip_ckxx" width="188" height="151"/>
         <image name="ip_gfwb" width="94" height="75"/>
-        <image name="ip_jyfx" width="94" height="75"/>
-        <image name="ip_kkzz" width="94" height="75"/>
+        <image name="ip_jyfx" width="188" height="151"/>
+        <image name="ip_kkzz" width="188" height="151"/>
         <image name="ip_sjcz" width="188" height="151"/>
         <image name="ip_sygg" width="320" height="222"/>
         <image name="ip_tjwm" width="94" height="75"/>
-        <image name="ip_xyk" width="94" height="75"/>
-        <image name="ip_yecx" width="94" height="75"/>
-        <image name="ip_zfb" width="94" height="75"/>
+        <image name="ip_xyk" width="188" height="151"/>
+        <image name="ip_yecx" width="188" height="151"/>
+        <image name="ip_zfb" width="188" height="151"/>
     </resources>
 </document>

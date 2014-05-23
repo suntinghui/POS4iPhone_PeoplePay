@@ -222,6 +222,9 @@
 		B8D717E2192B2D7500868678 /* NSStream+SKPSMTPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D717DC192B2D7500868678 /* NSStream+SKPSMTPExtensions.m */; };
 		B8D717E3192B2D7500868678 /* SKPSMTPMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B8D717DE192B2D7500868678 /* SKPSMTPMessage.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8D717E8192B330000868678 /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = B8D717E7192B330000868678 /* help.html */; };
+		B8F12C7C192EDF51008928C8 /* ScrollSelectView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F12C7B192EDF51008928C8 /* ScrollSelectView.m */; };
+		B8F12C80192EEFD5008928C8 /* CashTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F12C7E192EEFD5008928C8 /* CashTableViewCell.m */; };
+		B8F12C81192EEFD5008928C8 /* CashTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F12C7F192EEFD5008928C8 /* CashTableViewCell.xib */; };
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
 		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
@@ -568,6 +571,11 @@
 		B8D717DD192B2D7500868678 /* SKPSMTPMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKPSMTPMessage.h; sourceTree = "<group>"; };
 		B8D717DE192B2D7500868678 /* SKPSMTPMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKPSMTPMessage.m; sourceTree = "<group>"; };
 		B8D717E7192B330000868678 /* help.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = help.html; sourceTree = "<group>"; };
+		B8F12C7A192EDF51008928C8 /* ScrollSelectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollSelectView.h; sourceTree = "<group>"; };
+		B8F12C7B192EDF51008928C8 /* ScrollSelectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollSelectView.m; sourceTree = "<group>"; };
+		B8F12C7D192EEFD5008928C8 /* CashTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashTableViewCell.h; sourceTree = "<group>"; };
+		B8F12C7E192EEFD5008928C8 /* CashTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashTableViewCell.m; sourceTree = "<group>"; };
+		B8F12C7F192EEFD5008928C8 /* CashTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CashTableViewCell.xib; sourceTree = "<group>"; };
 		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
@@ -882,6 +890,7 @@
 		B843D14B190F77F10000A60A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				B8F12C79192EDF51008928C8 /* ScrollSelectView */,
 				B85D4BE3192106E2008241E0 /* CusWindow */,
 				B82609D0191E1985003FE222 /* LeveyTabbar */,
 				B843D14C190F77F10000A60A /* SPLockScreen */,
@@ -916,6 +925,9 @@
 				B89CE9FC191F271C008DFF31 /* TradeCell.h */,
 				B89CE9FD191F271C008DFF31 /* TradeCell.m */,
 				B89CE9FE191F271C008DFF31 /* TradeCell.xib */,
+				B8F12C7D192EEFD5008928C8 /* CashTableViewCell.h */,
+				B8F12C7E192EEFD5008928C8 /* CashTableViewCell.m */,
+				B8F12C7F192EEFD5008928C8 /* CashTableViewCell.xib */,
 			);
 			path = Trande;
 			sourceTree = "<group>";
@@ -1352,6 +1364,15 @@
 			path = LocalFile;
 			sourceTree = "<group>";
 		};
+		B8F12C79192EDF51008928C8 /* ScrollSelectView */ = {
+			isa = PBXGroup;
+			children = (
+				B8F12C7A192EDF51008928C8 /* ScrollSelectView.h */,
+				B8F12C7B192EDF51008928C8 /* ScrollSelectView.m */,
+			);
+			path = ScrollSelectView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1431,6 +1452,7 @@
 				B82A95FE192DDE840099E97E /* compose#hover@2x.png in Resources */,
 				B82A9602192DDE840099E97E /* composeAthover@2x.png in Resources */,
 				B8537C3A190B7769000F353D /* Images.xcassets in Resources */,
+				B8F12C81192EEFD5008928C8 /* CashTableViewCell.xib in Resources */,
 				B82A961A192DDE840099E97E /* composequxiaobtn@2x.png in Resources */,
 				B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */,
 				B82A9611192DDE840099E97E /* composeImageDel.png in Resources */,
@@ -1548,6 +1570,7 @@
 				B82A963D192DDE840099E97E /* TCWBEngine.m in Sources */,
 				B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */,
 				B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */,
+				B8F12C80192EEFD5008928C8 /* CashTableViewCell.m in Sources */,
 				B82A963C192DDE840099E97E /* TCWBAuthorizeViewController.m in Sources */,
 				B8537D1F190B7EC4000F353D /* XMLWriter.m in Sources */,
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
@@ -1606,6 +1629,7 @@
 				B82A9638192DDE840099E97E /* SBJsonWriter.m in Sources */,
 				B8537D39190B8150000F353D /* StaticFormatTools.m in Sources */,
 				B82A963E192DDE840099E97E /* TCWBRequest.m in Sources */,
+				B8F12C7C192EDF51008928C8 /* ScrollSelectView.m in Sources */,
 				B8537D10190B7EC4000F353D /* SVProgressHUD.m in Sources */,
 				B8537C7E190B7DE8000F353D /* Transfer.m in Sources */,
 				B8537D3A190B8150000F353D /* StaticTools.m in Sources */,
@@ -1771,7 +1795,7 @@
 					"$(PROJECT_DIR)/Resources/External/WeChatSDK_1.4.2.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
+				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -1783,7 +1807,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chao Hou (87AJP22Y78)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: YunFu Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YunFu Co., Ltd.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -1804,7 +1829,7 @@
 					"$(PROJECT_DIR)/Resources/External/WeChatSDK_1.4.2.1",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "68E7EAFD-4209-485E-925A-6094BE065277";
+				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

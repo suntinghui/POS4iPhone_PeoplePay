@@ -19,17 +19,21 @@
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
 #import "MJRefresh.h"
+#import "ScrollSelectView.h"
 
 @interface TradeListViewController : BaseViewController<UITableViewDataSource,
-    UITableViewDelegate>
+    UITableViewDelegate,
+    ScrollSelectDelegate>
 {
     MJRefreshHeaderView *headerView;
+    int operateType;   //0:交易流水 1：现金流水
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel; //交易笔数
 @property (weak, nonatomic) IBOutlet UILabel *txtLabel; // “笔”文字
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel; //金额
 @property (strong, nonatomic) NSMutableArray *trades;
+@property (strong, nonatomic) NSMutableArray *cashs;
 
 //刷新列表
 - (void)refreshList;

@@ -64,6 +64,10 @@
         {
             return [self getMerchantInfo:rootElement];
         }
+        else if([reqName isEqual:@"200003"]) //现金流水列表
+        {
+            return [self getCashList:rootElement];
+        }
     }
     
      return nil;
@@ -191,5 +195,37 @@
     }
     
     return dict;
+}
+
+
+#pragma mark -现金流水列表查询
+- (id) getCashList:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    
+    TBXMLElement *listElement = [TBXML childElementNamed:@"LIST" parentElement:bodyElement];
+    if (listElement)
+    {
+        TBXMLElement *itemElement = [TBXML childElementNamed:@"ROW" parentElement:listElement];
+        
+        while (itemElement) {
+            
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSID" parentElement:itemElement]] forKey:@"TRANSID"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTYPE" parentElement:itemElement]] forKey:@"TRANSTYPE"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSAMT" parentElement:itemElement]] forKey:@"TRANSAMT"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CURTYPE" parentElement:itemElement]] forKey:@"CURTYPE"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSDATE" parentElement:itemElement]] forKey:@"TRANSDATE"];
+            [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTIME" parentElement:itemElement]] forKey:@"TRANSTIME"];
+           
+            [arr addObject:dict];
+            
+            
+            itemElement = [TBXML nextSiblingNamed:@"ROW" searchFromElement:itemElement];
+        }
+    }
+    
+    return arr;
 }
 @end
