@@ -20,6 +20,8 @@
 }
 @property (weak, nonatomic) IBOutlet UITextField *resultTxtField;
 @property (weak, nonatomic) IBOutlet UILabel *showFoperator;
+@property (assign, nonatomic) UIViewController *fatherController;
+@property (weak, nonatomic) IBOutlet UIImageView *inputBgView;
 
 - (IBAction)buttonClickHandle:(UIButton*)button;
 

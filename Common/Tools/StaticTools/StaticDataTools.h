@@ -201,6 +201,8 @@ typedef enum
 #pragma mark MD5加密16位大写
 + (NSString *)Md5For16:(NSString *)md5Str;
 
+//获取当前软件版本
++ (NSString*)getCurrentVersion;
 
 @end
 

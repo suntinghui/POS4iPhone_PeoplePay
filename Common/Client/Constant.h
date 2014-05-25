@@ -31,7 +31,7 @@
 #define kTranceCode                     @"TANCECODE" //交易码
 #define kParamName                      @"KPARAMNAGE" //交易发送的数据节点 
 
-#define kOnePageSize                    @"5"
+#define kOnePageSize                    @"10"
 
 //银行卡相关
 #define kCardNum                        @"CARDNUM"
@@ -49,6 +49,7 @@
 #define kMoveUnlockState                @"MOVEUNLOCKSTATE"//滑动解锁开关 @"0" 关闭 @"1" 打开
 #define kREMEBERPWD                     @"remeberPWD"     //是否记住密码 @"1"：记住  @"0":不记住
 #define kAUTOLOGIN                      @"autoLogin"      //是否自动登录 @"1"：自动登录  @"0":不自动登录
+#define kUserHeadImage                  @"HEADIMAGE"      //用户头像数据
 
 #define kLastSignTime                   @"LASTSIGNTIME"   //上次签到时间
 #define kTradeNum                       @"TRADENUM"       //交易流水号
@@ -56,8 +57,6 @@
 #define kPinKey                         @"PINKEY"
 #define kMacKey                         @"MACKEY"
 #define kEncryptKey                     @"ENCRYPTKEY"
-
-#define kOnePageSize                    @"5"
 
 
 //*********新浪微博*************************

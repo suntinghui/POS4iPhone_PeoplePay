@@ -238,6 +238,9 @@
                                                      
                                                      image = [StaticTools circleImage:image withParam:0];
 //                                                     self.headImgView.image = image;
+                                                     [UserDefaults setObject:UIImagePNGRepresentation(image) forKey:kUserHeadImage];
+                                                     [UserDefaults synchronize];
+                                                     
                                                      [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
                                                      
                                                  }

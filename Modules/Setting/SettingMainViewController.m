@@ -70,15 +70,15 @@
    
     if (lockSwitch.isOn)
     {
-        //第一次进入 还没有设置默认手势
-        if ([UserDefaults objectForKey:kMoveUnlockPsw]==nil)
-        {
+//        //第一次进入 还没有设置默认手势
+//        if ([UserDefaults objectForKey:kMoveUnlockPsw]==nil)
+//        {
             SetMoveLockViewController *setMoveLockController = [[SetMoveLockViewController alloc]init];
             [self.navigationController pushViewController:setMoveLockController animated:YES];
-            return;
-        }
+//            return;
+//        }
         
-        [UserDefaults setObject:@"1" forKey:kMoveUnlockState];
+//        [UserDefaults setObject:@"1" forKey:kMoveUnlockState];
     }
     else
     {
@@ -97,7 +97,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section==0?1:4;
+    return section==0?1:3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,10 +166,6 @@
         }
         else if (indexPath.row==2)
         {
-            titleLabel.text = @"检查更新";
-        }
-        else if (indexPath.row==3)
-        {
             titleLabel.text = @"帮助";
         }
     }
@@ -207,7 +203,7 @@
             [self.navigationController pushViewController:feedBackController animated:YES];
             
         }
-        else if(indexPath.row == 3)
+        else if(indexPath.row == 2)
         {
             WebViewViewController *webViewController = [[WebViewViewController alloc]init];
             [self.navigationController pushViewController:webViewController animated:YES];

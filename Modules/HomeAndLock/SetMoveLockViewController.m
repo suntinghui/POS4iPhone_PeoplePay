@@ -45,16 +45,16 @@
 	self.lockView.backgroundColor = [UIColor clearColor];
 	[self.view addSubview:self.lockView];
     
-    if ([UserDefaults objectForKey:kMoveUnlockPsw]!=nil)
-    {
-        self.messLabel.text = @"请输入原始解锁手势";
-        state = 0;
-    }
-    else
-    {
+//    if ([UserDefaults objectForKey:kMoveUnlockPsw]!=nil)
+//    {
+//        self.messLabel.text = @"请输入原始解锁手势";
+//        state = 0;
+//    }
+//    else
+//    {
         self.messLabel.text = @"请输入新解锁手势";
         state = 1;
-    }
+//    }
     
 }
 
@@ -126,10 +126,13 @@
         else
         {
             [UserDefaults setObject:patternNumber forKey:kMoveUnlockPsw];
+             [UserDefaults setObject:@"1" forKey:kMoveUnlockState];
             [UserDefaults synchronize];
             
             [SVProgressHUD showSuccessWithStatus:@"手势设置成功"];
             [self.navigationController popViewControllerAnimated:YES];
+            
+            
         }
     }
 }

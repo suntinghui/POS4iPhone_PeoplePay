@@ -24,7 +24,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Merchant/MerchantViewController.m"
-            timestampString = "422342270.614468"
+            timestampString = "422691584.167093"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "183"
@@ -126,6 +126,22 @@
             startingLineNumber = "271"
             endingLineNumber = "271"
             landmarkName = "-getCashAccount"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Modules/HomeAndLock/LockViewController.m"
+            timestampString = "422696826.878207"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-lockScreen:didEndWithPattern:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

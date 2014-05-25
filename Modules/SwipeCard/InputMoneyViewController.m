@@ -61,7 +61,8 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     button.tag = Button_Tag_Cacualte;
-    button.frame = CGRectMake(0, 5, 40, 30);
+    button.frame = CGRectMake(0, 5, 30, 30);
+    [button setBackgroundImage:[UIImage imageNamed:@"calculator-5"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
     
@@ -79,12 +80,14 @@
         [button setBackgroundImage:newimg forState:UIControlStateHighlighted];
     }
    
+    [StaticTools showLockView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:NO animated:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -204,6 +207,7 @@
         case Button_Tag_Cacualte: //计算器
         {
             CaculateViewController *caculateController = [[CaculateViewController alloc]init];
+            caculateController.fatherController = self;
             [self.navigationController pushViewController:caculateController animated:YES];
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             
@@ -404,7 +408,7 @@
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在签到..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
     
 }

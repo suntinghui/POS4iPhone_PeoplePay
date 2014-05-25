@@ -822,6 +822,15 @@
     
 }
 
-
-
+/**
+ *  获取当前软件版本
+ *
+ *  @return
+ */
++ (NSString*)getCurrentVersion
+{
+    NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+    NSString *localVersion = [infoDic objectForKey:@"CFBundleVersion"];
+    return localVersion;
+}
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "CaculateViewController.h"
+#import "InputMoneyViewController.h"
 
 
 #define Tag_Zero_Action    100  // 0
@@ -27,6 +28,8 @@
 #define Tag_Reduce_Action  115  // -
 #define Tag_Plus_Action   116  // +
 #define Tag_Result_Action 117 // =
+#define Tag_Back_Action   118 //返回
+#define Tag_Commit_Actin  119 //完成
 
 @interface CaculateViewController ()
 
@@ -49,6 +52,12 @@
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = [UIColor clearColor];
     
+    if (IsIPhone5)
+    {
+        self.showFoperator.frame = CGRectMake(self.showFoperator.frame.origin.x, self.showFoperator.frame.origin.y+20, self.showFoperator.frame.size.width, self.showFoperator.frame.size.height);
+        self.resultTxtField.frame = CGRectMake(self.resultTxtField.frame.origin.x, self.resultTxtField.frame.origin.y+20, self.resultTxtField.frame.size.width, self.resultTxtField.frame.size.height);
+        self.inputBgView.frame = CGRectMake(self.inputBgView.frame.origin.x, self.inputBgView.frame.origin.y+20, self.inputBgView.frame.size.width, self.inputBgView.frame.size.height);
+    }
     [self clearDisplay];
 }
 
@@ -99,6 +108,21 @@
         case Tag_Nine_Action:
         {
             [self inputNumber:button.titleLabel.text];
+        }
+            break;
+        case Tag_Back_Action: //返回
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case Tag_Commit_Actin: //完成
+        {
+            if ([self.fatherController isKindOfClass:[InputMoneyViewController class]])
+            {
+                InputMoneyViewController *inputController = (InputMoneyViewController*)self.fatherController;
+                inputController.inputTxtField.text = self.resultTxtField.text;
+            }
+            [self.navigationController popViewControllerAnimated:YES];
         }
             break;
         default:
