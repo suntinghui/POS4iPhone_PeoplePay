@@ -48,14 +48,12 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:NO animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -96,7 +94,7 @@
     
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self downLoadHeadImg]; 
     
@@ -535,11 +533,15 @@
         if (indexPath.row==0) //修改密码
         {
             ChangePasswordViewController *changePswController = [[ChangePasswordViewController alloc]init];
+            changePswController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:changePswController animated:YES];
+            changePswController.hidesBottomBarWhenPushed = YES;
+
         }
         else if(indexPath.row==1) //更多设置
         {
             SettingMainViewController *settingMainController = [[SettingMainViewController alloc]init];
+            settingMainController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:settingMainController animated:YES];
         }
         else if(indexPath.row==2) //联系客服

@@ -12,6 +12,8 @@
 #import "StringUtil.h"
 #import "CashTableViewCell.h"
 
+#define Alert_Tag_Delete 100
+
 NSString *const MJTableViewCellIdentifier = @"Cell";
 
 @interface TradeListViewController ()
@@ -37,7 +39,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     self.navigationItem.title = @"流水列表";
     
      self.cashs = [[NSMutableArray alloc]init];
-    
+  
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
     [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
@@ -57,13 +59,11 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:NO animated:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -169,7 +169,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     
     self.numLabel.text = [NSString stringWithFormat:@"%d",count];
     
-    self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x, self.numLabel.frame.origin.y, [StaticTools getLabelWidth:self.numLabel.text defautWidth:320 defautHeight:self.numLabel.frame.size.height fontSize:self.numLabel.font.pointSize], self.numLabel.frame.size.height);
+    self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x, self.numLabel.frame.origin.y, [StaticTools getLabelWidth:self.numLabel.text defautWidth:320 defautHeight:self.numLabel.frame.size.height fontSize:22]+2, self.numLabel.frame.size.height);
     self.txtLabel.frame = CGRectMake(self.numLabel.frame.origin.x+self.numLabel.frame.size.width+3, self.txtLabel.frame.origin.y, self.txtLabel.frame.size.width, self.txtLabel.frame.size.height);
     
     self.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",amount];
@@ -204,6 +204,28 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     
     [self setTitleCount];
     [self.listTableView reloadData];
+}
+#pragma mark - 按钮点击
+- (void)buttonClickHandle:(UIButton*)button
+{
+    [StaticTools showAlertWithTag:Alert_Tag_Delete
+                            title:nil
+                          message:@"您确定要删除该条记录吗？"
+                        AlertType:CAlertTypeCacel
+                        SuperView:self];
+    
+    deleteIndex = button.tag-100;
+
+}
+
+#pragma UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == Alert_Tag_Delete&&buttonIndex!=alertView.cancelButtonIndex)
+    {
+     
+        [self deleCash];
+    }
 }
 
 #pragma mark -http请求
@@ -306,6 +328,43 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     }];
 }
 
+/**
+ *  现金流水删除
+ */
+- (void)deleCash
+{
+    NSString *idStr = self.cashs[deleteIndex][@"TRANSID"];
+    NSDictionary *dict = @{kTranceCode:@"200004",
+                           kParamName:@{@"operationId":@"delTransaInfo",
+                                        @"transId":idStr}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                             {
+                                                [SVProgressHUD showSuccessWithStatus:@"删除成功"];
+                                                 [self.cashs removeObjectAtIndex:deleteIndex];
+                                                 [self setTitleCount];
+                                                 [self.listTableView reloadData];
+                                             }
+                                             else
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
+    }];
+}
+
 #pragma mark -UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -350,6 +409,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         cell.weakLabel.text = [StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:cell.dateLabel.text]];
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         
+        
         return cell;
     }
     else if(operateType==1)
@@ -367,11 +427,19 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         cell.weakLabel.text = [StaticTools getWeekdayWithStr:cell.dateLabel.text];
         cell.monyeLabel.text = [NSString stringWithFormat:@"￥%@",dict[@"TRANSAMT"]];
         
+        cell.deleteBtn.tag = 100+indexPath.row;
+        [cell.deleteBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
         return cell;
         
     }
    
     return nil;
+}
+
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [UIColor clearColor];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -381,6 +449,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         NSDictionary *dict = self.trades[indexPath.row];
         TradeDetailViewController *tradeDetailCotnroller = [[TradeDetailViewController alloc]init];
+        tradeDetailCotnroller.hidesBottomBarWhenPushed = YES;
         tradeDetailCotnroller.infoDict = dict;
         tradeDetailCotnroller.fatherController = self;
         [self.navigationController pushViewController:tradeDetailCotnroller animated:YES];

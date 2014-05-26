@@ -44,14 +44,12 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
-    [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -80,6 +78,7 @@
         case Button_Tag_Tuijian:
         {
             SNSlistViewController *snsListController = [[SNSlistViewController alloc]init];
+            snsListController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:snsListController animated:YES];
         }
             break;

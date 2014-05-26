@@ -80,20 +80,17 @@
         [button setBackgroundImage:newimg forState:UIControlStateHighlighted];
     }
    
-    [StaticTools showLockView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:NO animated:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -208,6 +205,7 @@
         {
             CaculateViewController *caculateController = [[CaculateViewController alloc]init];
             caculateController.fatherController = self;
+            caculateController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:caculateController animated:YES];
             [self.navigationController setNavigationBarHidden:YES animated:YES];
             
@@ -319,8 +317,8 @@
 {
     //加载雷达转圈页面
     DeviceSearchViewController *deviceSearchController = [[DeviceSearchViewController alloc]init];
+    deviceSearchController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:deviceSearchController animated:NO];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
@@ -342,7 +340,6 @@
             
             //移除雷达转圈页面
             [self.navigationController popViewControllerAnimated:NO];
-            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         }];
         
     }];
@@ -386,7 +383,7 @@
                                                          
                                                          //移除刷卡提示动画页面
                                                          [self.navigationController popViewControllerAnimated:NO];
-                                                         [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+                                                         
                                                      }];
                                                      
                                                  }];
@@ -424,9 +421,9 @@
     
     //加载刷卡提示动画页面
     SwipeCardNoticeViewController *swipeCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
+    swipeCardNoticeController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:swipeCardNoticeController animated:NO];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
-
+    
     NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
     NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
     date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -445,7 +442,6 @@
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
-        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         
        
         
@@ -501,7 +497,6 @@
         [StaticTools showErrorPageWithMess:mess clickHandle:^{
             //移除刷卡提示动画页面
             [self.navigationController popViewControllerAnimated:NO];
-            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         }];
         
        

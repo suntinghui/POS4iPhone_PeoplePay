@@ -28,8 +28,6 @@
 		B82609CA191E103C003FE222 /* InputMoneyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82609C8191E103C003FE222 /* InputMoneyViewController.xib */; };
 		B82609CE191E1090003FE222 /* MerchantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82609CC191E1090003FE222 /* MerchantViewController.m */; };
 		B82609CF191E1090003FE222 /* MerchantViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82609CD191E1090003FE222 /* MerchantViewController.xib */; };
-		B82609D5191E1985003FE222 /* LeveyTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B82609D2191E1985003FE222 /* LeveyTabBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B82609D6191E1985003FE222 /* LeveyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82609D4191E1985003FE222 /* LeveyTabBarController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B82609DB191E1A99003FE222 /* ToolsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82609D9191E1A99003FE222 /* ToolsViewController.m */; };
 		B82609DC191E1A99003FE222 /* ToolsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82609DA191E1A99003FE222 /* ToolsViewController.xib */; };
 		B82609E0191E1AC1003FE222 /* TradeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82609DE191E1AC1003FE222 /* TradeListViewController.m */; };
@@ -125,6 +123,7 @@
 		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
 		B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */; };
+		B82E962019331EF400C860EF /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E961F19331EF400C860EF /* MyTabBarController.m */; };
 		B843D149190F740A0000A60A /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D147190F740A0000A60A /* LockViewController.m */; };
 		B843D14A190F740A0000A60A /* LockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B843D148190F740A0000A60A /* LockViewController.xib */; };
 		B843D155190F77F10000A60A /* NormalCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D14E190F77F10000A60A /* NormalCircle.m */; };
@@ -290,10 +289,6 @@
 		B82609CB191E1090003FE222 /* MerchantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MerchantViewController.h; sourceTree = "<group>"; };
 		B82609CC191E1090003FE222 /* MerchantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MerchantViewController.m; sourceTree = "<group>"; };
 		B82609CD191E1090003FE222 /* MerchantViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MerchantViewController.xib; sourceTree = "<group>"; };
-		B82609D1191E1985003FE222 /* LeveyTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBar.h; sourceTree = "<group>"; };
-		B82609D2191E1985003FE222 /* LeveyTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBar.m; sourceTree = "<group>"; };
-		B82609D3191E1985003FE222 /* LeveyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeveyTabBarController.h; sourceTree = "<group>"; };
-		B82609D4191E1985003FE222 /* LeveyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeveyTabBarController.m; sourceTree = "<group>"; };
 		B82609D8191E1A99003FE222 /* ToolsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolsViewController.h; sourceTree = "<group>"; };
 		B82609D9191E1A99003FE222 /* ToolsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolsViewController.m; sourceTree = "<group>"; };
 		B82609DA191E1A99003FE222 /* ToolsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ToolsViewController.xib; sourceTree = "<group>"; };
@@ -424,6 +419,8 @@
 		B82E47DC1920CA8E00D0D356 /* SettingMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingMainViewController.h; sourceTree = "<group>"; };
 		B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingMainViewController.m; sourceTree = "<group>"; };
 		B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingMainViewController.xib; sourceTree = "<group>"; };
+		B82E961E19331EF400C860EF /* MyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarController.h; sourceTree = "<group>"; };
+		B82E961F19331EF400C860EF /* MyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarController.m; sourceTree = "<group>"; };
 		B843D146190F740A0000A60A /* LockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockViewController.h; sourceTree = "<group>"; };
 		B843D147190F740A0000A60A /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		B843D148190F740A0000A60A /* LockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LockViewController.xib; sourceTree = "<group>"; };
@@ -726,10 +723,8 @@
 		B82609D0191E1985003FE222 /* LeveyTabbar */ = {
 			isa = PBXGroup;
 			children = (
-				B82609D1191E1985003FE222 /* LeveyTabBar.h */,
-				B82609D2191E1985003FE222 /* LeveyTabBar.m */,
-				B82609D3191E1985003FE222 /* LeveyTabBarController.h */,
-				B82609D4191E1985003FE222 /* LeveyTabBarController.m */,
+				B82E961E19331EF400C860EF /* MyTabBarController.h */,
+				B82E961F19331EF400C860EF /* MyTabBarController.m */,
 			);
 			path = LeveyTabbar;
 			sourceTree = "<group>";
@@ -1737,6 +1732,7 @@
 				B8788C621931BF1E003E8338 /* CJSONDeserializer_BlocksExtensions.m in Sources */,
 				B8788C651931BF1E003E8338 /* CDataScanner_Extensions.m in Sources */,
 				B82A9636192DDE840099E97E /* SBJsonBase.m in Sources */,
+				B82E962019331EF400C860EF /* MyTabBarController.m in Sources */,
 				B8537C75190B7CDB000F353D /* AppDelegate.m in Sources */,
 				B8C66C0E192D82EC0050BE5A /* MJRefreshBaseView.m in Sources */,
 				B8537D05190B7EC4000F353D /* NSString+HTML.m in Sources */,
@@ -1763,7 +1759,6 @@
 				B82A9639192DDE840099E97E /* SFHFKeychainUtils.m in Sources */,
 				B8788C661931BF1E003E8338 /* NSDictionary_JSONExtensions.m in Sources */,
 				B8537D67190B9913000F353D /* Util.mm in Sources */,
-				B82609D6191E1985003FE222 /* LeveyTabBarController.m in Sources */,
 				B82A9633192DDE840099E97E /* NSObject+SBJSON.m in Sources */,
 				B8263C69192C6FFF009EFABC /* SNSlistViewController.m in Sources */,
 				B8788C3C1931BA2C003E8338 /* GzipCompressor.m in Sources */,
@@ -1792,7 +1787,6 @@
 				B8537D10190B7EC4000F353D /* SVProgressHUD.m in Sources */,
 				B8537C7E190B7DE8000F353D /* Transfer.m in Sources */,
 				B8537D3A190B8150000F353D /* StaticTools.m in Sources */,
-				B82609D5191E1985003FE222 /* LeveyTabBar.m in Sources */,
 				B82609E0191E1AC1003FE222 /* TradeListViewController.m in Sources */,
 				B843D156190F77F10000A60A /* SPLine.m in Sources */,
 				B82A9646192DE1D80099E97E /* WeiBoShare.m in Sources */,

@@ -12,6 +12,7 @@
 #import "Test.h"
 #import "BaiduMobStat.h"
 
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,7 +23,16 @@
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController ];
-    [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
+    
+    if (IOS7_OR_LATER)
+    {
+        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"ip_title_ios7"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
+    }
+    
     nav.navigationBarHidden = YES;
     self.window.rootViewController = nav;
     
@@ -31,6 +41,9 @@
     {
         [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
     }
+    
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
     
     [self.window makeKeyAndVisible];
     

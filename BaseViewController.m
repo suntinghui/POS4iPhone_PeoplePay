@@ -61,6 +61,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+
+{
+    return UIStatusBarStyleBlackTranslucent;
+}
+
+
+- (BOOL)prefersStatusBarHidden
+{
+    
+    return NO;
+    
+}
+
 #pragma mark--定制导航栏左侧返回按钮
 /**
  *  定制返回按钮  在基类的viewdidload里调用 不需要返回按钮或需定制和基类不一样的按钮时 可在子类里自行处理

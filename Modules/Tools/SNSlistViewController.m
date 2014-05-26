@@ -106,6 +106,7 @@
     if (indexPath.row==0)
     {
         SNSshareViewController *snsShareController = [[SNSshareViewController alloc]init];
+        snsShareController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:snsShareController animated:YES];
     }
     else if(indexPath.row==1||indexPath.row==2)

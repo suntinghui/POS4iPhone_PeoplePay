@@ -8,13 +8,13 @@
 
 #import "LoginViewController.h"
 #import "MerchantViewController.h"
-#import "LeveyTabBarController.h"
 #import "InputMoneyViewController.h"
 #import "TradeListViewController.h"
 #import "ToolsViewController.h"
 #import "TimedoutUtil.h"
 #import "ForgetPasswordViewController.h"
 #import "SwipeCardNoticeViewController.h"
+#import "MyTabBarController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101
@@ -106,22 +106,25 @@
     isGohome = YES;
     [[NSNotificationCenter defaultCenter] addObserver:ApplicationDelegate selector:@selector(unTouchedTimeUp) name:kNotificationTimeUp object:nil];
     
+    NSString *image=IOS7_OR_LATER?@"ip_title_ios7":@"ip_title";
+    
     InputMoneyViewController *inputMoneyController = [[InputMoneyViewController alloc]init];
     UINavigationController *nav1 = [[UINavigationController alloc]initWithRootViewController:inputMoneyController];
-    [StaticTools setNavigationBarBackgroundImage:nav1.navigationBar withImg:@"ip_title"];
+    [StaticTools setNavigationBarBackgroundImage:nav1.navigationBar withImg:image];
     
     TradeListViewController *tardeListController = [[TradeListViewController alloc]init];
     UINavigationController *nav2 = [[UINavigationController alloc]initWithRootViewController:tardeListController];
-    [StaticTools setNavigationBarBackgroundImage:nav2.navigationBar withImg:@"ip_title"];
+    [StaticTools setNavigationBarBackgroundImage:nav2.navigationBar withImg:image];
     
     MerchantViewController *merchantController = [[MerchantViewController alloc] init];
     UINavigationController *nav3 = [[UINavigationController alloc]initWithRootViewController:merchantController];
     [nav3 setNavigationBarHidden:YES];
-    [StaticTools setNavigationBarBackgroundImage:nav3.navigationBar withImg:@"ip_title"];
+//    nav3.hidesBottomBarWhenPushed = YES;
+    [StaticTools setNavigationBarBackgroundImage:nav3.navigationBar withImg:image];
     
     ToolsViewController *toolsController = [[ToolsViewController alloc]init];
     UINavigationController *nav4 = [[UINavigationController alloc]initWithRootViewController:toolsController];
-    [StaticTools setNavigationBarBackgroundImage:nav4.navigationBar withImg:@"ip_title"];
+    [StaticTools setNavigationBarBackgroundImage:nav4.navigationBar withImg:image];
     
     NSArray *ctlArr = @[nav1,nav2,nav3,nav4];
     
@@ -144,11 +147,17 @@
 
     
     NSArray *imgArr = @[imgDic1,imgDic2,imgDic3,imgDic4];
-    LeveyTabBarController *leveyTabBarController = [[LeveyTabBarController alloc] initWithViewControllers:ctlArr imageArray:imgArr];
-//	[leveyTabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbarbg.png"]];
-	[leveyTabBarController setTabBarTransparent:YES];
-    [AppDataCenter sharedAppDataCenter].leveyTabBar = leveyTabBarController;
-    [self.navigationController pushViewController:leveyTabBarController animated:YES];
+   
+    
+    
+	MyTabBarController *tabcon = [[MyTabBarController alloc] init];
+    tabcon.delegate = self;
+    tabcon.viewControllers = [NSArray arrayWithObjects:nav1, nav2, nav3,nav4,nil];
+	[tabcon setImages:imgArr];
+    [tabcon setSelectedIndex:0];
+[self.navigationController pushViewController:tabcon animated:YES];
+    
+
 }
 #pragma mark- 按钮点击事件
 - (IBAction)buttonClickHandle:(id)sender

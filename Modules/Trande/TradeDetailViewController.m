@@ -59,7 +59,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:NO];
 }
 - (void)didReceiveMemoryWarning
 {

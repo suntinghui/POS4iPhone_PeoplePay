@@ -21,6 +21,7 @@
 @interface LoginViewController : UIViewController<UITextFieldDelegate>
 {
     BOOL isGohome;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;

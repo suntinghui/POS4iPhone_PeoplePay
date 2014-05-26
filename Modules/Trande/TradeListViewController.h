@@ -20,10 +20,12 @@
 #import <UIKit/UIKit.h>
 #import "MJRefresh.h"
 #import "ScrollSelectView.h"
+#import "BaseViewController.h"
 
 @interface TradeListViewController : BaseViewController<UITableViewDataSource,
     UITableViewDelegate,
-    ScrollSelectDelegate>
+    ScrollSelectDelegate,
+    UIAlertViewDelegate>
 {
     MJRefreshHeaderView *headerView;
     MJRefreshFooterView *footView;
@@ -31,6 +33,7 @@
     int currentPage;  //从0开始 第一页传0
     int totalPage;
     BOOL isFresh;  //是否为下拉刷新
+    int deleteIndex; //点中的删除的项
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UILabel *numLabel; //交易笔数

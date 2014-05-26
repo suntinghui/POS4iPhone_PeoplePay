@@ -64,13 +64,17 @@
         {
             return [self getMerchantInfo:rootElement];
         }
-        else if([reqName isEqual:@"200002"]) //现金记账
+        else if([reqName isEqualToString:@"200002"]) //现金记账
         {
             return [self getCustomMess:rootElement];
         }
-        else if([reqName isEqual:@"200003"]) //现金流水列表
+        else if([reqName isEqualToString:@"200003"]) //现金流水列表
         {
             return [self getCashList:rootElement];
+        }
+        else if([reqName isEqualToString:@"200004"])
+        {
+            return [self getCustomMess:rootElement];
         }
     }
     

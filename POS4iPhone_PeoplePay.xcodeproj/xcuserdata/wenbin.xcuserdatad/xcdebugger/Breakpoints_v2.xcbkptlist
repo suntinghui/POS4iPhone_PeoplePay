@@ -24,11 +24,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Merchant/MerchantViewController.m"
-            timestampString = "422691584.167093"
+            timestampString = "422783750.336075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-upLoadHeadImage:"
             landmarkType = "5">
          </BreakpointContent>
@@ -40,11 +40,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Common/Client/Transfer+Parser.m"
-            timestampString = "422515149.206208"
+            timestampString = "422787300.257147"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "-doSign:"
             landmarkType = "5">
          </BreakpointContent>
@@ -72,7 +72,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Trande/TradeListViewController.m"
-            timestampString = "422519716.838642"
+            timestampString = "422786480.729172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Trande/TradeListViewController.m"
-            timestampString = "422519716.838642"
+            timestampString = "422786480.729172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "265"
-            endingLineNumber = "265"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "-getCashAccount"
             landmarkType = "5">
          </BreakpointContent>
@@ -104,7 +104,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Trande/TradeListViewController.m"
-            timestampString = "422520112.115079"
+            timestampString = "422786480.729172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -120,11 +120,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Trande/TradeListViewController.m"
-            timestampString = "422520026.268875"
+            timestampString = "422786480.729172"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "-getCashAccount"
             landmarkType = "5">
          </BreakpointContent>
@@ -142,6 +142,22 @@
             startingLineNumber = "67"
             endingLineNumber = "67"
             landmarkName = "-lockScreen:didEndWithPattern:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Common/CustomView/LeveyTabbar/LeveyTabBarController.m"
+            timestampString = "422780341.116951"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "-setSelectedIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

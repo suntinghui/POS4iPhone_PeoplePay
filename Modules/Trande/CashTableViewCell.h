@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *weakLabel;
 @property (weak, nonatomic) IBOutlet UILabel *monyeLabel;
 @property (weak, nonatomic) IBOutlet UIView *bgView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
 @end
