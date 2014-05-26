@@ -72,7 +72,7 @@
         {
             return [self getCashList:rootElement];
         }
-        else if([reqName isEqualToString:@"200004"])
+        else if([reqName isEqualToString:@"200004"]) //现金流水删除
         {
             return [self getCustomMess:rootElement];
         }
