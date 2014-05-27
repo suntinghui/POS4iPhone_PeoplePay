@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		6C1B0801192233F00023FCD8 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1B0800192233F00023FCD8 /* Test.m */; };
 		6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A8C5E1919BBAE00598F39 /* AESUtil.m */; };
-		6C3A8C63191A101900598F39 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3A8C61191A101900598F39 /* libZftQposLib.a */; };
 		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
 		6CA6623C190F5636001D6114 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA6623A190F5636001D6114 /* libssl.a */; };
 		B813BAC2192AF25F00654A45 /* SwipeCardNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B813BABE192AF25F00654A45 /* SwipeCardNoticeViewController.m */; };
@@ -219,6 +218,7 @@
 		B8788C681931BF1E003E8338 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5C1931BF1E003E8338 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C691931BF1E003E8338 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5E1931BF1E003E8338 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C6C1931C2AA003E8338 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C6B1931C2AA003E8338 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B89525ED1934887400F04685 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89525EC1934887400F04685 /* libZftQposLib.a */; };
 		B89CE9F7191F1CB7008DFF31 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */; };
 		B89CE9F8191F1CB7008DFF31 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */; };
 		B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CE9FA191F1D01008DFF31 /* BaseViewController.m */; };
@@ -245,6 +245,9 @@
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
 		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
+		B8F788A11934374700C07BE5 /* PersonSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F7889F1934374700C07BE5 /* PersonSignViewController.m */; };
+		B8F788A21934374700C07BE5 /* PersonSignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F788A01934374700C07BE5 /* PersonSignViewController.xib */; };
+		B8F788A619344CFE00C07BE5 /* PaintMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F788A519344CFE00C07BE5 /* PaintMaskView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,7 +265,6 @@
 		6C1B0800192233F00023FCD8 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		6C3A8C5D1919BBAE00598F39 /* AESUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESUtil.h; sourceTree = "<group>"; };
 		6C3A8C5E1919BBAE00598F39 /* AESUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESUtil.m; sourceTree = "<group>"; };
-		6C3A8C61191A101900598F39 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
 		6C3A8C62191A101900598F39 /* Qpost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qpost.h; sourceTree = "<group>"; };
 		6CA66239190F5636001D6114 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = lib/libcrypto.a; sourceTree = "<group>"; };
 		6CA6623A190F5636001D6114 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = lib/libssl.a; sourceTree = "<group>"; };
@@ -585,6 +587,7 @@
 		B8788C5F1931BF1E003E8338 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		B8788C6A1931C2AA003E8338 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		B8788C6B1931C2AA003E8338 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		B89525EC1934887400F04685 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
 		B89CE9F4191F1CB7008DFF31 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
@@ -629,6 +632,11 @@
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
 		B8F5C21B19223683006B199F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
+		B8F7889E1934374700C07BE5 /* PersonSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSignViewController.h; sourceTree = "<group>"; };
+		B8F7889F1934374700C07BE5 /* PersonSignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSignViewController.m; sourceTree = "<group>"; };
+		B8F788A01934374700C07BE5 /* PersonSignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonSignViewController.xib; sourceTree = "<group>"; };
+		B8F788A419344CFE00C07BE5 /* PaintMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintMaskView.h; sourceTree = "<group>"; };
+		B8F788A519344CFE00C07BE5 /* PaintMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintMaskView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -642,6 +650,7 @@
 				B81C9F92190CF7E8004239FF /* AVFoundation.framework in Frameworks */,
 				B81C9F90190CF7E1004239FF /* Security.framework in Frameworks */,
 				B81C9F8E190CF7D7004239FF /* MediaPlayer.framework in Frameworks */,
+				B89525ED1934887400F04685 /* libZftQposLib.a in Frameworks */,
 				6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */,
 				6CA6623C190F5636001D6114 /* libssl.a in Frameworks */,
 				B8537D51190B83E5000F353D /* CoreText.framework in Frameworks */,
@@ -656,7 +665,6 @@
 				B82A958C192DD6AD0099E97E /* libWeChatSDK.a in Frameworks */,
 				B8537D43190B82D7000F353D /* libxml2.2.dylib in Frameworks */,
 				B8537C21190B7769000F353D /* CoreGraphics.framework in Frameworks */,
-				6C3A8C63191A101900598F39 /* libZftQposLib.a in Frameworks */,
 				B8537C23190B7769000F353D /* UIKit.framework in Frameworks */,
 				B8537C1F190B7769000F353D /* Foundation.framework in Frameworks */,
 			);
@@ -678,7 +686,7 @@
 		6C3A8C60191A101900598F39 /* QPOS */ = {
 			isa = PBXGroup;
 			children = (
-				6C3A8C61191A101900598F39 /* libZftQposLib.a */,
+				B89525EC1934887400F04685 /* libZftQposLib.a */,
 				6C3A8C62191A101900598F39 /* Qpost.h */,
 			);
 			path = QPOS;
@@ -716,6 +724,9 @@
 				B82609C6191E103C003FE222 /* InputMoneyViewController.h */,
 				B82609C7191E103C003FE222 /* InputMoneyViewController.m */,
 				B82609C8191E103C003FE222 /* InputMoneyViewController.xib */,
+				B8F7889E1934374700C07BE5 /* PersonSignViewController.h */,
+				B8F7889F1934374700C07BE5 /* PersonSignViewController.m */,
+				B8F788A01934374700C07BE5 /* PersonSignViewController.xib */,
 			);
 			path = SwipeCard;
 			sourceTree = "<group>";
@@ -940,6 +951,7 @@
 		B843D14B190F77F10000A60A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				B8F788A319344CF700C07BE5 /* PaintView */,
 				B8F12C79192EDF51008928C8 /* ScrollSelectView */,
 				B85D4BE3192106E2008241E0 /* CusWindow */,
 				B82609D0191E1985003FE222 /* LeveyTabbar */,
@@ -1513,6 +1525,15 @@
 			path = Caculater;
 			sourceTree = "<group>";
 		};
+		B8F788A319344CF700C07BE5 /* PaintView */ = {
+			isa = PBXGroup;
+			children = (
+				B8F788A419344CFE00C07BE5 /* PaintMaskView.h */,
+				B8F788A519344CFE00C07BE5 /* PaintMaskView.m */,
+			);
+			path = PaintView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1657,6 +1678,7 @@
 				B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */,
 				B8537D27190B7EC4000F353D /* alertView_button_green@2x.png in Resources */,
 				B82A9629192DDE840099E97E /* netError.png in Resources */,
+				B8F788A21934374700C07BE5 /* PersonSignViewController.xib in Resources */,
 				B82A95FA192DDE840099E97E /* comopose#@2x.png in Resources */,
 				B82A9615192DDE840099E97E /* composeloadingbtn.png in Resources */,
 				B82A960D192DDE840099E97E /* composehuatiinput.png in Resources */,
@@ -1710,6 +1732,7 @@
 				B8D717E3192B2D7500868678 /* SKPSMTPMessage.m in Sources */,
 				B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */,
 				B82A9642192DE0000099E97E /* SNSshareViewController.m in Sources */,
+				B8F788A619344CFE00C07BE5 /* PaintMaskView.m in Sources */,
 				B82A963D192DDE840099E97E /* TCWBEngine.m in Sources */,
 				B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */,
 				B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */,
@@ -1811,6 +1834,7 @@
 				B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */,
 				B82A9631192DDE840099E97E /* ImageDownloader.m in Sources */,
 				B8263C61192C33FC009EFABC /* DeviceSearchViewController.m in Sources */,
+				B8F788A11934374700C07BE5 /* PersonSignViewController.m in Sources */,
 				B85D4BE919210857008241E0 /* TimedoutUtil.m in Sources */,
 				6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */,
 				B8537CFE190B7EC4000F353D /* AFPropertyListRequestOperation.m in Sources */,
@@ -1950,6 +1974,7 @@
 					"$(PROJECT_DIR)/Resources/External/BaiduPushSupport",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Resources/External/BaiduMobState",
+					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";
@@ -1987,6 +2012,7 @@
 					"$(PROJECT_DIR)/Resources/External/BaiduPushSupport",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Resources/External/BaiduMobState",
+					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "289C2CC6-BC0D-427B-AF9B-171452A356BE";

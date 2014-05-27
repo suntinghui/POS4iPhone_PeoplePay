@@ -45,11 +45,8 @@ typedef void(^OnePramaBlock)(id mess);
 //获取设备版本号
 - (NSString*)getDeviceVersion;
 
-//获取设备终端号码
+//获取设备终端号码和psamid
 - (void)getTerminalIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock;
-
-//获取psamid
-- (void)getPsamIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock;
 
 //判断设备是否插入
 - (BOOL)ispluged;

@@ -12,6 +12,7 @@
 #import "StringUtil.h"
 #import "DeviceHelper+SwipeCard.h"
 #import "CaculateViewController.h"
+#import "PersonSignViewController.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -178,13 +179,7 @@
             break;
         case Button_Tag_SwipeCard: //刷卡
         {
-
-//            [[DeviceHelper shareDeviceHelper] getPsamIDWithComplete:^(id mess) {
-//                
-//            } Fail:^(id mess) {
-//                
-//            }];
-//            return;
+            
             [StaticTools tapAnimationWithView:self.moneyView];
             [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];
 
@@ -322,8 +317,15 @@
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
-        self.tidStr = mess;
-        self.pidStr = @"UN201410000046"; //TODO
+    //移除雷达转圈页面
+    [self.navigationController popViewControllerAnimated:NO];
+    
+    NSArray *arr = [mess componentsSeparatedByString:@"#"];
+    self.tidStr = arr[0];
+    self.pidStr = arr[1];
+    self.pidStr = [self.pidStr stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"];
+        
+        
         if (type==0)
         {
             [self doSign];
@@ -437,13 +439,13 @@
     NSLog(@"self.pidStr is %@ self.tidStr is %@",self.pidStr,self.tidStr);
     NSLog(@"mac is %@",mac);
     
-    NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
-    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:0 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
+    float count = [self.inputTxtField.text floatValue]*100;
+    int numcount = count;
+    NSString *num = [NSString stringWithFormat:@"%d",numcount];
+    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
-        
-       
         
         NSDictionary *dict = @{kTranceCode:@"199005",
                                kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
@@ -470,18 +472,20 @@
                                                  
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                  {
+                                                     PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+                                                     personSignController.hidesBottomBarWhenPushed = YES;
+                                                     [self.navigationController pushViewController:personSignController animated:YES];
                                                      
                                                  }
                                                  else
                                                  {
-//                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+
                                                      [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
                                                  }
                                                  
                                              }
                                                                                       failure:^(NSString *errMsg)
                                              {
-//                                                 [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                                  
                                                  [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
                                                  
@@ -492,9 +496,7 @@
         
     } andFail:^(id mess) {
         
-//        [SVProgressHUD showErrorWithStatus:mess];
-        
-        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+            [StaticTools showErrorPageWithMess:mess clickHandle:^{
             //移除刷卡提示动画页面
             [self.navigationController popViewControllerAnimated:NO];
         }];

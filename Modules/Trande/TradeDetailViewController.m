@@ -165,6 +165,27 @@
 - (void)swipeCard
 {
     
+    
+//    [[DeviceHelper shareDeviceHelper] doTradeEx:@"100" andType:1 Random:nil extraString:@"abc" TimesOut:30 Complete:^(id mess) {
+//        
+//        //移除刷卡提示动画页面
+//        [self.navigationController popViewControllerAnimated:NO];
+//        
+//        
+//    } andFail:^(id mess) {
+//        
+//        //        [SVProgressHUD showErrorWithStatus:mess];
+//        
+//        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+//            //移除刷卡提示动画页面
+//            [self.navigationController popViewControllerAnimated:NO];
+//        }];
+//        
+//        
+//    }];
+//
+//    return;
+    
     if (![[DeviceHelper shareDeviceHelper] ispluged])
     {
         [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
@@ -200,8 +221,11 @@
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
-        self.tidStr = mess;
-        self.pidStr = @"UN201410000046"; //TODO
+        NSArray *arr = [mess componentsSeparatedByString:@"#"];
+        self.tidStr = arr[0];
+        self.pidStr = arr[1];
+        self.pidStr = [self.pidStr stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"];
+        
         if (type==0)
         {
             [self doSign];
@@ -315,7 +339,11 @@
     NSLog(@"mac is %@",mac);
     
     NSString *num = [NSString stringWithFormat:@"%f",[[StringUtil string2AmountFloat:self.infoDict[@"TXNAMT"]] floatValue]];
-    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
+    float count = [num floatValue]*100;
+    int numcount = count;
+    NSString *numStr = [NSString stringWithFormat:@"%d",numcount];
+    
+    [[DeviceHelper shareDeviceHelper] doTradeEx:numStr andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
         
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];

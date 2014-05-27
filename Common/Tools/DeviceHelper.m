@@ -128,7 +128,9 @@ static DeviceHelper *instance = nil;
 //    [SVProgressHUD dismiss];
     
     NSString *idStr = [qpostLib getTerminalID];
-    NSLog(@"termina id %@",idStr);
+    NSString *pidStr =[qpostLib getPsamID];
+    
+    NSLog(@"termina id %@ pidStr is %@",idStr,pidStr);
     if ([StaticTools isEmptyString:idStr])
     {
         if (self.failBlock)
@@ -136,11 +138,18 @@ static DeviceHelper *instance = nil;
             self.failBlock(@"终端号获取失败,请重试。");
         }
     }
+    else if([StaticTools isEmptyString:pidStr])
+    {
+        if (self.failBlock)
+        {
+            self.failBlock(@"psam号获取失败,请重试。");
+        }
+    }
     else
     {
         if (self.onePrameBlock)
         {
-            self.onePrameBlock(idStr);
+            self.onePrameBlock([NSString stringWithFormat:@"%@#%@",idStr,pidStr]);
 //            self.onePrameBlock  = nil;
         }
     }
@@ -170,7 +179,7 @@ static DeviceHelper *instance = nil;
 
 
 /**
- *  获取设备的终端id号
+ *  获取设备的终端id号和psamid
  *
  *  @param Sucblock  获取成功的回调
  *  @param failBlock 获取失败的回调 传nil时采用默认处理：弹框提示错误信息
@@ -182,27 +191,11 @@ static DeviceHelper *instance = nil;
     self.onePrameBlock = Sucblock;
     self.failBlock = failBlock;
 
-    [qpostLib doGetTerminalID:3];
-    [self performSelector:@selector(doGetTerminalID) withObject:nil afterDelay:2];
+    [qpostLib doGetTerminalID:1];
+    [self performSelector:@selector(doGetTerminalID) withObject:nil afterDelay:4];
     
 }
 
-/**
- *  获取psamid
- *
- *  @param Sucblock  获取成功的回调
- *  @param failBlock 获取失败的回调 传nil时采用默认处理：弹框提示错误信息
- */
-- (void)getPsamIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock
-{
-    NSString *idStr = [qpostLib getPsamID];
-    if (self.onePrameBlock)
-    {
-        self.onePrameBlock(idStr);
-    }
-    
-    NSLog(@"psam id %@",idStr);
-}
 
 /**
  *  签到操作
@@ -249,15 +242,15 @@ static DeviceHelper *instance = nil;
 {
 //    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
     
+    NSLog(@"发送刷卡请求");
     self.infoDict = [[NSMutableDictionary alloc]init];
     self.onePrameBlock = sucBlock;
     self.failBlock = failBlock;
     
     int state = [qpostLib doTradeEx:amountString andType:type andRandom:random andextraString:extraString andTimesOut:timeout];
     
-    NSLog(@"state back %d",state);
     
-    //TODO 返回状态同步？？
+    //TODO
     if (state == 0)
     {
        
