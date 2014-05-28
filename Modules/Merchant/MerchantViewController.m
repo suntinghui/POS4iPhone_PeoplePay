@@ -43,6 +43,9 @@
     
     [self initPageControl];
     
+   
+    [self getMerchantInfo];
+    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -96,7 +99,7 @@
     imagePickerController.allowsEditing = YES;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
     
-    [self downLoadHeadImg]; 
+
     
 }
 
@@ -256,6 +259,16 @@
                                              
                                          }];
     
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
+    }];
+    
+}
+
+/**
+ *  获取商户信息
+ */
+- (void)getMerchantInfo
+{
     NSDictionary *infodict = @{kTranceCode:@"199011",
                                kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME]}};
     
@@ -263,12 +276,15 @@
                                                                                        prompt:nil
                                                                                       success:^(id obj)
                                              {
+                                                  [self downLoadHeadImg];
+                                                 
                                                  if ([obj isKindOfClass:[NSDictionary class]])
                                                  {
+                                                     
                                                      if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                      {
                                                          self.infoDict = [NSDictionary dictionaryWithDictionary:obj];
-                                                        
+                                                         
                                                          self.nameLabel.text = self.infoDict[@"MERNAM"];
                                                          [self.listTableView reloadData];
                                                          
@@ -283,13 +299,14 @@
                                              }
                                                                                       failure:^(NSString *errMsg)
                                              {
+                                                  [self downLoadHeadImg];
                                                  [SVProgressHUD showErrorWithStatus:@"商户信息查询失败!"];
                                                  
                                              }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation,infoOperation, nil] prompt:nil completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
-    
+
 }
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -527,6 +544,13 @@
 //        imgView.transform = CGAffineTransformMakeRotation(angel);
 //        [UIView commitAnimations];
 
+    }
+    else if(indexPath.section==0&&indexPath.row==1) //没有获取到商户信息时 点击该行  重新获取
+    {
+        if (self.infoDict==nil)
+        {
+            [self getMerchantInfo];
+        }
     }
     else if (indexPath.section==1)
     {

@@ -42,7 +42,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
   
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
-    [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
+    
+//    [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
     
     
     ScrollSelectView *scrollSelectView  = [[ScrollSelectView alloc]initWithFrame:CGRectMake(0, 0, 320, 40) titles:@[@"交易流水",@"现金流水"]];
@@ -59,6 +60,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    footView.scrollView = self.listTableView;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -119,6 +123,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 - (void)addFooter
 {
     MJRefreshFooterView *footer = [MJRefreshFooterView footer];
+    
     footer.beginRefreshingBlock = ^(MJRefreshBaseView *refreshView) {
 
         if (currentPage==totalPage)
@@ -134,6 +139,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     
     footView.scrollView = self.listTableView;
     footView = footer;
+    [footView hideFreshView];
 }
 
 
@@ -192,7 +198,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
             [self refreshList];
         }
         
-        footView.scrollView = nil;
+//        footView.scrollView = nil;
+        
+        [footView hideFreshView];
 
     }
     else //现金流水
@@ -203,7 +211,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
             [self refreshList];
         }
         
-        footView.scrollView = self.listTableView;
+//        footView.scrollView = self.listTableView;
+        
+        [footView showFreshView];
         
     }
     

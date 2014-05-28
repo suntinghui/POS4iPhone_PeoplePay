@@ -23,5 +23,5 @@
 {
     PaintMaskView *painCanvasView;
 }
-
+@property (assign, nonatomic) int pageType;  //0:交易成功签名  1：撤销成功签名
 @end

@@ -63,7 +63,7 @@
     }
     
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.tag = Button_Tag_Cacualte;
     button.frame = CGRectMake(0, 5, 30, 30);
     [button setBackgroundImage:[UIImage imageNamed:@"calculator-5"] forState:UIControlStateNormal];

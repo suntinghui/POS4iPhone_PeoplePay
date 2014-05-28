@@ -41,6 +41,14 @@
 
 - (IBAction)buttonClickHandle:(UIButton*)button
 {
-    [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-3]  animated:YES];
+    if ([self.messStr isEqualToString:@"撤销成功"])
+    {
+         [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4]  animated:YES];
+    }
+    else
+    {
+        [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-3]  animated:YES];
+    }
+   
 }
 @end

@@ -252,7 +252,7 @@
 
 #pragma mark -忘记密码
 /**
- *  商户信息查询
+ *   忘记密码
  *
  *  @param bodyElement
  *

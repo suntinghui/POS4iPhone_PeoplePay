@@ -51,7 +51,7 @@
     [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     
 //    self.nameTxtField.text = @"18811068526";
-//    self.pwdTxtField.text = @"1234qwer";
+    self.pwdTxtField.text = @"Asdf1234"; //TODO
     
     NSString *lastName = [UserDefaults objectForKey:KUSERNAME];
     if (lastName!=nil)
@@ -222,7 +222,6 @@
 #pragma mark- HTTP请求
 - (void)loginAction
 {
-    [self.view endEditing:YES];
     
     //测试账号：13838387438 88888888   18811068526 88888888
     NSDictionary *dict = @{kTranceCode:@"199002",

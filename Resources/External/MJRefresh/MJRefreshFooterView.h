@@ -9,6 +9,15 @@
 #import "MJRefreshBaseView.h"
 
 @interface MJRefreshFooterView : MJRefreshBaseView
+{
+    BOOL footFreshSwith;  //上拉刷新开关
+}
+
 + (instancetype)footer;
+
+
+- (void)hideFreshView;
+
+- (void)showFreshView;
 
 @end

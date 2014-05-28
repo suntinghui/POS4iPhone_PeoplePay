@@ -20,7 +20,9 @@
 #import <UIKit/UIKit.h>
 
 @interface TradeDetailViewController : BaseViewController<UIAlertViewDelegate>
-
+{
+    
+}
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;  //状态
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;  //金额
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;   //日期

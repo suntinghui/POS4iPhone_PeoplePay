@@ -116,7 +116,17 @@
     }
     else if(Button_Tag_Send==button.tag)
     {
+        if (painCanvasView.drawImage.image == nil)
+        {
+            [SVProgressHUD showErrorWithStatus:@"请输入签名"];
+            return;
+        }
         SuccessViewController *sucController = [[SuccessViewController alloc]init];
+        if (self.pageType==1)
+        {
+            sucController.messStr = @"撤销成功";
+        }
+        
         [self.navigationController pushViewController:sucController animated:YES];
         
     }

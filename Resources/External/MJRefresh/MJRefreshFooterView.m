@@ -90,6 +90,11 @@
 #pragma mark 设置状态
 - (void)setState:(MJRefreshState)state
 {
+    if (!footFreshSwith)
+    {
+        return;
+    }
+    
     if (_state == state) return;
     MJRefreshState oldState = _state;
     
@@ -199,5 +204,30 @@
 {
     [super free];
     [_scrollView removeObserver:self forKeyPath:MJRefreshContentSize];
+}
+
+- (void)hideFreshView
+{
+    footFreshSwith = NO;
+    
+    for (UIView *view in self.subviews)
+    {
+        view.hidden = YES;
+    }
+    
+    _arrowImage.hidden = YES;
+}
+
+- (void)showFreshView
+{
+    footFreshSwith = YES;
+    
+    for (UIView *view in self.subviews)
+    {
+        view.hidden = NO;
+    }
+    
+    _arrowImage.hidden = NO;
+    _activityView.hidden = YES;
 }
 @end

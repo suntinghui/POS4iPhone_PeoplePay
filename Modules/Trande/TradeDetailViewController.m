@@ -66,6 +66,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 #pragma mark - http请求
 ///**
 // *  消费撤销
@@ -381,15 +383,15 @@
                                                  
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
-                                                     if ([self.fatherController respondsToSelector:@selector(refreshList)])
-                                                     {
-                                                         [self.fatherController performSelector:@selector(refreshList) withObject:nil];
-                                                         
-                                                         PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
-                                                         personSignController.hidesBottomBarWhenPushed = YES;
-                                                         [self.navigationController pushViewController:personSignController animated:YES];
-                                                         
-                                                     }
+//                                                     if ([self.fatherController respondsToSelector:@selector(refreshList)])
+//                                                     {
+//                                                         [self.fatherController performSelector:@selector(refreshList) withObject:nil];
+//                                                     }
+                                                     
+                                                     PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+                                                     personSignController.pageType = 1;
+                                                     personSignController.hidesBottomBarWhenPushed = YES;
+                                                     [self.navigationController pushViewController:personSignController animated:YES];
                                                  }
                                                  else
                                                  {
