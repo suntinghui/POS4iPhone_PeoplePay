@@ -131,6 +131,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         [self getCashAccount];
         
     };
+    
+    footView.scrollView = self.listTableView;
     footView = footer;
 }
 
@@ -189,7 +191,9 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         {
             [self refreshList];
         }
+        
         footView.scrollView = nil;
+
     }
     else //现金流水
     {
@@ -200,6 +204,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         }
         
         footView.scrollView = self.listTableView;
+        
     }
     
     [self setTitleCount];

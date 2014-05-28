@@ -123,6 +123,8 @@
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
 		B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */; };
 		B82E962019331EF400C860EF /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E961F19331EF400C860EF /* MyTabBarController.m */; };
+		B839FDA61934E6A200EECA18 /* SuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B839FDA41934E6A200EECA18 /* SuccessViewController.m */; };
+		B839FDA71934E6A200EECA18 /* SuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B839FDA51934E6A200EECA18 /* SuccessViewController.xib */; };
 		B843D149190F740A0000A60A /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D147190F740A0000A60A /* LockViewController.m */; };
 		B843D14A190F740A0000A60A /* LockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B843D148190F740A0000A60A /* LockViewController.xib */; };
 		B843D155190F77F10000A60A /* NormalCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D14E190F77F10000A60A /* NormalCircle.m */; };
@@ -423,6 +425,9 @@
 		B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingMainViewController.xib; sourceTree = "<group>"; };
 		B82E961E19331EF400C860EF /* MyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarController.h; sourceTree = "<group>"; };
 		B82E961F19331EF400C860EF /* MyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarController.m; sourceTree = "<group>"; };
+		B839FDA31934E6A200EECA18 /* SuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessViewController.h; sourceTree = "<group>"; };
+		B839FDA41934E6A200EECA18 /* SuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessViewController.m; sourceTree = "<group>"; };
+		B839FDA51934E6A200EECA18 /* SuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuccessViewController.xib; sourceTree = "<group>"; };
 		B843D146190F740A0000A60A /* LockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockViewController.h; sourceTree = "<group>"; };
 		B843D147190F740A0000A60A /* LockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockViewController.m; sourceTree = "<group>"; };
 		B843D148190F740A0000A60A /* LockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LockViewController.xib; sourceTree = "<group>"; };
@@ -704,6 +709,9 @@
 				B8263C6B192C8F33009EFABC /* ErrorViewController.h */,
 				B8263C6C192C8F33009EFABC /* ErrorViewController.m */,
 				B8263C6D192C8F33009EFABC /* ErrorViewController.xib */,
+				B839FDA31934E6A200EECA18 /* SuccessViewController.h */,
+				B839FDA41934E6A200EECA18 /* SuccessViewController.m */,
+				B839FDA51934E6A200EECA18 /* SuccessViewController.xib */,
 			);
 			path = Animotion;
 			sourceTree = "<group>";
@@ -1627,6 +1635,7 @@
 				B8537D23190B7EC4000F353D /* alertView_button_gray@2x.png in Resources */,
 				B82A961B192DDE840099E97E /* composereturnbtn.png in Resources */,
 				B8537D20190B7EC4000F353D /* alertView_bg.png in Resources */,
+				B839FDA71934E6A200EECA18 /* SuccessViewController.xib in Resources */,
 				B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */,
 				B8537D29190B7EC4000F353D /* alertView_button_green_pressed@2x.png in Resources */,
 				B82A9606192DDE840099E97E /* composeCamerahover@2x.png in Resources */,
@@ -1827,6 +1836,7 @@
 				B8537D5F190B982C000F353D /* ConvertUtil.m in Sources */,
 				B8788C631931BF1E003E8338 /* CJSONSerialization.m in Sources */,
 				B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */,
+				B839FDA61934E6A200EECA18 /* SuccessViewController.m in Sources */,
 				B8537D60190B982C000F353D /* SecurityUtil.m in Sources */,
 				B82609CE191E1090003FE222 /* MerchantViewController.m in Sources */,
 				B8C66C10192D82EC0050BE5A /* MJRefreshFooterView.m in Sources */,

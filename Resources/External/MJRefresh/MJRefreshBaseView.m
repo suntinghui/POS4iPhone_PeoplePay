@@ -285,6 +285,21 @@
     });
 }
 
+- (void)hideFreshView
+{
+    for (UIView *view in self.subviews)
+    {
+        view.hidden = YES;
+    }
+}
+
+- (void)showFreshView
+{
+    for (UIView *view in self.subviews)
+    {
+        view.hidden = NO;
+    }
+}
 #pragma mark - 随便实现
 - (CGFloat)validY { return 0;}
 - (MJRefreshViewType)viewType {return MJRefreshViewTypeHeader;}

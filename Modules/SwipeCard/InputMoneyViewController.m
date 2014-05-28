@@ -57,6 +57,9 @@
     if (IsIPhone5)
     {
         self.numView.frame = CGRectMake(0, self.numView.frame.origin.y+90, self.numView.frame.size.width, self.numView.frame.size.height);
+        
+        self.cashBtn.frame = CGRectMake(self.cashBtn.frame.origin.x, self.cashBtn.frame.origin.y+20, self.cashBtn.frame.size.width, self.cashBtn.frame.size.height);
+        self.lineView.frame = CGRectMake(self.lineView.frame.origin.x, self.lineView.frame.origin.y+20, self.lineView.frame.size.width, self.lineView.frame.size.height);
     }
     
     
@@ -123,7 +126,7 @@
             else if([self.inputTxtField.text rangeOfString:@"."].location!=NSNotFound)
             {
                 NSString *end = [self.inputTxtField.text componentsSeparatedByString:@"."][1];
-                if (end.length>=4)
+                if (end.length>=2)
                 {
                     return;
                 }
@@ -317,8 +320,7 @@
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
-    //移除雷达转圈页面
-    [self.navigationController popViewControllerAnimated:NO];
+   
     
     NSArray *arr = [mess componentsSeparatedByString:@"#"];
     self.tidStr = arr[0];
@@ -351,6 +353,8 @@
  */
 - (void)doSign
 {
+  
+    
     NSDictionary *dict = @{kTranceCode:@"199020",
                            kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
                                         @"TERMINALNUMBER":self.tidStr,
@@ -395,7 +399,12 @@
                                              {
 //                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                                  
-                                                 [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
+                                                 [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:^{
+                                                     
+                                                     //移除刷卡提示动画页面
+                                                     [self.navigationController popViewControllerAnimated:NO];
+                                                     
+                                                 }];
                                              }
                                              
                                          }
@@ -403,7 +412,12 @@
                                          {
 //                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                              
-                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:nil];
+                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:^{
+                                                 
+                                                 //移除刷卡提示动画页面
+                                                 [self.navigationController popViewControllerAnimated:NO];
+                                                 
+                                             }];
                                              
                                          }];
     
@@ -470,7 +484,7 @@
                                              {
                                                  
                                                  
-                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
                                                      PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
                                                      personSignController.hidesBottomBarWhenPushed = YES;

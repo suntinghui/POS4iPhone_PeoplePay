@@ -10,4 +10,5 @@
 
 @interface MJRefreshFooterView : MJRefreshBaseView
 + (instancetype)footer;
+
 @end

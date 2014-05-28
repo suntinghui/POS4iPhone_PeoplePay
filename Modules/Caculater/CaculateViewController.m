@@ -117,6 +117,11 @@
             break;
         case Tag_Commit_Actin: //完成
         {
+            if ([self.resultTxtField.text isEqualToString:@"err"])
+            {
+                return;
+            }
+            
             if ([self.fatherController isKindOfClass:[InputMoneyViewController class]])
             {
                 InputMoneyViewController *inputController = (InputMoneyViewController*)self.fatherController;
@@ -317,7 +322,7 @@
         else if([self.resultTxtField.text rangeOfString:@"."].location!=NSNotFound)
         {
             NSString *end = [self.resultTxtField.text componentsSeparatedByString:@"."][1];
-            if (end.length>=5)
+            if (end.length>=2)
             {
                 return;
             }

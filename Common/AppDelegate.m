@@ -50,7 +50,7 @@
     
     ppp();
     
-    [WXApi registerApp:@"wx41fecbb18f303ee2"];
+    [WXApi registerApp:@"wx1e4484ab6b577a3d"];
     
     [BPush setupChannel:launchOptions];
     [BPush setDelegate:self];

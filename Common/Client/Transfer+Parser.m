@@ -76,6 +76,10 @@
         {
             return [self getCustomMess:rootElement];
         }
+        else if([reqName isEqualToString:@"199004"])
+        {
+            return [self forgetPassword:rootElement];
+        }
     }
     
      return nil;
@@ -242,6 +246,27 @@
         
     }
     [dict setObject:arr forKey:@"LIST"];
+    
+    return dict;
+}
+
+#pragma mark -忘记密码
+/**
+ *  商户信息查询
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) forgetPassword:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"00000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"NEWPASSWD" parentElement:bodyElement]] forKey:@"NEWPASSWD"];
+ 
+    }
     
     return dict;
 }

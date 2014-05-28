@@ -23,4 +23,5 @@
 {
     PaintMaskView *painCanvasView;
 }
+
 @end

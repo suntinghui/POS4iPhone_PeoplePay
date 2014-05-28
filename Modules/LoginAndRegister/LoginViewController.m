@@ -50,8 +50,14 @@
     [self.nameTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     
-    self.nameTxtField.text = @"18811068526";
-    self.pwdTxtField.text = @"1234qwer";
+//    self.nameTxtField.text = @"18811068526";
+//    self.pwdTxtField.text = @"1234qwer";
+    
+    NSString *lastName = [UserDefaults objectForKey:KUSERNAME];
+    if (lastName!=nil)
+    {
+        self.nameTxtField.text = lastName;
+    }
     
   
     
@@ -229,7 +235,7 @@
                                                      [UserDefaults setObject:obj[@"PHONENUMBER"] forKey:KUSERNAME];
                                                      [UserDefaults synchronize];
                                                      
-                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+//                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                                                      [self gotoHome];
                                                      
                                                    

@@ -5,9 +5,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ErrorViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SuccessViewController">
             <connections>
-                <outlet property="messLabel" destination="fYn-4w-dfP" id="jr8-zq-wIj"/>
+                <outlet property="messLabel" destination="yEr-lU-WbM" id="YY5-EU-ala"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,15 +16,15 @@
             <rect key="frame" x="0.0" y="20" width="320" height="548"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="操作失败" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fYn-4w-dfP">
-                    <rect key="frame" x="25" y="107" width="275" height="96"/>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易成功" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yEr-lU-WbM">
+                    <rect key="frame" x="25" y="158" width="275" height="96"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8cg-5K-wJN">
-                    <rect key="frame" x="14" y="429" width="293" height="43"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3js-YI-NcT">
+                    <rect key="frame" x="14" y="480" width="293" height="43"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                     <state key="normal" title="确定" backgroundImage="ip_button">
@@ -32,15 +32,15 @@
                     </state>
                     <state key="highlighted" backgroundImage="ip_button2"/>
                     <connections>
-                        <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="noz-9m-goU"/>
+                        <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="bjE-B8-Jo8"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transaction_fail-1" id="VUH-4A-UA5">
-                    <rect key="frame" x="129" y="44" width="62" height="59"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transaction_success" id="0b4-Mq-U2i">
+                    <rect key="frame" x="122" y="72" width="77" height="70"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
@@ -48,6 +48,6 @@
     <resources>
         <image name="ip_button" width="292" height="43"/>
         <image name="ip_button2" width="584" height="86"/>
-        <image name="transaction_fail-1" width="144" height="130"/>
+        <image name="transaction_success" width="128" height="130"/>
     </resources>
 </document>

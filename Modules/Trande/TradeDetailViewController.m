@@ -11,6 +11,7 @@
 #import "DeviceHelper+SwipeCard.h"
 #import "SwipeCardNoticeViewController.h"
 #import "DeviceSearchViewController.h"
+#import "PersonSignViewController.h"
 
 #define Alert_Tag_TradeCancel  100
 
@@ -303,7 +304,12 @@
                                          {
                                              //                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                              
-                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:nil];
+                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:^{
+                                                 
+                                                 //移除刷卡提示动画页面
+                                                 [self.navigationController popViewControllerAnimated:NO];
+                                                 
+                                             }];
                                              
                                          }];
     
@@ -363,7 +369,8 @@
                                             @"TTXNTM":time, //交易时间
                                             @"TTXNDT":date, //交易日期
                                             @"MAC": [StringUtil stringFromHexString:mess[kMacKey]],
-                                            @"LOGNO":self.infoDict[@"CRDNO"]
+                                            @"LOGNO":self.infoDict[@"LOGNO"],
+                                             @"TSEQNO":[[AppDataCenter sharedAppDataCenter] getTradeNumber],
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
@@ -372,13 +379,16 @@
                                              {
                                                  
                                                  
-                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
                                                      if ([self.fatherController respondsToSelector:@selector(refreshList)])
                                                      {
                                                          [self.fatherController performSelector:@selector(refreshList) withObject:nil];
-                                                         [self.navigationController popViewControllerAnimated:YES];
-                                                         [SVProgressHUD showSuccessWithStatus:@"撤销成功"];
+                                                         
+                                                         PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+                                                         personSignController.hidesBottomBarWhenPushed = YES;
+                                                         [self.navigationController pushViewController:personSignController animated:YES];
+                                                         
                                                      }
                                                  }
                                                  else

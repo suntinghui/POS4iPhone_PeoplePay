@@ -7,6 +7,7 @@
 //
 
 #import "PersonSignViewController.h"
+#import "SuccessViewController.h"
 
 #define Button_Tag_Clear  100
 #define Button_Tag_Send   101
@@ -43,10 +44,6 @@
     //设置旋转动画
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
-    
-//    //设置导航栏旋转
-//    self.navigationController.navigationBar.frame = CGRectMake(-224, 224, 480, 32);
-//    self.navigationController.navigationBar.transform = CGAffineTransformMakeRotation(M_PI*1.5);
     
     //设置视图旋转
     self.view.bounds = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
@@ -102,13 +99,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
-     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
-//    //设置导航栏旋转
-//    self.navigationController.navigationBar.transform = CGAffineTransformMakeRotation(0);
-//    self.navigationController.navigationBar.frame = CGRectMake(0, 20, 320, 44);
-    
+     [self.navigationController setNavigationBarHidden:NO animated:YES];    
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,7 +116,9 @@
     }
     else if(Button_Tag_Send==button.tag)
     {
-        [self.navigationController popViewControllerAnimated:YES];
+        SuccessViewController *sucController = [[SuccessViewController alloc]init];
+        [self.navigationController pushViewController:sucController animated:YES];
+        
     }
 }
 @end
