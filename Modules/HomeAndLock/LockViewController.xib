@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LockViewController">
             <connections>
                 <outlet property="bgImgView" destination="Wis-AV-nAA" id="vzB-lM-J5X"/>
+                <outlet property="head" destination="yf0-35-RaS" id="l2M-Os-Jzi"/>
                 <outlet property="headImgView" destination="rmc-Iq-J1T" id="5ZA-iP-uw2"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -27,8 +28,8 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CX6-vw-6Tu">
-                    <rect key="frame" x="200" y="432" width="114" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <rect key="frame" x="200" y="430" width="114" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="忘记手势密码?">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -40,6 +41,11 @@
                         <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="PEc-d1-rmX"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="yf0-35-RaS">
+                    <rect key="frame" x="114" y="36" width="92" height="97"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>

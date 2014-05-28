@@ -17,9 +17,9 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="操作失败" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fYn-4w-dfP">
-                    <rect key="frame" x="25" y="66" width="275" height="96"/>
+                    <rect key="frame" x="25" y="107" width="275" height="96"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -35,6 +35,10 @@
                         <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="noz-9m-goU"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transaction_fail-1" id="VUH-4A-UA5">
+                    <rect key="frame" x="129" y="44" width="62" height="59"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.96470588239999999" green="0.96470588239999999" blue="0.96470588239999999" alpha="1" colorSpace="calibratedRGB"/>
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
@@ -44,5 +48,6 @@
     <resources>
         <image name="ip_button" width="292" height="43"/>
         <image name="ip_button2" width="584" height="86"/>
+        <image name="transaction_fail-1" width="144" height="130"/>
     </resources>
 </document>

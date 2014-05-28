@@ -41,10 +41,18 @@
     }
     
 	self.lockView = [[SPLockScreen alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.width)];
-	self.lockView.center = CGPointMake(160, self.headImgView.frame.size.height+self.headImgView.frame.origin.y+10+160);
+	self.lockView.center = CGPointMake(160, self.headImgView.frame.size.height+self.headImgView.frame.origin.y+10+160+(IsIPhone5?40:0));
 	self.lockView.delegate = self;
 	self.lockView.backgroundColor = [UIColor clearColor];
 	[self.view insertSubview:self.lockView atIndex:1];
+    
+    NSData *imageData = [UserDefaults objectForKey:kUserHeadImage];
+    
+    if (imageData!=nil)
+    {
+        UIImage *image = [[UIImage alloc]initWithData:imageData];
+        self.head.image = image;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,6 +82,8 @@
         shake.autoreverses = YES; //是否重复
         shake.repeatCount = 6;
         [self.headImgView.layer addAnimation:shake forKey:nil];
+        [self.head.layer addAnimation:shake forKey:nil];
+
     }
 }
 

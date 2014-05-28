@@ -77,6 +77,7 @@
 + (void)showLockView
 {
     LockViewController *lockViewController = [[LockViewController alloc]initWithNibName:@"LockViewController" bundle:nil];
+    lockViewController.view.frame = CGRectMake(0, IOS7_OR_LATER?20:0, 320, [[UIScreen mainScreen] bounds].size.height-20);
     [ApplicationDelegate.window addSubview:lockViewController.view];
 }
 

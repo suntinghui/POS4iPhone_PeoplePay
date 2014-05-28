@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *inputTxtField;
 @property (weak, nonatomic) IBOutlet UIView *numView;
 @property (weak, nonatomic) IBOutlet UIView *moneyView;
+@property (weak, nonatomic) IBOutlet UIButton *cashBtn;
+@property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (strong, nonatomic) NSString *tidStr;
 @property (strong, nonatomic) NSString *pidStr;
 

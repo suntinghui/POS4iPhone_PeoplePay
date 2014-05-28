@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "BaiduMobStat.h"
 
 @interface BaseViewController ()
 
@@ -21,6 +22,18 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void) viewDidAppear:(BOOL)animated{
+    
+    NSString *cName = [NSString stringWithFormat:@"%@", self.class, nil];
+    [[BaiduMobStat defaultStat] pageviewStartWithName:cName];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    
+    NSString *cName = [NSString stringWithFormat:@"%@", self.class, nil];
+    [[BaiduMobStat defaultStat] pageviewEndWithName:cName];
 }
 
 - (void)viewDidLoad
@@ -46,6 +59,20 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+
+{
+    return UIStatusBarStyleBlackTranslucent;
+}
+
+
+- (BOOL)prefersStatusBarHidden
+{
+    
+    return NO;
+    
 }
 
 #pragma mark--定制导航栏左侧返回按钮

@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CusWindow.h"
 #import "WXApi.h"
+#import "BPush.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,
-    WXApiDelegate>
+    WXApiDelegate,
+    BPushDelegate,
+    UIAlertViewDelegate>
 {
 }
 @property (strong, nonatomic) UIWindow *window;

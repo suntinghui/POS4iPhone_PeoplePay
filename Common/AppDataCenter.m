@@ -65,9 +65,7 @@ static AppDataCenter *instance = nil;
     
     [UserDefaults setInteger:(number+1)==1000000?1:(number+1) forKey:kTradeNum];
     [UserDefaults synchronize];
-    
-    number +=980000;
-    
+        
     self.tradeNum = [NSString stringWithFormat:@"%06ld", (long)number];
     
     return self.tradeNum;

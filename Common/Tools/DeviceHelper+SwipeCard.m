@@ -48,7 +48,6 @@
     //加载雷达转圈页面
     DeviceSearchViewController *deviceSearchController = [[DeviceSearchViewController alloc]init];
     [self.controller.navigationController pushViewController:deviceSearchController animated:NO];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
@@ -70,7 +69,6 @@
             
             //移除雷达转圈页面
             [self.controller.navigationController popViewControllerAnimated:NO];
-            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         }];
         
     }];
@@ -115,7 +113,7 @@
                                                          
                                                          //移除刷卡提示动画页面
                                                          [self.controller.navigationController popViewControllerAnimated:NO];
-                                                         [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+                                                        
                                                      }];
                                                      
                                                  }];
@@ -137,7 +135,7 @@
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在签到..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
     
 }
@@ -154,7 +152,6 @@
     //加载刷卡提示动画页面
     SwipeCardNoticeViewController *swipeCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
     [self.controller.navigationController pushViewController:swipeCardNoticeController animated:NO];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
     
     NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
     NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
@@ -173,7 +170,6 @@
         //移除刷卡提示动画页面
         [self.controller.navigationController popViewControllerAnimated:NO];
         
-        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         
         if (self.sucBlock)
         {
@@ -194,7 +190,6 @@
         [StaticTools showErrorPageWithMess:mess clickHandle:^{
             //移除刷卡提示动画页面
             [self.controller.navigationController popViewControllerAnimated:NO];
-            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         }];
         
         

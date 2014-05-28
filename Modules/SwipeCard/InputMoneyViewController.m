@@ -11,6 +11,8 @@
 #import "SwipeCardNoticeViewController.h"
 #import "StringUtil.h"
 #import "DeviceHelper+SwipeCard.h"
+#import "CaculateViewController.h"
+#import "PersonSignViewController.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -27,6 +29,7 @@
 #define Button_Tag_Delete       111 //删除
 #define Button_Tag_SwipeCard    112 //点击刷卡
 #define Button_Tag_KeepAccount  113 //现金记账
+#define Button_Tag_Cacualte     114 //显示计算器
 
 
 @interface InputMoneyViewController ()
@@ -54,7 +57,18 @@
     if (IsIPhone5)
     {
         self.numView.frame = CGRectMake(0, self.numView.frame.origin.y+90, self.numView.frame.size.width, self.numView.frame.size.height);
+        
+        self.cashBtn.frame = CGRectMake(self.cashBtn.frame.origin.x, self.cashBtn.frame.origin.y+20, self.cashBtn.frame.size.width, self.cashBtn.frame.size.height);
+        self.lineView.frame = CGRectMake(self.lineView.frame.origin.x, self.lineView.frame.origin.y+20, self.lineView.frame.size.width, self.lineView.frame.size.height);
     }
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    button.tag = Button_Tag_Cacualte;
+    button.frame = CGRectMake(0, 5, 30, 30);
+    [button setBackgroundImage:[UIImage imageNamed:@"calculator-5"] forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:button];
     
     //美工未提供点击的灰色背景图片 自己绘制一张图片
     UIGraphicsBeginImageContext(CGSizeMake(100, 100));
@@ -75,8 +89,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -120,7 +138,7 @@
             }
             else if([self.inputTxtField.text rangeOfString:@"."].location==NSNotFound)
             {
-                if (self.inputTxtField.text.length>=12)
+                if (self.inputTxtField.text.length>=10)
                 {
                     return;
                 }
@@ -164,13 +182,7 @@
             break;
         case Button_Tag_SwipeCard: //刷卡
         {
-
-//            [[DeviceHelper shareDeviceHelper] getPsamIDWithComplete:^(id mess) {
-//                
-//            } Fail:^(id mess) {
-//                
-//            }];
-//            return;
+            
             [StaticTools tapAnimationWithView:self.moneyView];
             [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];
 
@@ -179,7 +191,21 @@
             break;
         case Button_Tag_KeepAccount: //现金记账
         {
-            [SVProgressHUD showSuccessWithStatus:@"记账成功"];
+            if ([self.inputTxtField.text floatValue] ==0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"输入的金额不合法"];
+                return;
+            }
+            [self doCashAccount];
+        }
+            break;
+        case Button_Tag_Cacualte: //计算器
+        {
+            CaculateViewController *caculateController = [[CaculateViewController alloc]init];
+            caculateController.fatherController = self;
+            caculateController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:caculateController animated:YES];
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
             
         }
             break;
@@ -289,13 +315,19 @@
 {
     //加载雷达转圈页面
     DeviceSearchViewController *deviceSearchController = [[DeviceSearchViewController alloc]init];
+    deviceSearchController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:deviceSearchController animated:NO];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
-        self.tidStr = mess;
-        self.pidStr = @"UN201410000046"; //TODO
+   
+    
+    NSArray *arr = [mess componentsSeparatedByString:@"#"];
+    self.tidStr = arr[0];
+    self.pidStr = arr[1];
+    self.pidStr = [self.pidStr stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"];
+        
+        
         if (type==0)
         {
             [self doSign];
@@ -312,7 +344,6 @@
             
             //移除雷达转圈页面
             [self.navigationController popViewControllerAnimated:NO];
-            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         }];
         
     }];
@@ -322,6 +353,8 @@
  */
 - (void)doSign
 {
+  
+    
     NSDictionary *dict = @{kTranceCode:@"199020",
                            kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
                                         @"TERMINALNUMBER":self.tidStr,
@@ -356,7 +389,7 @@
                                                          
                                                          //移除刷卡提示动画页面
                                                          [self.navigationController popViewControllerAnimated:NO];
-                                                         [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
+                                                         
                                                      }];
                                                      
                                                  }];
@@ -366,7 +399,12 @@
                                              {
 //                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                                  
-                                                 [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
+                                                 [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:^{
+                                                     
+                                                     //移除刷卡提示动画页面
+                                                     [self.navigationController popViewControllerAnimated:NO];
+                                                     
+                                                 }];
                                              }
                                              
                                          }
@@ -374,11 +412,16 @@
                                          {
 //                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                              
-                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:nil];
+                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:^{
+                                                 
+                                                 //移除刷卡提示动画页面
+                                                 [self.navigationController popViewControllerAnimated:NO];
+                                                 
+                                             }];
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在签到..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
     
 }
@@ -394,9 +437,9 @@
     
     //加载刷卡提示动画页面
     SwipeCardNoticeViewController *swipeCardNoticeController = [[SwipeCardNoticeViewController alloc]init];
+    swipeCardNoticeController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:swipeCardNoticeController animated:NO];
-    [APPDataCenter.leveyTabBar hidesTabBar:YES animated:YES];
-
+    
     NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
     NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
     date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -410,14 +453,13 @@
     NSLog(@"self.pidStr is %@ self.tidStr is %@",self.pidStr,self.tidStr);
     NSLog(@"mac is %@",mac);
     
-    NSString *num = [NSString stringWithFormat:@"%f",[self.inputTxtField.text floatValue]];
+    float count = [self.inputTxtField.text floatValue]*100;
+    int numcount = count;
+    NSString *num = [NSString stringWithFormat:@"%d",numcount];
     [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
     
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
-        [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
-        
-       
         
         NSDictionary *dict = @{kTranceCode:@"199005",
                                kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
@@ -442,20 +484,22 @@
                                              {
                                                  
                                                  
-                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
+                                                     PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+                                                     personSignController.hidesBottomBarWhenPushed = YES;
+                                                     [self.navigationController pushViewController:personSignController animated:YES];
                                                      
                                                  }
                                                  else
                                                  {
-//                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+
                                                      [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
                                                  }
                                                  
                                              }
                                                                                       failure:^(NSString *errMsg)
                                              {
-//                                                 [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                                  
                                                  [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
                                                  
@@ -466,12 +510,9 @@
         
     } andFail:^(id mess) {
         
-//        [SVProgressHUD showErrorWithStatus:mess];
-        
-        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+            [StaticTools showErrorPageWithMess:mess clickHandle:^{
             //移除刷卡提示动画页面
             [self.navigationController popViewControllerAnimated:NO];
-            [APPDataCenter.leveyTabBar hidesTabBar:NO animated:YES];
         }];
         
        
@@ -479,5 +520,44 @@
 
 }
 
+/**
+ *  现金记账
+ */
+- (void)doCashAccount
+{
+    NSDictionary *dict = @{kTranceCode:@"200002",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"curType":@"CNY",
+                                        @"transAmt":self.inputTxtField.text,
+                                        @"operationId":@"addTransaction"}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                    
+                                                     [SVProgressHUD showSuccessWithStatus:@"记账成功"];
+                                                 }
+                                                 else
+                                                 {
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    }];
+}
 
 @end

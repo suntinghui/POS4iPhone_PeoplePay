@@ -19,7 +19,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ForgetPasswordViewController:BaseViewController<UITextFieldDelegate>
+@interface ForgetPasswordViewController:BaseViewController<UITextFieldDelegate,
+    UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *phoneTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *codeTxtField;

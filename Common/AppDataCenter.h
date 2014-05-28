@@ -17,13 +17,11 @@
  //
  ----------------------------------------------------------------*/
 #import <Foundation/Foundation.h>
-#import "LeveyTabBarController.h"
 
 @interface AppDataCenter : NSObject
 
 + (AppDataCenter *) sharedAppDataCenter;
 
-@property (assign, nonatomic) LeveyTabBarController *leveyTabBar; //底部tabbar
 @property (strong, nonatomic) NSString *tradeNum; //交易流水号
 
 //获取交易流水号

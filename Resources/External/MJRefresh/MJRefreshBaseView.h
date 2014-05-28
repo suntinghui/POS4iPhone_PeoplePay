@@ -97,6 +97,10 @@ typedef void (^RefreshStateChangeBlock)(MJRefreshBaseView *refreshView, MJRefres
 // 结束使用、释放资源
 - (void)free;
 
+- (void)hideFreshView;
+
+- (void)showFreshView;
+
 /**
  交给子类去实现 和 调用
  */

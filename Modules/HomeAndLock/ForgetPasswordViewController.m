@@ -11,6 +11,8 @@
 #define Button_Tag_GetCode  100  //获取验证码
 #define Button_Tag_Commit   101  //提交
 
+#define Alert_Tag_Success   200
+
 @interface ForgetPasswordViewController ()
 
 @end
@@ -94,6 +96,18 @@
     [self.view endEditing:YES];
     return YES;
 }
+
+#pragma mark -UIALertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == Alert_Tag_Success)
+    {
+        if (buttonIndex!=alertView.cancelButtonIndex)
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
 #pragma mark -http请求
 /**
  *  获取短信验证码
@@ -103,15 +117,15 @@
     NSDictionary *dict = @{kTranceCode:@"199018",
                            kParamName:@{@"PHONENUMBER":self.phoneTxtField.text,
                                         @"TOPHONENUMBER":self.phoneTxtField.text,
-                                        @"TYPE":@"10001"}};
+                                        @"TYPE":@"100002"}};
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPMSG"] isEqualToString:@"00000"])
+                                             if ([obj[@"RSPMSG"] isEqualToString:@"000000"])
                                              {
-                                                 
+                                                 [SVProgressHUD showSuccessWithStatus:@"短信发送成功"];
                                              }
                                              else
                                              {
@@ -141,9 +155,11 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPMSG"] isEqualToString:@"00000"])
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00000"])
                                              {
-                                                 
+                                                 [StaticTools showAlertWithTag:Alert_Tag_Success
+                                                                         title:nil
+                                                                       message:[NSString stringWithFormat:@"密码已修改为：%@",obj[@"NEWPASSWD"]] AlertType:CAlertTypeDefault SuperView:self];
                                              }
                                              else
                                              {

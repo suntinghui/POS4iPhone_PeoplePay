@@ -64,6 +64,22 @@
         {
             return [self getMerchantInfo:rootElement];
         }
+        else if([reqName isEqualToString:@"200002"]) //现金记账
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"200003"]) //现金流水列表
+        {
+            return [self getCashList:rootElement];
+        }
+        else if([reqName isEqualToString:@"200004"]) //现金流水删除
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"199004"])
+        {
+            return [self forgetPassword:rootElement];
+        }
     }
     
      return nil;
@@ -188,6 +204,68 @@
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNAM" parentElement:bodyElement]] forKey:@"ACTNAM"];
          [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"OPNBNK" parentElement:bodyElement]] forKey:@"OPNBNK"];
+    }
+    
+    return dict;
+}
+
+
+#pragma mark -现金流水列表查询
+- (id) getCashList:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALPAGE" parentElement:bodyElement]] forKey:@"TOTALPAGE"];
+        
+        TBXMLElement *listElement = [TBXML childElementNamed:@"LIST" parentElement:bodyElement];
+        if (listElement)
+        {
+            TBXMLElement *itemElement = [TBXML childElementNamed:@"ROW" parentElement:listElement];
+            
+            while (itemElement) {
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSID" parentElement:itemElement]] forKey:@"TRANSID"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTYPE" parentElement:itemElement]] forKey:@"TRANSTYPE"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSAMT" parentElement:itemElement]] forKey:@"TRANSAMT"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CURTYPE" parentElement:itemElement]] forKey:@"CURTYPE"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSDATE" parentElement:itemElement]] forKey:@"TRANSDATE"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TRANSTIME" parentElement:itemElement]] forKey:@"TRANSTIME"];
+                
+                [arr addObject:dict];
+                
+                
+                itemElement = [TBXML nextSiblingNamed:@"ROW" searchFromElement:itemElement];
+            }
+        }
+
+        
+    }
+    [dict setObject:arr forKey:@"LIST"];
+    
+    return dict;
+}
+
+#pragma mark -忘记密码
+/**
+ *  商户信息查询
+ *
+ *  @param bodyElement
+ *
+ *  @return
+ */
+- (id) forgetPassword:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
+    
+    if ([dict[@"RSPCOD"] isEqualToString:@"00000"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"NEWPASSWD" parentElement:bodyElement]] forKey:@"NEWPASSWD"];
+ 
     }
     
     return dict;

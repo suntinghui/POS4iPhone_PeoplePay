@@ -40,9 +40,9 @@
     
     
     CGAffineTransform  transform;
-    transform = CGAffineTransformScale(self.deviceImgView.transform,1.5,1.5);
+    transform = CGAffineTransformScale(self.deviceImgView.transform,2,2);
     [UIView beginAnimations:@"scale" context:nil];
-    [UIView setAnimationDuration:1];
+    [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationRepeatCount:MAXFLOAT];
     [self.deviceImgView setTransform:transform];

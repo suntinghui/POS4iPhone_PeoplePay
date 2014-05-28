@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "TimedoutUtil.h"
 #import "Test.h"
+#import "BaiduMobStat.h"
 
 
 @implementation AppDelegate
@@ -22,7 +23,16 @@
     LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController ];
-    [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
+    
+    if (IOS7_OR_LATER)
+    {
+        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"ip_title_ios7"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
+    }
+    
     nav.navigationBarHidden = YES;
     self.window.rootViewController = nav;
     
@@ -32,12 +42,35 @@
         [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
     }
     
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
+    
     [self.window makeKeyAndVisible];
     
     
     ppp();
     
-    [WXApi registerApp:@"wx41fecbb18f303ee2"];
+    [WXApi registerApp:@"wx1e4484ab6b577a3d"];
+    
+    [BPush setupChannel:launchOptions];
+    [BPush setDelegate:self];
+    
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeAlert
+     | UIRemoteNotificationTypeBadge
+     | UIRemoteNotificationTypeSound];
+    
+    
+    // Stat
+    BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
+    [statTracker startWithAppId:@"3a999c10fa"];//设置您在mtj网站上添加的app的appkey
+    statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
+    statTracker.channelId = @"In-House";//设置您的app的发布渠道
+    statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;//根据开发者设定的时间间隔接口发送 也可以使用启动时发送策略
+    statTracker.logSendInterval = 1;  //为1时表示发送日志的时间间隔为1小时
+    statTracker.logSendWifiOnly = NO; //是否仅在WIfi情况下发送日志数据
+    statTracker.sessionResumeInterval = 60;//设置应用进入后台再回到前台为同一次session的间隔时间[0~600s],超过600s则设为600s，默认为30s
+    statTracker.shortAppVersion  = [StaticTools getCurrentVersion]; //参数为NSString * 类型,自定义app版本信息，如果不设置，默认从CFBundleVersion里取
     
     return YES;
 }
@@ -79,6 +112,86 @@
 {
     return  [WXApi handleOpenURL:url delegate:self];
 }
+
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    NSLog(@"deviceToken:%@",deviceToken);
+    [BPush registerDeviceToken:deviceToken]; // 必须
+    
+    [BPush bindChannel]; // 必须。可以在其它时机调用，只有在该方法返回（通过onMethod:response:回调）绑定成功时，app才能接收到Push消息。一个app绑定成功至少一次即可（如果access token变更请重新绑定）。
+}
+
+// 必须，如果正确调用了setDelegate，在bindChannel之后，结果在这个回调中返回。
+// 若绑定失败，请进行重新绑定，确保至少绑定成功一次
+- (void) onMethod:(NSString*)method response:(NSDictionary*)data
+{
+    
+    NSLog(@"On method:%@", method);
+    NSLog(@"data:%@", [data description]);
+    NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
+    if ([BPushRequestMethod_Bind isEqualToString:method]) {
+        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
+        NSString *userid = [res valueForKey:BPushRequestUserIdKey];
+        NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
+        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        
+        if (returnCode == BPushErrorCode_Success) {
+            NSLog(@"appid:%@", appid);
+            NSLog(@"userid:%@", userid);
+            NSLog(@"channelid:%@", channelid);
+            NSLog(@"requestid%@", requestid);
+            
+            // 保存此值
+//            [UserDefaults setObject:appid forKey:kBPUSH_APPID];
+//            [UserDefaults setObject:userid forKey:kBPUSH_USERID];
+//            [UserDefaults setObject:channelid forKey:kBPUSH_CHANNELID];
+//            [UserDefaults setObject:requestid forKey:kBPUSH_REQUESTID];
+//            [UserDefaults synchronize];
+            
+            
+        }
+    } else if ([BPushRequestMethod_Unbind isEqualToString:method]) {
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        if (returnCode == BPushErrorCode_Success) {
+            // 各值置空
+            // appid = nil;...
+        }
+    }
+    
+}
+
+- (void)application:(UIApplication *)application
+didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    NSLog(@"Receive Notify: %@", userInfo);
+    
+    NSString *alert = [[userInfo objectForKey:@"aps"] objectForKey:@"alert"];
+    NSString *badge = [[userInfo objectForKey:@"aps"] objectForKey:@"badge"];
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码"
+                                                            message:alert
+                                                           delegate:self
+                                                  cancelButtonTitle:@"知道了"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+        
+        UINavigationController *rootNav = (UINavigationController*)self.window.rootViewController;
+        if (rootNav.viewControllers.count>1) //不是在登录页面
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ADDPRODUCTSUCESS" object:nil];
+        }
+    }
+    
+    [application setApplicationIconBadgeNumber:[badge intValue]];
+    
+    [BPush handleNotification:userInfo]; // 可选
+}
+
 
 #pragma mark--
 #pragma mark--微信相关函数

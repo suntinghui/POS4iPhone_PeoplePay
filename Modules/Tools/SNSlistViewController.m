@@ -106,6 +106,7 @@
     if (indexPath.row==0)
     {
         SNSshareViewController *snsShareController = [[SNSshareViewController alloc]init];
+        snsShareController.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:snsShareController animated:YES];
     }
     else if(indexPath.row==1||indexPath.row==2)
@@ -123,7 +124,7 @@
                                                     Title:nil
                                               description:@"众付宝"
                                                thumbimage:[UIImage imageNamed:@"ip_gyxtlogo"]
-                                            withDetailUrl:@"www.baidu.com"];
+                                            withDetailUrl:@"http://www.people2000.net"];
             
         
         }else

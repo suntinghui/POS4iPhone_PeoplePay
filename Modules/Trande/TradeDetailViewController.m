@@ -11,6 +11,7 @@
 #import "DeviceHelper+SwipeCard.h"
 #import "SwipeCardNoticeViewController.h"
 #import "DeviceSearchViewController.h"
+#import "PersonSignViewController.h"
 
 #define Alert_Tag_TradeCancel  100
 
@@ -38,7 +39,14 @@
     self.stateLabel.text =  [StaticTools getTradeMessWithCode:self.infoDict[@"TXNCD"] state:self.infoDict[@"TXNSTS"]];
     
     self.moneyLabel.text = [StringUtil string2SymbolAmount:self.infoDict[@"TXNAMT"]];
-    self.dateLabel.text = [NSString stringWithFormat:@"%@    %@",[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail],[StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail]]]];
+    
+    NSString *fullDate = self.infoDict[@"SYSDAT"];
+    NSMutableString *time = [[NSMutableString alloc]initWithString:[fullDate substringFromIndex:8]];
+    [time insertString:@":" atIndex:2];
+    [time insertString:@":" atIndex:5];
+    
+    
+    self.dateLabel.text = [NSString stringWithFormat:@"%@ %@   %@",[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail],time,[StaticTools getWeakWithDate:[StaticTools getDateFromDateStr:[StaticTools insertCharactorWithDateStr:self.infoDict[@"LOGDAT"] andSeper:kSeperTypeRail]]]];
     self.cardLabel.text = [StaticTools insertComaInCardNumber:self.infoDict[@"CRDNO"]];
     self.merchantNameLabel.text = self.infoDict[@"MERNAM"];
     
@@ -52,7 +60,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-        [[AppDataCenter sharedAppDataCenter].leveyTabBar hidesTabBar:YES animated:NO];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -159,6 +166,27 @@
 - (void)swipeCard
 {
     
+    
+//    [[DeviceHelper shareDeviceHelper] doTradeEx:@"100" andType:1 Random:nil extraString:@"abc" TimesOut:30 Complete:^(id mess) {
+//        
+//        //移除刷卡提示动画页面
+//        [self.navigationController popViewControllerAnimated:NO];
+//        
+//        
+//    } andFail:^(id mess) {
+//        
+//        //        [SVProgressHUD showErrorWithStatus:mess];
+//        
+//        [StaticTools showErrorPageWithMess:mess clickHandle:^{
+//            //移除刷卡提示动画页面
+//            [self.navigationController popViewControllerAnimated:NO];
+//        }];
+//        
+//        
+//    }];
+//
+//    return;
+    
     if (![[DeviceHelper shareDeviceHelper] ispluged])
     {
         [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
@@ -194,8 +222,11 @@
     
     [[DeviceHelper shareDeviceHelper] getTerminalIDWithComplete:^(id mess) {
         
-        self.tidStr = mess;
-        self.pidStr = @"UN201410000046"; //TODO
+        NSArray *arr = [mess componentsSeparatedByString:@"#"];
+        self.tidStr = arr[0];
+        self.pidStr = arr[1];
+        self.pidStr = [self.pidStr stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"];
+        
         if (type==0)
         {
             [self doSign];
@@ -273,11 +304,16 @@
                                          {
                                              //                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                              
-                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:nil];
+                                             [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试。" clickHandle:^{
+                                                 
+                                                 //移除刷卡提示动画页面
+                                                 [self.navigationController popViewControllerAnimated:NO];
+                                                 
+                                             }];
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在签到..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
     
 }
@@ -309,7 +345,11 @@
     NSLog(@"mac is %@",mac);
     
     NSString *num = [NSString stringWithFormat:@"%f",[[StringUtil string2AmountFloat:self.infoDict[@"TXNAMT"]] floatValue]];
-    [[DeviceHelper shareDeviceHelper] doTradeEx:num andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
+    float count = [num floatValue]*100;
+    int numcount = count;
+    NSString *numStr = [NSString stringWithFormat:@"%d",numcount];
+    
+    [[DeviceHelper shareDeviceHelper] doTradeEx:numStr andType:1 Random:nil extraString:mac TimesOut:30 Complete:^(id mess) {
         
         //移除刷卡提示动画页面
         [self.navigationController popViewControllerAnimated:NO];
@@ -329,7 +369,8 @@
                                             @"TTXNTM":time, //交易时间
                                             @"TTXNDT":date, //交易日期
                                             @"MAC": [StringUtil stringFromHexString:mess[kMacKey]],
-                                            @"LOGNO":self.infoDict[@"CRDNO"]
+                                            @"LOGNO":self.infoDict[@"LOGNO"],
+                                             @"TSEQNO":[[AppDataCenter sharedAppDataCenter] getTradeNumber],
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
@@ -338,13 +379,16 @@
                                              {
                                                  
                                                  
-                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
                                                      if ([self.fatherController respondsToSelector:@selector(refreshList)])
                                                      {
                                                          [self.fatherController performSelector:@selector(refreshList) withObject:nil];
-                                                         [self.navigationController popViewControllerAnimated:YES];
-                                                         [SVProgressHUD showSuccessWithStatus:@"撤销成功"];
+                                                         
+                                                         PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+                                                         personSignController.hidesBottomBarWhenPushed = YES;
+                                                         [self.navigationController pushViewController:personSignController animated:YES];
+                                                         
                                                      }
                                                  }
                                                  else

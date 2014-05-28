@@ -266,7 +266,7 @@ static NSString *totalSize = nil;
     
     if ([rspCode isEqualToString:@"199002"]|| //登录
         [rspCode isEqualToString:@"199018"]|| //获取短信验证码
-        [rspCode isEqualToString:@"199018"]|| //忘记密码
+        [rspCode isEqualToString:@"199004"]|| //忘记密码
         [rspCode isEqualToString:@"199003"] //修改密码
         )
     {
@@ -274,7 +274,10 @@ static NSString *totalSize = nil;
         endType = @"tran5";
     }
     else if([rspCode isEqualToString:@"200000"]||//头像上传
-            [rspCode isEqualToString:@"200001"]) //头像下载
+            [rspCode isEqualToString:@"200001"]||//头像下载
+            [rspCode isEqualToString:@"200002"]||//现金记账
+            [rspCode isEqualToString:@"200003"]||//现金流水列表
+            [rspCode isEqualToString:@"200004"]) //现金流水删除
     {
         postType = @"";
         endType = @"";
@@ -288,7 +291,8 @@ static NSString *totalSize = nil;
     }
     else if ([postType isEqualToString:@""]) //内部服务区地址
     {
-        [self setRequestUrl:@"http://59.49.20.154:8586/"]; //http://192.168.1.46:8080
+        //http://192.168.1.104:8080/  http://59.49.20.154:8586/
+        [self setRequestUrl:@"http://59.49.20.154:8586/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else
@@ -298,14 +302,9 @@ static NSString *totalSize = nil;
     
     NSLog(@"Request:%@ ", httpBodyString);
     
-    //内部服务器数据交换不采用加密
-//    if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
-//    {
-        httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
-        
-//    }
- 
-    
+
+    httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
+
     httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
     
     NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
@@ -341,19 +340,9 @@ static NSString *totalSize = nil;
         
 //        NSLog(@"Response: %@", respXML);
         
-        NSString *xmlStr;
-        //内部服务器数据交换不采用加密
-        if (![client.baseURL.absoluteString isEqualToString:@"http://192.168.1.46:8080/"])
-        {
-             NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
-            xmlStr = [AESUtil decryptUseAES:respXML];
-        }
-        else
-        {
-             NSLog(@"Response: %@",respXML);
-            xmlStr = respXML;
-        }
-       
+
+         NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
+         NSString *xmlStr = [AESUtil decryptUseAES:respXML];
 
         id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: xmlStr];
         success(obj);
