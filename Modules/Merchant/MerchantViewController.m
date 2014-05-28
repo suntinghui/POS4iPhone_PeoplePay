@@ -20,6 +20,9 @@
 
 #define View_Tag_StateImg   300
 
+#define Action_Tag_Phone    400
+#define Action_Tag_Camara   401
+
 @interface MerchantViewController ()
 
 @end
@@ -83,23 +86,16 @@
     [logOutBtn setBackgroundImage:[UIImage imageNamed:@"ip_button2"] forState:UIControlStateHighlighted];
     [logOutBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
     [logOutBtn setTitle:@"安全退出" forState:UIControlStateNormal];
-    [footView addSubview:logOutBtn]; imagePickerController = [[UIImagePickerController alloc] init];
+    [footView addSubview:logOutBtn];
     
+    imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.allowsEditing = YES;
     imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
     [logOutBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     logOutBtn.titleLabel.font = [UIFont boldSystemFontOfSize:20];
     self.listTableView.tableFooterView = footView;
-    
-    
-    imagePickerController = [[UIImagePickerController alloc] init];
-    
-    imagePickerController.delegate = self;
-    imagePickerController.allowsEditing = YES;
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-
     
 }
 
@@ -128,13 +124,43 @@
             break;
         case Button_Tag_ChangeHeadImg: //修改头像
         {
-             [self presentViewController:imagePickerController animated:YES completion:^{}];
+            
+            UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选取",@"照相机", nil];
+            sheet.tag = Action_Tag_Camara;
+            [sheet showInView:self.view.window];
+      
         }
             break;
             
         default:
             break;
     }
+}
+
+#pragma mark -UIActionSheet
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == Action_Tag_Phone)
+    {
+        if (buttonIndex==0)
+        {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:4006269987"]];
+        }
+    }
+    else if(actionSheet.tag == Action_Tag_Camara)
+    {
+        if (buttonIndex==0)
+        {
+               imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            [self presentViewController:imagePickerController animated:YES completion:^{}];
+        }
+        else if(buttonIndex==1)
+        {
+               imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            [self presentViewController:imagePickerController animated:YES completion:^{}];
+        }
+    }
+   
 }
 
 #pragma mark - image picker delegte
@@ -320,15 +346,6 @@
     }
 }
 
-
-#pragma mark -UIActionSheetDelegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex==0)
-    {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel:4006269987"]];
-    }
-}
 #pragma mark -UITableViewDelegate
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -572,6 +589,7 @@
         {
          
             UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"客服热线" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打--4006269987", nil];
+            sheet.tag = Action_Tag_Phone;
             [sheet showInView:self.view.window];
             
         }

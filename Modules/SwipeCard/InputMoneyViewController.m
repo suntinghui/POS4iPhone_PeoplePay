@@ -526,7 +526,7 @@
 - (void)doCashAccount
 {
     NSDictionary *dict = @{kTranceCode:@"200002",
-                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                           kParamName:@{@"phoneNum":[UserDefaults objectForKey:KUSERNAME],
                                         @"curType":@"CNY",
                                         @"transAmt":self.inputTxtField.text,
                                         @"operationId":@"addTransaction"}};

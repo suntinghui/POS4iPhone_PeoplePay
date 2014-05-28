@@ -76,7 +76,7 @@
         {
             return [self getCustomMess:rootElement];
         }
-        else if([reqName isEqualToString:@"199004"])
+        else if([reqName isEqualToString:@"199004"]) //忘记密码
         {
             return [self forgetPassword:rootElement];
         }
