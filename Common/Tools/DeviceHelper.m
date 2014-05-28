@@ -19,8 +19,6 @@ static DeviceHelper *instance = nil;
         if (nil == instance)
         {
             instance = [[DeviceHelper alloc] init];
-            
-        
         }
     }
     
@@ -259,6 +257,19 @@ static DeviceHelper *instance = nil;
     {
 
     }
+}
+
+/**
+ *  //取消刷卡 未提供刷卡操作  类型传255时可进行取消
+ */
+- (void)cancleSwipeCard
+{
+    NSLog(@"取消刷卡");
+    [self doTradeEx:@"0" andType:255 Random:nil extraString:@"abc" TimesOut:60 Complete:^(id mess) {
+        
+    } andFail:^(id mess) {
+        
+    }];
 }
 
 @end

@@ -62,4 +62,7 @@ typedef void(^OnePramaBlock)(id mess);
          TimesOut:(NSInteger)timeout
          Complete:(OnePramaBlock)sucBlock
           andFail:(OnePramaBlock)failBlock;
+
+//取消刷卡
+- (void)cancleSwipeCard;
 @end

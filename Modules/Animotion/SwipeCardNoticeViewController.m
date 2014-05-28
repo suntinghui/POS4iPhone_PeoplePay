@@ -56,4 +56,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [[DeviceHelper shareDeviceHelper] cancleSwipeCard];
+}
 @end

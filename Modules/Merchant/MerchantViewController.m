@@ -242,9 +242,9 @@
                                                      [self.headBtn setBackgroundImage:image forState:UIControlStateNormal];
                                                      
                                                  }
-                                                 else
+                                                 else //头像下载失败 不做任何提示
                                                  {
-                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+//                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                                  }
                                                  
                                              }

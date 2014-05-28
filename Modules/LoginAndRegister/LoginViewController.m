@@ -78,6 +78,10 @@
     {
         [self.navigationController setNavigationBarHidden:NO animated:animated];
     }
+    else
+    {
+        self.pwdTxtField.text = @"";
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -218,6 +222,8 @@
 #pragma mark- HTTP请求
 - (void)loginAction
 {
+    [self.view endEditing:YES];
+    
     //测试账号：13838387438 88888888   18811068526 88888888
     NSDictionary *dict = @{kTranceCode:@"199002",
                            kParamName:@{@"PHONENUMBER":self.nameTxtField.text,
