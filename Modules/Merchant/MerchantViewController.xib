@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MerchantViewController">
             <connections>
+                <outlet property="bgBtn" destination="sBe-SH-1bB" id="pv3-oX-vKY"/>
                 <outlet property="headBtn" destination="p9t-XY-jz4" id="yMM-bf-fs4"/>
                 <outlet property="headImgView" destination="YzZ-eG-V29" id="INq-1u-siX"/>
                 <outlet property="listTableView" destination="dUu-Do-Ma1" id="IA2-83-KZh"/>
@@ -35,11 +36,16 @@
                         <outlet property="delegate" destination="-1" id="DCY-7Q-Msd"/>
                     </connections>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ip_dl" id="oz0-fn-alg">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
+                <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="sBe-SH-1bB">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="163"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
-                </imageView>
+                    <state key="normal" backgroundImage="ip_dl">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="OnQ-T6-weA"/>
+                    </connections>
+                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ip-ssmm-man" id="YzZ-eG-V29">
                     <rect key="frame" x="101" y="0.0" width="115" height="115"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

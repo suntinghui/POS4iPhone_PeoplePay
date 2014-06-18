@@ -28,11 +28,13 @@
 {
     int state;  //0:未展开  1：展开
     UIImagePickerController *imagePickerController;
+    int camaType;  //0：修改头像  1：修改大背景图
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headImgView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIButton *headBtn;
+@property (weak, nonatomic) IBOutlet UIButton *bgBtn;
 @property (strong, nonatomic) NSDictionary *infoDict; //商户信息
 
 - (IBAction)buttonClickHandle:(id)sender;

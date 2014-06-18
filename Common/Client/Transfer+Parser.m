@@ -24,7 +24,7 @@
     
     TBXMLElement *rootElement = [tbXML rootXMLElement];
     if (rootElement) {
-        if ([reqName isEqualToString:@"199002"]) //登录
+        if ([reqName isEqualToString:@"199002"]||[reqName isEqualToString:@"200008"]) //登录
         {
             return [self login:rootElement];
         }
@@ -36,15 +36,15 @@
         {
             return [self getRradeList:rootElement];
         }
-        else if([reqName isEqualToString:@"199003"]) //修改密码
+        else if([reqName isEqualToString:@"199003"]||[reqName isEqualToString:@"200009"]) //修改密码
         {
             return [self getCustomMess:rootElement];
         }
-        else if([reqName isEqualToString:@"200000"]) //头像上传
+        else if([reqName isEqualToString:@"200000"]||[reqName isEqualToString:@"200005"]) //头像上传
         {
             return [self getCustomMess:rootElement];
         }
-        else if([reqName isEqualToString:@"200001"]) //头像下载
+        else if([reqName isEqualToString:@"200001"]||[reqName isEqualToString:@"200006"]) //头像下载
         {
             return [self getHeadImg:rootElement];
         }
@@ -79,6 +79,10 @@
         else if([reqName isEqualToString:@"199004"]) //忘记密码
         {
             return [self forgetPassword:rootElement];
+        }
+        else if([reqName isEqualToString:@"200007"]) //用户注册
+        {
+            return [self getCustomMess:rootElement];
         }
     }
     
@@ -220,6 +224,9 @@
     if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
     {
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALPAGE" parentElement:bodyElement]] forKey:@"TOTALPAGE"];
+        
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALTRANSAMT" parentElement:bodyElement]] forKey:@"TOTALTRANSAMT"];
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALROWNUMS" parentElement:bodyElement]] forKey:@"TOTALROWNUMS"];
         
         TBXMLElement *listElement = [TBXML childElementNamed:@"LIST" parentElement:bodyElement];
         if (listElement)

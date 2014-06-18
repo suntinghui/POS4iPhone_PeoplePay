@@ -42,6 +42,9 @@
 @property (strong, nonatomic) NSMutableArray *trades;
 @property (strong, nonatomic) NSMutableArray *cashs;
 
+@property (strong, nonatomic) NSString *totalMoney; 
+@property (strong, nonatomic) NSString *totalCount;
+
 //刷新列表
 - (void)refreshList;
 

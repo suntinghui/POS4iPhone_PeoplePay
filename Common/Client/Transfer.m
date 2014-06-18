@@ -277,7 +277,13 @@ static NSString *totalSize = nil;
             [rspCode isEqualToString:@"200001"]||//头像下载
             [rspCode isEqualToString:@"200002"]||//现金记账
             [rspCode isEqualToString:@"200003"]||//现金流水列表
-            [rspCode isEqualToString:@"200004"]) //现金流水删除
+            [rspCode isEqualToString:@"200004"]||//现金流水删除
+            [rspCode isEqualToString:@"200005"]||//背景大图上传
+            [rspCode isEqualToString:@"200006"]||//背景大图下载
+            [rspCode isEqualToString:@"200007"]||//用户注册
+            [rspCode isEqualToString:@"200008"]||//用户登录
+            [rspCode isEqualToString:@"200009"]) //修改密码
+        
     {
         postType = @"";
         endType = @"";
@@ -292,7 +298,9 @@ static NSString *totalSize = nil;
     else if ([postType isEqualToString:@""]) //内部服务区地址
     {
         //http://192.168.4.115:8080/  http://59.49.20.154:8586/
-        [self setRequestUrl:@"http://59.49.20.154:8586/"];
+        //192.168.4.122:8080 周
+        
+        [self setRequestUrl:@"http://192.168.4.234:8080/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else

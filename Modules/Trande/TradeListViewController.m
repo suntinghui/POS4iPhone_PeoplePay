@@ -167,12 +167,13 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     }
     else if(operateType==1)
     {
-        count = self.cashs.count;
+        count = [self.totalCount integerValue]; //self.cashs.count;
+        amount = [self.totalMoney integerValue];
         
-        for (NSDictionary *dict in self.cashs)
-        {
-            amount+=[dict[@"TRANSAMT"] floatValue];
-        }
+//        for (NSDictionary *dict in self.cashs)
+//        {
+//            amount+=[dict[@"TRANSAMT"] floatValue];
+//        }
     }
     
     self.numLabel.text = [NSString stringWithFormat:@"%d",count];
@@ -304,6 +305,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                                              {
                                                 
                                                  totalPage = [obj[@"TOTALPAGE"] intValue];
+                                                 self.totalMoney =obj[@"TOTALTRANSAMT"];
+                                                 self.totalCount =obj[@"TOTALROWNUMS"];
                                                  
                                                 if (isFresh)
                                                  {

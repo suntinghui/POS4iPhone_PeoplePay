@@ -1,23 +1,22 @@
 //
-//  ForgetPasswordViewController.m
+//  RegisterViewController.m
 //  POS4iPhone_PeoplePay
 //
-//  Created by 文彬 on 14-5-11.
+//  Created by 文彬 on 14-5-29.
 //  Copyright (c) 2014年 文彬. All rights reserved.
 //
 
-#import "ForgetPasswordViewController.h"
+#import "RegisterViewController.h"
 
-#define Button_Tag_GetCode  100  //获取验证码
-#define Button_Tag_Commit   101  //提交
 
-#define Alert_Tag_Success   200
+#define Button_Tag_GetCode 100
+#define Button_Tag_Commit 101
 
-@interface ForgetPasswordViewController ()
+@interface RegisterViewController ()
 
 @end
 
-@implementation ForgetPasswordViewController
+@implementation RegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,7 +31,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"忘记密码";
+    
+    self.navigationItem.title = @"用户注册";
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +40,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark - 按钮点击
 - (IBAction)buttonClickHandle:(id)sender
@@ -81,8 +80,23 @@
                 [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
                 return;
             }
+            else if ([StaticTools isEmptyString:self.pswTxtField.text])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请输入密码"];
+                return;
+            }
+            else if ([StaticTools isEmptyString:self.pswConfirmTxtField.text])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请确认密码"];
+                return;
+            }
+            else if (![self.pswConfirmTxtField.text isEqualToString:self.pswTxtField.text])
+            {
+                [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一致"];
+                return;
+            }
             
-            [self getPassword];
+            [self userRegister];
         }
             break;
             
@@ -94,25 +108,37 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.view.frame = CGRectMake(0, IOS7_OR_LATER?64:0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+    
 }
 #pragma mark -UITextfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [self.view endEditing:YES];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+    
     return YES;
 }
 
-#pragma mark -UIALertViewDelegate
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (alertView.tag == Alert_Tag_Success)
+    if (textField==self.pswTxtField||textField==self.pswConfirmTxtField)
     {
-        if (buttonIndex!=alertView.cancelButtonIndex)
-        {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.view.frame = CGRectMake(0, -150, self.view.frame.size.width, self.view.frame.size.height);
+        }];
     }
 }
+
 #pragma mark -http请求
 /**
  *  获取短信验证码
@@ -136,7 +162,7 @@
                                              {
                                                  [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                              }
-                                        }
+                                         }
                                                                                   failure:^(NSString *errMsg)
                                          {
                                              [SVProgressHUD showErrorWithStatus:@"登录失败，请稍后再试!"];
@@ -148,38 +174,45 @@
 }
 
 /**
- *  提交 获取系统返回的密码
+ *  用户注册
  */
-- (void)getPassword
+- (void)userRegister
 {
-    NSDictionary *dict = @{kTranceCode:@"199004",
-                           kParamName:@{@"PHONENUMBER":self.phoneTxtField.text,
-                                        @"MESSAGECODE":self.codeTxtField.text}};
+    NSDictionary *infodict = @{kTranceCode:@"200007",
+                               kParamName:@{@"phoneNum":self.phoneTxtField.text,
+                                            @"password":self.pswTxtField.text,
+                                            @"operationId":@"setUserInfo"}};
     
-    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
-                                                                                   prompt:nil
-                                                                                  success:^(id obj)
-                                         {
-                                             if ([obj[@"RSPCOD"] isEqualToString:@"00000"])
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
                                              {
-                                                 [StaticTools showAlertWithTag:Alert_Tag_Success
-                                                                         title:nil
-                                                                       message:[NSString stringWithFormat:@"密码已修改为：%@",obj[@"NEWPASSWD"]] AlertType:CAlertTypeDefault SuperView:self];
+                                                 
+                                                 if ([obj isKindOfClass:[NSDictionary class]])
+                                                 {
+                                                     
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                     {
+                                                         
+                                                         [SVProgressHUD showSuccessWithStatus:@"注册成功"];
+                                                         [self.navigationController popViewControllerAnimated:YES];
+                                                     }
+                                                     else
+                                                     {
+                                                         [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     }
+                                                     
+                                                 }
+                                                 
                                              }
-                                             else
+                                                                                      failure:^(NSString *errMsg)
                                              {
-                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
-                                             }
-                                         }
-                                                                                  failure:^(NSString *errMsg)
-                                         {
-                                             [SVProgressHUD showErrorWithStatus:@"登录失败，请稍后再试!"];
-                                             
-                                         }];
+                                                 [SVProgressHUD showErrorWithStatus:@"注册失败!"];
+                                                 
+                                             }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在提交..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
     }];
+    
 }
-
 @end
-

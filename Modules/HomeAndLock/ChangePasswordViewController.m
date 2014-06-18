@@ -96,10 +96,23 @@
  */
 - (void)changePassword
 {
-    NSDictionary *dict = @{kTranceCode:@"199003",
-                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
-                                        @"PASSWORD":self.oldPwdTxtField.text,
-                                        @"PASSWORDNEW":self.pwdConfirdTxtField.text}};
+    NSDictionary *dict;
+    if (APPDataCenter.accountType==0)
+    {
+        dict = @{kTranceCode:@"199003",
+                 kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                              @"PASSWORD":self.oldPwdTxtField.text,
+                              @"PASSWORDNEW":self.pwdConfirdTxtField.text}};
+    }
+    else if(APPDataCenter.accountType==1)
+    {
+        dict = @{kTranceCode:@"200009",
+                 kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                              @"PASSWORD":self.oldPwdTxtField.text,
+                              @"PASSWORDNEW":self.pwdConfirdTxtField.text,
+                              @"operationId":@"UpdateUserPassword"}};
+    }
+ 
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil

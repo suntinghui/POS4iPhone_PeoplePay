@@ -123,6 +123,8 @@
 		B82E47DF1920CA8E00D0D356 /* SettingMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47DD1920CA8E00D0D356 /* SettingMainViewController.m */; };
 		B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */; };
 		B82E962019331EF400C860EF /* MyTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E961F19331EF400C860EF /* MyTabBarController.m */; };
+		B82F7EA019371205007175FD /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82F7E9E19371205007175FD /* RegisterViewController.m */; };
+		B82F7EA119371205007175FD /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82F7E9F19371205007175FD /* RegisterViewController.xib */; };
 		B839FDA61934E6A200EECA18 /* SuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B839FDA41934E6A200EECA18 /* SuccessViewController.m */; };
 		B839FDA71934E6A200EECA18 /* SuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B839FDA51934E6A200EECA18 /* SuccessViewController.xib */; };
 		B843D149190F740A0000A60A /* LockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D147190F740A0000A60A /* LockViewController.m */; };
@@ -228,6 +230,8 @@
 		B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9FE191F271C008DFF31 /* TradeCell.xib */; };
 		B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */; };
 		B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */; };
+		B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACABCF19381AA800493D9B /* SplitViewController.m */; };
+		B8ACABD219381AA800493D9B /* SplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8ACABD019381AA800493D9B /* SplitViewController.xib */; };
 		B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */; };
 		B8C66C0E192D82EC0050BE5A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C66C06192D82EC0050BE5A /* MJRefreshBaseView.m */; };
 		B8C66C0F192D82EC0050BE5A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = B8C66C08192D82EC0050BE5A /* MJRefreshConst.m */; };
@@ -425,6 +429,9 @@
 		B82E47DE1920CA8E00D0D356 /* SettingMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingMainViewController.xib; sourceTree = "<group>"; };
 		B82E961E19331EF400C860EF /* MyTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarController.h; sourceTree = "<group>"; };
 		B82E961F19331EF400C860EF /* MyTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarController.m; sourceTree = "<group>"; };
+		B82F7E9D19371205007175FD /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		B82F7E9E19371205007175FD /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		B82F7E9F19371205007175FD /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		B839FDA31934E6A200EECA18 /* SuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessViewController.h; sourceTree = "<group>"; };
 		B839FDA41934E6A200EECA18 /* SuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessViewController.m; sourceTree = "<group>"; };
 		B839FDA51934E6A200EECA18 /* SuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuccessViewController.xib; sourceTree = "<group>"; };
@@ -604,6 +611,9 @@
 		B89CEA01191F2F2E008DFF31 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 		B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
+		B8ACABCE19381AA800493D9B /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
+		B8ACABCF19381AA800493D9B /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
+		B8ACABD019381AA800493D9B /* SplitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplitViewController.xib; sourceTree = "<group>"; };
 		B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		B8C66C04192D82EC0050BE5A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		B8C66C05192D82EC0050BE5A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -712,6 +722,9 @@
 				B839FDA31934E6A200EECA18 /* SuccessViewController.h */,
 				B839FDA41934E6A200EECA18 /* SuccessViewController.m */,
 				B839FDA51934E6A200EECA18 /* SuccessViewController.xib */,
+				B8ACABCE19381AA800493D9B /* SplitViewController.h */,
+				B8ACABCF19381AA800493D9B /* SplitViewController.m */,
+				B8ACABD019381AA800493D9B /* SplitViewController.xib */,
 			);
 			path = Animotion;
 			sourceTree = "<group>";
@@ -1162,6 +1175,9 @@
 				B8537C6F190B7CDB000F353D /* LoginViewController.h */,
 				B8537C70190B7CDB000F353D /* LoginViewController.m */,
 				B8537C71190B7CDB000F353D /* LoginViewController.xib */,
+				B82F7E9D19371205007175FD /* RegisterViewController.h */,
+				B82F7E9E19371205007175FD /* RegisterViewController.m */,
+				B82F7E9F19371205007175FD /* RegisterViewController.xib */,
 			);
 			path = LoginAndRegister;
 			sourceTree = "<group>";
@@ -1629,6 +1645,7 @@
 				B8D717E8192B330000868678 /* help.html in Resources */,
 				B8537D24190B7EC4000F353D /* alertView_button_gray_pressed.png in Resources */,
 				B813BB13192B2BD700654A45 /* WebViewViewController.xib in Resources */,
+				B8ACABD219381AA800493D9B /* SplitViewController.xib in Resources */,
 				B82A962B192DDE840099E97E /* repeatVideoStarticon.png in Resources */,
 				B8537D25190B7EC4000F353D /* alertView_button_gray_pressed@2x.png in Resources */,
 				B813BAC3192AF25F00654A45 /* SwipeCardNoticeViewController.xib in Resources */,
@@ -1669,6 +1686,7 @@
 				B82A962F192DDE840099E97E /* test.png in Resources */,
 				B85D4BEE19211CD7008241E0 /* ChangePasswordViewController.xib in Resources */,
 				B82A9625192DDE840099E97E /* composeWords.png in Resources */,
+				B82F7EA119371205007175FD /* RegisterViewController.xib in Resources */,
 				B82A962E192DDE840099E97E /* separatorLine@2x.png in Resources */,
 				B82A9616192DDE840099E97E /* composeloadingbtn@2x.png in Resources */,
 				B82A9605192DDE840099E97E /* composeCamerahover.png in Resources */,
@@ -1752,6 +1770,7 @@
 				B8537D0D190B7EC4000F353D /* Reachability.m in Sources */,
 				B8537D06190B7EC4000F353D /* JSBadgeView.m in Sources */,
 				B82A963A192DDE840099E97E /* AuthorizeDelegate.m in Sources */,
+				B82F7EA019371205007175FD /* RegisterViewController.m in Sources */,
 				B843D155190F77F10000A60A /* NormalCircle.m in Sources */,
 				B8788C671931BF1E003E8338 /* CJSONDeserializer.m in Sources */,
 				B82A95F7192DDE840099E97E /* SinaWeiboRequest.m in Sources */,
@@ -1800,6 +1819,7 @@
 				B8D717E1192B2D7500868678 /* NSData+Base64Additions.m in Sources */,
 				B8537D04190B7EC4000F353D /* GTMNSString+HTML.m in Sources */,
 				B8537CFF190B7EC4000F353D /* AFURLConnectionOperation.m in Sources */,
+				B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */,
 				B843D158190F77F10000A60A /* SPLockScreen.m in Sources */,
 				B81C9F99190CF834004239FF /* DeviceHelper.m in Sources */,
 				B85D4BE619210701008241E0 /* CusWindow.m in Sources */,

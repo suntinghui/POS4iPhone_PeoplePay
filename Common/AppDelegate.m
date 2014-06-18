@@ -11,6 +11,7 @@
 #import "TimedoutUtil.h"
 #import "Test.h"
 #import "BaiduMobStat.h"
+#import "SplitViewController.h"
 
 
 @implementation AppDelegate
@@ -19,10 +20,29 @@
 {
     // Override point for customization after application launch.
     self.window = [[CusWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+   
     
-    LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    UINavigationController *nav ;
     
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:loginViewController ];
+    
+    //第一次进入软件时  滑动解锁设置为关闭状态
+    if ([UserDefaults objectForKey:kMoveUnlockState]==nil)
+    {
+        [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
+        
+        
+        SplitViewController *splitController = [[SplitViewController alloc]init];
+        nav = [[UINavigationController alloc]initWithRootViewController:splitController ];
+        
+    }
+    else
+    {
+        
+        LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+                
+        nav = [[UINavigationController alloc]initWithRootViewController:loginViewController ];
+
+    }
     
     if (IOS7_OR_LATER)
     {
@@ -34,36 +54,31 @@
     }
     
     nav.navigationBarHidden = YES;
+    
+    
     self.window.rootViewController = nav;
-    
-    //第一次进入软件时  滑动解锁设置为关闭状态
-    if ([UserDefaults objectForKey:kMoveUnlockState]==nil)
-    {
-        [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
-    }
-    
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
     
     [self.window makeKeyAndVisible];
     
     
-    ppp();
+//    ppp();
     
     [WXApi registerApp:@"wx1e4484ab6b577a3d"];
     
-    [BPush setupChannel:launchOptions];
-    [BPush setDelegate:self];
-    
-    [application registerForRemoteNotificationTypes:
-     UIRemoteNotificationTypeAlert
-     | UIRemoteNotificationTypeBadge
-     | UIRemoteNotificationTypeSound];
+//    [BPush setupChannel:launchOptions];
+//    [BPush setDelegate:self];
+//    
+//    [application registerForRemoteNotificationTypes:
+//     UIRemoteNotificationTypeAlert
+//     | UIRemoteNotificationTypeBadge
+//     | UIRemoteNotificationTypeSound];
     
     
     // Stat
     BaiduMobStat* statTracker = [BaiduMobStat defaultStat];
-    [statTracker startWithAppId:@"3a999c10fa"];//设置您在mtj网站上添加的app的appkey
+    [statTracker startWithAppId:@"9dedcc5290"];//设置您在mtj网站上添加的app的appkey
     statTracker.enableExceptionLog = YES; // 是否允许截获并发送崩溃信息，请设置YES或者NO
     statTracker.channelId = @"In-House";//设置您的app的发布渠道
     statTracker.logStrategy = BaiduMobStatLogStrategyAppLaunch;//根据开发者设定的时间间隔接口发送 也可以使用启动时发送策略

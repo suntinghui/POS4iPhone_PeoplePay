@@ -15,9 +15,13 @@
 #import "ForgetPasswordViewController.h"
 #import "SwipeCardNoticeViewController.h"
 #import "MyTabBarController.h"
+#import "RegisterViewController.h"
 
 #define Button_Tag_Login  100
 #define Button_Tag_ForgetPwd 101
+#define Button_Tag_Regiter  102
+#define button_Tag_SpeciaAccount 103
+#define Button_Tag_NormalAccount 104
 
 @interface LoginViewController ()
 
@@ -51,7 +55,7 @@
     [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
     
 //    self.nameTxtField.text = @"18811068526";
-    self.pwdTxtField.text = @"Asdf1234"; //TODO
+//    self.pwdTxtField.text = @"Asdf1234"; //TODO
     
     NSString *lastName = [UserDefaults objectForKey:KUSERNAME];
     if (lastName!=nil)
@@ -191,7 +195,23 @@
            
         }
             break;
-            
+        case Button_Tag_Regiter: //用户注册
+        {
+            isGohome = NO;
+            RegisterViewController *registController = [[RegisterViewController alloc]init];
+            [self.navigationController pushViewController:registController animated:YES];
+        }
+            break;
+        case button_Tag_SpeciaAccount: //签约账户
+        {
+            APPDataCenter.accountType = 0;
+        }
+            break;
+        case Button_Tag_NormalAccount://普通账户
+        {
+            APPDataCenter.accountType = 1;
+        }
+            break;
         default:
             break;
     }
@@ -224,10 +244,22 @@
 {
     
     //测试账号：13838387438 88888888   18811068526 88888888
-    NSDictionary *dict = @{kTranceCode:@"199002",
-                           kParamName:@{@"PHONENUMBER":self.nameTxtField.text,
-                                        @"PASSWORD":self.pwdTxtField.text,
-                                        @"PCSIM":@"不能获取"}};
+    NSDictionary *dict;
+    if (APPDataCenter.accountType==0)
+    {
+        dict = @{kTranceCode:@"199002",
+                 kParamName:@{@"PHONENUMBER":self.nameTxtField.text,
+                              @"PASSWORD":self.pwdTxtField.text,
+                              @"PCSIM":@"不能获取"}};
+    }
+    else if(APPDataCenter.accountType==1)
+    {
+        dict = @{kTranceCode:@"200008",
+                 kParamName:@{@"phoneNum":self.nameTxtField.text,
+                              @"operationId":@"initUserLoginInfo",
+                              @"password":self.pwdTxtField.text}};
+    }
+
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil
@@ -237,7 +269,7 @@
                                              {
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
                                                  {
-                                                     [UserDefaults setObject:obj[@"PHONENUMBER"] forKey:KUSERNAME];
+                                                     [UserDefaults setObject:self.nameTxtField.text forKey:KUSERNAME];
                                                      [UserDefaults synchronize];
                                                      
 //                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];

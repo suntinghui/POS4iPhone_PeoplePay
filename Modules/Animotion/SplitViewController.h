@@ -1,14 +1,14 @@
 //
-//  SuccessViewController.h
+//  SplitViewController.h
 //  POS4iPhone_PeoplePay
 //
-//  Created by 文彬 on 14-5-27.
+//  Created by 文彬 on 14-5-30.
 //  Copyright (c) 2014年 文彬. All rights reserved.
 //
 /*----------------------------------------------------------------
  // Copyright (C) 众人科技
  //
- // 文件功能描述：操作成功提示页面
+ // 文件功能描述：第一次进入软件的使用帮助页面
  
  // 创建标识：
  // 修改标识：
@@ -18,12 +18,8 @@
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
 
-@interface SuccessViewController : BaseViewController
+@interface SplitViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *messLabel;
-
-@property (strong, nonatomic) NSString *messStr;
-
-- (IBAction)buttonClickHandle:(UIButton*)button;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

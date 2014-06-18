@@ -15,6 +15,7 @@
 
 #define Button_Tag_Logout   100  //退出登录
 #define Button_Tag_ChangeHeadImg 101 //修改头像
+#define Button_Tag_ChangeBg  102   //修改大背景图
 
 #define Alert_Tag_Logout    200  //退出登录alert
 
@@ -124,11 +125,21 @@
             break;
         case Button_Tag_ChangeHeadImg: //修改头像
         {
+            camaType = 0;
             
             UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选取",@"照相机", nil];
             sheet.tag = Action_Tag_Camara;
             [sheet showInView:self.view.window];
       
+        }
+            break;
+        case Button_Tag_ChangeBg: //修改大背景图
+        {
+            camaType = 1;
+            
+            UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选取",@"照相机", nil];
+            sheet.tag = Action_Tag_Camara;
+            [sheet showInView:self.view.window];
         }
             break;
             
@@ -167,10 +178,21 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
      UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [self imageWithImage:image scaledToSize:CGSizeMake(100,100)];
     
-//    self.headImgView.image = [StaticTools circleImage:image withParam:0];
-    [self upLoadHeadImage:image];
+    if (camaType==0)
+    {
+        image = [self imageWithImage:image scaledToSize:CGSizeMake(100,100)];
+        
+        //    self.headImgView.image = [StaticTools circleImage:image withParam:0];
+        [self upLoadHeadImage:image];
+    }
+    else if(camaType ==1)
+    {
+        image = [self imageWithImage:image scaledToSize:CGSizeMake(320,160)];
+        
+        [self upLoadBigBackImage:image];
+    }
+
     
 	[picker dismissViewControllerAnimated:YES completion:^{}];
    
@@ -285,9 +307,45 @@
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:nil completeBlock:^(NSArray *operations) {
-    }];
     
+    
+    NSDictionary *bgdict = @{kTranceCode:@"200006",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"operationId":@"getStreetImg"}};
+    
+    AFHTTPRequestOperation *bgoperation = [[Transfer sharedTransfer] TransferWithRequestDic:bgdict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                     NSString *headStr = obj[@"HEADIMG"];
+                                                     
+                                                     NSData *data = [Base64 decode:headStr];
+                                                     UIImage *image = [UIImage imageWithData:data scale:1];
+
+                                                     [self.bgBtn setBackgroundImage:image forState:UIControlStateNormal];
+                                                     
+                                                 }
+                                                 else //头像下载失败 不做任何提示
+                                                 {
+                                                     //                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"下载失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, bgoperation,nil] prompt:nil completeBlock:^(NSArray *operations) {
+    }];
+
 }
 
 /**
@@ -334,6 +392,51 @@
     }];
 
 }
+
+/**
+ *  背景大图上传
+ *
+ *  @param image
+ */
+- (void)upLoadBigBackImage:(UIImage*)image
+{
+    NSDictionary *dict = @{kTranceCode:@"200005",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                        @"HEADIMG":[Base64 encode:UIImagePNGRepresentation(image)],
+                                        @"operationId":@"setStreetImg"}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                     [self.bgBtn setBackgroundImage:image forState:UIControlStateNormal];
+                                                     [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+                                                     
+                                                 }
+                                                 else
+                                                 {
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"上传失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在上传..." completeBlock:^(NSArray *operations) {
+    }];
+}
+
 #pragma mark - UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
