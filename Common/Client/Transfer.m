@@ -273,6 +273,15 @@ static NSString *totalSize = nil;
         postType = @"posm";
         endType = @"tran5";
     }
+    else if([rspCode isEqualToString:@"199031"]||//获取省份
+            [rspCode isEqualToString:@"199032"]||//获取城市
+            [rspCode isEqualToString:@"199035"]||//获取银行列表
+            [rspCode isEqualToString:@"199034"]||//获取支行列表
+            [rspCode isEqualToString:@"199021"]) //上传图片
+    {
+        postType = @"Vpm";
+        endType = @"tranm";
+    }
     else if([rspCode isEqualToString:@"200000"]||//头像上传
             [rspCode isEqualToString:@"200001"]||//头像下载
             [rspCode isEqualToString:@"200002"]||//现金记账
@@ -289,6 +298,7 @@ static NSString *totalSize = nil;
         endType = @"";
     }
     
+    
     NSString *path = [NSString stringWithFormat:@"%@/%@.%@",postType,[reqDic objectForKey:kTranceCode],endType];
     
     if ([postType isEqualToString:@"posm"])
@@ -300,21 +310,28 @@ static NSString *totalSize = nil;
         //http://192.168.4.115:8080/  http://59.49.20.154:8586/
         //192.168.4.122:8080 周
         
-        [self setRequestUrl:@"http://192.168.4.234:8080/"];
+        [self setRequestUrl:@"http://220.194.46.46:8080/"];
         path = @"zfb/mpos/transProcess.do";
     }
-    else
+    else if([postType isEqualToString:@"posp"])
     {
          [self setRequestUrl:@"http://211.147.87.23:8088/"];
+    }
+    else if([postType isEqualToString:@"Vpm"])
+    {
+         [self setRequestUrl:@"http://211.147.87.20:8092/"];
     }
     
     NSLog(@"Request:%@ ", httpBodyString);
     
 
-    httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
-
-    httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
-    
+//    if (![rspCode isEqualToString:@"199021"])
+//    {
+        httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
+        
+        httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
+//    }
+   
     NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
 
     NSLog(@"url is %@",request.URL);
@@ -322,7 +339,7 @@ static NSString *totalSize = nil;
     request.HTTPBody = [httpBodyString dataUsingEncoding:NSUTF8StringEncoding];
     
     
-    [request setTimeoutInterval:20];
+    [request setTimeoutInterval:30];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     

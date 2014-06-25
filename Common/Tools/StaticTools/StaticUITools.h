@@ -124,6 +124,12 @@ typedef enum
 + (UIImage*) circleImage:(UIImage*) image withParam:(CGFloat) inset;
 
 /*
+ *
+ * 图片缩放
+ */
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize;
+
+/*
  *屏幕旋转
  */
 + (CGAffineTransform)transformForOrientation;

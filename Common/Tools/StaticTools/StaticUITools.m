@@ -288,6 +288,24 @@
     return newimg;
 }
 
+/**
+ *  图片缩放
+ *
+ *  @param image   原始图片
+ *  @param newSize 缩放的大小
+ *
+ *  @return
+ */
++ (UIImage*)imageWithImage:(UIImage*)image scaledToSize:(CGSize)newSize
+{
+	UIGraphicsBeginImageContext(newSize);
+	[image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+	UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+	UIGraphicsEndImageContext();
+	
+	return newImage;
+}
+
 /*
  *屏幕旋转
  */

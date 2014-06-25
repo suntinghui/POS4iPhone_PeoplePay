@@ -150,4 +150,35 @@
     
 }
 
+/**
+ *  弹出选择页面
+ *
+ *  @param data   页面数据源 数组类型 元素为字典型 @{@"name":@"",@"code":"@""}
+ *  @param title  导航栏标题
+ *  @param type   选择类型
+ *  @param finish 回调操作
+ */
++ (void)showCustomSelectWithControl:(UIViewController*)control
+                              title:(NSString*)title
+                               Data:(NSArray*)data
+                         selectType:(CSelectType)type
+                      finishiOpeare:(FinishSelectBlock)finish
+{
+    CustomSelectViewController *customSelectController = [[CustomSelectViewController alloc]init];
+    customSelectController.selectType = type;
+    customSelectController.datas = data;
+    customSelectController.finishSelect = finish;
+    customSelectController.titleStr = title;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:customSelectController];
+    if (IOS7_OR_LATER)
+    {
+        [nav.navigationBar setBackgroundImage:[UIImage imageNamed:@"ip_title_ios7"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];
+    }
+    else
+    {
+        [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
+    }
+    [control presentModalViewController:nav animated:YES];
+    
+}
 @end

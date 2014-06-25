@@ -12,6 +12,8 @@
 #import "SettingMainViewController.h"
 #import "ChangePasswordViewController.h"
 #import "Base64.h"
+#import "BasicInfoViewController.h"
+#import "MyAccountViewController.h"
 
 #define Button_Tag_Logout   100  //退出登录
 #define Button_Tag_ChangeHeadImg 101 //修改头像
@@ -470,7 +472,7 @@
     }
     else
     {
-        return 3;
+        return 5;
     }
     
     return 0;
@@ -597,15 +599,25 @@
             
             if (indexPath.row==0)
             {
+                titleLabel.text = @"账户提现";
+                headImgView.image = [UIImage imageNamed:@"ip-xgmm"];
+            }
+            else if(indexPath.row==1)
+            {
+                titleLabel.text = @"实名认证";
+                headImgView.image = [UIImage imageNamed:@"ip-xgmm"];
+            }
+            if (indexPath.row==2)
+            {
                 titleLabel.text = @"修改密码";
                 headImgView.image = [UIImage imageNamed:@"ip-xgmm"];
             }
-            else if (indexPath.row==1)
+            else if (indexPath.row==3)
             {
                 titleLabel.text = @"更多设置";
                 headImgView.image = [UIImage imageNamed:@"ip-gdsz"];
             }
-            else if (indexPath.row==2)
+            else if (indexPath.row==4)
             {
                 titleLabel.text = @"联系客服";
                 headImgView.image = [UIImage imageNamed:@"ip-lxkf"];
@@ -674,7 +686,17 @@
     }
     else if (indexPath.section==1)
     {
-        if (indexPath.row==0) //修改密码
+        if (indexPath.row==0)
+        {
+            MyAccountViewController *myAccountController = [[MyAccountViewController alloc]init];
+            [self.navigationController pushViewController:myAccountController animated:YES];
+        }
+        else if (indexPath.row==1)
+        {
+            BasicInfoViewController *basicInfoController = [[BasicInfoViewController alloc]init];
+            [self.navigationController pushViewController:basicInfoController animated:YES];
+        }
+        else if (indexPath.row==2) //修改密码
         {
             ChangePasswordViewController *changePswController = [[ChangePasswordViewController alloc]init];
             changePswController.hidesBottomBarWhenPushed = YES;
@@ -682,13 +704,13 @@
             changePswController.hidesBottomBarWhenPushed = YES;
 
         }
-        else if(indexPath.row==1) //更多设置
+        else if(indexPath.row==3) //更多设置
         {
             SettingMainViewController *settingMainController = [[SettingMainViewController alloc]init];
             settingMainController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:settingMainController animated:YES];
         }
-        else if(indexPath.row==2) //联系客服
+        else if(indexPath.row==4) //联系客服
         {
          
             UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"客服热线" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打--4006269987", nil];

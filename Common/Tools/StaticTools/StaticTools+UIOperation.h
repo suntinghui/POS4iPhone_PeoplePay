@@ -20,6 +20,7 @@
 #import "StaticTools.h"
 #import "ErrorViewController.h"
 #import "CaculateViewController.h"
+#import "CustomSelectViewController.h"
 
 @interface StaticTools (UIOperation)
 
@@ -36,5 +37,12 @@
 
 //根据交易码和交易状态获取交易信息
 + (NSString*)getTradeMessWithCode:(NSString*)code state:(NSString*)state;
+
+//弹出选择页面
++ (void)showCustomSelectWithControl:(UIViewController*)control
+                              title:(NSString*)title
+                               Data:(NSArray*)data
+                         selectType:(CSelectType)type
+                      finishiOpeare:(FinishSelectBlock)finish;
 
 @end

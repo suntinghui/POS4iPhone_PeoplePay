@@ -34,8 +34,6 @@
 		B8263C61192C33FC009EFABC /* DeviceSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C5F192C33FC009EFABC /* DeviceSearchViewController.m */; };
 		B8263C62192C33FC009EFABC /* DeviceSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */; };
 		B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = B8263C64192C54DF009EFABC /* StringUtil.mm */; };
-		B8263C69192C6FFF009EFABC /* SNSlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C67192C6FFF009EFABC /* SNSlistViewController.m */; };
-		B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */; };
 		B8263C6E192C8F33009EFABC /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8263C6C192C8F33009EFABC /* ErrorViewController.m */; };
 		B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8263C6D192C8F33009EFABC /* ErrorViewController.xib */; };
 		B82A9587192DA2DF0099E97E /* DeviceHelper+SwipeCard.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A9586192DA2DF0099E97E /* DeviceHelper+SwipeCard.m */; };
@@ -115,8 +113,6 @@
 		B82A963C192DDE840099E97E /* TCWBAuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A95EE192DDE840099E97E /* TCWBAuthorizeViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B82A963D192DDE840099E97E /* TCWBEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A95F0192DDE840099E97E /* TCWBEngine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B82A963E192DDE840099E97E /* TCWBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A95F3192DDE840099E97E /* TCWBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		B82A9642192DE0000099E97E /* SNSshareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A9640192DE0000099E97E /* SNSshareViewController.m */; };
-		B82A9643192DE0000099E97E /* SNSshareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82A9641192DE0000099E97E /* SNSshareViewController.xib */; };
 		B82A9646192DE1D80099E97E /* WeiBoShare.m in Sources */ = {isa = PBXBuildFile; fileRef = B82A9645192DE1D80099E97E /* WeiBoShare.m */; };
 		B82E47DA1920CA6A00D0D356 /* AbountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82E47D81920CA6A00D0D356 /* AbountViewController.m */; };
 		B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B82E47D91920CA6A00D0D356 /* AbountViewController.xib */; };
@@ -201,6 +197,19 @@
 		B8537D60190B982C000F353D /* SecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B8537D5C190B982C000F353D /* SecurityUtil.m */; };
 		B8537D67190B9913000F353D /* Util.mm in Sources */ = {isa = PBXBuildFile; fileRef = B8537D66190B9913000F353D /* Util.mm */; };
 		B8537D6B190B9970000F353D /* NSData+NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = B8537D6A190B9970000F353D /* NSData+NSString.m */; };
+		B85546C519594B3B00EEEFE6 /* SNSlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546C019594B3B00EEEFE6 /* SNSlistViewController.m */; };
+		B85546C619594B3B00EEEFE6 /* SNSlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546C119594B3B00EEEFE6 /* SNSlistViewController.xib */; };
+		B85546C719594B3B00EEEFE6 /* SNSshareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546C319594B3B00EEEFE6 /* SNSshareViewController.m */; };
+		B85546C819594B3B00EEEFE6 /* SNSshareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546C419594B3B00EEEFE6 /* SNSshareViewController.xib */; };
+		B85546CD19594B9100EEEFE6 /* KaKaTransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546CB19594B9100EEEFE6 /* KaKaTransferViewController.m */; };
+		B85546CE19594B9100EEEFE6 /* KaKaTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546CC19594B9100EEEFE6 /* KaKaTransferViewController.xib */; };
+		B85546D319596E5400EEEFE6 /* PhoneRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546D119596E5400EEEFE6 /* PhoneRechargeViewController.m */; };
+		B85546D419596E5400EEEFE6 /* PhoneRechargeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546D219596E5400EEEFE6 /* PhoneRechargeViewController.xib */; };
+		B85546D81959755400EEEFE6 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546D61959755400EEEFE6 /* AddressBookViewController.m */; };
+		B85546D91959755400EEEFE6 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546D71959755400EEEFE6 /* AddressBookViewController.xib */; };
+		B85546E019597F0900EEEFE6 /* TKAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546DF19597F0900EEEFE6 /* TKAddressBook.m */; };
+		B85546E219597F1B00EEEFE6 /* TKContactsMultiPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546E119597F1B00EEEFE6 /* TKContactsMultiPickerController.xib */; };
+		B85546E519597F2100EEEFE6 /* TKContactsMultiPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546E419597F2100EEEFE6 /* TKContactsMultiPickerController.m */; };
 		B85D4BE619210701008241E0 /* CusWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = B85D4BE519210701008241E0 /* CusWindow.m */; };
 		B85D4BE919210857008241E0 /* TimedoutUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B85D4BE819210857008241E0 /* TimedoutUtil.m */; };
 		B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85D4BEB19211CD7008241E0 /* ChangePasswordViewController.m */; };
@@ -223,6 +232,16 @@
 		B8788C691931BF1E003E8338 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5E1931BF1E003E8338 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C6C1931C2AA003E8338 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C6B1931C2AA003E8338 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B89525ED1934887400F04685 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89525EC1934887400F04685 /* libZftQposLib.a */; };
+		B899E788195A64E80094920B /* BasicInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E786195A64E80094920B /* BasicInfoViewController.m */; };
+		B899E789195A64E80094920B /* BasicInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B899E787195A64E80094920B /* BasicInfoViewController.xib */; };
+		B899E78D195A6E220094920B /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E78B195A6E220094920B /* AccountInfoViewController.m */; };
+		B899E78E195A6E220094920B /* AccountInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B899E78C195A6E220094920B /* AccountInfoViewController.xib */; };
+		B899E792195A78300094920B /* IDcardUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E790195A78300094920B /* IDcardUploadViewController.m */; };
+		B899E793195A78300094920B /* IDcardUploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B899E791195A78300094920B /* IDcardUploadViewController.xib */; };
+		B899E797195A9FD60094920B /* CustomSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E795195A9FD60094920B /* CustomSelectViewController.m */; };
+		B899E798195A9FD60094920B /* CustomSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B899E796195A9FD60094920B /* CustomSelectViewController.xib */; };
+		B899E79D195ACAD80094920B /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E79B195ACAD80094920B /* MyAccountViewController.m */; };
+		B899E79E195ACAD80094920B /* MyAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B899E79C195ACAD80094920B /* MyAccountViewController.xib */; };
 		B89CE9F7191F1CB7008DFF31 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */; };
 		B89CE9F8191F1CB7008DFF31 /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */; };
 		B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CE9FA191F1D01008DFF31 /* BaseViewController.m */; };
@@ -308,9 +327,6 @@
 		B8263C60192C33FC009EFABC /* DeviceSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceSearchViewController.xib; sourceTree = "<group>"; };
 		B8263C63192C54DF009EFABC /* StringUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtil.h; sourceTree = "<group>"; };
 		B8263C64192C54DF009EFABC /* StringUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StringUtil.mm; sourceTree = "<group>"; };
-		B8263C66192C6FFF009EFABC /* SNSlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSlistViewController.h; sourceTree = "<group>"; };
-		B8263C67192C6FFF009EFABC /* SNSlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSlistViewController.m; sourceTree = "<group>"; };
-		B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSlistViewController.xib; sourceTree = "<group>"; };
 		B8263C6B192C8F33009EFABC /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		B8263C6C192C8F33009EFABC /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
 		B8263C6D192C8F33009EFABC /* ErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorViewController.xib; sourceTree = "<group>"; };
@@ -416,9 +432,6 @@
 		B82A95F1192DDE840099E97E /* TCWBGlobalUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWBGlobalUtil.h; sourceTree = "<group>"; };
 		B82A95F2192DDE840099E97E /* TCWBRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCWBRequest.h; sourceTree = "<group>"; };
 		B82A95F3192DDE840099E97E /* TCWBRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCWBRequest.m; sourceTree = "<group>"; };
-		B82A963F192DE0000099E97E /* SNSshareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSshareViewController.h; sourceTree = "<group>"; };
-		B82A9640192DE0000099E97E /* SNSshareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSshareViewController.m; sourceTree = "<group>"; };
-		B82A9641192DE0000099E97E /* SNSshareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSshareViewController.xib; sourceTree = "<group>"; };
 		B82A9644192DE1D80099E97E /* WeiBoShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiBoShare.h; sourceTree = "<group>"; };
 		B82A9645192DE1D80099E97E /* WeiBoShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiBoShare.m; sourceTree = "<group>"; };
 		B82E47D71920CA6A00D0D356 /* AbountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbountViewController.h; sourceTree = "<group>"; };
@@ -559,6 +572,26 @@
 		B8537D66190B9913000F353D /* Util.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Util.mm; sourceTree = "<group>"; };
 		B8537D69190B9970000F353D /* NSData+NSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NSString.h"; sourceTree = "<group>"; };
 		B8537D6A190B9970000F353D /* NSData+NSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NSString.m"; sourceTree = "<group>"; };
+		B85546BF19594B3B00EEEFE6 /* SNSlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSlistViewController.h; sourceTree = "<group>"; };
+		B85546C019594B3B00EEEFE6 /* SNSlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSlistViewController.m; sourceTree = "<group>"; };
+		B85546C119594B3B00EEEFE6 /* SNSlistViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSlistViewController.xib; sourceTree = "<group>"; };
+		B85546C219594B3B00EEEFE6 /* SNSshareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SNSshareViewController.h; sourceTree = "<group>"; };
+		B85546C319594B3B00EEEFE6 /* SNSshareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SNSshareViewController.m; sourceTree = "<group>"; };
+		B85546C419594B3B00EEEFE6 /* SNSshareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SNSshareViewController.xib; sourceTree = "<group>"; };
+		B85546CA19594B9100EEEFE6 /* KaKaTransferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaKaTransferViewController.h; sourceTree = "<group>"; };
+		B85546CB19594B9100EEEFE6 /* KaKaTransferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaKaTransferViewController.m; sourceTree = "<group>"; };
+		B85546CC19594B9100EEEFE6 /* KaKaTransferViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KaKaTransferViewController.xib; sourceTree = "<group>"; };
+		B85546D019596E5400EEEFE6 /* PhoneRechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneRechargeViewController.h; sourceTree = "<group>"; };
+		B85546D119596E5400EEEFE6 /* PhoneRechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneRechargeViewController.m; sourceTree = "<group>"; };
+		B85546D219596E5400EEEFE6 /* PhoneRechargeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneRechargeViewController.xib; sourceTree = "<group>"; };
+		B85546D51959755400EEEFE6 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
+		B85546D61959755400EEEFE6 /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
+		B85546D71959755400EEEFE6 /* AddressBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookViewController.xib; sourceTree = "<group>"; };
+		B85546DE19597F0900EEEFE6 /* TKAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAddressBook.h; sourceTree = "<group>"; };
+		B85546DF19597F0900EEEFE6 /* TKAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAddressBook.m; sourceTree = "<group>"; };
+		B85546E119597F1B00EEEFE6 /* TKContactsMultiPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKContactsMultiPickerController.xib; sourceTree = "<group>"; };
+		B85546E319597F2100EEEFE6 /* TKContactsMultiPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKContactsMultiPickerController.h; sourceTree = "<group>"; };
+		B85546E419597F2100EEEFE6 /* TKContactsMultiPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKContactsMultiPickerController.m; sourceTree = "<group>"; };
 		B85D4BE419210701008241E0 /* CusWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CusWindow.h; sourceTree = "<group>"; };
 		B85D4BE519210701008241E0 /* CusWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CusWindow.m; sourceTree = "<group>"; };
 		B85D4BE719210857008241E0 /* TimedoutUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedoutUtil.h; sourceTree = "<group>"; };
@@ -600,6 +633,21 @@
 		B8788C6A1931C2AA003E8338 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		B8788C6B1931C2AA003E8338 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		B89525EC1934887400F04685 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
+		B899E785195A64E80094920B /* BasicInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoViewController.h; sourceTree = "<group>"; };
+		B899E786195A64E80094920B /* BasicInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInfoViewController.m; sourceTree = "<group>"; };
+		B899E787195A64E80094920B /* BasicInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicInfoViewController.xib; sourceTree = "<group>"; };
+		B899E78A195A6E220094920B /* AccountInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountInfoViewController.h; sourceTree = "<group>"; };
+		B899E78B195A6E220094920B /* AccountInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountInfoViewController.m; sourceTree = "<group>"; };
+		B899E78C195A6E220094920B /* AccountInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoViewController.xib; sourceTree = "<group>"; };
+		B899E78F195A78300094920B /* IDcardUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDcardUploadViewController.h; sourceTree = "<group>"; };
+		B899E790195A78300094920B /* IDcardUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDcardUploadViewController.m; sourceTree = "<group>"; };
+		B899E791195A78300094920B /* IDcardUploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDcardUploadViewController.xib; sourceTree = "<group>"; };
+		B899E794195A9FD60094920B /* CustomSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSelectViewController.h; sourceTree = "<group>"; };
+		B899E795195A9FD60094920B /* CustomSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSelectViewController.m; sourceTree = "<group>"; };
+		B899E796195A9FD60094920B /* CustomSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomSelectViewController.xib; sourceTree = "<group>"; };
+		B899E79A195ACAD80094920B /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
+		B899E79B195ACAD80094920B /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
+		B899E79C195ACAD80094920B /* MyAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyAccountViewController.xib; sourceTree = "<group>"; };
 		B89CE9F4191F1CB7008DFF31 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPasswordViewController.xib; sourceTree = "<group>"; };
@@ -735,6 +783,8 @@
 				B82609CB191E1090003FE222 /* MerchantViewController.h */,
 				B82609CC191E1090003FE222 /* MerchantViewController.m */,
 				B82609CD191E1090003FE222 /* MerchantViewController.xib */,
+				B899E784195A64700094920B /* RealNameAuthentication */,
+				B899E799195ACAC50094920B /* Enchashment */,
 			);
 			path = Merchant;
 			sourceTree = "<group>";
@@ -764,15 +814,12 @@
 		B82609D7191E1A7E003FE222 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B85546CF19596E4200EEEFE6 /* PhoneRecharge */,
+				B85546C919594B7900EEEFE6 /* KaKaTransferAccounts */,
+				B85546BE19594B3B00EEEFE6 /* RecommendUs */,
 				B82609D8191E1A99003FE222 /* ToolsViewController.h */,
 				B82609D9191E1A99003FE222 /* ToolsViewController.m */,
 				B82609DA191E1A99003FE222 /* ToolsViewController.xib */,
-				B8263C66192C6FFF009EFABC /* SNSlistViewController.h */,
-				B8263C67192C6FFF009EFABC /* SNSlistViewController.m */,
-				B8263C68192C6FFF009EFABC /* SNSlistViewController.xib */,
-				B82A963F192DE0000099E97E /* SNSshareViewController.h */,
-				B82A9640192DE0000099E97E /* SNSshareViewController.m */,
-				B82A9641192DE0000099E97E /* SNSshareViewController.xib */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1099,9 +1146,9 @@
 				B843D14B190F77F10000A60A /* CustomView */,
 				B8537C68190B7CDB000F353D /* BaseViewController */,
 				B8537C69190B7CDB000F353D /* Client */,
-				B8537C6B190B7CDB000F353D /* DataModel */,
 				B8537D58190B979F000F353D /* Utility */,
 				B8537D68190B9959000F353D /* ClassCategory */,
+				B85546DD19597EF500EEEFE6 /* DataModel */,
 				B8537C6C190B7CDB000F353D /* Tools */,
 			);
 			name = Common;
@@ -1127,13 +1174,6 @@
 				B8537C81190B7E34000F353D /* Transfer+Parser.m */,
 			);
 			path = Client;
-			sourceTree = "<group>";
-		};
-		B8537C6B190B7CDB000F353D /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DataModel;
 			sourceTree = "<group>";
 		};
 		B8537C6C190B7CDB000F353D /* Tools */ = {
@@ -1404,6 +1444,54 @@
 			path = ClassCategory;
 			sourceTree = "<group>";
 		};
+		B85546BE19594B3B00EEEFE6 /* RecommendUs */ = {
+			isa = PBXGroup;
+			children = (
+				B85546BF19594B3B00EEEFE6 /* SNSlistViewController.h */,
+				B85546C019594B3B00EEEFE6 /* SNSlistViewController.m */,
+				B85546C119594B3B00EEEFE6 /* SNSlistViewController.xib */,
+				B85546C219594B3B00EEEFE6 /* SNSshareViewController.h */,
+				B85546C319594B3B00EEEFE6 /* SNSshareViewController.m */,
+				B85546C419594B3B00EEEFE6 /* SNSshareViewController.xib */,
+			);
+			path = RecommendUs;
+			sourceTree = "<group>";
+		};
+		B85546C919594B7900EEEFE6 /* KaKaTransferAccounts */ = {
+			isa = PBXGroup;
+			children = (
+				B85546CA19594B9100EEEFE6 /* KaKaTransferViewController.h */,
+				B85546CB19594B9100EEEFE6 /* KaKaTransferViewController.m */,
+				B85546CC19594B9100EEEFE6 /* KaKaTransferViewController.xib */,
+			);
+			path = KaKaTransferAccounts;
+			sourceTree = "<group>";
+		};
+		B85546CF19596E4200EEEFE6 /* PhoneRecharge */ = {
+			isa = PBXGroup;
+			children = (
+				B85546E319597F2100EEEFE6 /* TKContactsMultiPickerController.h */,
+				B85546E419597F2100EEEFE6 /* TKContactsMultiPickerController.m */,
+				B85546E119597F1B00EEEFE6 /* TKContactsMultiPickerController.xib */,
+				B85546D019596E5400EEEFE6 /* PhoneRechargeViewController.h */,
+				B85546D119596E5400EEEFE6 /* PhoneRechargeViewController.m */,
+				B85546D219596E5400EEEFE6 /* PhoneRechargeViewController.xib */,
+				B85546D51959755400EEEFE6 /* AddressBookViewController.h */,
+				B85546D61959755400EEEFE6 /* AddressBookViewController.m */,
+				B85546D71959755400EEEFE6 /* AddressBookViewController.xib */,
+			);
+			path = PhoneRecharge;
+			sourceTree = "<group>";
+		};
+		B85546DD19597EF500EEEFE6 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				B85546DE19597F0900EEEFE6 /* TKAddressBook.h */,
+				B85546DF19597F0900EEEFE6 /* TKAddressBook.m */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
 		B85D4BE3192106E2008241E0 /* CusWindow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1486,6 +1574,35 @@
 				B8788C5F1931BF1E003E8338 /* JSONRepresentation.h */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		B899E784195A64700094920B /* RealNameAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				B899E785195A64E80094920B /* BasicInfoViewController.h */,
+				B899E786195A64E80094920B /* BasicInfoViewController.m */,
+				B899E787195A64E80094920B /* BasicInfoViewController.xib */,
+				B899E78A195A6E220094920B /* AccountInfoViewController.h */,
+				B899E78B195A6E220094920B /* AccountInfoViewController.m */,
+				B899E78C195A6E220094920B /* AccountInfoViewController.xib */,
+				B899E78F195A78300094920B /* IDcardUploadViewController.h */,
+				B899E790195A78300094920B /* IDcardUploadViewController.m */,
+				B899E791195A78300094920B /* IDcardUploadViewController.xib */,
+				B899E794195A9FD60094920B /* CustomSelectViewController.h */,
+				B899E795195A9FD60094920B /* CustomSelectViewController.m */,
+				B899E796195A9FD60094920B /* CustomSelectViewController.xib */,
+			);
+			path = RealNameAuthentication;
+			sourceTree = "<group>";
+		};
+		B899E799195ACAC50094920B /* Enchashment */ = {
+			isa = PBXGroup;
+			children = (
+				B899E79A195ACAD80094920B /* MyAccountViewController.h */,
+				B899E79B195ACAD80094920B /* MyAccountViewController.m */,
+				B899E79C195ACAD80094920B /* MyAccountViewController.xib */,
+			);
+			path = Enchashment;
 			sourceTree = "<group>";
 		};
 		B8C66C02192D82EC0050BE5A /* MJRefresh */ = {
@@ -1635,14 +1752,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B82A95FE192DDE840099E97E /* compose#hover@2x.png in Resources */,
+				B85546E219597F1B00EEEFE6 /* TKContactsMultiPickerController.xib in Resources */,
 				B82A9602192DDE840099E97E /* composeAthover@2x.png in Resources */,
 				B8537C3A190B7769000F353D /* Images.xcassets in Resources */,
 				B8F12C81192EEFD5008928C8 /* CashTableViewCell.xib in Resources */,
 				B82A961A192DDE840099E97E /* composequxiaobtn@2x.png in Resources */,
-				B8263C6A192C6FFF009EFABC /* SNSlistViewController.xib in Resources */,
 				B82A9611192DDE840099E97E /* composeImageDel.png in Resources */,
 				B82A9618192DDE840099E97E /* composepic_biankuang@2x.png in Resources */,
 				B8D717E8192B330000868678 /* help.html in Resources */,
+				B899E789195A64E80094920B /* BasicInfoViewController.xib in Resources */,
 				B8537D24190B7EC4000F353D /* alertView_button_gray_pressed.png in Resources */,
 				B813BB13192B2BD700654A45 /* WebViewViewController.xib in Resources */,
 				B8ACABD219381AA800493D9B /* SplitViewController.xib in Resources */,
@@ -1650,9 +1768,11 @@
 				B8537D25190B7EC4000F353D /* alertView_button_gray_pressed@2x.png in Resources */,
 				B813BAC3192AF25F00654A45 /* SwipeCardNoticeViewController.xib in Resources */,
 				B8537D23190B7EC4000F353D /* alertView_button_gray@2x.png in Resources */,
+				B85546C819594B3B00EEEFE6 /* SNSshareViewController.xib in Resources */,
 				B82A961B192DDE840099E97E /* composereturnbtn.png in Resources */,
 				B8537D20190B7EC4000F353D /* alertView_bg.png in Resources */,
 				B839FDA71934E6A200EECA18 /* SuccessViewController.xib in Resources */,
+				B899E798195A9FD60094920B /* CustomSelectViewController.xib in Resources */,
 				B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */,
 				B8537D29190B7EC4000F353D /* alertView_button_green_pressed@2x.png in Resources */,
 				B82A9606192DDE840099E97E /* composeCamerahover@2x.png in Resources */,
@@ -1662,7 +1782,9 @@
 				B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */,
 				B82A9600192DDE840099E97E /* composeAt@2x.png in Resources */,
 				B82A9620192DDE840099E97E /* composesentbtnhover@2x.png in Resources */,
+				B899E78E195A6E220094920B /* AccountInfoViewController.xib in Resources */,
 				B843D14A190F740A0000A60A /* LockViewController.xib in Resources */,
+				B85546CE19594B9100EEEFE6 /* KaKaTransferViewController.xib in Resources */,
 				B82A9603192DDE840099E97E /* composeCameraEnable.png in Resources */,
 				B82A961D192DDE840099E97E /* composesentbtn.png in Resources */,
 				B82A9610192DDE840099E97E /* composeiconbg@2x.png in Resources */,
@@ -1674,7 +1796,6 @@
 				B82E47DB1920CA6A00D0D356 /* AbountViewController.xib in Resources */,
 				B8537D2A190B7EC4000F353D /* alertView_loading@2x.png in Resources */,
 				B82A9630192DDE840099E97E /* test@2x.png in Resources */,
-				B82A9643192DE0000099E97E /* SNSshareViewController.xib in Resources */,
 				B82A9601192DDE840099E97E /* composeAthover.png in Resources */,
 				B82609CA191E103C003FE222 /* InputMoneyViewController.xib in Resources */,
 				B82A960A192DDE840099E97E /* composedingweihover@2x.png in Resources */,
@@ -1709,6 +1830,7 @@
 				B82A95FA192DDE840099E97E /* comopose#@2x.png in Resources */,
 				B82A9615192DDE840099E97E /* composeloadingbtn.png in Resources */,
 				B82A960D192DDE840099E97E /* composehuatiinput.png in Resources */,
+				B85546C619594B3B00EEEFE6 /* SNSlistViewController.xib in Resources */,
 				B82A95FF192DDE840099E97E /* composeAt.png in Resources */,
 				B8537D0F190B7EC4000F353D /* SVProgressHUD.bundle in Resources */,
 				B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */,
@@ -1719,11 +1841,14 @@
 				B82A95F4192DDE840099E97E /* SinaWeibo.bundle in Resources */,
 				B82A961F192DDE840099E97E /* composesentbtnhover.png in Resources */,
 				B82A960C192DDE840099E97E /* composeEmotionBg@2x.png in Resources */,
+				B85546D91959755400EEEFE6 /* AddressBookViewController.xib in Resources */,
 				B8537D21190B7EC4000F353D /* alertView_bg@2x.png in Resources */,
 				B82A961E192DDE840099E97E /* composesentbtn@2x.png in Resources */,
 				B8263C62192C33FC009EFABC /* DeviceSearchViewController.xib in Resources */,
 				B82A95FD192DDE840099E97E /* compose#hover.png in Resources */,
+				B899E793195A78300094920B /* IDcardUploadViewController.xib in Resources */,
 				B82A960B192DDE840099E97E /* composeEmotionBg.png in Resources */,
+				B85546D419596E5400EEEFE6 /* PhoneRechargeViewController.xib in Resources */,
 				B82609CF191E1090003FE222 /* MerchantViewController.xib in Resources */,
 				B82A9614192DDE840099E97E /* composeImageFrame@2x.png in Resources */,
 				B82A9613192DDE840099E97E /* composeImageFrame.png in Resources */,
@@ -1734,6 +1859,7 @@
 				B82A9632192DDE840099E97E /* Language.strings in Resources */,
 				B82A960E192DDE840099E97E /* composehuatiinput@2x.png in Resources */,
 				B82609E1191E1AC1003FE222 /* TradeListViewController.xib in Resources */,
+				B899E79E195ACAD80094920B /* MyAccountViewController.xib in Resources */,
 				B8788C3B1931BA2C003E8338 /* BPushConfig.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1754,11 +1880,11 @@
 			files = (
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
 				6C1B0801192233F00023FCD8 /* Test.m in Sources */,
+				B899E792195A78300094920B /* IDcardUploadViewController.m in Sources */,
 				B8788C3E1931BA2C003E8338 /* OpenUDID.m in Sources */,
 				B813BB0D192B25C600654A45 /* FeedBckViewController.m in Sources */,
 				B8D717E3192B2D7500868678 /* SKPSMTPMessage.m in Sources */,
 				B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */,
-				B82A9642192DE0000099E97E /* SNSshareViewController.m in Sources */,
 				B8F788A619344CFE00C07BE5 /* PaintMaskView.m in Sources */,
 				B82A963D192DDE840099E97E /* TCWBEngine.m in Sources */,
 				B85D4BED19211CD7008241E0 /* ChangePasswordViewController.m in Sources */,
@@ -1771,6 +1897,7 @@
 				B8537D06190B7EC4000F353D /* JSBadgeView.m in Sources */,
 				B82A963A192DDE840099E97E /* AuthorizeDelegate.m in Sources */,
 				B82F7EA019371205007175FD /* RegisterViewController.m in Sources */,
+				B85546E019597F0900EEEFE6 /* TKAddressBook.m in Sources */,
 				B843D155190F77F10000A60A /* NormalCircle.m in Sources */,
 				B8788C671931BF1E003E8338 /* CJSONDeserializer.m in Sources */,
 				B82A95F7192DDE840099E97E /* SinaWeiboRequest.m in Sources */,
@@ -1786,6 +1913,7 @@
 				B82E962019331EF400C860EF /* MyTabBarController.m in Sources */,
 				B8537C75190B7CDB000F353D /* AppDelegate.m in Sources */,
 				B8C66C0E192D82EC0050BE5A /* MJRefreshBaseView.m in Sources */,
+				B899E797195A9FD60094920B /* CustomSelectViewController.m in Sources */,
 				B8537D05190B7EC4000F353D /* NSString+HTML.m in Sources */,
 				B8D717E0192B2D7500868678 /* HSK_CFUtilities.m in Sources */,
 				B8537D00190B7EC4000F353D /* AFXMLRequestOperation.m in Sources */,
@@ -1794,6 +1922,7 @@
 				B8537C2B190B7769000F353D /* main.m in Sources */,
 				B82A95F6192DDE840099E97E /* SinaWeiboAuthorizeView.m in Sources */,
 				B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */,
+				B899E79D195ACAD80094920B /* MyAccountViewController.m in Sources */,
 				B82A9587192DA2DF0099E97E /* DeviceHelper+SwipeCard.m in Sources */,
 				B8788C6C1931C2AA003E8338 /* Base64.m in Sources */,
 				B813BB12192B2BD700654A45 /* WebViewViewController.m in Sources */,
@@ -1811,7 +1940,6 @@
 				B8788C661931BF1E003E8338 /* NSDictionary_JSONExtensions.m in Sources */,
 				B8537D67190B9913000F353D /* Util.mm in Sources */,
 				B82A9633192DDE840099E97E /* NSObject+SBJSON.m in Sources */,
-				B8263C69192C6FFF009EFABC /* SNSlistViewController.m in Sources */,
 				B8788C3C1931BA2C003E8338 /* GzipCompressor.m in Sources */,
 				B8537D13190B7EC4000F353D /* TBXML.m in Sources */,
 				B82609C9191E103C003FE222 /* InputMoneyViewController.m in Sources */,
@@ -1819,11 +1947,15 @@
 				B8D717E1192B2D7500868678 /* NSData+Base64Additions.m in Sources */,
 				B8537D04190B7EC4000F353D /* GTMNSString+HTML.m in Sources */,
 				B8537CFF190B7EC4000F353D /* AFURLConnectionOperation.m in Sources */,
+				B85546CD19594B9100EEEFE6 /* KaKaTransferViewController.m in Sources */,
+				B899E788195A64E80094920B /* BasicInfoViewController.m in Sources */,
 				B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */,
 				B843D158190F77F10000A60A /* SPLockScreen.m in Sources */,
+				B85546D81959755400EEEFE6 /* AddressBookViewController.m in Sources */,
 				B81C9F99190CF834004239FF /* DeviceHelper.m in Sources */,
 				B85D4BE619210701008241E0 /* CusWindow.m in Sources */,
 				B8D717E2192B2D7500868678 /* NSStream+SKPSMTPExtensions.m in Sources */,
+				B85546C519594B3B00EEEFE6 /* SNSlistViewController.m in Sources */,
 				B8788C641931BF1E003E8338 /* CJSONSerializedData.m in Sources */,
 				B8D717DF192B2D7500868678 /* Base64Transcoder.m in Sources */,
 				B813BAC2192AF25F00654A45 /* SwipeCardNoticeViewController.m in Sources */,
@@ -1834,6 +1966,7 @@
 				B82A95F8192DDE840099E97E /* FileStreame.m in Sources */,
 				B82A9638192DDE840099E97E /* SBJsonWriter.m in Sources */,
 				B8537D39190B8150000F353D /* StaticFormatTools.m in Sources */,
+				B85546D319596E5400EEEFE6 /* PhoneRechargeViewController.m in Sources */,
 				B82A963E192DDE840099E97E /* TCWBRequest.m in Sources */,
 				B8F12C7C192EDF51008928C8 /* ScrollSelectView.m in Sources */,
 				B8537D10190B7EC4000F353D /* SVProgressHUD.m in Sources */,
@@ -1845,9 +1978,11 @@
 				B8537D2C190B7EC4000F353D /* XYAlertViewManager.m in Sources */,
 				B82A9634192DDE840099E97E /* NSString+SBJSON.m in Sources */,
 				B8537D2B190B7EC4000F353D /* XYAlertView.m in Sources */,
+				B899E78D195A6E220094920B /* AccountInfoViewController.m in Sources */,
 				B89CE9FF191F271C008DFF31 /* TradeCell.m in Sources */,
 				B8537D12190B7EC4000F353D /* TBXML+HTTP.m in Sources */,
 				B8537D3E190B8163000F353D /* StaticTools+UIOperation.m in Sources */,
+				B85546E519597F2100EEEFE6 /* TKContactsMultiPickerController.m in Sources */,
 				B8537D07190B7EC4000F353D /* JSONKit.m in Sources */,
 				B8537CFC190B7EC4000F353D /* AFJSONRequestOperation.m in Sources */,
 				B8537D3B190B8150000F353D /* StaticUITools.m in Sources */,
@@ -1858,6 +1993,7 @@
 				B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */,
 				B839FDA61934E6A200EECA18 /* SuccessViewController.m in Sources */,
 				B8537D60190B982C000F353D /* SecurityUtil.m in Sources */,
+				B85546C719594B3B00EEEFE6 /* SNSshareViewController.m in Sources */,
 				B82609CE191E1090003FE222 /* MerchantViewController.m in Sources */,
 				B8C66C10192D82EC0050BE5A /* MJRefreshFooterView.m in Sources */,
 				B8788C681931BF1E003E8338 /* CJSONScanner.m in Sources */,

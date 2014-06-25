@@ -84,6 +84,16 @@
         {
             return [self getCustomMess:rootElement];
         }
+        else if([reqName isEqualToString:@"199031"]||//获取省份
+                [reqName isEqualToString:@"199032"])//获取城市
+        {
+            return [self getProvinceList:rootElement];
+        }
+        else if([reqName isEqualToString:@"199035"]||//获取银行列表
+                [reqName isEqualToString:@"199034"]) //获取支行列表
+        {
+            return [self getBankList:rootElement];
+        }
     }
     
      return nil;
@@ -277,4 +287,80 @@
     
     return dict;
 }
+
+#pragma mark -获取省份列表
+- (id) getProvinceList:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+     
+        TBXMLElement *listElement = [TBXML childElementNamed:@"TRANDETAILS" parentElement:bodyElement];
+        if (listElement)
+        {
+            TBXMLElement *itemElement = [TBXML childElementNamed:@"TRANDETAIL" parentElement:listElement];
+            
+            while (itemElement) {
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                
+                
+                
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"AREANAM" parentElement:itemElement]] forKey:@"name"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"AREACOD" parentElement:itemElement]] forKey:@"code"];
+                
+             
+                
+                [arr addObject:dict];
+                
+                
+                itemElement = [TBXML nextSiblingNamed:@"TRANDETAIL" searchFromElement:itemElement];
+            }
+        }
+    }
+    [dict setObject:arr forKey:@"LIST"];
+    
+    return dict;
+}
+
+#pragma mark -获取银行列表
+- (id) getBankList:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+        
+        TBXMLElement *listElement = [TBXML childElementNamed:@"TRANDETAILS" parentElement:bodyElement];
+        if (listElement)
+        {
+            TBXMLElement *itemElement = [TBXML childElementNamed:@"TRANDETAIL" parentElement:listElement];
+            
+            while (itemElement) {
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                
+                
+                
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"BANKNAM" parentElement:itemElement]] forKey:@"name"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"BANKCOD" parentElement:itemElement]] forKey:@"code"];
+                
+                [arr addObject:dict];
+                
+                itemElement = [TBXML nextSiblingNamed:@"TRANDETAIL" searchFromElement:itemElement];
+            }
+        }
+    }
+    
+    [dict setObject:arr forKey:@"LIST"];
+    
+    return dict;
+}
+
+
 @end

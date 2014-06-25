@@ -8,9 +8,13 @@
 
 #import "ToolsViewController.h"
 #import "SNSlistViewController.h"
+#import "KaKaTransferViewController.h"
+#import "PhoneRechargeViewController.h"
 
-#define Button_Tag_Weibo   100
-#define Button_Tag_Tuijian 101
+#define Button_Tag_Weibo   102
+#define Button_Tag_KaKa    103
+#define Button_Tag_Tuijian 105
+#define Button_Tag_PhoneRecharge 107
 
 @interface ToolsViewController ()
 
@@ -75,11 +79,25 @@
             
         }
             break;
-        case Button_Tag_Tuijian:
+        case Button_Tag_Tuijian: //推荐我们
         {
             SNSlistViewController *snsListController = [[SNSlistViewController alloc]init];
             snsListController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:snsListController animated:YES];
+        }
+            break;
+        case Button_Tag_KaKa: //卡卡转账
+        {
+            KaKaTransferViewController *kakaTransferController = [[KaKaTransferViewController alloc]init];
+            kakaTransferController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:kakaTransferController animated:YES];
+        }
+            break;
+        case Button_Tag_PhoneRecharge://手机充值
+        {
+            PhoneRechargeViewController *phoneRechareController = [[PhoneRechargeViewController alloc]init];
+            phoneRechareController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:phoneRechareController animated:YES];
         }
             break;
             
