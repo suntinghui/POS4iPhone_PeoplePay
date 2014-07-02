@@ -26,6 +26,7 @@
     float keyBoardLastHeight;
     int currentEditIndex;
     NSMutableDictionary *resultDict; //保存输入内容
+    NSArray *keys;
 }
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (strong, nonatomic) NSArray *provins; //保存省份列表

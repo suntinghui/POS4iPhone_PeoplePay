@@ -19,10 +19,12 @@
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
 
-@interface TradeDetailViewController : BaseViewController<UIAlertViewDelegate>
+@interface TradeDetailViewController : BaseViewController<UIAlertViewDelegate,
+    UITextFieldDelegate>
 {
     
 }
+@property (weak, nonatomic) IBOutlet UIScrollView *scrView;
 @property (weak, nonatomic) IBOutlet UILabel *stateLabel;  //状态
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel;  //金额
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;   //日期
@@ -30,8 +32,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *merchantNameLabel; //商户姓名
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (weak, nonatomic) IBOutlet UIButton *candleBtn;
-@property (assign, nonatomic) UIViewController *fatherController;
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTxtField;
+@property (weak, nonatomic) IBOutlet UIImageView *inputBgView;
 
+@property (assign, nonatomic) UIViewController *fatherController;
 @property (strong, nonatomic) NSString *tidStr;
 @property (strong, nonatomic) NSString *pidStr;
 @property (strong, nonatomic) NSDictionary *infoDict;

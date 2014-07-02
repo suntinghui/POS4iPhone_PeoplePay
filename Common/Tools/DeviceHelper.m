@@ -77,7 +77,6 @@ static DeviceHelper *instance = nil;
 
 -(void)onTradeInfo:(NSString*)mac andpsam:(NSString*)psam andtids:(NSString*)tids
 {
-//    [SVProgressHUD dismiss];
     
     NSLog(@"mac:%@\n,psam:%@\n,tids:%@\n",mac,psam,tids);
     
@@ -90,12 +89,13 @@ static DeviceHelper *instance = nil;
         self.onePrameBlock(self.infoDict);
         self.onePrameBlock = nil;
     }
+    
+ 
 }
 
 -(void)onError:(NSString*)errmsg
 {
-//    [SVProgressHUD dismiss];
-    
+
     if (self.failBlock)
     {
         self.failBlock(errmsg);
@@ -108,9 +108,7 @@ static DeviceHelper *instance = nil;
 }
 
 -(void)doSignInStatus:(NSString *) status
-{
-//    [SVProgressHUD dismiss];
-    
+{    
     if (self.onePrameBlock)
     {
         self.onePrameBlock(status);
@@ -122,8 +120,6 @@ static DeviceHelper *instance = nil;
 #pragma mark - devicehelper 内部函数
 - (void)doGetTerminalID
 {
-    
-//    [SVProgressHUD dismiss];
     
     NSString *idStr = [qpostLib getTerminalID];
     NSString *pidStr =[qpostLib getPsamID];
@@ -183,9 +179,7 @@ static DeviceHelper *instance = nil;
  *  @param failBlock 获取失败的回调 传nil时采用默认处理：弹框提示错误信息
  */
 - (void)getTerminalIDWithComplete:(OnePramaBlock)Sucblock Fail:(OnePramaBlock)failBlock
-{
-//    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
-    
+{    
     self.onePrameBlock = Sucblock;
     self.failBlock = failBlock;
 
@@ -203,7 +197,7 @@ static DeviceHelper *instance = nil;
  */
 -(void)doSignInWithMess:(NSString*)mess Complete:(OnePramaBlock)block Fail:(OnePramaBlock)failBlock
 {
-//    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
+
     NSLog(@"设备开始签到");
     self.onePrameBlock = block;
     self.failBlock = failBlock;
@@ -238,13 +232,12 @@ static DeviceHelper *instance = nil;
          Complete:(OnePramaBlock)sucBlock
           andFail:(OnePramaBlock)failBlock
 {
-//    [SVProgressHUD showWithStatus:@"正在操作设备..." maskType:SVProgressHUDMaskTypeClear];
     
     NSLog(@"发送刷卡请求");
     self.infoDict = [[NSMutableDictionary alloc]init];
     self.onePrameBlock = sucBlock;
     self.failBlock = failBlock;
-    
+
     int state = [qpostLib doTradeEx:amountString andType:type andRandom:random andextraString:extraString andTimesOut:timeout];
     
     

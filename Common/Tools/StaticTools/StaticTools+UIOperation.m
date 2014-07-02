@@ -91,9 +91,10 @@
 {
     ErrorViewController *errController = [[ErrorViewController alloc]initWithNibName:@"ErrorViewController" bundle:nil];
     errController.clickBlock = block;
+    errController.messStr = mess;
     UINavigationController *rootNav = (UINavigationController*)ApplicationDelegate.window.rootViewController;
     [rootNav pushViewController:errController animated:YES];
-    errController.messLabel.text = mess;
+    
 }
 
 /**

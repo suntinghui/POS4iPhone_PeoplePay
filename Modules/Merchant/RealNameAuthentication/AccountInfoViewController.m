@@ -15,10 +15,7 @@
 #define Button_Tag_BankPlaceSelect  103
 #define Button_Tag_Commit           104
 
-#define kProvince @"province"
-#define kCity     @"city"
-#define kBank     @"bank"
-#define kBankPlace     @"bankplace"
+
 
 @interface AccountInfoViewController ()
 
@@ -44,7 +41,7 @@
     [StaticTools setExtraCellLineHidden:self.listTableView];
     
     titles = @[@"开户名",@"开户地点",@"开户银行",@"银行网点",@"银行账户"];
-    
+    keys = @[kCardName,kProvince,kCity,kBank,kBankPlace,kCardNumber];
     resultDict = [[NSMutableDictionary alloc]init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
@@ -56,17 +53,32 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+}
+
+- (void)dealloc
+{
     
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
-
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+#pragma mark -功能函数
+- (void)resetTabelView
+{
+    [self.view endEditing:YES];
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    
+    self.listTableView.contentOffset=CGPointMake(0,0);
+    self.listTableView.contentSize = CGSizeMake(self.listTableView.frame.size.width, self.listTableView.frame.size.height-200);
+    
+    [UIView commitAnimations];
+}
 #pragma mark- http请求
 /**
  *  获取省份数据
@@ -114,8 +126,6 @@
     
     [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在获取省份..." completeBlock:^(NSArray *operations) {
     }];
-    
-
 }
 
 /**
@@ -292,8 +302,14 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
-
+    if (textField.tag == 100) //开户名
+    {
+        [resultDict setObject:textField.text forKey:kCardName];
+    }
+    else if(textField.tag == 104) //银行账户
+    {
+        [resultDict setObject:textField.text forKey:kCardNumber];
+    }
     
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -316,33 +332,24 @@
 {
     
     NSValue  *valu_=[notification.userInfo objectForKey:@"UIKeyboardBoundsUserInfoKey"];
-    
     CGRect rectForkeyBoard=[valu_ CGRectValue];
-    
-    //    self.listTableView.contentSize=CGSizeMake(self.listTableView.contentSize.width,self.listTableView.contentSize.height+rectForkeyBoard.size.height-keyBoardLastHeight);
-    
     keyBoardLastHeight=rectForkeyBoard.size.height;
     
     NSIndexPath * indexPath=[NSIndexPath indexPathForRow:currentEditIndex inSection:0];
-    
     CGRect rectForRow=[self.listTableView rectForRowAtIndexPath:indexPath];
     
-    float touchSetY=(IsIPhone5?548:460)-rectForkeyBoard.size.height-rectForRow.size.height-self.listTableView.frame.origin.y-49;//44为navigationController的高度,如果没有就不用减去44
+    float touchSetY=(IsIPhone5?548:460)-rectForkeyBoard.size.height-rectForRow.size.height-self.listTableView.frame.origin.y-49;
     if (rectForRow.origin.y>touchSetY) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         self.listTableView.contentOffset=CGPointMake(0,rectForRow.origin.y-touchSetY);
         [UIView commitAnimations];
     }
-    
-    
 }
 
 -(void)keyboardWasHidden:(NSNotification *)notification
 {
-    
     keyBoardLastHeight=0;
-    
 }
 
 #pragma mark -按钮点击事件
@@ -446,26 +453,25 @@
         case Button_Tag_Commit:
         {
             
-            [self.view endEditing:YES];
+            [self resetTabelView];
             
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.3];
+            for (int i=0; i<keys.count; i++)
+            {
+                NSString *key = keys[i];
+                if (resultDict[key]==nil)
+                {
+                    int j=i;
+                    if (j>=2)
+                    {
+                        j=i-1;
+                    }
+                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[j]]];
+                    return;
+                }
+            }
             
-            self.listTableView.contentOffset=CGPointMake(0,0);
-            self.listTableView.contentSize = CGSizeMake(self.listTableView.frame.size.width, self.listTableView.frame.size.height-200);
-            
-            [UIView commitAnimations];
-            
-//            for (int i=0; i<results.count; i++)
-//            {
-//                NSDictionary *dict = results[i];
-//                if ([StaticTools isEmptyString:dict[@"InputContent"]])
-//                {
-//                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[i]]];
-//                    break;
-//                }
-//            }
-            
+            [APPDataCenter.comDict addEntriesFromDictionary:resultDict];
+    
             IDcardUploadViewController *idCardUploadController = [[IDcardUploadViewController alloc]init];
             [self.navigationController pushViewController:idCardUploadController animated:YES];
             
@@ -495,6 +501,14 @@
     if (indexPath.row==titles.count)
     {
         return 70;
+    }
+    else if(indexPath.row==2||indexPath.row==3)
+    {
+        NSDictionary *dict = indexPath.row==2?resultDict[kBank]:resultDict[kBankPlace];
+        float height = [StaticTools getLabelHeight:dict[@"name"]  defautWidth:200 defautHeight:480 fontSize:16];
+        height=height<30?30:height;
+        
+        return height+20;
     }
     return 50;
 }
@@ -549,11 +563,11 @@
             UIButton *CityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [CityBtn setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
             [CityBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
-            CityBtn.frame = CGRectMake(200, 11, 100, 35);
+            CityBtn.frame = CGRectMake(210, 11, 100, 35);
             CityBtn.tag = Button_Tag_CitySelect;
             [cell.contentView addSubview:CityBtn];
             
-            UILabel *cityLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 11, 90, 30)];
+            UILabel *cityLabel = [[UILabel alloc]initWithFrame:CGRectMake(210, 11, 90, 30)];
             cityLabel.backgroundColor = [UIColor clearColor];
             cityLabel.font = [UIFont systemFontOfSize:16];
             cityLabel.textAlignment = UITextAlignmentCenter;
@@ -564,6 +578,47 @@
                 cityLabel.text = cityDict[@"name"];
             }
             
+        }
+        else if(indexPath.row==2||indexPath.row==3)
+        {
+            
+            UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(85, 10, 200, 40)];
+            textLabel.backgroundColor = [UIColor clearColor];
+            textLabel.font = [UIFont systemFontOfSize:16];
+            textLabel.numberOfLines = 0;
+            textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+            [cell.contentView addSubview:textLabel];
+            
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            button.frame = CGRectMake(80, 8, 230, 35);
+            [cell.contentView insertSubview:button belowSubview:textLabel];
+            if (indexPath.row==2)
+            {
+                button.tag = Button_Tag_BankSelect;
+                NSDictionary *dict = resultDict[kBank];
+                if (dict!=nil)
+                {
+                    textLabel.text = dict[@"name"];
+                }
+                
+            }
+            else
+            {
+                button.tag = Button_Tag_BankPlaceSelect;
+                NSDictionary *dict = resultDict[kBankPlace];
+                if (dict!=nil)
+                {
+                    textLabel.text = dict[@"name"];
+                }
+            }
+            
+            float height = [StaticTools getLabelHeight:textLabel.text defautWidth:textLabel.frame.size.width defautHeight:480 fontSize:16];
+            height=height<30?30:height;
+            textLabel.frame = CGRectMake(textLabel.frame.origin.x, textLabel.frame.origin.y, textLabel.frame.size.width, height);
+            button.frame = CGRectMake(button.frame.origin.x, button.frame.origin.y, button.frame.size.width, textLabel.frame.size.height+5);
+
         }
         else
         {
@@ -583,42 +638,15 @@
                 if (indexPath.row==0)
                 {
                    inputTextField.placeholder = @"请输入开户名";
+                    inputTextField.text = resultDict[kCardName];
                 }
                 else
                 {
                     inputTextField.placeholder = @"请输入银行账号";
-                }
-            }
-            if (indexPath.row==2||indexPath.row==3)
-            {
-                
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-                [button setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
-                [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
-                button.frame = CGRectMake(80, 8, 230, 35);
-                [cell.contentView insertSubview:button belowSubview:inputTextField];
-                if (indexPath.row==2)
-                {
-                    button.tag = Button_Tag_BankSelect;
-                    NSDictionary *dict = resultDict[kBank];
-                    if (dict!=nil)
-                    {
-                        inputTextField.text = dict[@"name"];
-                    }
+                    inputTextField.text = resultDict[kCardNumber];
+                    inputTextField.keyboardType = UIKeyboardTypeNumberPad;
                     
                 }
-                else
-                {
-                    button.tag = Button_Tag_BankPlaceSelect;
-                    NSDictionary *dict = resultDict[kBankPlace];
-                    if (dict!=nil)
-                    {
-                        inputTextField.text = dict[@"name"];
-                    }
-                }
-                
-                inputTextField.frame  = CGRectMake(85, 14, 210, 30);
-                inputTextField.enabled = NO;
             }
         }
     }
@@ -637,9 +665,7 @@
         
     }
     
-    
     return cell;
-    
 }
 
 

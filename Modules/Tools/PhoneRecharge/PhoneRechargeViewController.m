@@ -8,10 +8,13 @@
 
 #import "PhoneRechargeViewController.h"
 #import "TKAddressBook.h"
+#import "StringUtil.h"
 
 #define Button_Tag_SelectPhone  100
 #define Button_Tag_SelectMoney  101
 #define Button_Tag_Commit 102
+
+#define kLastRechargPhone @"LastRechargPhone" //上一次充值的手机号
 
 @interface PhoneRechargeViewController ()
 
@@ -34,8 +37,18 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"手机充值";
     
-    moneys = @[@"10元",@"50元",@"100元"];
+    moneys = @[@"1元",@"50元",@"100元"];
     self.moneyLabel.text = moneys[0];
+    
+    NSString *lastPhone = [UserDefaults objectForKey:kLastRechargPhone];
+    if (lastPhone==nil)
+    {
+        self.phoneTxtField.text = [UserDefaults objectForKey:KUSERNAME];
+    }
+    else
+    {
+        self.phoneTxtField.text = lastPhone;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,7 +85,68 @@
             break;
         case Button_Tag_Commit: //刷卡
         {
+            NSString *money = [self.moneyLabel.text stringByReplacingOccurrencesOfString:@"元" withString:@""];
+            NSString *moneyStr = [StringUtil amount2String:money];
             
+            [[DeviceHelper shareDeviceHelper]swipeCardWithControler:self
+                                                               type:CSwipteCardTypePhoneRecharge
+                                                              money:money
+                                                      otherParamter:@{kTranceCode:@"708103"}
+                                                           sucBlock:^(id mess) {
+                
+            NSDictionary *dict = @{kTranceCode:@"708103",
+                                   kParamName:@{@"SELLTEL_B":[UserDefaults objectForKey:KUSERNAME],
+                                                @"phoneNumber_B":self.phoneTxtField.text, //充值手机号
+                                                @"Track2_B":mess[kCardTrac], //磁道信息
+                                                @"TXNAMT_B":moneyStr, //交易金额
+                                                @"POSTYPE_B":@"1",    //刷卡器类型
+                                                @"CHECKX":@"0.0",     //当前经度
+                                                @"CHECKY_B":@"0.0",   //当前纬度
+                                                @"TERMINALNUMBER_B":[mess[kPsamNum] stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"],//机器psam号
+                                                @"CRDNOJLN_B":mess[kCardPin],
+                                                @"MAC_B":mess[kCardMc],
+                                                @"TTxnTm_B":mess[@"TTXNTM"], //交易时间
+                                                @"TTxnDt_B":mess[@"TTXNDT"], //交易日期
+                                                @"TSeqNo_B":mess[@"TSEQNO"]
+                                                 }};
+            
+            AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                           prompt:nil
+                                                                                          success:^(id obj)
+                                                 {
+                                                     if ([obj isKindOfClass:[NSDictionary class]])
+                                                     {
+                                                         if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                         {
+                                                          
+                                                             //保存充值的手机号 下一次自动填充
+                                                             [UserDefaults setObject:self.phoneTxtField.text forKey:kLastRechargPhone];
+                                                             [UserDefaults synchronize];
+                                                             
+                                                             [SVProgressHUD showSuccessWithStatus:@"充值成功"];
+                                                             [self.navigationController popViewControllerAnimated:YES];
+                                                             
+                                                         }
+                                                         else
+                                                         {
+                                                             [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                         }
+                                                         
+                                                     }
+                                                     
+                                                 }
+                                                                                          failure:^(NSString *errMsg)
+                                                 {
+                                                     [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                                     
+                                                 }];
+            
+            
+            
+            [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+            }];
+                
+            }];
         }
             break;
             

@@ -13,12 +13,12 @@
 @end
 
 @implementation TKContactsMultiPickerController
-@synthesize tableView = _tableView;
-@synthesize delegate = _delegate;
-@synthesize savedSearchTerm = _savedSearchTerm;
+@synthesize tableView             = _tableView;
+@synthesize delegate              = _delegate;
+@synthesize savedSearchTerm       = _savedSearchTerm;
 @synthesize savedScopeButtonIndex = _savedScopeButtonIndex;
-@synthesize searchWasActive = _searchWasActive;
-@synthesize searchBar = _searchBar;
+@synthesize searchWasActive       = _searchWasActive;
+@synthesize searchBar             = _searchBar;
 
 #pragma mark -
 #pragma mark Initialization
@@ -309,6 +309,7 @@
         addressBook = (TKAddressBook *)[_filteredListContent objectAtIndex:indexPath.row];
 	else
         addressBook = (TKAddressBook *)[[_listContent objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    cell.textLabel.font = [UIFont systemFontOfSize:16];
     
     if ([[addressBook.name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length] > 0) {
         cell.textLabel.text = addressBook.name;

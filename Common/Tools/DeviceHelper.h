@@ -23,6 +23,15 @@
 typedef void(^NoPramaBlock)();
 typedef void(^OnePramaBlock)(id mess);
 
+typedef enum  //刷卡操作类型
+{
+    CSwipteCardTypeConsume,       //消费
+    CSwipteCardTypeConsumeCancel, //消费撤销
+    CSwipteCardTypePhoneRecharge, //手机充值
+    CSwipteCardTypeKaKaTransfer,   //卡卡转账
+    CSwipteCardTypeCriditCardPayback //信用卡还款
+    
+}CSwipteCardType;
 
 @interface DeviceHelper : NSObject<ZftDelegate>
 {
@@ -36,9 +45,11 @@ typedef void(^OnePramaBlock)(id mess);
 //分类不支持添加属性  暂时放这定义
 @property (strong, nonatomic) NSString *tidStr;
 @property (strong, nonatomic) NSString *pidStr;
-@property (strong, nonatomic) NSString *moneyCount;
+@property (strong, nonatomic) NSString *moneyCount;  //刷卡金额
 @property (assign, nonatomic) UIViewController *controller;
-@property (strong, nonatomic) OnePramaBlock sucBlock;
+@property (strong, nonatomic) OnePramaBlock sucBlock; //刷卡成功后回调
+@property (assign, nonatomic) CSwipteCardType swipeCardType; //刷卡操作类型
+@property (strong, nonatomic) NSDictionary *otherDict;  //刷卡操作的额外参数
 
 +(DeviceHelper*)shareDeviceHelper;
 

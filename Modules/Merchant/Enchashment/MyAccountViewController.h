@@ -20,4 +20,9 @@
 
 @interface MyAccountViewController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *myMoneyLabel;
+@property (weak, nonatomic) IBOutlet UITextField *inputTxtField;
+
+- (IBAction)buttonClickHandle:(id)sender;
+
 @end

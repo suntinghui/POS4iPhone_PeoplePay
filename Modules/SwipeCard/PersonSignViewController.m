@@ -8,6 +8,8 @@
 
 #import "PersonSignViewController.h"
 #import "SuccessViewController.h"
+#import "ConvertUtil.h"
+#import "TradeSuccessViewController.h"
 
 #define Button_Tag_Clear  100
 #define Button_Tag_Send   101
@@ -31,6 +33,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight];
+    
+     [[UIApplication sharedApplication] setStatusBarOrientation:UIDeviceOrientationLandscapeRight animated:YES];
+    
     float width = [[UIScreen mainScreen] bounds].size.height;
     
     //初始化画板视图
@@ -121,14 +128,75 @@
             [SVProgressHUD showErrorWithStatus:@"请输入签名"];
             return;
         }
-        SuccessViewController *sucController = [[SuccessViewController alloc]init];
-        if (self.pageType==1)
-        {
-            sucController.messStr = @"撤销成功";
-        }
         
-        [self.navigationController pushViewController:sucController animated:YES];
+        [self uploadSignImage];
+        
+//        SuccessViewController *sucController = [[SuccessViewController alloc]init];
+//        if (self.pageType==1)
+//        {
+//            sucController.messStr = @"撤销成功";
+//        }
+//        
+//        [self.navigationController pushViewController:sucController animated:YES];
         
     }
+}
+
+#pragma mark -http请求
+/**
+ *  上传签名图片 转成png格式上传
+ */
+- (void)uploadSignImage
+{
+    NSData *imageData = UIImagePNGRepresentation(painCanvasView.drawImage.image);
+
+    //图片转成16进制字符串后上传
+    Byte *bytes = (Byte *)[imageData bytes];
+    NSString *hexStr=@"";
+    for(int i=0;i<[imageData length];i++)
+    {
+        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+        if([newHexStr length]==1)
+            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+        else
+            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+    }
+    
+    NSDictionary *dict = @{kTranceCode:@"199010",
+             kParamName:@{@"LOGNO":self.logNum,
+                          @"ELESIGNA":hexStr}};
+
+     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                               prompt:nil
+                                                                              success:^(id obj)
+                                     {
+                                         if ([obj isKindOfClass:[NSDictionary class]])
+                                         {
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                             {
+                                               
+                                                 TradeSuccessViewController *tradeSucController = [[TradeSuccessViewController alloc] init];
+                                                 tradeSucController.logNum = self.logNum;
+                                                 [self.navigationController pushViewController:tradeSucController animated:YES];
+                                                 
+                                             }
+                                             else
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                             }
+                                             
+                                         }
+                                         
+                                     }
+                                                                              failure:^(NSString *errMsg)
+                                     {
+                                         [SVProgressHUD showErrorWithStatus:@"上传失败，请稍后再试!"];
+                                         
+                                     }];
+
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在上传..." completeBlock:^(NSArray *operations) {
+    }];
+
+
 }
 @end

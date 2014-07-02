@@ -22,4 +22,5 @@
     #import "SecurityUtil.h"
     #import "BaseViewController.h"
     #import "DeviceHelper.h"
+    #import "DeviceHelper+SwipeCard.h"
 #endif

@@ -29,6 +29,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
    self.navigationItem.title = @"信息提示";
+    
+    if (![StaticTools isEmptyString:self.messStr])
+    {
+        self.messLabel.text = self.messStr;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

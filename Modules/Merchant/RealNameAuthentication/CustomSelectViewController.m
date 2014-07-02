@@ -59,8 +59,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    return 40;
+    NSDictionary *dict = self.datas[indexPath.row];
+    float height = [StaticTools getLabelHeight:dict[@"name"] defautWidth:270 defautHeight:480 fontSize:15];
+    return height+20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,13 +83,16 @@
     
     NSDictionary *dict = self.datas[indexPath.row];
     
-    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, 270, 30)];
+    float height = [StaticTools getLabelHeight:dict[@"name"] defautWidth:270 defautHeight:480 fontSize:15];
+    UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 10, 270, height)];
     textLabel.backgroundColor = [UIColor clearColor];
+    textLabel.numberOfLines = 0;
+    textLabel.lineBreakMode = UILineBreakModeCharacterWrap;
     textLabel.font = [UIFont systemFontOfSize:15];
     textLabel.text = dict[@"name"];
     [cell.contentView addSubview:textLabel];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(280, 5, 28, 28)];
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(280, (height+20-28)/2, 28, 28)];
     imageView.backgroundColor = [UIColor clearColor];
     [cell.contentView addSubview:imageView];
     

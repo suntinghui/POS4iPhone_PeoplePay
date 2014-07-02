@@ -249,6 +249,10 @@
 		B89CEA00191F271C008DFF31 /* TradeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CE9FE191F271C008DFF31 /* TradeCell.xib */; };
 		B89CEA04191F2F2E008DFF31 /* TradeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */; };
 		B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */; };
+		B8AC77C21963A6E5008C344E /* MoneyConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC77C01963A6E5008C344E /* MoneyConfirmViewController.m */; };
+		B8AC77C31963A6E5008C344E /* MoneyConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AC77C11963A6E5008C344E /* MoneyConfirmViewController.xib */; };
+		B8AC77C81963DFBF008C344E /* CriditCardPaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC77C61963DFBF008C344E /* CriditCardPaybackViewController.m */; };
+		B8AC77C91963DFBF008C344E /* CriditCardPaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AC77C71963DFBF008C344E /* CriditCardPaybackViewController.xib */; };
 		B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACABCF19381AA800493D9B /* SplitViewController.m */; };
 		B8ACABD219381AA800493D9B /* SplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8ACABD019381AA800493D9B /* SplitViewController.xib */; };
 		B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */; };
@@ -273,6 +277,8 @@
 		B8F788A11934374700C07BE5 /* PersonSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F7889F1934374700C07BE5 /* PersonSignViewController.m */; };
 		B8F788A21934374700C07BE5 /* PersonSignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F788A01934374700C07BE5 /* PersonSignViewController.xib */; };
 		B8F788A619344CFE00C07BE5 /* PaintMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F788A519344CFE00C07BE5 /* PaintMaskView.m */; };
+		B8FA5AB31962946E007EC9CA /* TradeSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8FA5AB11962946E007EC9CA /* TradeSuccessViewController.m */; };
+		B8FA5AB41962946E007EC9CA /* TradeSuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8FA5AB21962946E007EC9CA /* TradeSuccessViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -659,6 +665,12 @@
 		B89CEA01191F2F2E008DFF31 /* TradeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeDetailViewController.h; sourceTree = "<group>"; };
 		B89CEA02191F2F2E008DFF31 /* TradeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeDetailViewController.m; sourceTree = "<group>"; };
 		B89CEA03191F2F2E008DFF31 /* TradeDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeDetailViewController.xib; sourceTree = "<group>"; };
+		B8AC77BF1963A6E5008C344E /* MoneyConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyConfirmViewController.h; sourceTree = "<group>"; };
+		B8AC77C01963A6E5008C344E /* MoneyConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyConfirmViewController.m; sourceTree = "<group>"; };
+		B8AC77C11963A6E5008C344E /* MoneyConfirmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoneyConfirmViewController.xib; sourceTree = "<group>"; };
+		B8AC77C51963DFBF008C344E /* CriditCardPaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriditCardPaybackViewController.h; sourceTree = "<group>"; };
+		B8AC77C61963DFBF008C344E /* CriditCardPaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriditCardPaybackViewController.m; sourceTree = "<group>"; };
+		B8AC77C71963DFBF008C344E /* CriditCardPaybackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CriditCardPaybackViewController.xib; sourceTree = "<group>"; };
 		B8ACABCE19381AA800493D9B /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		B8ACABCF19381AA800493D9B /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		B8ACABD019381AA800493D9B /* SplitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplitViewController.xib; sourceTree = "<group>"; };
@@ -700,6 +712,9 @@
 		B8F788A01934374700C07BE5 /* PersonSignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonSignViewController.xib; sourceTree = "<group>"; };
 		B8F788A419344CFE00C07BE5 /* PaintMaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintMaskView.h; sourceTree = "<group>"; };
 		B8F788A519344CFE00C07BE5 /* PaintMaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintMaskView.m; sourceTree = "<group>"; };
+		B8FA5AB01962946E007EC9CA /* TradeSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TradeSuccessViewController.h; sourceTree = "<group>"; };
+		B8FA5AB11962946E007EC9CA /* TradeSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TradeSuccessViewController.m; sourceTree = "<group>"; };
+		B8FA5AB21962946E007EC9CA /* TradeSuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TradeSuccessViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -798,6 +813,9 @@
 				B8F7889E1934374700C07BE5 /* PersonSignViewController.h */,
 				B8F7889F1934374700C07BE5 /* PersonSignViewController.m */,
 				B8F788A01934374700C07BE5 /* PersonSignViewController.xib */,
+				B8FA5AB01962946E007EC9CA /* TradeSuccessViewController.h */,
+				B8FA5AB11962946E007EC9CA /* TradeSuccessViewController.m */,
+				B8FA5AB21962946E007EC9CA /* TradeSuccessViewController.xib */,
 			);
 			path = SwipeCard;
 			sourceTree = "<group>";
@@ -814,6 +832,7 @@
 		B82609D7191E1A7E003FE222 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				B8AC77C41963DF9F008C344E /* CriditCardPayBack */,
 				B85546CF19596E4200EEEFE6 /* PhoneRecharge */,
 				B85546C919594B7900EEEFE6 /* KaKaTransferAccounts */,
 				B85546BE19594B3B00EEEFE6 /* RecommendUs */,
@@ -1601,8 +1620,21 @@
 				B899E79A195ACAD80094920B /* MyAccountViewController.h */,
 				B899E79B195ACAD80094920B /* MyAccountViewController.m */,
 				B899E79C195ACAD80094920B /* MyAccountViewController.xib */,
+				B8AC77BF1963A6E5008C344E /* MoneyConfirmViewController.h */,
+				B8AC77C01963A6E5008C344E /* MoneyConfirmViewController.m */,
+				B8AC77C11963A6E5008C344E /* MoneyConfirmViewController.xib */,
 			);
 			path = Enchashment;
+			sourceTree = "<group>";
+		};
+		B8AC77C41963DF9F008C344E /* CriditCardPayBack */ = {
+			isa = PBXGroup;
+			children = (
+				B8AC77C51963DFBF008C344E /* CriditCardPaybackViewController.h */,
+				B8AC77C61963DFBF008C344E /* CriditCardPaybackViewController.m */,
+				B8AC77C71963DFBF008C344E /* CriditCardPaybackViewController.xib */,
+			);
+			path = CriditCardPayBack;
 			sourceTree = "<group>";
 		};
 		B8C66C02192D82EC0050BE5A /* MJRefresh */ = {
@@ -1787,6 +1819,7 @@
 				B85546CE19594B9100EEEFE6 /* KaKaTransferViewController.xib in Resources */,
 				B82A9603192DDE840099E97E /* composeCameraEnable.png in Resources */,
 				B82A961D192DDE840099E97E /* composesentbtn.png in Resources */,
+				B8AC77C31963A6E5008C344E /* MoneyConfirmViewController.xib in Resources */,
 				B82A9610192DDE840099E97E /* composeiconbg@2x.png in Resources */,
 				B82A9621192DDE840099E97E /* composeupbg.png in Resources */,
 				B82A9612192DDE840099E97E /* composeImageDel@2x.png in Resources */,
@@ -1849,6 +1882,7 @@
 				B899E793195A78300094920B /* IDcardUploadViewController.xib in Resources */,
 				B82A960B192DDE840099E97E /* composeEmotionBg.png in Resources */,
 				B85546D419596E5400EEEFE6 /* PhoneRechargeViewController.xib in Resources */,
+				B8AC77C91963DFBF008C344E /* CriditCardPaybackViewController.xib in Resources */,
 				B82609CF191E1090003FE222 /* MerchantViewController.xib in Resources */,
 				B82A9614192DDE840099E97E /* composeImageFrame@2x.png in Resources */,
 				B82A9613192DDE840099E97E /* composeImageFrame.png in Resources */,
@@ -1861,6 +1895,7 @@
 				B82609E1191E1AC1003FE222 /* TradeListViewController.xib in Resources */,
 				B899E79E195ACAD80094920B /* MyAccountViewController.xib in Resources */,
 				B8788C3B1931BA2C003E8338 /* BPushConfig.plist in Resources */,
+				B8FA5AB41962946E007EC9CA /* TradeSuccessViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1918,6 +1953,7 @@
 				B8D717E0192B2D7500868678 /* HSK_CFUtilities.m in Sources */,
 				B8537D00190B7EC4000F353D /* AFXMLRequestOperation.m in Sources */,
 				B82A95F5192DDE840099E97E /* SinaWeibo.m in Sources */,
+				B8AC77C21963A6E5008C344E /* MoneyConfirmViewController.m in Sources */,
 				B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */,
 				B8537C2B190B7769000F353D /* main.m in Sources */,
 				B82A95F6192DDE840099E97E /* SinaWeiboAuthorizeView.m in Sources */,
@@ -1956,6 +1992,7 @@
 				B85D4BE619210701008241E0 /* CusWindow.m in Sources */,
 				B8D717E2192B2D7500868678 /* NSStream+SKPSMTPExtensions.m in Sources */,
 				B85546C519594B3B00EEEFE6 /* SNSlistViewController.m in Sources */,
+				B8AC77C81963DFBF008C344E /* CriditCardPaybackViewController.m in Sources */,
 				B8788C641931BF1E003E8338 /* CJSONSerializedData.m in Sources */,
 				B8D717DF192B2D7500868678 /* Base64Transcoder.m in Sources */,
 				B813BAC2192AF25F00654A45 /* SwipeCardNoticeViewController.m in Sources */,
@@ -1978,6 +2015,7 @@
 				B8537D2C190B7EC4000F353D /* XYAlertViewManager.m in Sources */,
 				B82A9634192DDE840099E97E /* NSString+SBJSON.m in Sources */,
 				B8537D2B190B7EC4000F353D /* XYAlertView.m in Sources */,
+				B8FA5AB31962946E007EC9CA /* TradeSuccessViewController.m in Sources */,
 				B899E78D195A6E220094920B /* AccountInfoViewController.m in Sources */,
 				B89CE9FF191F271C008DFF31 /* TradeCell.m in Sources */,
 				B8537D12190B7EC4000F353D /* TBXML+HTTP.m in Sources */,

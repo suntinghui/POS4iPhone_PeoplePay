@@ -15,16 +15,16 @@
 #import "BasicInfoViewController.h"
 #import "MyAccountViewController.h"
 
-#define Button_Tag_Logout   100  //退出登录
+#define Button_Tag_Logout        100 //退出登录
 #define Button_Tag_ChangeHeadImg 101 //修改头像
-#define Button_Tag_ChangeBg  102   //修改大背景图
+#define Button_Tag_ChangeBg      102 //修改大背景图
 
-#define Alert_Tag_Logout    200  //退出登录alert
+#define Alert_Tag_Logout         200 //退出登录alert
 
-#define View_Tag_StateImg   300
+#define View_Tag_StateImg        300
 
-#define Action_Tag_Phone    400
-#define Action_Tag_Camara   401
+#define Action_Tag_Phone         400
+#define Action_Tag_Camara        401
 
 @interface MerchantViewController ()
 
@@ -331,7 +331,7 @@
                                                      [self.bgBtn setBackgroundImage:image forState:UIControlStateNormal];
                                                      
                                                  }
-                                                 else //头像下载失败 不做任何提示
+                                                 else //背景大图下载失败 不做任何提示
                                                  {
                                                      //                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
                                                  }
@@ -641,41 +641,6 @@
     {
         state = (state==0?1:0);
         [self.listTableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        UIImageView *imgView  = (UIImageView*)[cell.contentView viewWithTag:View_Tag_StateImg];
-//        
-//        CABasicAnimation* rotationAnimation;
-//        rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-//        if (state==0)
-//        {
-//              rotationAnimation.toValue = [NSNumber numberWithFloat: -M_PI];
-//        }
-//        else
-//        {
-//              rotationAnimation.toValue = [NSNumber numberWithFloat:M_PI];
-//        }
-//      
-//        rotationAnimation.duration = 0.3;
-//        rotationAnimation.cumulative = YES;
-//        rotationAnimation.delegate = self;
-////        rotationAnimation.repeatCount = repeat;
-//         [imgView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-        
-//        float angel = 0;
-//        if (state==0) {
-//            
-//            angel = 0;
-//        }
-//        else
-//        {
-//            angel = M_PI;
-//        }
-//        [UIView beginAnimations:nil context:NULL];
-//        [UIView setAnimationDuration:0.5];
-//        imgView.transform = CGAffineTransformMakeRotation(angel);
-//        [UIView commitAnimations];
-
     }
     else if(indexPath.section==0&&indexPath.row==1) //没有获取到商户信息时 点击该行  重新获取
     {
@@ -686,14 +651,16 @@
     }
     else if (indexPath.section==1)
     {
-        if (indexPath.row==0)
+        if (indexPath.row==0) //提现
         {
             MyAccountViewController *myAccountController = [[MyAccountViewController alloc]init];
+            myAccountController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myAccountController animated:YES];
         }
-        else if (indexPath.row==1)
+        else if (indexPath.row==1) //实名认证
         {
             BasicInfoViewController *basicInfoController = [[BasicInfoViewController alloc]init];
+            basicInfoController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:basicInfoController animated:YES];
         }
         else if (indexPath.row==2) //修改密码
@@ -721,18 +688,4 @@
     }
 }
 
-//
-//- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag
-//{
-//    UITableViewCell *cell = [self.listTableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
-//    UIImageView *imgView  = (UIImageView*)[cell.contentView viewWithTag:View_Tag_StateImg];
-//    if (state ==1)
-//    {
-//         imgView.transform = CGAffineTransformMakeRotation(M_PI);
-//    }
-//    else
-//    {
-//         imgView.transform = CGAffineTransformMakeRotation(0);
-//    }
-//}
 @end

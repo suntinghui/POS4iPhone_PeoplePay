@@ -54,7 +54,7 @@
         }
         else if([reqName isEqualToString:@"199005"]) //消费
         {
-            return [self getCustomMess:rootElement];
+            return [self getTradeInfo:rootElement];
         }
         else if([reqName isEqualToString:@"199006"]) //消费撤销
         {
@@ -93,6 +93,30 @@
                 [reqName isEqualToString:@"199034"]) //获取支行列表
         {
             return [self getBankList:rootElement];
+        }
+        else if([reqName isEqualToString:@"199026"]) //获取我的账户信息
+        {
+            return [self getMyAccountInfo:rootElement];
+        }
+        else if([reqName isEqualToString:@"199030"]) //实名认证
+        {
+            return [self realNameAuth:rootElement];
+        }
+        else if([reqName isEqualToString:@"199037"]) //获取交易小票
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"199010"]) //上传签名图片
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"708103"]) //手机充值
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"199025"]) //账户提现
+        {
+            return [self getCustomMess:rootElement];
         }
     }
     
@@ -362,5 +386,45 @@
     return dict;
 }
 
+#pragma mark- 获取我的账户信息
+- (id) getMyAccountInfo:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+       [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CASHBAL" parentElement:bodyElement]] forKey:@"CASHBAL"];
+       [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CASHACBAL" parentElement:bodyElement]] forKey:@"CASHACBAL"];
+       [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
+    }
+    
+    return dict;
+}
+
+#pragma mark- 实名认证
+- (id)realNameAuth:(TBXMLElement *) bodyElement
+{
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+    
+    }
+
+   return dict;
+}
+
+
+#pragma mark- 消费
+- (id) getTradeInfo:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"LOGNO" parentElement:bodyElement]] forKey:@"LOGNO"];
+    }
+    
+    return dict;
+}
 
 @end

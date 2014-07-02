@@ -35,7 +35,7 @@
     [StaticTools setExtraCellLineHidden:self.listTableView];
     
     titles = @[@"转入卡卡主姓名",@"转出卡卡主姓名",@"证件类型",@"证件号码",@"收款银行卡号",@"还款金额",@"手机号码"];
-    placeHolds = @[@"请输入姓名",@"请输入姓名",@"",@"请输入证件号码",@"请输入卡号",@"请输入金额",@"请输入接收短信手的手机"];
+    placeHolds = @[@"请输入姓名",@"请输入姓名",@"",@"请输入证件号码",@"请输入卡号",@"请输入金额",@"请输入接收短信的手机号"];
     credentials = @[@{@"name":@"身份证",@"code":@"01"},
                     @{@"name":@"军官证",@"code":@"02"},
                     @{@"name":@"护照",@"code":@"03"},
@@ -46,6 +46,7 @@
                     @{@"name":@"其他证件类型",@"code":@"99"}];
     
     results = [[NSMutableArray alloc]init];
+    
     for (NSString *title in titles)
     {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
@@ -90,7 +91,6 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-
     NSMutableDictionary *dict = results[textField.tag-100];
     [dict setObject:textField.text forKey:@"InputContent"];
 
@@ -143,7 +143,19 @@
      keyBoardLastHeight=0;
  
 }
-
+#pragma mark -http请求
+- (void)kakaTransfer
+{
+    [[DeviceHelper shareDeviceHelper]swipeCardWithControler:self
+                                                       type:CSwipteCardTypeKaKaTransfer
+                                                      money:@""
+                                              otherParamter:@{kTranceCode:@""}
+                                                   sucBlock:^(id mess) {
+        
+        
+        
+    }];
+}
 #pragma mark -按钮点击事件
 - (void)buttonClickHandle:(UIButton*)button
 {
@@ -161,7 +173,7 @@
             [sheet showInView:self.view];
         }
             break;
-        case Button_Tag_Commit:
+        case Button_Tag_Commit: //刷卡
         {
         
             [self.view endEditing:YES];
@@ -180,10 +192,12 @@
                 if ([StaticTools isEmptyString:dict[@"InputContent"]])
                 {
                     [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[i]]];
-                    break;
+                    return;
                 }
             }
             
+            
+            [self kakaTransfer];
         }
             break;
             

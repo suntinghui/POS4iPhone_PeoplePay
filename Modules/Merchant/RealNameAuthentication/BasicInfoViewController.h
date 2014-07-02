@@ -26,7 +26,9 @@
     NSArray *placeHolds;
     float keyBoardLastHeight;
     int currentEditIndex;
-    NSMutableArray *results; //保存输入内容
+    NSMutableDictionary *resultDict; //保存输入内容
+    NSArray *serviceTypes;   //所有的经营范围
+    NSArray *keys;
 }
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;

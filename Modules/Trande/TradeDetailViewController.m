@@ -15,6 +15,9 @@
 
 #define Alert_Tag_TradeCancel  100
 
+#define Button_Tag_OK 200
+#define Button_Tag_Select 201
+
 @interface TradeDetailViewController ()
 
 @end
@@ -50,16 +53,20 @@
     self.cardLabel.text = [StaticTools insertComaInCardNumber:self.infoDict[@"CRDNO"]];
     self.merchantNameLabel.text = self.infoDict[@"MERNAM"];
     
-    //消费撤销隐藏撤销操作的按钮
-    if ([self.infoDict[@"TXNCD"] isEqualToString:@"0200200000"])
-    {
-        self.candleBtn.hidden = YES;
-    }
+    self.phoneTxtField.text = [UserDefaults objectForKey:KUSERNAME];
+    self.selectBtn.selected = YES;
+    
+    self.scrView.contentSize = CGSizeMake(self.view.frame.size.width,500);
+    
+    UITapGestureRecognizer *tapGuesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard)];
+    [self.scrView addGestureRecognizer:tapGuesture];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -67,6 +74,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark- 功能函数
+- (void)hideKeyboard
+{
+    [self.view endEditing:YES];
+}
 
 #pragma mark - http请求
 ///**
@@ -145,13 +157,71 @@
 #pragma mark -按钮点击
 - (IBAction)buttonClickHandle:(id)sender
 {
-    [StaticTools showAlertWithTag:Alert_Tag_TradeCancel
-                            title:nil
-                          message:@"确定要撤销改交易吗"
-                        AlertType:CAlertTypeCacel
-                        SuperView:self];
-}
+    UIButton *button = (UIButton*)sender;
+    if (button.tag == Button_Tag_Select)
+    {
+        self.selectBtn.selected = !self.selectBtn.selected;
+        if (self.selectBtn.selected)
+        {
+            self.phoneTxtField.hidden = NO;
+            self.inputBgView.hidden = NO;
+            [self.candleBtn setTitle:@"发送小票" forState:UIControlStateNormal];
+        }
+        else
+        {
+            self.phoneTxtField.hidden = YES;
+            self.inputBgView.hidden = YES;
+            [self.candleBtn setTitle:@"完成" forState:UIControlStateNormal];
+        }
+        
+    }
+    else if(button.tag == Button_Tag_OK)
+    {
+        if (self.selectBtn.selected)
+        {
+            if ([StaticTools isEmptyString:self.phoneTxtField.text])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请输入接收小票的手机号!"];
+                return;
+            }
+            else if(![StaticTools isMobileNumber:self.phoneTxtField.text])
+            {
+                [SVProgressHUD showErrorWithStatus:@"请输入一个正确的手机号!"];
+                return;
+            }
+            
+            [self sendTrandePic];
+        }
+        else
+        {
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }
 
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+#pragma mark -UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        
+//        self.view.frame = CGRectMake(0, -120, self.view.frame.size.width, self.view.frame.size.height);
+        
+        self.scrView.contentOffset = CGPointMake(0, 200);
+    }];
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        
+//        self.view.frame = CGRectMake(0, IOS7_OR_LATER?64:0, self.view.frame.size.width, self.view.frame.size.height);
+        
+        self.scrView.contentOffset = CGPointMake(0, 0);
+    }];
+}
 #pragma mark -UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -169,47 +239,125 @@
 {
     
     
-//    [[DeviceHelper shareDeviceHelper] doTradeEx:@"100" andType:1 Random:nil extraString:@"abc" TimesOut:30 Complete:^(id mess) {
-//        
-//        //移除刷卡提示动画页面
-//        [self.navigationController popViewControllerAnimated:NO];
-//        
-//        
-//    } andFail:^(id mess) {
-//        
-//        //        [SVProgressHUD showErrorWithStatus:mess];
-//        
-//        [StaticTools showErrorPageWithMess:mess clickHandle:^{
-//            //移除刷卡提示动画页面
-//            [self.navigationController popViewControllerAnimated:NO];
-//        }];
-//        
-//        
-//    }];
-//
-//    return;
+
     
-    if (![[DeviceHelper shareDeviceHelper] ispluged])
-    {
-        [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
-        return;
-    }
+//    if (![[DeviceHelper shareDeviceHelper] ispluged])
+//    {
+//        [SVProgressHUD showErrorWithStatus:@"请插入刷卡设备"];
+//        return;
+//    }
+//    
+//    NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
+//    NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
+//    //一天内只用签到一次
+//    if (lastSignTime==nil||![currentTime isEqualToString:lastSignTime])
+//    {
+//        [self deviceOperatWithType:0];
+//    }
+//    else
+//    {
+//        [self deviceOperatWithType:1];
+//    }
     
-    NSString *lastSignTime = [UserDefaults objectForKey:kLastSignTime];
-    NSString *currentTime = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:NO];
-    //一天内只用签到一次
-    if (lastSignTime==nil||![currentTime isEqualToString:lastSignTime])
-    {
-        [self deviceOperatWithType:0];
-    }
-    else
-    {
-        [self deviceOperatWithType:1];
-    }
+    NSString *num = [NSString stringWithFormat:@"%f",[[StringUtil string2AmountFloat:self.infoDict[@"TXNAMT"]] floatValue]];
+    [[DeviceHelper shareDeviceHelper]swipeCardWithControler:self type:CSwipteCardTypeConsumeCancel money:num  otherParamter:@{@"":@"199006"}sucBlock:^(id mess) {
+        
+        NSDictionary *dict = @{kTranceCode:@"199006",
+                               kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                            @"TERMINALNUMBER":mess[kTids],
+                                            @"PSAMCARDNO":mess[kPsamNum],
+                                            @"TSEQNO":mess[@"TSEQNO"],
+                                            @"PCSIM":@"获取不到",
+                                            @"TRACK":[mess[kCardTrac] substringFromIndex:2],
+                                            @"CTXNAT":self.infoDict[@"TXNAMT"], //消费金额
+                                            @"TPINBLK":mess[kCardPin],//支付密码
+                                            @"CRDNO":@"",  //卡号
+                                            @"CHECKX":@"0.0", //横坐标
+                                            @"APPTOKEN":@"APPTOKEN",
+                                            @"TTXNTM":mess[@"TTXNTM"], //交易时间
+                                            @"TTXNDT":mess[@"TTXNDT"], //交易日期
+                                            @"MAC": [StringUtil stringFromHexString:mess[kMacKey]],
+                                            @"LOGNO":self.infoDict[@"LOGNO"],
+                                            @"TSEQNO":[[AppDataCenter sharedAppDataCenter] getTradeNumber],
+                                            }};
+        
+        AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 
+                                                 
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                 {
+                                                    
+                                                     PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+                                                     personSignController.pageType = 1;
+                                                     personSignController.hidesBottomBarWhenPushed = YES;
+                                                     [self.navigationController pushViewController:personSignController animated:YES];
+                                                 }
+                                                 else
+                                                 {
+                                                  
+                                                     [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:^(NSString *errMsg)
+                                             {
+                                                 
+                                                 [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
+                                                 
+                                             }];
+        
+        [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+        }];
+
+        
+    }];
 }
 
 
 #pragma mark -http请求
+/**
+ *  发送交易小票
+ */
+- (void)sendTrandePic
+{
+    NSDictionary *dict = @{kTranceCode:@"199037",
+                           kParamName:@{@"PHONENUMBER":self.phoneTxtField.text,
+                                        @"LOGNO":self.infoDict[@"LOGNO"]
+                                        }};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             
+                                             
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                             {
+                                                 
+                                                 [SVProgressHUD showSuccessWithStatus:@"小票已发送，请注意查收。"];
+                                                 [self.navigationController popViewControllerAnimated:YES];
+                                             }
+                                             else
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             
+                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    }];
+    
+
+}
 
 /**
  *  读取设备id和psamdid  然后根据type做处理

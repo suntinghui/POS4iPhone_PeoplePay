@@ -22,6 +22,7 @@
 UINavigationControllerDelegate>
 {
     int operateType;
+    NSMutableDictionary *resultDict;
 }
 
 @property (weak, nonatomic) IBOutlet UIButton *imageOneBtn;

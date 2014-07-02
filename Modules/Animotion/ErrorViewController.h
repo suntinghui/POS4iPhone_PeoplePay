@@ -24,6 +24,7 @@ typedef void(^ButtonClickBlock)();
 
 @property (weak, nonatomic) IBOutlet UILabel *messLabel;
 @property (strong, nonatomic) ButtonClickBlock clickBlock;
+@property (strong, nonatomic) NSString *messStr;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

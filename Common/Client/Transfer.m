@@ -263,24 +263,39 @@ static NSString *totalSize = nil;
     NSString *postType = @"posp";
     NSString *endType = @"tran";
     NSString *rspCode = [reqDic objectForKey:kTranceCode];
-    
-    if ([rspCode isEqualToString:@"199002"]|| //登录
-        [rspCode isEqualToString:@"199018"]|| //获取短信验证码
+  
+    if([rspCode isEqualToString:@"199031"]||//获取省份
+        [rspCode isEqualToString:@"199032"]||//获取城市
+        [rspCode isEqualToString:@"199035"]||//获取银行列表
+        [rspCode isEqualToString:@"199034"]||//获取支行列表
+        [rspCode isEqualToString:@"199026"]||//我的账户信息
+        [rspCode isEqualToString:@"199020"]||//签到
+        [rspCode isEqualToString:@"199030"]||//实名认证
+        [rspCode isEqualToString:@"199002"]|| //登录
         [rspCode isEqualToString:@"199004"]|| //忘记密码
-        [rspCode isEqualToString:@"199003"] //修改密码
+        [rspCode isEqualToString:@"199018"]|| //获取短信验证码
+        [rspCode isEqualToString:@"199003"]||  //修改密码
+        [rspCode isEqualToString:@"199008"]||  //流水查询
+        [rspCode isEqualToString:@"199037"]||  //发送交易小票
+        [rspCode isEqualToString:@"199010"]||  //上传消费签名图片
+        [rspCode isEqualToString:@"199025"]||  //账户提现
+        [rspCode isEqualToString:@"199011"]||  //商户信息
+        [rspCode isEqualToString:@"708102"]||  //信用卡还款
+        [rspCode isEqualToString:@"199005"]    //消费
         )
-    {
-        postType = @"posm";
-        endType = @"tran5";
-    }
-    else if([rspCode isEqualToString:@"199031"]||//获取省份
-            [rspCode isEqualToString:@"199032"]||//获取城市
-            [rspCode isEqualToString:@"199035"]||//获取银行列表
-            [rspCode isEqualToString:@"199034"]||//获取支行列表
-            [rspCode isEqualToString:@"199021"]) //上传图片
     {
         postType = @"Vpm";
         endType = @"tranm";
+    }
+    else if([rspCode isEqualToString:@"708103"]) //手机充值
+    {
+        postType = @"Vpm";
+        endType = @"tranp";
+    }
+    else if([rspCode isEqualToString:@"199021"]) //身份证图片上传
+    {
+        postType = @"Vpm";
+        endType = @"tran";
     }
     else if([rspCode isEqualToString:@"200000"]||//头像上传
             [rspCode isEqualToString:@"200001"]||//头像下载
@@ -322,23 +337,28 @@ static NSString *totalSize = nil;
          [self setRequestUrl:@"http://211.147.87.20:8092/"];
     }
     
-    NSLog(@"Request:%@ ", httpBodyString);
-    
-
-//    if (![rspCode isEqualToString:@"199021"])
-//    {
-        httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
-        
-        httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
-//    }
    
-    NSMutableURLRequest *request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
-
-    NSLog(@"url is %@",request.URL);
+    NSLog(@"Request:%@ ", httpBodyString);
+    httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
+    httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
     
-    request.HTTPBody = [httpBodyString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableURLRequest *request;
     
+    if ([rspCode isEqualToString:@"199021"]) //身份证图片上传特别处理
+    {
+        NSMutableDictionary *tempDic = [NSMutableDictionary dictionaryWithDictionary:[reqDic objectForKey:kParamName]];
+        [tempDic setObject:[reqDic objectForKey:kTranceCode] forKey:@"TRANCODE"];
     
+        request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:tempDic];
+    }
+    else
+    {
+       
+        request = [[Transfer sharedClient] requestWithMethod:@"POST" path:path parameters:nil];
+        request.HTTPBody = [httpBodyString dataUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+     NSLog(@"url is --》%@",request.URL);
     [request setTimeoutInterval:30];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -366,11 +386,25 @@ static NSString *totalSize = nil;
 //        NSLog(@"Response: %@", respXML);
         
 
-         NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
-         NSString *xmlStr = [AESUtil decryptUseAES:respXML];
-
-        id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: xmlStr];
-        success(obj);
+      
+        NSString *xmlStr = respXML;
+         if (![rspCode isEqualToString:@"199021"]) //身份证图片上传特殊处理
+         {
+             NSLog(@"Response: %@", [AESUtil decryptUseAES:respXML]);
+             
+             xmlStr = [AESUtil decryptUseAES:respXML];
+             id obj = [self ParseXMLWithReqCode:[reqDic objectForKey:kTranceCode] xmlString: xmlStr];
+             success(obj);
+         }
+        else
+        {
+            NSLog(@"Response: %@", respXML);
+            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:[respXML dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableLeaves error:nil];
+            success(result);
+        }
+        
+        
+       
             
         
     }failure:^(AFHTTPRequestOperation *operation, NSError *error) {

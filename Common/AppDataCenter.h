@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) NSString *tradeNum; //交易流水号
 @property (assign, nonatomic) int accountType;  //0:签约账户 1：普通账户
+@property (strong, nonatomic) NSMutableDictionary *comDict;  //实名认证时需要的信息
 
 //获取交易流水号
 - (NSString *)getTradeNumber;

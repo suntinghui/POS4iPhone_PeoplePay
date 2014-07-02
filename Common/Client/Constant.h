@@ -59,6 +59,28 @@
 #define kEncryptKey                     @"ENCRYPTKEY"
 
 
+
+//************实名认证相关**************************************
+#define kUserName     @"UserName"    //申请人姓名
+#define kUserIdCard   @"UserIdCard"  //申请人身份证号码
+#define kMerchantName @"MerchantName"//商户名称
+#define kServiceType  @"ServiceType" //经营范围
+#define kServicePlace @"ServicePlace"//经营地址
+#define kDeviceNumber @"DeviceNumber"//设备序列号
+
+//**********存的字典信息 {@"name":@"",@"code":@""}
+#define kProvince   @"province"  //省份
+#define kCity       @"city"      //城市
+#define kBank       @"bank"      //银行
+#define kBankPlace  @"bankplace" //网点
+
+//*********存的字符串
+#define kCardName   @"cardname"  //开户名
+#define kCardNumber @"cardnumber"//银行账户
+
+//******************************************************************
+
+
 //*********新浪微博*************************
 #define kAppKey             @"1288753078"
 #define kAppSecret          @"ed8d44e640de2aed3888eeea19dbc24b"

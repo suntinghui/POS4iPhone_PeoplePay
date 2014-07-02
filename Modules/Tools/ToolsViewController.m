@@ -10,10 +10,12 @@
 #import "SNSlistViewController.h"
 #import "KaKaTransferViewController.h"
 #import "PhoneRechargeViewController.h"
+#import "CriditCardPaybackViewController.h"
 
-#define Button_Tag_Weibo   102
-#define Button_Tag_KaKa    103
-#define Button_Tag_Tuijian 105
+#define Button_Tag_Weibo         102
+#define Button_Tag_KaKa          103
+#define Button_Tag_Tuijian       105
+#define Button_Tag_CreditCardPayback 106
 #define Button_Tag_PhoneRecharge 107
 
 @interface ToolsViewController ()
@@ -91,6 +93,13 @@
             KaKaTransferViewController *kakaTransferController = [[KaKaTransferViewController alloc]init];
             kakaTransferController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:kakaTransferController animated:YES];
+        }
+            break;
+        case Button_Tag_CreditCardPayback: //信用卡还款
+        {
+            CriditCardPaybackViewController *criditCardController = [[CriditCardPaybackViewController alloc]init];
+            criditCardController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:criditCardController animated:YES];
         }
             break;
         case Button_Tag_PhoneRecharge://手机充值
