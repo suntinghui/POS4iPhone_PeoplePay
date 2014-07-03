@@ -43,6 +43,20 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     [StaticTools setExtraCellLineHidden:self.listTableView];
     self.listTableView.separatorColor = [UIColor clearColor];
     
+    [self.moneyLabel setAdjustsFontSizeToFitWidth:YES];
+    self.timeBtn.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.timeBtn.layer.borderWidth = 0.5;
+    self.timeBtn.layer.cornerRadius = 5;
+    if (operateType==1)
+    {
+    }
+    else
+    {
+        self.timeBtn.hidden = YES;
+        self.arrowImage.hidden = YES;
+    }
+    
+    
 //    [self.listTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:MJTableViewCellIdentifier];
     
     
@@ -150,6 +164,33 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 /**
+ *  把2013-01变成2013年01月
+ *
+ *  @param dateStr
+ *
+ *  @return
+ */
+- (NSString*)insertWordInDate:(NSString*)dateStr
+{
+    dateStr  = [dateStr stringByReplacingOccurrencesOfString:@"-" withString:@"年"];
+    return [NSString stringWithFormat:@"%@月",dateStr];
+}
+
+/**
+ *  把2013年01月变成2013-01
+ *
+ *  @param dateStr
+ *
+ *  @return 
+ */
+- (NSString*)changeWordToCharect:(NSString*)dateStr
+{
+    dateStr  = [dateStr stringByReplacingOccurrencesOfString:@"年" withString:@"-"];
+    dateStr  = [dateStr stringByReplacingOccurrencesOfString:@"月" withString:@""];
+    return dateStr;
+}
+
+/**
  *  设置顶部金额和交易笔数
  */
 - (void)setTitleCount
@@ -168,17 +209,18 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     else if(operateType==1)
     {
         count = [self.totalCount integerValue]; //self.cashs.count;
-        amount = [self.totalMoney integerValue];
-        
-//        for (NSDictionary *dict in self.cashs)
-//        {
-//            amount+=[dict[@"TRANSAMT"] floatValue];
-//        }
+        amount = [self.totalMoney floatValue];
     }
     
     self.numLabel.text = [NSString stringWithFormat:@"%d",count];
     
-    self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x, self.numLabel.frame.origin.y, [StaticTools getLabelWidth:self.numLabel.text defautWidth:320 defautHeight:self.numLabel.frame.size.height fontSize:22]+2, self.numLabel.frame.size.height);
+    float with =[StaticTools getLabelWidth:self.numLabel.text defautWidth:320 defautHeight:self.numLabel.frame.size.height fontSize:22];
+    if (with>50) //防止笔数字数较多时和月份重叠
+    {
+        with=50;
+        [self.numLabel setAdjustsFontSizeToFitWidth:YES];
+    }
+    self.numLabel.frame = CGRectMake(self.numLabel.frame.origin.x, self.numLabel.frame.origin.y, with+2, self.numLabel.frame.size.height);
     self.txtLabel.frame = CGRectMake(self.numLabel.frame.origin.x+self.numLabel.frame.size.width+3, self.txtLabel.frame.origin.y, self.txtLabel.frame.size.width, self.txtLabel.frame.size.height);
     
     self.moneyLabel.text = [NSString stringWithFormat:@"￥%.2f",amount];
@@ -193,7 +235,8 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     if (num==0) //交易流水
     {
         operateType = 0;
-        
+        self.timeBtn.hidden = YES;
+        self.arrowImage.hidden = YES;
         if (self.trades==nil)
         {
             [self refreshList];
@@ -207,6 +250,16 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     else //现金流水
     {
         operateType = 1;
+        self.timeBtn.hidden = NO;
+        self.arrowImage.hidden = NO;
+        if ([StaticTools isEmptyString:self.timeBtn.titleLabel.text] )
+        {
+            
+            NSString *date = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
+            date = [date substringToIndex:7];
+            [self.timeBtn setTitle:[self insertWordInDate:date] forState:UIControlStateNormal];
+        }
+        
         if (self.cashs.count==0)
         {
             [self refreshList];
@@ -224,14 +277,26 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 #pragma mark - 按钮点击
 - (void)buttonClickHandle:(UIButton*)button
 {
-    [StaticTools showAlertWithTag:Alert_Tag_Delete
-                            title:nil
-                          message:@"您确定要删除该条记录吗？"
-                        AlertType:CAlertTypeCacel
-                        SuperView:self];
-    
-    deleteIndex = button.tag-100;
-
+    if (button.tag==99)
+    {
+        [StaticTools showDateSelectInViewController:ApplicationDelegate.window.rootViewController indexDate:[self changeWordToCharect:self.timeBtn.titleLabel.text] type:kDatePickerTypeNoDay clickOk:^(NSString *selectDateStr) {
+            
+            [self.timeBtn setTitle:[self insertWordInDate:selectDateStr] forState:UIControlStateNormal];
+            
+            isFresh = YES;
+            [self refreshList];
+        }];
+    }
+    else
+    {
+        [StaticTools showAlertWithTag:Alert_Tag_Delete
+                                title:nil
+                              message:@"您确定要删除该条记录吗？"
+                            AlertType:CAlertTypeCacel
+                            SuperView:self];
+        
+        deleteIndex = button.tag-100;
+    }
 }
 
 #pragma UIAlertViewDelegate
@@ -282,7 +347,6 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
 }
 
 
-
 /**
  *  现金流水
  */
@@ -292,6 +356,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                            kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
                                         @"operationId":@"getTransaction",
                                         @"pageIndex":[NSString stringWithFormat:@"%d",isFresh?0:currentPage],
+                                        @"dateStr":[self changeWordToCharect:self.timeBtn.titleLabel.text],
                                         @"pageSize":kOnePageSize}};
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
@@ -338,6 +403,13 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                                              [headerView endRefreshing];
                                              [footView endRefreshing];
                                              
+                                             if (isFresh)
+                                             {
+                                                 currentPage=0;
+                                                 [self.cashs removeAllObjects];
+                                                 [self.listTableView reloadData];
+                                                 
+                                             }
                                               isFresh = NO;
                                              
                                          }];
@@ -364,6 +436,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
                                              {
                                                 [SVProgressHUD showSuccessWithStatus:@"删除成功"];
                                                  [self.cashs removeObjectAtIndex:deleteIndex];
+                                                 
                                                  [self setTitleCount];
                                                  [self.listTableView reloadData];
                                              }

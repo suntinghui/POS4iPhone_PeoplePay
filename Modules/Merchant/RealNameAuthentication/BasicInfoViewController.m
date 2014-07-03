@@ -100,7 +100,7 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     currentEditIndex = textField.tag-100;
-    self.listTableView.contentSize = CGSizeMake(self.listTableView.frame.size.width, self.listTableView.frame.size.height+100);
+    self.listTableView.contentSize = CGSizeMake(self.listTableView.frame.size.width, self.listTableView.frame.size.height+160);
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -117,7 +117,7 @@
     [UIView setAnimationDuration:0.3];
     
     self.listTableView.contentOffset=CGPointMake(0,0);
-    self.listTableView.contentSize = CGSizeMake(self.listTableView.frame.size.width, self.listTableView.frame.size.height-100);
+    self.listTableView.contentSize = CGSizeMake(self.listTableView.frame.size.width, self.listTableView.frame.size.height-160);
     
     [UIView commitAnimations];
     
@@ -174,15 +174,15 @@
             
             [self resetTableView];
             
-            for (int i=0; i<keys.count; i++)
-            {
-                NSString *key = keys[i];
-                if ([StaticTools isEmptyString:resultDict[key]])
-                {
-                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[i]]];
-                    return;
-                }
-            }
+//            for (int i=0; i<keys.count; i++)
+//            {
+//                NSString *key = keys[i];
+//                if ([StaticTools isEmptyString:resultDict[key]])
+//                {
+//                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[i]]];
+//                    return;
+//                }
+//            }
             
             APPDataCenter.comDict = [[NSMutableDictionary alloc]initWithDictionary:resultDict];
             
@@ -245,7 +245,7 @@
         titleLabel.text = titles[indexPath.row];
         [cell.contentView addSubview:titleLabel];
         
-        UITextField *inputTextField = [[UITextField alloc]initWithFrame:CGRectMake(113, 14, 197, 30)];
+        UITextField *inputTextField = [[UITextField alloc]initWithFrame:CGRectMake(113, 16, 197, 20)];
         inputTextField.placeholder = placeHolds[indexPath.row];
         inputTextField.tag = indexPath.row+100;
         inputTextField.delegate = self;
@@ -263,7 +263,7 @@
             button.frame = CGRectMake(110, 8, 200, 35);
             [cell.contentView insertSubview:button belowSubview:inputTextField];
             
-            inputTextField.frame  = CGRectMake(110, 14, 170, 30);
+            inputTextField.frame  = CGRectMake(110, 16, 170, 20);
             inputTextField.enabled = NO;
             
         }

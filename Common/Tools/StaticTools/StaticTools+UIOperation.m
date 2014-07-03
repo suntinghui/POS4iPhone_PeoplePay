@@ -179,7 +179,32 @@
     {
         [StaticTools setNavigationBarBackgroundImage:nav.navigationBar withImg:@"ip_title"];
     }
-    [control presentModalViewController:nav animated:YES];
+    [control presentViewController:nav animated:YES completion:nil];
     
+}
+
+/**
+ *	@brief	显示日期选择页面
+ *
+ *	@param 	viewController
+ *	@param 	dateStr 	显示页面是默认的被选择的日期 格式为“2013-12-12” 或“2013-12” 或 @“2013”
+ *	@param 	pickerType  picker类型
+ *  @param  block  点击确定按钮时的回调 返回选择的日期字符串 格式为“2013-12-12” 或“2013-12” 或 @“2013”
+ *	@return
+ */
++ (void)showDateSelectInViewController:(UIViewController*)viewController
+                             indexDate:(NSString*)dateStr
+                                  type:(kDatePickerType)pickerType
+                               clickOk:(DateSelectAction)block
+{
+    DateSelectViewController *dateSelectController = [[DateSelectViewController alloc]initWithNibName:@"DateSelectViewController" bundle:[NSBundle mainBundle]];
+    dateSelectController.pageType = pickerType;
+    dateSelectController.indexDate = dateStr;
+    dateSelectController.clickOkAction = block;
+    
+    //若不设置此属性 推上去后背景会变黑色  必须是rootviewcontroller
+    viewController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    
+    [viewController presentModalViewController:dateSelectController animated:YES];
 }
 @end

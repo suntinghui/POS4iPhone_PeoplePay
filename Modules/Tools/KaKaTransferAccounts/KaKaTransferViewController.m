@@ -267,7 +267,7 @@
         titleLabel.text = titles[indexPath.row];
         [cell.contentView addSubview:titleLabel];
         
-        UITextField *inputTextField = [[UITextField alloc]initWithFrame:CGRectMake(130, 14, 180, 30)];
+        UITextField *inputTextField = [[UITextField alloc]initWithFrame:CGRectMake(130, 16, 180, 20)];
         inputTextField.placeholder = placeHolds[indexPath.row];
         inputTextField.tag = indexPath.row+100;
         inputTextField.delegate = self;
@@ -294,7 +294,7 @@
             button.frame = CGRectMake(130, 8, 180, 35);
             [cell.contentView insertSubview:button belowSubview:inputTextField];
             
-            inputTextField.frame  = CGRectMake(130, 14, 110, 30);
+            inputTextField.frame  = CGRectMake(130, 16, 110, 20);
             inputTextField.enabled = NO;
         }
         else

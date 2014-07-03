@@ -367,7 +367,7 @@
                                                  if ([obj isKindOfClass:[NSDictionary class]])
                                                  {
                                                      
-                                                     if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                      {
                                                          self.infoDict = [NSDictionary dictionaryWithDictionary:obj];
                                                          

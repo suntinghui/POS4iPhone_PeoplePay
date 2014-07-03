@@ -21,6 +21,7 @@
 #import "ErrorViewController.h"
 #import "CaculateViewController.h"
 #import "CustomSelectViewController.h"
+#import "DateSelectViewController.h"
 
 @interface StaticTools (UIOperation)
 
@@ -45,4 +46,9 @@
                          selectType:(CSelectType)type
                       finishiOpeare:(FinishSelectBlock)finish;
 
+//显示日期选择页面  可包含年、月、日  也可只包含年、月
++ (void)showDateSelectInViewController:(UIViewController*)viewController
+                             indexDate:(NSString*)dateStr
+                                  type:(kDatePickerType)pickerType
+                               clickOk:(DateSelectAction)block;
 @end

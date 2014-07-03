@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "TimedoutUtil.h"
-#import "Test.h"
 #import "BaiduMobStat.h"
 #import "SplitViewController.h"
 
@@ -61,9 +60,6 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
     
     [self.window makeKeyAndVisible];
-    
-    
-//    ppp();
     
     [WXApi registerApp:@"wx1e4484ab6b577a3d"];
     
@@ -188,7 +184,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
     if (application.applicationState == UIApplicationStateActive) {
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"二维码"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"众付宝"
                                                             message:alert
                                                            delegate:self
                                                   cancelButtonTitle:@"知道了"

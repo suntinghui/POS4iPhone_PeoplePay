@@ -114,6 +114,10 @@
         {
             return [self getCustomMess:rootElement];
         }
+        else if([reqName isEqualToString:@"708102"]) //信用卡还款
+        {
+            return [self getCustomMess:rootElement];
+        }
         else if([reqName isEqualToString:@"199025"]) //账户提现
         {
             return [self getCustomMess:rootElement];
@@ -257,8 +261,7 @@
     NSMutableDictionary *dict = [self getCustomMess:bodyElement];
     if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
     {
-        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALPAGE" parentElement:bodyElement]] forKey:@"TOTALPAGE"];
-        
+        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALPAGE" parentElement:bodyElement]] forKey:@"TOTALPAGE"];        
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALTRANSAMT" parentElement:bodyElement]] forKey:@"TOTALTRANSAMT"];
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"TOTALROWNUMS" parentElement:bodyElement]] forKey:@"TOTALROWNUMS"];
         

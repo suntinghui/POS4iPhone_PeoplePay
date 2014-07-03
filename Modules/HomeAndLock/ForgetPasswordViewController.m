@@ -128,7 +128,7 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPMSG"] isEqualToString:@"000000"])
+                                             if ([obj[@"RSPMSG"] isEqualToString:@"00"])
                                              {
                                                  [SVProgressHUD showSuccessWithStatus:@"短信发送成功"];
                                              }

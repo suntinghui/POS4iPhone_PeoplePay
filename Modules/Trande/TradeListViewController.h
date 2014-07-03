@@ -39,12 +39,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLabel; //交易笔数
 @property (weak, nonatomic) IBOutlet UILabel *txtLabel; // “笔”文字
 @property (weak, nonatomic) IBOutlet UILabel *moneyLabel; //金额
+@property (weak, nonatomic) IBOutlet UIButton *timeBtn;  //时间选择按钮
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImage;
 @property (strong, nonatomic) NSMutableArray *trades;
 @property (strong, nonatomic) NSMutableArray *cashs;
 
 @property (strong, nonatomic) NSString *totalMoney; 
 @property (strong, nonatomic) NSString *totalCount;
 
+- (IBAction)buttonClickHandle:(id)sender;
 //刷新列表
 - (void)refreshList;
 

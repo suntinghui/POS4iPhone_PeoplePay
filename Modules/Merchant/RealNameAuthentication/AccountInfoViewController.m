@@ -268,9 +268,14 @@
                                                      {
                                                          NSDictionary *dict = self.bankPlaces[0];
                                                          [resultDict setObject:dict forKey:kBankPlace];
-                                                         [self.listTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                                                       
+                                                     }
+                                                     else if(self.bankPlaces.count==0)
+                                                     {
+                                                         [resultDict setObject:@{@"name":@"该银行在开户地无网点信息",@"code":@"-1"} forKey:kBankPlace];
                                                      }
                                                      
+                                                       [self.listTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                                                      
                                                  }
                                                  else
@@ -470,6 +475,12 @@
                 }
             }
             
+            if ([resultDict[kBankPlace][@"code"] isEqualToString:@"-1"])
+            {
+                [SVProgressHUD showErrorWithStatus:@"网点信息为空，请重新选择。"];
+                return;
+            }
+            
             [APPDataCenter.comDict addEntriesFromDictionary:resultDict];
     
             IDcardUploadViewController *idCardUploadController = [[IDcardUploadViewController alloc]init];
@@ -544,7 +555,7 @@
             [ProviceBtn setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
             [ProviceBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
             ProviceBtn.tag = Button_Tag_ProvinceSelect;
-            ProviceBtn.frame = CGRectMake(80, 11, 100, 35);
+            ProviceBtn.frame = CGRectMake(80, 9, 100, 35);
             [cell.contentView addSubview:ProviceBtn];
             
             UILabel *proviceLabel = [[UILabel alloc]initWithFrame:CGRectMake(80, 11, 90, 30)];
@@ -563,7 +574,7 @@
             UIButton *CityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [CityBtn setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
             [CityBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
-            CityBtn.frame = CGRectMake(210, 11, 100, 35);
+            CityBtn.frame = CGRectMake(210, 9, 100, 35);
             CityBtn.tag = Button_Tag_CitySelect;
             [cell.contentView addSubview:CityBtn];
             
@@ -622,7 +633,7 @@
         }
         else
         {
-            UITextField *inputTextField = [[UITextField alloc]initWithFrame:CGRectMake(85, 14, 225, 30)];
+            UITextField *inputTextField = [[UITextField alloc]initWithFrame:CGRectMake(85, 16, 225, 20)];
             inputTextField.tag = indexPath.row+100;
             inputTextField.delegate = self;
             inputTextField.font = [UIFont systemFontOfSize:16];

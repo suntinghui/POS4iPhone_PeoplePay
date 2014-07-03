@@ -20,10 +20,10 @@
 
 @interface RegisterViewController : BaseViewController<UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *phoneTxtField;
-@property (weak, nonatomic) IBOutlet UITextField *codeTxtField;
-@property (weak, nonatomic) IBOutlet UITextField *pswTxtField;
-@property (weak, nonatomic) IBOutlet UITextField *pswConfirmTxtField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTxtField;   //手机号
+@property (weak, nonatomic) IBOutlet UITextField *codeTxtField;    //验证码
+@property (weak, nonatomic) IBOutlet UITextField *pswTxtField;     //密码
+@property (weak, nonatomic) IBOutlet UITextField *pswConfirmTxtField; //密码确认
 
 - (IBAction)buttonClickHandle:(id)sender;
 

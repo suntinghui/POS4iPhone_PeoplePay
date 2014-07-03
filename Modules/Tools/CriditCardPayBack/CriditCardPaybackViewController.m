@@ -85,14 +85,14 @@
                               kParamName:@{@"SELLTEL_B":[UserDefaults objectForKey:KUSERNAME],
                                            @"CARDNO1_B":self.cardNumTxtField.text, //信用卡卡号
                                            @"phoneNumber_B":self.phoneTxtField.text==nil?@"":self.phoneTxtField.text, //接收手机号
-                                           @"Track2_B":mess[kCardTrac], //磁道信息
+                                           @"Track2_B":[mess[kCardTrac] substringFromIndex:2], //磁道信息
                                            @"TXNAMT_B":moneyStr, //交易金额
                                            @"POSTYPE_B":@"1",    //刷卡器类型
                                            @"CHECKX":@"0.0",     //当前经度
                                            @"CHECKY_B":@"0.0",   //当前纬度
                                            @"TERMINALNUMBER_B":[mess[kPsamNum] stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"],//机器psam号
                                            @"CRDNOJLN_B":mess[kCardPin],
-                                           @"MAC_B":mess[kCardMc],
+                                           @"MAC_B":[StringUtil stringFromHexString:mess[kMacKey]],
                                            @"TTxnTm_B":mess[@"TTXNTM"], //交易时间
                                            @"TTxnDt_B":mess[@"TTXNDT"], //交易日期
                                            @"TSeqNo_B":mess[@"TSEQNO"]

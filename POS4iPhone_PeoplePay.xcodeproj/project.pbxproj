@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6C1B0801192233F00023FCD8 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1B0800192233F00023FCD8 /* Test.m */; };
 		6C3A8C5F1919BBAE00598F39 /* AESUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A8C5E1919BBAE00598F39 /* AESUtil.m */; };
 		6CA6623B190F5636001D6114 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA66239190F5636001D6114 /* libcrypto.a */; };
 		6CA6623C190F5636001D6114 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CA6623A190F5636001D6114 /* libssl.a */; };
@@ -253,6 +252,8 @@
 		B8AC77C31963A6E5008C344E /* MoneyConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AC77C11963A6E5008C344E /* MoneyConfirmViewController.xib */; };
 		B8AC77C81963DFBF008C344E /* CriditCardPaybackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC77C61963DFBF008C344E /* CriditCardPaybackViewController.m */; };
 		B8AC77C91963DFBF008C344E /* CriditCardPaybackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AC77C71963DFBF008C344E /* CriditCardPaybackViewController.xib */; };
+		B8AC77CE19640813008C344E /* DateSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8AC77CC19640813008C344E /* DateSelectViewController.m */; };
+		B8AC77CF19640813008C344E /* DateSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8AC77CD19640813008C344E /* DateSelectViewController.xib */; };
 		B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ACABCF19381AA800493D9B /* SplitViewController.m */; };
 		B8ACABD219381AA800493D9B /* SplitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8ACABD019381AA800493D9B /* SplitViewController.xib */; };
 		B8C66C0D192D82EC0050BE5A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B8C66C03192D82EC0050BE5A /* MJRefresh.bundle */; };
@@ -292,8 +293,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6C1B07FF192233F00023FCD8 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		6C1B0800192233F00023FCD8 /* Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		6C3A8C5D1919BBAE00598F39 /* AESUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AESUtil.h; sourceTree = "<group>"; };
 		6C3A8C5E1919BBAE00598F39 /* AESUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AESUtil.m; sourceTree = "<group>"; };
 		6C3A8C62191A101900598F39 /* Qpost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Qpost.h; sourceTree = "<group>"; };
@@ -671,6 +670,9 @@
 		B8AC77C51963DFBF008C344E /* CriditCardPaybackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriditCardPaybackViewController.h; sourceTree = "<group>"; };
 		B8AC77C61963DFBF008C344E /* CriditCardPaybackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriditCardPaybackViewController.m; sourceTree = "<group>"; };
 		B8AC77C71963DFBF008C344E /* CriditCardPaybackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CriditCardPaybackViewController.xib; sourceTree = "<group>"; };
+		B8AC77CB19640813008C344E /* DateSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateSelectViewController.h; sourceTree = "<group>"; };
+		B8AC77CC19640813008C344E /* DateSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateSelectViewController.m; sourceTree = "<group>"; };
+		B8AC77CD19640813008C344E /* DateSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateSelectViewController.xib; sourceTree = "<group>"; };
 		B8ACABCE19381AA800493D9B /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewController.h; sourceTree = "<group>"; };
 		B8ACABCF19381AA800493D9B /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewController.m; sourceTree = "<group>"; };
 		B8ACABD019381AA800493D9B /* SplitViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplitViewController.xib; sourceTree = "<group>"; };
@@ -1038,6 +1040,7 @@
 		B843D14B190F77F10000A60A /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				B8AC77CA19640807008C344E /* DateSelect */,
 				B8F788A319344CF700C07BE5 /* PaintView */,
 				B8F12C79192EDF51008928C8 /* ScrollSelectView */,
 				B85D4BE3192106E2008241E0 /* CusWindow */,
@@ -1156,8 +1159,6 @@
 		B8537C65190B7CDB000F353D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				6C1B07FF192233F00023FCD8 /* Test.h */,
-				6C1B0800192233F00023FCD8 /* Test.m */,
 				B8537C66190B7CDB000F353D /* AppDelegate.h */,
 				B8537C67190B7CDB000F353D /* AppDelegate.m */,
 				B8537D55190B93D6000F353D /* AppDataCenter.h */,
@@ -1637,6 +1638,16 @@
 			path = CriditCardPayBack;
 			sourceTree = "<group>";
 		};
+		B8AC77CA19640807008C344E /* DateSelect */ = {
+			isa = PBXGroup;
+			children = (
+				B8AC77CB19640813008C344E /* DateSelectViewController.h */,
+				B8AC77CC19640813008C344E /* DateSelectViewController.m */,
+				B8AC77CD19640813008C344E /* DateSelectViewController.xib */,
+			);
+			path = DateSelect;
+			sourceTree = "<group>";
+		};
 		B8C66C02192D82EC0050BE5A /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -1783,6 +1794,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8AC77CF19640813008C344E /* DateSelectViewController.xib in Resources */,
 				B82A95FE192DDE840099E97E /* compose#hover@2x.png in Resources */,
 				B85546E219597F1B00EEEFE6 /* TKContactsMultiPickerController.xib in Resources */,
 				B82A9602192DDE840099E97E /* composeAthover@2x.png in Resources */,
@@ -1914,7 +1926,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8537D41190B81CA000F353D /* StaticDataTools.m in Sources */,
-				6C1B0801192233F00023FCD8 /* Test.m in Sources */,
 				B899E792195A78300094920B /* IDcardUploadViewController.m in Sources */,
 				B8788C3E1931BA2C003E8338 /* OpenUDID.m in Sources */,
 				B813BB0D192B25C600654A45 /* FeedBckViewController.m in Sources */,
@@ -1984,6 +1995,7 @@
 				B8537D04190B7EC4000F353D /* GTMNSString+HTML.m in Sources */,
 				B8537CFF190B7EC4000F353D /* AFURLConnectionOperation.m in Sources */,
 				B85546CD19594B9100EEEFE6 /* KaKaTransferViewController.m in Sources */,
+				B8AC77CE19640813008C344E /* DateSelectViewController.m in Sources */,
 				B899E788195A64E80094920B /* BasicInfoViewController.m in Sources */,
 				B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */,
 				B843D158190F77F10000A60A /* SPLockScreen.m in Sources */,

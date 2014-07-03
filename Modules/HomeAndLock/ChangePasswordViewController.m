@@ -118,7 +118,7 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                              {
                                                  [SVProgressHUD showSuccessWithStatus:@"密码修改成功，请重新登录。"];
                                                  UINavigationController *rootNav = (UINavigationController*)ApplicationDelegate.window.rootViewController;

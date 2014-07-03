@@ -322,10 +322,10 @@ static NSString *totalSize = nil;
     }
     else if ([postType isEqualToString:@""]) //内部服务区地址
     {
-        //http://192.168.4.115:8080/  http://59.49.20.154:8586/
-        //192.168.4.122:8080 周
+        // http://220.194.46.46:8080/
+        //192.168.4.100:8080 周
         
-        [self setRequestUrl:@"http://220.194.46.46:8080/"];
+        [self setRequestUrl:@"http://192.168.4.100:8080/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else if([postType isEqualToString:@"posp"])
