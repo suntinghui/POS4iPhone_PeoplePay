@@ -60,7 +60,7 @@
         {
             return [self getCustomMess:rootElement];
         }
-        else if([reqName isEqualToString:@"199011"]) //商户信息查询
+        else if([reqName isEqualToString:@"199022"]) //商户信息查询
         {
             return [self getMerchantInfo:rootElement];
         }
@@ -76,9 +76,9 @@
         {
             return [self getCustomMess:rootElement];
         }
-        else if([reqName isEqualToString:@"199004"]) //忘记密码
+        else if([reqName isEqualToString:@"199004"]) //重置密码
         {
-            return [self forgetPassword:rootElement];
+            return [self getCustomMess:rootElement];
         }
         else if([reqName isEqualToString:@"200007"]) //用户注册
         {
@@ -119,6 +119,10 @@
             return [self getCustomMess:rootElement];
         }
         else if([reqName isEqualToString:@"199025"]) //账户提现
+        {
+            return [self getCustomMess:rootElement];
+        }
+        else if([reqName isEqualToString:@"199019"]) //短信码验证
         {
             return [self getCustomMess:rootElement];
         }
@@ -240,7 +244,7 @@
 {
     NSMutableDictionary * dict= [self getCustomMess:bodyElement];
     
-    if ([dict[@"RSPCOD"] isEqualToString:@"000000"])
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
     {
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MERNAM" parentElement:bodyElement]] forKey:@"MERNAM"];
         [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
@@ -290,27 +294,6 @@
         
     }
     [dict setObject:arr forKey:@"LIST"];
-    
-    return dict;
-}
-
-#pragma mark -忘记密码
-/**
- *   忘记密码
- *
- *  @param bodyElement
- *
- *  @return
- */
-- (id) forgetPassword:(TBXMLElement *) bodyElement
-{
-    NSMutableDictionary * dict= [self getCustomMess:bodyElement];
-    
-    if ([dict[@"RSPCOD"] isEqualToString:@"00000"])
-    {
-        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"NEWPASSWD" parentElement:bodyElement]] forKey:@"NEWPASSWD"];
- 
-    }
     
     return dict;
 }

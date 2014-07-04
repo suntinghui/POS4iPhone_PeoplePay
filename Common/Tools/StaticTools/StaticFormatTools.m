@@ -266,6 +266,20 @@
 }
 
 /**
+ *  判断密码格式是否正确（仅包含数字和字母）
+ *
+ *  @param psw
+ *
+ *  @return
+ */
++ (BOOL)isValidatePassword:(NSString*)psw
+{
+    
+    NSString *emailRegex = @"^[A-Za-z0-9]+$";
+    NSPredicate *pswTest = [NSPredicate predicateWithFormat:@"SELF MATCHES%@",emailRegex];
+    return [pswTest evaluateWithObject:psw];
+}
+/**
  *  判断邮政编码是否正确
  *
  *  @param post

@@ -47,6 +47,9 @@ typedef enum  //给无分隔符日期如：20121212 插入的分割符的类型
 //判断邮箱格式是否正确
 + (BOOL)isValidateEmail:(NSString*)email;
 
+//判断密码是否正确（仅包含数字和字母）
++ (BOOL)isValidatePassword:(NSString*)psw;
+
 //判断邮政编码是否正确
 + (BOOL)isValidatePostCode:(NSString*)post;
 

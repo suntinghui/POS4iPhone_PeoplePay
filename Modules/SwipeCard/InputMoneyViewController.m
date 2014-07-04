@@ -182,11 +182,11 @@
             break;
         case Button_Tag_SwipeCard: //刷卡
         {
-//            PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
-//            personSignController.logNum = @"14070103019113";
-//            personSignController.hidesBottomBarWhenPushed = YES;
-//            [self.navigationController pushViewController:personSignController animated:YES];
-//            return;
+            PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+            personSignController.logNum = @"14070103019113";
+            personSignController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:personSignController animated:YES];
+            return;
             
             [StaticTools tapAnimationWithView:self.moneyView];
             [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];
@@ -233,12 +233,6 @@
                                                       money:self.inputTxtField.text
                                               otherParamter:@{kTranceCode:@"199005"}
                                                    sucBlock:^(id mess) {
-        
-//        NSString *dateStr = [StaticTools getDateStrWithDate:[NSDate date] withCutStr:@"-" hasTime:YES];
-//        NSString *date = [dateStr substringWithRange:NSMakeRange(5, 5)];
-//        date = [date stringByReplacingOccurrencesOfString:@"-" withString:@""];
-//        NSString *time = [dateStr substringFromIndex:11];
-//        time = [time stringByReplacingOccurrencesOfString:@":" withString:@""];
         
         NSString *moneyStr = [StringUtil amount2String:self.inputTxtField.text];
         

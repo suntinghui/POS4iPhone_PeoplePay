@@ -279,8 +279,9 @@ static NSString *totalSize = nil;
         [rspCode isEqualToString:@"199037"]||  //发送交易小票
         [rspCode isEqualToString:@"199010"]||  //上传消费签名图片
         [rspCode isEqualToString:@"199025"]||  //账户提现
-        [rspCode isEqualToString:@"199011"]||  //商户信息
+        [rspCode isEqualToString:@"199022"]||  //商户信息
         [rspCode isEqualToString:@"708102"]||  //信用卡还款
+        [rspCode isEqualToString:@"199019"]||  //短信码验证
         [rspCode isEqualToString:@"199005"]    //消费
         )
     {
@@ -325,7 +326,7 @@ static NSString *totalSize = nil;
         // http://220.194.46.46:8080/
         //192.168.4.100:8080 周
         
-        [self setRequestUrl:@"http://192.168.4.100:8080/"];
+        [self setRequestUrl:@"http://220.194.46.46:8080/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else if([postType isEqualToString:@"posp"])

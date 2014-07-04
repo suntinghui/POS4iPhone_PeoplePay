@@ -7,6 +7,7 @@
 //
 
 #import "ForgetPasswordViewController.h"
+#import "NewPasswordViewController.h"
 
 #define Button_Tag_GetCode  100  //获取验证码
 #define Button_Tag_Commit   101  //提交
@@ -82,7 +83,7 @@
                 return;
             }
             
-            [self getPassword];
+            [self vercodeConfirm];
         }
             break;
             
@@ -128,9 +129,9 @@
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPMSG"] isEqualToString:@"00"])
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                              {
-                                                 [SVProgressHUD showSuccessWithStatus:@"短信发送成功"];
+                                                 [SVProgressHUD showSuccessWithStatus:@"短信已发送，请注意查收"];
                                              }
                                              else
                                              {
@@ -148,23 +149,23 @@
 }
 
 /**
- *  提交 获取系统返回的密码
+ *  验证码验证
  */
-- (void)getPassword
+- (void)vercodeConfirm
 {
-    NSDictionary *dict = @{kTranceCode:@"199004",
+    NSDictionary *dict = @{kTranceCode:@"199019",
                            kParamName:@{@"PHONENUMBER":self.phoneTxtField.text,
-                                        @"MESSAGECODE":self.codeTxtField.text}};
+                                        @"CHECKCODE":self.codeTxtField.text}};
     
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                    prompt:nil
                                                                                   success:^(id obj)
                                          {
-                                             if ([obj[@"RSPCOD"] isEqualToString:@"00000"])
+                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                              {
-                                                 [StaticTools showAlertWithTag:Alert_Tag_Success
-                                                                         title:nil
-                                                                       message:[NSString stringWithFormat:@"密码已修改为：%@",obj[@"NEWPASSWD"]] AlertType:CAlertTypeDefault SuperView:self];
+                                                 NewPasswordViewController *newPasswordController = [[NewPasswordViewController alloc]init];
+                                                 newPasswordController.phoneNumber = self.phoneTxtField.text;
+                                                 [self.navigationController pushViewController:newPasswordController animated:YES];
                                              }
                                              else
                                              {
@@ -173,11 +174,11 @@
                                          }
                                                                                   failure:^(NSString *errMsg)
                                          {
-                                             [SVProgressHUD showErrorWithStatus:@"登录失败，请稍后再试!"];
+                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
                                              
                                          }];
     
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在提交..." completeBlock:^(NSArray *operations) {
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
     }];
 }
 

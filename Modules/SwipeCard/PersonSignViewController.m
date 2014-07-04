@@ -34,9 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-//    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight];
-    
-     [[UIApplication sharedApplication] setStatusBarOrientation:UIDeviceOrientationLandscapeRight animated:YES];
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
     
     float width = [[UIScreen mainScreen] bounds].size.height;
     
@@ -101,10 +99,19 @@
 {
     [[UIApplication sharedApplication]setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    if ([self respondsToSelector:@selector(setNeedsStatusBarAppearanceUpdate)]) {
+        
+        [self prefersStatusBarHidden];
+        
+        [self performSelector:@selector(setNeedsStatusBarAppearanceUpdate)];
+        
+    }
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+     [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationPortrait animated:YES];
     [[UIApplication sharedApplication]setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
      [self.navigationController setNavigationBarHidden:NO animated:YES];    
 }
@@ -115,6 +122,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 - (void)buttonClickHandle:(UIButton*)button
 {
     if (Button_Tag_Clear==button.tag)
@@ -129,7 +140,9 @@
             return;
         }
         
-        [self uploadSignImage];
+        [SVProgressHUD showWithStatus:@"正在处理图片" maskType:SVProgressHUDMaskTypeClear cancelBlock:nil];
+                
+        [NSThread detachNewThreadSelector:@selector(converImageToHex) toTarget:self withObject:nil];
         
 //        SuccessViewController *sucController = [[SuccessViewController alloc]init];
 //        if (self.pageType==1)
@@ -142,29 +155,71 @@
     }
 }
 
+#pragma mark -横竖屏切换
+#pragma mark - IOS 5 Rotation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation != UIInterfaceOrientationLandscapeLeft);
+}
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
+    
+}
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+#pragma mark - IOS 6 Rotation
+- (BOOL)shouldAutorotate {
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscapeLeft;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationLandscapeLeft;
+}
+#pragma mark -功能函数
+- (void)converImageToHex
+{
+    @autoreleasepool
+    {
+     
+        UIImage *image = [StaticTools imageWithImage:painCanvasView.drawImage.image scaledToSize:CGSizeMake(240, 160)]; //TODO 此处图片size稍微大一点时  崩溃频率较高
+        NSData *imageData = UIImagePNGRepresentation(image);
+        
+        NSLog(@"开始处理图片 长度：%d",[imageData length]);
+        //图片转成16进制字符串后上传
+        Byte *bytes = (Byte *)[imageData bytes];
+        NSString *hexStr=@"";
+        for(int i=0;i<[imageData length];i++)
+        {
+            @autoreleasepool
+            {
+                NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
+                if([newHexStr length]==1)
+                    hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
+                else
+                    hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
+            }
+        }
+        
+        NSLog(@"图片处理完成");
+        
+        [self performSelectorOnMainThread:@selector(uploadSignWithImage:) withObject:hexStr waitUntilDone:NO];
+    }
+}
 #pragma mark -http请求
 /**
  *  上传签名图片 转成png格式上传
  */
-- (void)uploadSignImage
+- (void)uploadSignWithImage:(NSString*)imgStr
 {
-    NSData *imageData = UIImagePNGRepresentation(painCanvasView.drawImage.image);
-
-    //图片转成16进制字符串后上传
-    Byte *bytes = (Byte *)[imageData bytes];
-    NSString *hexStr=@"";
-    for(int i=0;i<[imageData length];i++)
-    {
-        NSString *newHexStr = [NSString stringWithFormat:@"%x",bytes[i]&0xff];///16进制数
-        if([newHexStr length]==1)
-            hexStr = [NSString stringWithFormat:@"%@0%@",hexStr,newHexStr];
-        else
-            hexStr = [NSString stringWithFormat:@"%@%@",hexStr,newHexStr];
-    }
+    [SVProgressHUD dismiss];
     
     NSDictionary *dict = @{kTranceCode:@"199010",
              kParamName:@{@"LOGNO":self.logNum,
-                          @"ELESIGNA":hexStr}};
+                          @"ELESIGNA":imgStr}};
 
      AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
                                                                                prompt:nil

@@ -272,6 +272,8 @@
 		B8F12C81192EEFD5008928C8 /* CashTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F12C7F192EEFD5008928C8 /* CashTableViewCell.xib */; };
 		B8F12C86192F1D93008928C8 /* CaculateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F12C84192F1D93008928C8 /* CaculateViewController.m */; };
 		B8F12C87192F1D93008928C8 /* CaculateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F12C85192F1D93008928C8 /* CaculateViewController.xib */; };
+		B8F2912F1966411800890E41 /* NewPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F2912D1966411800890E41 /* NewPasswordViewController.m */; };
+		B8F291301966411800890E41 /* NewPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F2912E1966411800890E41 /* NewPasswordViewController.xib */; };
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
 		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
@@ -705,6 +707,9 @@
 		B8F12C83192F1D93008928C8 /* CaculateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaculateViewController.h; sourceTree = "<group>"; };
 		B8F12C84192F1D93008928C8 /* CaculateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaculateViewController.m; sourceTree = "<group>"; };
 		B8F12C85192F1D93008928C8 /* CaculateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CaculateViewController.xib; sourceTree = "<group>"; };
+		B8F2912C1966411800890E41 /* NewPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewPasswordViewController.h; sourceTree = "<group>"; };
+		B8F2912D1966411800890E41 /* NewPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewPasswordViewController.m; sourceTree = "<group>"; };
+		B8F2912E1966411800890E41 /* NewPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewPasswordViewController.xib; sourceTree = "<group>"; };
 		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
@@ -1029,6 +1034,9 @@
 				B89CE9F4191F1CB7008DFF31 /* ForgetPasswordViewController.h */,
 				B89CE9F5191F1CB7008DFF31 /* ForgetPasswordViewController.m */,
 				B89CE9F6191F1CB7008DFF31 /* ForgetPasswordViewController.xib */,
+				B8F2912C1966411800890E41 /* NewPasswordViewController.h */,
+				B8F2912D1966411800890E41 /* NewPasswordViewController.m */,
+				B8F2912E1966411800890E41 /* NewPasswordViewController.xib */,
 				B85D4BEA19211CD7008241E0 /* ChangePasswordViewController.h */,
 				B85D4BEB19211CD7008241E0 /* ChangePasswordViewController.m */,
 				B85D4BEC19211CD7008241E0 /* ChangePasswordViewController.xib */,
@@ -1898,6 +1906,7 @@
 				B82609CF191E1090003FE222 /* MerchantViewController.xib in Resources */,
 				B82A9614192DDE840099E97E /* composeImageFrame@2x.png in Resources */,
 				B82A9613192DDE840099E97E /* composeImageFrame.png in Resources */,
+				B8F291301966411800890E41 /* NewPasswordViewController.xib in Resources */,
 				B8537D28190B7EC4000F353D /* alertView_button_green_pressed.png in Resources */,
 				B82A9626192DDE840099E97E /* composeWords@2x.png in Resources */,
 				B813BB0E192B25C600654A45 /* FeedBckViewController.xib in Resources */,
@@ -2039,6 +2048,7 @@
 				B8263C6E192C8F33009EFABC /* ErrorViewController.m in Sources */,
 				B8537C76190B7CDB000F353D /* LoginViewController.m in Sources */,
 				B8537D5F190B982C000F353D /* ConvertUtil.m in Sources */,
+				B8F2912F1966411800890E41 /* NewPasswordViewController.m in Sources */,
 				B8788C631931BF1E003E8338 /* CJSONSerialization.m in Sources */,
 				B89CE9FB191F1D01008DFF31 /* BaseViewController.m in Sources */,
 				B839FDA61934E6A200EECA18 /* SuccessViewController.m in Sources */,

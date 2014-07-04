@@ -28,9 +28,10 @@
 
 - (void)viewDidLoad
 {
+    self.navigationItem.hidesBackButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.navigationItem.title = @"交易成功";
     self.selectBtn.selected  = YES;
     self.phoneTxtField.text = [UserDefaults objectForKey:KUSERNAME];
 }

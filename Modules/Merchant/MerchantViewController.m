@@ -355,7 +355,7 @@
  */
 - (void)getMerchantInfo
 {
-    NSDictionary *infodict = @{kTranceCode:@"199011",
+    NSDictionary *infodict = @{kTranceCode:@"199022",
                                kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME]}};
     
     AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
@@ -492,7 +492,9 @@
 {
     if (indexPath.row==1&&indexPath.section==0)
     {
-        return 105;
+        float height = [StaticTools getLabelHeight:[self getText:self.infoDict[@"OPNBNK"]] defautWidth:230 defautHeight:480 fontSize:15];
+        height = height<20?20:height;
+        return 85+height;
     }
     return 44;
 }
@@ -550,13 +552,28 @@
         [cell.contentView addSubview:nameLabel];
         nameLabel.textColor = [UIColor lightGrayColor];
         
-        UILabel *bankLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, 300, 20)];
+        UILabel *bankLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 80, 80, 20)];
         bankLabel.backgroundColor = [UIColor clearColor];
         bankLabel.font = [UIFont systemFontOfSize:15];
         
-        bankLabel.text = [NSString stringWithFormat:@"开户银行：%@",[self getText:self.infoDict[@"OPNBNK"]]];
+        bankLabel.text = @"开户银行：";
         [cell.contentView addSubview:bankLabel];
         bankLabel.textColor = [UIColor lightGrayColor];
+        
+        UILabel *bankNameLabel = [[UILabel alloc]init];
+        bankNameLabel.frame = CGRectMake(82, 80, 230, 20);
+        bankNameLabel.backgroundColor = [UIColor clearColor];
+        bankNameLabel.textColor  = [UIColor lightGrayColor];
+        bankNameLabel.font = [UIFont systemFontOfSize:15];
+        bankNameLabel.numberOfLines = 0;
+        bankNameLabel.lineBreakMode = UILineBreakModeCharacterWrap;
+        bankNameLabel.text  = [self getText:self.infoDict[@"OPNBNK"]];
+        float height = [StaticTools getLabelHeight:bankNameLabel.text defautWidth:bankNameLabel.frame.size.width defautHeight:480 fontSize:15];
+        height = height<20?20:height;
+        bankNameLabel.frame = CGRectMake(bankNameLabel.frame.origin.x,bankNameLabel.frame.origin.y, bankNameLabel.frame.size.width, height);
+        [cell.contentView addSubview:bankNameLabel];
+        
+        
         
     }
     else

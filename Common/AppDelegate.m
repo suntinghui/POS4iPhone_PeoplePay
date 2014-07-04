@@ -343,5 +343,43 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
    
 }
 
+@end
+
+
+
+// UIViewController
+@implementation UIViewController (Rotation_IOS6)
+
+// IOS5默认支持竖屏
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+// IOS6默认不开启旋转，如果subclass需要支持屏幕旋转，重写这个方法return YES即可
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+// IOS6默认支持竖屏
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
+@end
+
+// UINavigationController
+@implementation UINavigationController (Rotation_IOS6)
+
+- (BOOL)shouldAutorotate {
+    return [[self.viewControllers lastObject] shouldAutorotate];
+}
+
+- (NSUInteger)supportedInterfaceOrientations {
+    return [[self.viewControllers lastObject] supportedInterfaceOrientations];
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return [[self.viewControllers lastObject] preferredInterfaceOrientationForPresentation];
+}
 
 @end
