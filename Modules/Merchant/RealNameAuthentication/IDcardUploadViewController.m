@@ -65,10 +65,9 @@
         {
             UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
             imagePickerController.delegate = self;
-            imagePickerController.allowsEditing = YES;
             imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
             operateType = button.tag;
-            [self presentModalViewController:imagePickerController animated:YES];
+            [self presentViewController:imagePickerController animated:YES completion:nil];
             
         }
 

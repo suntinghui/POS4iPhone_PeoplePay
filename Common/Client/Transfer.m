@@ -282,6 +282,8 @@ static NSString *totalSize = nil;
         [rspCode isEqualToString:@"199022"]||  //商户信息
         [rspCode isEqualToString:@"708102"]||  //信用卡还款
         [rspCode isEqualToString:@"199019"]||  //短信码验证
+        [rspCode isEqualToString:@"708101"]||  //卡卡转账
+        [rspCode isEqualToString:@"199001"]||  //注册（UN）
         [rspCode isEqualToString:@"199005"]    //消费
         )
     {
@@ -308,7 +310,6 @@ static NSString *totalSize = nil;
             [rspCode isEqualToString:@"200007"]||//用户注册
             [rspCode isEqualToString:@"200008"]||//用户登录
             [rspCode isEqualToString:@"200009"]) //修改密码
-        
     {
         postType = @"";
         endType = @"";

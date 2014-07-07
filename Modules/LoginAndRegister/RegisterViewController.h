@@ -24,6 +24,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *codeTxtField;    //验证码
 @property (weak, nonatomic) IBOutlet UITextField *pswTxtField;     //密码
 @property (weak, nonatomic) IBOutlet UITextField *pswConfirmTxtField; //密码确认
+@property (weak, nonatomic) IBOutlet UIButton *selectBtn;
+@property (weak, nonatomic) IBOutlet UITextView *txtView;
+@property (weak, nonatomic) IBOutlet UIView *txtReadView;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

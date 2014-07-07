@@ -183,6 +183,15 @@
         {
             if ([self checkInputValue])
             {
+                
+                if (self.nameTxtField.isFirstResponder||self.pwdTxtField.isFirstResponder)
+                {
+                    [UIView animateWithDuration:0.3 animations:^{
+                        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+                        [self.view endEditing:YES];
+                    }];
+                }
+    
                 [self loginAction];
             }
         }
@@ -238,6 +247,18 @@
         self.view.frame = CGRectMake(0, -100, self.view.frame.size.width, self.view.frame.size.height);
     }];
     
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+
+    if (self.nameTxtField.isFirstResponder||self.pwdTxtField.isFirstResponder)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+            [self.view endEditing:YES];
+        }];
+    }
+    return YES;
 }
 #pragma mark- HTTP请求
 - (void)loginAction

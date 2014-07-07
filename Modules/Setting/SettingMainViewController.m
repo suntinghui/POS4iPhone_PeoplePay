@@ -13,6 +13,7 @@
 #import "SetMoveLockViewController.h"
 #import "FeedBckViewController.h"
 #import "WebViewViewController.h"
+#import "ChangePasswordViewController.h"
 
 @interface SettingMainViewController ()
 
@@ -97,7 +98,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section==0?1:3;
+    return section==0?1:4;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -158,13 +159,17 @@
         headImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"ip_gdtb%d",indexPath.row+2]];
         if (indexPath.row==0)
         {
+             titleLabel.text = @"修改密码";
+        }
+        if (indexPath.row==1)
+        {
             titleLabel.text = @"关于系统";
         }
-        else if (indexPath.row==1)
+        else if (indexPath.row==2)
         {
             titleLabel.text = @"意见反馈";
         }
-        else if (indexPath.row==2)
+        else if (indexPath.row==3)
         {
             titleLabel.text = @"帮助";
         }
@@ -191,19 +196,26 @@
     }
     else if(indexPath.section==1)
     {
-        if (indexPath.row==0)
+        if (indexPath.row==0)  //修改密码
+        {
+            ChangePasswordViewController *changePswController = [[ChangePasswordViewController alloc]init];
+            changePswController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:changePswController animated:YES];
+            changePswController.hidesBottomBarWhenPushed = YES;
+        }
+        if (indexPath.row==1) //关于系统
         {
             AbountViewController *aboutController = [[AbountViewController alloc]init];
             [self.navigationController pushViewController:aboutController animated:YES];
 
         }
-        else if(indexPath.row==1) //意见反馈
+        else if(indexPath.row==2) //意见反馈
         {
             FeedBckViewController *feedBackController = [[FeedBckViewController alloc]init];
             [self.navigationController pushViewController:feedBackController animated:YES];
             
         }
-        else if(indexPath.row == 2)
+        else if(indexPath.row == 3) //帮助
         {
             WebViewViewController *webViewController = [[WebViewViewController alloc]init];
             [self.navigationController pushViewController:webViewController animated:YES];

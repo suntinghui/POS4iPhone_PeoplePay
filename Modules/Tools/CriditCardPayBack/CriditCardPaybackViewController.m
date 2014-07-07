@@ -83,7 +83,7 @@
                                                        
        NSDictionary *dict = @{kTranceCode:@"708102",
                               kParamName:@{@"SELLTEL_B":[UserDefaults objectForKey:KUSERNAME],
-                                           @"CARDNO1_B":self.cardNumTxtField.text, //信用卡卡号
+                                           @"CRDNO1_B":self.cardNumTxtField.text, //信用卡卡号
                                            @"phoneNumber_B":self.phoneTxtField.text==nil?@"":self.phoneTxtField.text, //接收手机号
                                            @"Track2_B":[mess[kCardTrac] substringFromIndex:2], //磁道信息
                                            @"TXNAMT_B":moneyStr, //交易金额

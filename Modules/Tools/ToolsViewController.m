@@ -111,6 +111,9 @@
             break;
             
         default:
+        {
+            [SVProgressHUD showErrorWithStatus:@"暂未开通"];
+        }
             break;
     }
 }

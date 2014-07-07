@@ -102,27 +102,15 @@
         {
             return [self realNameAuth:rootElement];
         }
-        else if([reqName isEqualToString:@"199037"]) //获取交易小票
-        {
-            return [self getCustomMess:rootElement];
-        }
-        else if([reqName isEqualToString:@"199010"]) //上传签名图片
-        {
-            return [self getCustomMess:rootElement];
-        }
-        else if([reqName isEqualToString:@"708103"]) //手机充值
-        {
-            return [self getCustomMess:rootElement];
-        }
-        else if([reqName isEqualToString:@"708102"]) //信用卡还款
-        {
-            return [self getCustomMess:rootElement];
-        }
-        else if([reqName isEqualToString:@"199025"]) //账户提现
-        {
-            return [self getCustomMess:rootElement];
-        }
-        else if([reqName isEqualToString:@"199019"]) //短信码验证
+        else if([reqName isEqualToString:@"199037"]|| //获取交易小票
+                [reqName isEqualToString:@"199010"]|| //上传签名图片
+                [reqName isEqualToString:@"708103"]|| //手机充值
+                [reqName isEqualToString:@"708102"]|| //信用卡还款
+                [reqName isEqualToString:@"199025"]|| //账户提现
+                [reqName isEqualToString:@"708101"]|| //卡卡转账
+                [reqName isEqualToString:@"199001"]|| //注册（UN）
+                [reqName isEqualToString:@"199019"]   //短信码验证
+                )
         {
             return [self getCustomMess:rootElement];
         }

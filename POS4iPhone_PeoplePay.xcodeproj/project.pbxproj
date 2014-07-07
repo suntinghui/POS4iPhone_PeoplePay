@@ -231,6 +231,7 @@
 		B8788C691931BF1E003E8338 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5E1931BF1E003E8338 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C6C1931C2AA003E8338 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C6B1931C2AA003E8338 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B89525ED1934887400F04685 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89525EC1934887400F04685 /* libZftQposLib.a */; };
+		B897C073196A9A9E001BD4B5 /* register.txt in Resources */ = {isa = PBXBuildFile; fileRef = B897C072196A9A9E001BD4B5 /* register.txt */; };
 		B899E788195A64E80094920B /* BasicInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E786195A64E80094920B /* BasicInfoViewController.m */; };
 		B899E789195A64E80094920B /* BasicInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B899E787195A64E80094920B /* BasicInfoViewController.xib */; };
 		B899E78D195A6E220094920B /* AccountInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E78B195A6E220094920B /* AccountInfoViewController.m */; };
@@ -640,6 +641,7 @@
 		B8788C6A1931C2AA003E8338 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		B8788C6B1931C2AA003E8338 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
 		B89525EC1934887400F04685 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
+		B897C072196A9A9E001BD4B5 /* register.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = register.txt; sourceTree = "<group>"; };
 		B899E785195A64E80094920B /* BasicInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoViewController.h; sourceTree = "<group>"; };
 		B899E786195A64E80094920B /* BasicInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicInfoViewController.m; sourceTree = "<group>"; };
 		B899E787195A64E80094920B /* BasicInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicInfoViewController.xib; sourceTree = "<group>"; };
@@ -1693,6 +1695,7 @@
 		B8D717E6192B32F300868678 /* LocalFile */ = {
 			isa = PBXGroup;
 			children = (
+				B897C072196A9A9E001BD4B5 /* register.txt */,
 				B8D717E7192B330000868678 /* help.html */,
 			);
 			path = LocalFile;
@@ -1877,6 +1880,7 @@
 				B82A960F192DDE840099E97E /* composeiconbg.png in Resources */,
 				B82A961C192DDE840099E97E /* composereturnbtn@2x.png in Resources */,
 				B8263C6F192C8F33009EFABC /* ErrorViewController.xib in Resources */,
+				B897C073196A9A9E001BD4B5 /* register.txt in Resources */,
 				B8537D27190B7EC4000F353D /* alertView_button_green@2x.png in Resources */,
 				B82A9629192DDE840099E97E /* netError.png in Resources */,
 				B8F788A21934374700C07BE5 /* PersonSignViewController.xib in Resources */,

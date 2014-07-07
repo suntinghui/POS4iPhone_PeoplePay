@@ -8,9 +8,11 @@
 
 #import "RegisterViewController.h"
 
-
 #define Button_Tag_GetCode 100
 #define Button_Tag_Commit 101
+#define Button_Tag_Xieyi   102
+#define Button_Tag_Select  103
+#define Button_Tag_HideTxtRead 104
 
 @interface RegisterViewController ()
 
@@ -33,6 +35,15 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.title = @"用户注册";
+    self.selectBtn.selected = YES;
+
+    self.txtView.layer.borderColor = [UIColor darkGrayColor].CGColor;
+    self.txtView.layer.borderWidth = 0.5;
+    self.txtView.layer.cornerRadius = 8;
+    
+    self.txtReadView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+    [self.view addSubview:self.txtReadView];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,7 +51,31 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark -功能函数
+/**
+ *  查看阅读协议
+ */
+- (void)showTxtReadView
+{
+    self.txtReadView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+//    [self.view addSubview:self.txtReadView];
+    [UIView animateWithDuration:0.3 animations:^{
+       
+        self.txtReadView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+}
 
+/**
+ *  隐藏阅读协议
+ */
+- (void)hideTxtReadView
+{
+    [UIView animateWithDuration:0.3 animations:^{
+           self.txtReadView.frame = CGRectMake(0, self.view.frame.size.height, self.view.frame.size.width, self.view.frame.size.height);
+    } completion:^(BOOL finished) {
+//        [self.txtReadView removeFromSuperview];
+    }];
+}
 #pragma mark - 按钮点击
 - (IBAction)buttonClickHandle:(id)sender
 {
@@ -63,40 +98,78 @@
             [self getVerCode];
         }
             break;
+        case Button_Tag_Select:
+        {
+            self.selectBtn.selected = !self.selectBtn.selected;
+        }
+            break;
+        case Button_Tag_Xieyi:
+        {
+
+            NSString *file = [[NSBundle mainBundle] pathForResource:@"register" ofType:@"txt"];
+            NSString *text = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil];
+            self.txtView.text = text;
+            
+            [self showTxtReadView];
+        }
+            break;
+        case Button_Tag_HideTxtRead:
+        {
+            [self hideTxtReadView];
+        }
+            break;
         case Button_Tag_Commit:
         {
+            NSString *err = nil;
             if ([StaticTools isEmptyString:self.phoneTxtField.text])
             {
-                [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
-                return;
+                err =@"请输入手机号";
             }
             else if(![StaticTools isMobileNumber:self.phoneTxtField.text])
             {
-                [SVProgressHUD showErrorWithStatus:@"请输入一个正确的手机号"];
-                return;
+                err = @"请输入一个正确的手机号";
             }
             else if ([StaticTools isEmptyString:self.codeTxtField.text])
             {
-                [SVProgressHUD showErrorWithStatus:@"请输入验证码"];
-                return;
+                err = @"请输入验证码";
             }
             else if ([StaticTools isEmptyString:self.pswTxtField.text])
             {
-                [SVProgressHUD showErrorWithStatus:@"请输入密码"];
-                return;
+                err = @"请输入密码";
             }
             else if ([StaticTools isEmptyString:self.pswConfirmTxtField.text])
             {
-                [SVProgressHUD showErrorWithStatus:@"请确认密码"];
-                return;
+                err = @"请确认密码";
             }
             else if (![self.pswConfirmTxtField.text isEqualToString:self.pswTxtField.text])
             {
-                [SVProgressHUD showErrorWithStatus:@"两次输入的密码不一致"];
+                err = @"两次输入的密码不一致";
+            }
+            else if(self.pswConfirmTxtField.text.length<6||self.pswConfirmTxtField.text.length>10||self.pswTxtField.text.length<6||self.pswTxtField.text.length>10)
+            {
+                err =@"密码的长度只能为6到10位";
+            }
+            else if(![StaticTools isValidatePassword:self.pswTxtField.text]||
+                    ![StaticTools isValidatePassword:self.pswConfirmTxtField.text])
+            {
+                err = @"密码只能以数字或字母命名";
+            }
+            
+            if (err!=nil)
+            {
+                [SVProgressHUD showErrorWithStatus:err];
                 return;
             }
             
-            [self userRegister];
+            if(!self.selectBtn.selected)
+            {
+                [SVProgressHUD showErrorWithStatus:@"请先阅读并同意注册协议"];
+                return;
+            }
+            
+//            [self userRegister];
+            
+            [self registerUser];
         }
             break;
             
@@ -174,7 +247,50 @@
 }
 
 /**
- *  用户注册
+ *  注册（un平台）
+ */
+- (void)registerUser
+{
+    NSDictionary *infodict = @{kTranceCode:@"199001",
+                               kParamName:@{@"PHONENUMBER":self.phoneTxtField.text,
+                                            @"PASSWORD":self.pswTxtField.text,
+                                            @"CPASSWORD":self.pswConfirmTxtField.text,
+                                            @"MSCODE":self.codeTxtField.text}};
+    
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 
+                                                 if ([obj isKindOfClass:[NSDictionary class]])
+                                                 {
+                                                     
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                     {
+                                                         
+                                                         [SVProgressHUD showSuccessWithStatus:@"注册成功"];
+                                                         [self.navigationController popViewControllerAnimated:YES];
+                                                     }
+                                                     else
+                                                     {
+                                                         [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     }
+                                                     
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:^(NSString *errMsg)
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:@"注册失败!"];
+                                                 
+                                             }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+    }];
+    
+}
+/**
+ *  用户注册（自有平台）
  */
 - (void)userRegister
 {
