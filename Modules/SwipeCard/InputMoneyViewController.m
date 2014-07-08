@@ -182,11 +182,11 @@
             break;
         case Button_Tag_SwipeCard: //刷卡
         {
-            PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
-            personSignController.logNum = @"14070103019113";
-            personSignController.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:personSignController animated:YES];
-            return;
+//            PersonSignViewController *personSignController =[[PersonSignViewController alloc]init];
+//            personSignController.logNum = @"14070103019113";
+//            personSignController.hidesBottomBarWhenPushed = YES;
+//            [self.navigationController pushViewController:personSignController animated:YES];
+//            return;
             
             [StaticTools tapAnimationWithView:self.moneyView];
             [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];

@@ -174,15 +174,15 @@
             
             [self resetTableView];
             
-//            for (int i=0; i<keys.count; i++)
-//            {
-//                NSString *key = keys[i];
-//                if ([StaticTools isEmptyString:resultDict[key]])
-//                {
-//                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[i]]];
-//                    return;
-//                }
-//            }
+            for (int i=0; i<keys.count; i++)
+            {
+                NSString *key = keys[i];
+                if ([StaticTools isEmptyString:resultDict[key]])
+                {
+                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[i]]];
+                    return;
+                }
+            }
             
             APPDataCenter.comDict = [[NSMutableDictionary alloc]initWithDictionary:resultDict];
             

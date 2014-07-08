@@ -34,7 +34,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeRight animated:YES];
+    [[UIApplication sharedApplication] setStatusBarOrientation:UIInterfaceOrientationLandscapeLeft animated:YES];
     
     float width = [[UIScreen mainScreen] bounds].size.height;
     
@@ -158,7 +158,7 @@
 #pragma mark -横竖屏切换
 #pragma mark - IOS 5 Rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation != UIInterfaceOrientationLandscapeRight);
+    return (interfaceOrientation != UIInterfaceOrientationLandscapeLeft);
 }
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [super willRotateToInterfaceOrientation:toInterfaceOrientation duration:duration];
@@ -177,7 +177,7 @@
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationLandscapeRight;
+    return UIInterfaceOrientationLandscapeLeft;
 }
 #pragma mark -功能函数
 - (void)converImageToHex

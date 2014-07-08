@@ -460,26 +460,26 @@
             
             [self resetTabelView];
             
-//            for (int i=0; i<keys.count; i++)
-//            {
-//                NSString *key = keys[i];
-//                if (resultDict[key]==nil)
-//                {
-//                    int j=i;
-//                    if (j>=2)
-//                    {
-//                        j=i-1;
-//                    }
-//                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[j]]];
-//                    return;
-//                }
-//            }
-//            
-//            if ([resultDict[kBankPlace][@"code"] isEqualToString:@"-1"])
-//            {
-//                [SVProgressHUD showErrorWithStatus:@"网点信息为空，请重新选择。"];
-//                return;
-//            }
+            for (int i=0; i<keys.count; i++)
+            {
+                NSString *key = keys[i];
+                if (resultDict[key]==nil)
+                {
+                    int j=i;
+                    if (j>=2)
+                    {
+                        j=i-1;
+                    }
+                    [SVProgressHUD showErrorWithStatus:[NSString stringWithFormat:@"请输入%@",titles[j]]];
+                    return;
+                }
+            }
+            
+            if ([resultDict[kBankPlace][@"code"] isEqualToString:@"-1"])
+            {
+                [SVProgressHUD showErrorWithStatus:@"网点信息为空，请重新选择。"];
+                return;
+            }
             
             [APPDataCenter.comDict addEntriesFromDictionary:resultDict];
     
