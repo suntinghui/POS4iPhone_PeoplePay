@@ -309,7 +309,10 @@ static NSString *totalSize = nil;
             [rspCode isEqualToString:@"200006"]||//背景大图下载
             [rspCode isEqualToString:@"200007"]||//用户注册
             [rspCode isEqualToString:@"200008"]||//用户登录
-            [rspCode isEqualToString:@"200009"]) //修改密码
+            [rspCode isEqualToString:@"200009"]||//修改密码
+            [rspCode isEqualToString:@"200010"]||//上传实名认证图片
+            [rspCode isEqualToString:@"200011"]  //上传实名认证填写的资料
+            )
     {
         postType = @"";
         endType = @"";
@@ -322,12 +325,13 @@ static NSString *totalSize = nil;
     {
         [self setRequestUrl:@"http://211.147.87.24:8092/"];
     }
-    else if ([postType isEqualToString:@""]) //内部服务区地址
+    else if ([postType isEqualToString:@""]) //内部服务地址
     {
         // http://220.194.46.46:8080/
+        //http://116.228.88.115:18080/
         //192.168.4.100:8080 周
         
-        [self setRequestUrl:@"http://220.194.46.46:8080/"];
+        [self setRequestUrl:@"http://192.168.4.12:8080/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else if([postType isEqualToString:@"posp"])
@@ -341,6 +345,7 @@ static NSString *totalSize = nil;
     
    
     NSLog(@"Request:%@ ", httpBodyString);
+    
     httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];
     httpBodyString = [NSMutableString stringWithFormat:@"requestParam=%@", httpBodyString];
     

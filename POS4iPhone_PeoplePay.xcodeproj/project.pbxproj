@@ -230,6 +230,7 @@
 		B8788C681931BF1E003E8338 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5C1931BF1E003E8338 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C691931BF1E003E8338 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5E1931BF1E003E8338 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C6C1931C2AA003E8338 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C6B1931C2AA003E8338 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B887EF0B19874814006770F1 /* UserInfoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B887EF0A19874814006770F1 /* UserInfoUploader.m */; };
 		B89525ED1934887400F04685 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89525EC1934887400F04685 /* libZftQposLib.a */; };
 		B897C073196A9A9E001BD4B5 /* register.txt in Resources */ = {isa = PBXBuildFile; fileRef = B897C072196A9A9E001BD4B5 /* register.txt */; };
 		B899E788195A64E80094920B /* BasicInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B899E786195A64E80094920B /* BasicInfoViewController.m */; };
@@ -640,6 +641,8 @@
 		B8788C5F1931BF1E003E8338 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		B8788C6A1931C2AA003E8338 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		B8788C6B1931C2AA003E8338 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		B887EF0919874814006770F1 /* UserInfoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoUploader.h; sourceTree = "<group>"; };
+		B887EF0A19874814006770F1 /* UserInfoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoUploader.m; sourceTree = "<group>"; };
 		B89525EC1934887400F04685 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
 		B897C072196A9A9E001BD4B5 /* register.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = register.txt; sourceTree = "<group>"; };
 		B899E785195A64E80094920B /* BasicInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicInfoViewController.h; sourceTree = "<group>"; };
@@ -1461,6 +1464,8 @@
 				B85D4BE819210857008241E0 /* TimedoutUtil.m */,
 				B8263C63192C54DF009EFABC /* StringUtil.h */,
 				B8263C64192C54DF009EFABC /* StringUtil.mm */,
+				B887EF0919874814006770F1 /* UserInfoUploader.h */,
+				B887EF0A19874814006770F1 /* UserInfoUploader.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1970,6 +1975,7 @@
 				B8788C651931BF1E003E8338 /* CDataScanner_Extensions.m in Sources */,
 				B82A9636192DDE840099E97E /* SBJsonBase.m in Sources */,
 				B82E962019331EF400C860EF /* MyTabBarController.m in Sources */,
+				B887EF0B19874814006770F1 /* UserInfoUploader.m in Sources */,
 				B8537C75190B7CDB000F353D /* AppDelegate.m in Sources */,
 				B8C66C0E192D82EC0050BE5A /* MJRefreshBaseView.m in Sources */,
 				B899E797195A9FD60094920B /* CustomSelectViewController.m in Sources */,

@@ -25,7 +25,7 @@
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
 
-#define DEFAULTHOST                     @"http://211.147.87.24:8092/"
+#define DEFAULTHOST                     @"http://211.147.87.20:8092/"
 #define kHostAddress                    @"HOSTADDRESS"
 
 #define kTranceCode                     @"TANCECODE" //交易码
