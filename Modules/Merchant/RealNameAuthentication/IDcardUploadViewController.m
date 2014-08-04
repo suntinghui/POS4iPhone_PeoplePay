@@ -9,7 +9,6 @@
 #import "IDcardUploadViewController.h"
 #import "Base64.h"
 #import "UserInfoUploader.h"
-
 #define Button_Tag_ImageOne    100        //正面照图片按钮
 #define Button_Tag_ImageTwo    101        //反面照图片按钮
 #define Button_Tag_ImageThree  102        //银行卡图片按钮
@@ -167,7 +166,7 @@
         fileType = @"MYPIC";
     }
     
-    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithDictionary:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],@"FILETYPE":fileType,@"PHOTOS":image}];
+    NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithDictionary:@{@"PHONENUMBER":/*[UserDefaults objectForKey:KUSERNAME]*/@"15112341234",@"FILETYPE":fileType,@"PHOTOS":image}];
     NSDictionary *dict = @{kTranceCode:@"199021",
                            kParamName:infoDic};
  
@@ -221,7 +220,7 @@
 {
     NSMutableDictionary *comDict = APPDataCenter.comDict;
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithDictionary:
-       @{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+       @{@"PHONENUMBER":@"15112341234",//[UserDefaults objectForKey:KUSERNAME],
         @"USERNAME":comDict[kUserName], //申请人姓名
         @"IDNUMBER":comDict[kUserIdCard],//身份证号码
         @"MERNAME":comDict[kMerchantName],//商户名称

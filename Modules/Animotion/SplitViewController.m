@@ -57,7 +57,7 @@
             [self.scrollView addSubview:button];
         }
     }
-    self.scrollView.contentSize = CGSizeMake(320*4, self.view.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(320*4, self.view.frame.size.height-(IOS7_OR_LATER?20:0));
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -246,11 +246,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/Merchant/RealNameAuthentication/IDcardUploadViewController.m"
-            timestampString = "428310820.34582"
+            timestampString = "428317549.588777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "231"
-            endingLineNumber = "231"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "-realNameAutoentication"
             landmarkType = "5">
          </BreakpointContent>
