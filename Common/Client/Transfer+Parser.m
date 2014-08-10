@@ -102,6 +102,10 @@
         {
             return [self realNameAuth:rootElement];
         }
+        else if([reqName isEqualToString:@"199038"]) //获取扣率
+        {
+            return [self getRateInfo:rootElement];
+        }
         else if([reqName isEqualToString:@"199037"]|| //获取交易小票
                 [reqName isEqualToString:@"199010"]|| //上传签名图片
                 [reqName isEqualToString:@"708103"]|| //手机充值
@@ -399,6 +403,47 @@
     }
     
     return dict;
+}
+
+#pragma mark- 获取扣率信息
+- (id) getRateInfo:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+    {
+        
+        TBXMLElement *listElement = [TBXML childElementNamed:@"TRANDETAILS" parentElement:bodyElement];
+        if (listElement)
+        {
+            TBXMLElement *itemElement = [TBXML childElementNamed:@"TRANDETAIL" parentElement:listElement];
+            
+            while (itemElement) {
+                
+                NSMutableDictionary *dict = [[NSMutableDictionary alloc]init];
+                
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"IDFBAK" parentElement:itemElement]] forKey:@"IDFBAK"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"DUPLMT" parentElement:itemElement]] forKey:@"DUPLMT"];
+                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"DFEERAT" parentElement:itemElement]] forKey:@"DFEERAT"];
+                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"FEERAT" parentElement:itemElement]] forKey:@"FEERAT"];
+                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"MERCID" parentElement:itemElement]] forKey:@"MERCID"];
+                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"IDFID" parentElement:itemElement]] forKey:@"IDFID"];
+                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"UPLMT" parentElement:itemElement]] forKey:@"UPLMT"];
+                [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"IDFCHANNEL" parentElement:itemElement]] forKey:@"IDFCHANNEL"];
+                
+                [arr addObject:dict];
+                
+                itemElement = [TBXML nextSiblingNamed:@"TRANDETAIL" searchFromElement:itemElement];
+            }
+        }
+    }
+    
+    [dict setObject:arr forKey:@"TRANDETAILS"];
+    
+    return dict;
+
 }
 
 @end

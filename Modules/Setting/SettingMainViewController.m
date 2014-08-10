@@ -217,7 +217,7 @@
         }
         else if(indexPath.row == 3) //帮助
         {
-            WebViewViewController *webViewController = [[WebViewViewController alloc]init];
+            WebViewViewController *webViewController = [[WebViewViewController alloc]initWithBundleFileName:@"help" type:@"html"title:@"帮助"];
             [self.navigationController pushViewController:webViewController animated:YES];
         }
     }

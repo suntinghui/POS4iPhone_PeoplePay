@@ -88,11 +88,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/SwipeCard/InputMoneyViewController.m"
-            timestampString = "426145554.103509"
+            timestampString = "429371394.904569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "-swipeCard"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,7 +278,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Common/Client/Transfer.m"
-            timestampString = "428312233.790227"
+            timestampString = "429367941.774668"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "347"
@@ -300,6 +300,38 @@
             startingLineNumber = "171"
             endingLineNumber = "171"
             landmarkName = "-TransferWithRequestDic:prompt:alertError:success:failure:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Modules/SwipeCard/InputMoneyViewController.m"
+            timestampString = "429370177.432043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "-buttonClickHandle:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Modules/SwipeCard/InputMoneyViewController.m"
+            timestampString = "429370195.423306"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "-buttonClickHandle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

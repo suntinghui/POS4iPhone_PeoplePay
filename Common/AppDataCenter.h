@@ -28,6 +28,7 @@
 @property (assign, nonatomic) int accountType;  //0:签约账户 1：普通账户
 @property (strong, nonatomic) NSMutableDictionary *comDict;  //实名认证时需要的信息
 @property (strong, nonatomic) UserInfoUploader *userinfoUploader;
+@property (strong, nonatomic) NSArray *rateList;  //扣率数据
 
 //获取交易流水号
 - (NSString *)getTradeNumber;

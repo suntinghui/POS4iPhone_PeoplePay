@@ -278,7 +278,7 @@
                                             @"TTXNDT":mess[@"TTXNDT"], //交易日期
                                             @"MAC": [StringUtil stringFromHexString:mess[kMacKey]],
                                             @"LOGNO":self.infoDict[@"LOGNO"],
-                                            @"TSEQNO":[[AppDataCenter sharedAppDataCenter] getTradeNumber],
+                                            @"TSEQNO":[[AppDataCenter sharedAppDataCenter] getTradeNumber]
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict

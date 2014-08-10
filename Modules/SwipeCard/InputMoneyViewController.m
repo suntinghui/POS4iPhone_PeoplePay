@@ -13,6 +13,7 @@
 #import "DeviceHelper+SwipeCard.h"
 #import "CaculateViewController.h"
 #import "PersonSignViewController.h"
+#import "WebViewViewController.h"
 
 #define Button_Tag_Zearo 100  //0
 #define Button_Tag_One   101  //1
@@ -30,6 +31,7 @@
 #define Button_Tag_SwipeCard    112 //点击刷卡
 #define Button_Tag_KeepAccount  113 //现金记账
 #define Button_Tag_Cacualte     114 //显示计算器
+#define Button_Tag_Notice       115 //
 
 
 @interface InputMoneyViewController ()
@@ -84,6 +86,11 @@
         [button setBackgroundImage:newimg forState:UIControlStateHighlighted];
     }
    
+    if (APPDataCenter.rateList.count==0)
+    {
+        [self getRateData];
+    }
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -189,7 +196,38 @@
 //            return;
             
             [StaticTools tapAnimationWithView:self.moneyView];
-            [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];
+            
+            if ([self.inputTxtField.text floatValue] ==0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"输入的金额不合法"];
+                return;
+            }
+            
+            if (APPDataCenter.rateList==nil)
+            {
+                [self getRateData];
+                return;
+            }
+            else
+            {
+                if (APPDataCenter.rateList.count==1) //只有一条扣率方式 默认就是用该条
+                {
+                    NSDictionary *dict = APPDataCenter.rateList[0];
+                    self.rate = dict[@"IDFID"];;
+                    [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0.5];
+                }
+                else //多条扣率数据 让用户选择方式
+                {
+                    UIActionSheet *sheet = [[UIActionSheet alloc]initWithTitle:@"" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"取消" otherButtonTitles: nil];
+                    for (NSDictionary *dict in APPDataCenter.rateList)
+                    {
+                        [sheet addButtonWithTitle:dict[@"IDFCHANNEL"]];
+                    }
+                    
+                    [sheet showInView:self.view.window];
+                }
+            }
+            
 
             
         }
@@ -214,21 +252,37 @@
             
         }
             break;
+        case Button_Tag_Notice: //问号帮助
+        {
+            WebViewViewController *webViewController = [[WebViewViewController alloc]initWithWebUrl:[NSString stringWithFormat:@"http://211.147.87.20:8092/Vpm/300134.tran?EPOSFLG=1&PHONENUMBER=%@",[UserDefaults objectForKey:KUSERNAME]] title:@"汇率说明"];
+            webViewController.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:webViewController animated:YES];
+        }
+            break;
             
         default:
             break;
     }
 }
 
+#pragma mark -UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex!=0)
+    {
+        NSDictionary *dict = APPDataCenter.rateList[buttonIndex-1];
+        self.rate = dict[@"IDFID"];
+        NSLog(@"rate %@",self.rate);
+        [self performSelector:@selector(swipeCard) withObject:nil afterDelay:0];
+    }
+ 
+}
+
+
 - (void)swipeCard
 {
-    if ([self.inputTxtField.text floatValue] ==0)
-    {
-        [SVProgressHUD showErrorWithStatus:@"输入的金额不合法"];
-        return;
-    }
   
-    [[DeviceHelper shareDeviceHelper]swipeCardWithControler:self
+   [[DeviceHelper shareDeviceHelper]swipeCardWithControler:self
                                                        type:CSwipteCardTypeConsume
                                                       money:self.inputTxtField.text
                                               otherParamter:@{kTranceCode:@"199005"}
@@ -250,7 +304,8 @@
                                             @"APPTOKEN":@"APPTOKEN",
                                             @"TTXNTM":mess[@"TTXNTM"], //交易时间
                                             @"TTXNDT":mess[@"TTXNDT"], //交易日期
-                                            @"MAC": [StringUtil stringFromHexString:mess[kMacKey]]
+                                            @"MAC": [StringUtil stringFromHexString:mess[kMacKey]],
+                                            @"IDFID":self.rate      //扣率
                                             }};
         
         AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
@@ -560,4 +615,43 @@
     }];
 }
 
+/**
+ *  获取扣率数据
+ */
+- (void)getRateData
+{
+    NSDictionary *dict = @{kTranceCode:@"199038",
+                           kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME]}};
+    
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                   prompt:nil
+                                                                                  success:^(id obj)
+                                         {
+                                             if ([obj isKindOfClass:[NSDictionary class]])
+                                             {
+                                                 if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                 {
+//                                                     APPDataCenter.rateList = [NSArray arrayWithArray:obj[@"TRANDETAILS"]];
+                                                     NSMutableArray *arr = [NSMutableArray arrayWithArray:obj[@"TRANDETAILS"]];
+                                                     [arr addObjectsFromArray:obj[@"TRANDETAILS"]];
+                                                       APPDataCenter.rateList = arr;
+                                                 }
+                                                 else
+                                                 {
+                                                     [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                 }
+                                                 
+                                             }
+                                             
+                                         }
+                                                                                  failure:^(NSString *errMsg)
+                                         {
+                                             [SVProgressHUD showErrorWithStatus:@"操作失败，请稍后再试!"];
+                                             
+                                         }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在获取扣率信息" completeBlock:^(NSArray *operations) {
+    }];
+    
+}
 @end

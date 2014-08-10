@@ -18,7 +18,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InputMoneyViewController : BaseViewController
+@interface InputMoneyViewController : BaseViewController<UIActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *inputTxtField;
 @property (weak, nonatomic) IBOutlet UIView *numView;
@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIView *lineView;
 @property (strong, nonatomic) NSString *tidStr;
 @property (strong, nonatomic) NSString *pidStr;
+@property (strong, nonatomic) NSString *rate;  //扣率
 
 - (IBAction)buttonClickHandle:(id)sender;
 

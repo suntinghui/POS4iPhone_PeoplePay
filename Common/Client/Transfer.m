@@ -284,7 +284,8 @@ static NSString *totalSize = nil;
         [rspCode isEqualToString:@"199019"]||  //短信码验证
         [rspCode isEqualToString:@"708101"]||  //卡卡转账
         [rspCode isEqualToString:@"199001"]||  //注册（UN）
-        [rspCode isEqualToString:@"199005"]    //消费
+       [rspCode isEqualToString:@"199005"]||    //消费
+       [rspCode isEqualToString:@"199038"]      //获取扣率
         )
     {
         postType = @"Vpm";
@@ -327,11 +328,10 @@ static NSString *totalSize = nil;
     }
     else if ([postType isEqualToString:@""]) //内部服务地址
     {
-        // http://220.194.46.46:8080/
-        //http://116.228.88.115:18080/
+        //http://111.198.29.38:8891/
         //192.168.4.100:8080 周
         
-        [self setRequestUrl:@"http://192.168.4.12:8080/"];
+        [self setRequestUrl:@"http://111.198.29.38:8891/"];
         path = @"zfb/mpos/transProcess.do";
     }
     else if([postType isEqualToString:@"posp"])
