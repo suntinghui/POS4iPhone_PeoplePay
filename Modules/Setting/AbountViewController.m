@@ -30,6 +30,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.title = @"关于系统";
+    self.versionLabel.text = [NSString stringWithFormat:@"众易付 For Iphone V%@",[StaticTools getCurrentVersion]];
 }
 
 - (void)didReceiveMemoryWarning

@@ -19,7 +19,9 @@
 #import <UIKit/UIKit.h>
 
 @interface MyAccountViewController : BaseViewController
-
+{
+    int state; //账户状态 0：正常 2：冻结
+}
 @property (weak, nonatomic) IBOutlet UILabel *myMoneyLabel;
 @property (weak, nonatomic) IBOutlet UITextField *inputTxtField;
 

@@ -270,7 +270,7 @@ static NSString *totalSize = nil;
         [rspCode isEqualToString:@"199034"]||//获取支行列表
         [rspCode isEqualToString:@"199026"]||//我的账户信息
         [rspCode isEqualToString:@"199020"]||//签到
-        [rspCode isEqualToString:@"199030"]||//实名认证
+        [rspCode isEqualToString:@"P77022"]||//实名认证
         [rspCode isEqualToString:@"199002"]|| //登录
         [rspCode isEqualToString:@"199004"]|| //忘记密码
         [rspCode isEqualToString:@"199018"]|| //获取短信验证码
@@ -284,7 +284,10 @@ static NSString *totalSize = nil;
         [rspCode isEqualToString:@"199019"]||  //短信码验证
         [rspCode isEqualToString:@"708101"]||  //卡卡转账
         [rspCode isEqualToString:@"199001"]||  //注册（UN）
-       [rspCode isEqualToString:@"199005"]||    //消费
+       [rspCode isEqualToString:@"199053"]||    //消费
+       [rspCode isEqualToString:@"P77024"]||    //获取设备类型
+       [rspCode isEqualToString:@"P77025"]||    //上传实名认证文本信息
+       [rspCode isEqualToString:@"P77023"]||    //获取用户实名认证数据
        [rspCode isEqualToString:@"199038"]      //获取扣率
         )
     {
@@ -340,10 +343,9 @@ static NSString *totalSize = nil;
     }
     else if([postType isEqualToString:@"Vpm"])
     {
-         [self setRequestUrl:@"http://211.147.87.20:8092/"];
+         [self setRequestUrl:@"http://211.147.87.20:8092/"]; //20正式 29测试
     }
     
-   
     NSLog(@"Request:%@ ", httpBodyString);
     
     httpBodyString = [NSMutableString stringWithFormat:@"%@", [AESUtil encryptUseAES:httpBodyString]];

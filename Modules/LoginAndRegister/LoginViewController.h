@@ -18,9 +18,10 @@
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController<UITextFieldDelegate>
+@interface LoginViewController : BaseViewController<UITextFieldDelegate>
 {
     BOOL isGohome;
+    UITextField *currentTxtField;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;

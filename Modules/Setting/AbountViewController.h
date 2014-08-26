@@ -20,6 +20,8 @@
 
 @interface AbountViewController : BaseViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+
 - (IBAction)buttonClickHandle:(id)sender;
 
 @end

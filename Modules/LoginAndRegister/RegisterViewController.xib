@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1280" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
                 <outlet property="codeTxtField" destination="dyi-oW-2oA" id="fpE-64-eYb"/>
+                <outlet property="inputView" destination="S1K-B2-CoJ" id="zdG-Eo-u1Q"/>
                 <outlet property="phoneTxtField" destination="W90-Kh-LUe" id="h39-OR-s6b"/>
                 <outlet property="pswConfirmTxtField" destination="unw-hj-R28" id="P94-T6-rzK"/>
                 <outlet property="pswTxtField" destination="hO2-st-u0D" id="r2Q-H1-4Y5"/>

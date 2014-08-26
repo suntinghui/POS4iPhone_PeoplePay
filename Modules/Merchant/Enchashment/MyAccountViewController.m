@@ -69,6 +69,12 @@
                 return;
             }
             
+            if (state==2)
+            {
+                [SVProgressHUD showErrorWithStatus:@"账户已冻结"];
+                return;
+            }
+            
             MoneyConfirmViewController *moneyConfirmController = [[MoneyConfirmViewController alloc] init];
             if (Button_Tag_Nomal==button.tag)
             {
@@ -110,7 +116,7 @@
                                              {
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                  {
-                                                     
+                                                     state = [obj[@"ACSTATUS"] intValue];
                                                      self.myMoneyLabel.text = [NSString stringWithFormat:@"￥%@",obj[@"CASHACBAL"]];
                                                      
                                                  }

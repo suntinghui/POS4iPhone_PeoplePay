@@ -122,7 +122,7 @@
             //通过微信邀请客户
             [ApplicationDelegate  sendNewsContentwithType:indexPath.row==1?WXSceneSession:WXSceneTimeline
                                                     Title:nil
-                                              description:@"众付宝"
+                                              description:@"众易付"
                                                thumbimage:[UIImage imageNamed:@"ip_gyxtlogo"]
                                             withDetailUrl:@"http://www.people2000.net"];
             

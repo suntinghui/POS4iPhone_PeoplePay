@@ -52,7 +52,7 @@
         {
             return [self doSign:rootElement];
         }
-        else if([reqName isEqualToString:@"199005"]) //消费
+        else if([reqName isEqualToString:@"199053"]) //消费
         {
             return [self getTradeInfo:rootElement];
         }
@@ -98,13 +98,17 @@
         {
             return [self getMyAccountInfo:rootElement];
         }
-        else if([reqName isEqualToString:@"199030"]) //实名认证
+        else if([reqName isEqualToString:@"P77022"]) //实名认证
         {
             return [self realNameAuth:rootElement];
         }
         else if([reqName isEqualToString:@"199038"]) //获取扣率
         {
             return [self getRateInfo:rootElement];
+        }
+        else if([reqName isEqualToString:@"P77023"]) //获取用户实名认证数据
+        {
+            return [self getAutoInfo:rootElement];
         }
         else if([reqName isEqualToString:@"199037"]|| //获取交易小票
                 [reqName isEqualToString:@"199010"]|| //上传签名图片
@@ -113,6 +117,8 @@
                 [reqName isEqualToString:@"199025"]|| //账户提现
                 [reqName isEqualToString:@"708101"]|| //卡卡转账
                 [reqName isEqualToString:@"199001"]|| //注册（UN）
+                [reqName isEqualToString:@"P77024"]|| //获取设备类型
+                [reqName isEqualToString:@"P77025"]|| //上传实名认证文本信息
                 [reqName isEqualToString:@"199019"]   //短信码验证
                 )
         {
@@ -351,6 +357,7 @@
                 
                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"BANKNAM" parentElement:itemElement]] forKey:@"name"];
                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"BANKCOD" parentElement:itemElement]] forKey:@"code"];
+                 [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"BANKNO" parentElement:itemElement]] forKey:@"number"];
                 
                 [arr addObject:dict];
                 
@@ -374,6 +381,7 @@
        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CASHBAL" parentElement:bodyElement]] forKey:@"CASHBAL"];
        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"CASHACBAL" parentElement:bodyElement]] forKey:@"CASHACBAL"];
        [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
+       [dict setObject:[TBXML textForElement:[TBXML childElementNamed:@"ACSTATUS" parentElement:bodyElement]] forKey:@"ACSTATUS"];
     }
     
     return dict;
@@ -446,4 +454,36 @@
 
 }
 
+#pragma mark- 获取我的实名认证信息
+- (id) getAutoInfo:(TBXMLElement *) bodyElement
+{
+    
+    NSMutableDictionary *dict = [self getCustomMess:bodyElement];
+//    if ([dict[@"RSPCOD"] isEqualToString:@"00"])
+//    {
+
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"TERMNO" parentElement:bodyElement]] forKey:@"TERMNO"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"MERCNAM" parentElement:bodyElement]] forKey:@"MERCNAM"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"ADDRESS" parentElement:bodyElement]] forKey:@"ADDRESS"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"POSADDRESS" parentElement:bodyElement]] forKey:@"POSADDRESS"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"ACTNAM" parentElement:bodyElement]] forKey:@"ACTNAM"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"BANKCODE" parentElement:bodyElement]] forKey:@"BANKCODE"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"OPNBNKNAM" parentElement:bodyElement]] forKey:@"OPNBNKNAM"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"OPNBNK" parentElement:bodyElement]] forKey:@"OPNBNK"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"ACTNO" parentElement:bodyElement]] forKey:@"ACTNO"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"BUSNAM" parentElement:bodyElement]] forKey:@"BUSNAM"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"AREA" parentElement:bodyElement]] forKey:@"AREA"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"AREANAM" parentElement:bodyElement]] forKey:@"AREANAM"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"BANKAREA" parentElement:bodyElement]] forKey:@"BANKAREA"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"CORPORATEIDENTITY" parentElement:bodyElement]] forKey:@"CORPORATEIDENTITY"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"SCOBUS" parentElement:bodyElement]] forKey:@"SCOBUS"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"BIGBANKCOD" parentElement:bodyElement]] forKey:@"BIGBANKCOD"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"BIGBANKNAM" parentElement:bodyElement]] forKey:@"BIGBANKNAM"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"STATUS" parentElement:bodyElement]] forKey:@"STATUS"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"PROCOD" parentElement:bodyElement]] forKey:@"PROCOD"];
+        [dict setValue:[TBXML textForElement:[TBXML childElementNamed:@"PRONAM" parentElement:bodyElement]] forKey:@"PRONAM"];
+//    }
+    
+    return dict;
+}
 @end

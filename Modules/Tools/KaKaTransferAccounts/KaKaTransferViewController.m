@@ -35,6 +35,7 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"卡卡转账";
     
+    addKeyBoardNotification = YES;
     [StaticTools setExtraCellLineHidden:self.listTableView];
     
     titles = @[@"转入卡卡主姓名",@"转出卡卡主姓名",@"证件类型",@"证件号码",@"收款银行卡号",@"还款金额",@"手机号码"];
@@ -113,40 +114,21 @@
     return YES;
 }
 
-#pragma mark -keyboardDelegate
--(void)keyboardWasShown:(NSNotification *)notification
+#pragma mark -keyboard
+- (void)keyBoardShowWithHeight:(float)height
 {
-    
-    NSValue  *valu_=[notification.userInfo objectForKey:@"UIKeyboardBoundsUserInfoKey"];
-    
-    CGRect rectForkeyBoard=[valu_ CGRectValue];
-    
-    //    self.listTableView.contentSize=CGSizeMake(self.listTableView.contentSize.width,self.listTableView.contentSize.height+rectForkeyBoard.size.height-keyBoardLastHeight);
-    
-    keyBoardLastHeight=rectForkeyBoard.size.height;
-    
     NSIndexPath * indexPath=[NSIndexPath indexPathForRow:currentEditIndex inSection:0];
     
     CGRect rectForRow=[self.listTableView rectForRowAtIndexPath:indexPath];
     
-    float touchSetY=(IsIPhone5?548:460)-rectForkeyBoard.size.height-rectForRow.size.height-self.listTableView.frame.origin.y-49;//44为navigationController的高度,如果没有就不用减去44
+    float touchSetY=(IsIPhone5?548:460)-height-rectForRow.size.height-self.listTableView.frame.origin.y-49;
     if (rectForRow.origin.y>touchSetY) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
         self.listTableView.contentOffset=CGPointMake(0,rectForRow.origin.y-touchSetY);
         [UIView commitAnimations];
     }
-    
-    
 }
-
--(void)keyboardWasHidden:(NSNotification *)notification
-{
-    
-     keyBoardLastHeight=0;
- 
-}
-
 #pragma mark -按钮点击事件
 - (void)buttonClickHandle:(UIButton*)button
 {

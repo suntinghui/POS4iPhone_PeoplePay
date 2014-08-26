@@ -72,9 +72,10 @@
 #define kProvince   @"province"  //省份
 #define kCity       @"city"      //城市
 #define kBank       @"bank"      //银行
-#define kBankPlace  @"bankplace" //网点
+
 
 //*********存的字符串
+#define kBankPlace  @"bankplace" //网点
 #define kCardName   @"cardname"  //开户名
 #define kCardNumber @"cardnumber"//银行账户
 

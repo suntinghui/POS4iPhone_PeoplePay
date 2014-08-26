@@ -23,7 +23,6 @@
     UITextFieldDelegate>
 {
     NSArray *titles;
-    float keyBoardLastHeight;
     int currentEditIndex;
     NSMutableDictionary *resultDict; //保存输入内容
     NSArray *keys;

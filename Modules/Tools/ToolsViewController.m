@@ -76,11 +76,6 @@
 {
     switch ([tag intValue])
     {
-        case Button_Tag_Weibo:
-        {
-            
-        }
-            break;
         case Button_Tag_Tuijian: //推荐我们
         {
             SNSlistViewController *snsListController = [[SNSlistViewController alloc]init];

@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"基本信息(1/3)";
-    
+    addKeyBoardNotification = YES;
     [StaticTools setExtraCellLineHidden:self.listTableView];
     
     titles = @[@"申请人姓名",@"身份证号码",@"商户名称",@"经营范围",@"经营地址",@"机器序列号"];
@@ -62,9 +62,7 @@
     resultDict = [[NSMutableDictionary alloc]init];
     [resultDict setObject:serviceTypes[0][@"name"] forKey:kServiceType];
    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
+    [self getUserInfo];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -123,18 +121,15 @@
     
     return YES;
 }
-#pragma mark -keyboardDelegate
--(void)keyboardWasShown:(NSNotification *)notification
+
+
+#pragma mark -keyboard
+- (void)keyBoardShowWithHeight:(float)height
 {
-    
-    NSValue  *valu_=[notification.userInfo objectForKey:@"UIKeyboardBoundsUserInfoKey"];
-    CGRect rectForkeyBoard=[valu_ CGRectValue];
-    keyBoardLastHeight=rectForkeyBoard.size.height;
-    
     NSIndexPath * indexPath=[NSIndexPath indexPathForRow:currentEditIndex inSection:0];
     CGRect rectForRow=[self.listTableView rectForRowAtIndexPath:indexPath];
     
-    float touchSetY=(IsIPhone5?548:460)-rectForkeyBoard.size.height-rectForRow.size.height-self.listTableView.frame.origin.y-49;
+    float touchSetY=(IsIPhone5?548:460)-height-rectForRow.size.height-self.listTableView.frame.origin.y-49;
     if (rectForRow.origin.y>touchSetY) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
@@ -142,10 +137,9 @@
         [UIView commitAnimations];
     }
 }
-
--(void)keyboardWasHidden:(NSNotification *)notification
+- (void)keyBoardHidden
 {
-    keyBoardLastHeight=0;
+
 }
 
 #pragma mark -按钮点击事件
@@ -174,6 +168,7 @@
             
             [self resetTableView];
             
+            //循环判断用户是否输入
             for (int i=0; i<keys.count; i++)
             {
                 NSString *key = keys[i];
@@ -184,11 +179,18 @@
                 }
             }
             
-            APPDataCenter.comDict = [[NSMutableDictionary alloc]initWithDictionary:resultDict];
             
-            AccountInfoViewController *accountInfoController = [[AccountInfoViewController alloc]init];
-            [self.navigationController pushViewController:accountInfoController animated:YES];
-            
+            if ([APPDataCenter canEditAuthInfo])
+            {
+                [self authTerminalId];
+            }
+            else
+            {
+                APPDataCenter.comDict = [[NSMutableDictionary alloc]initWithDictionary:resultDict];
+                
+                AccountInfoViewController *accountInfoController = [[AccountInfoViewController alloc]init];
+                [self.navigationController pushViewController:accountInfoController animated:YES];
+            }
         }
             break;
             
@@ -197,6 +199,102 @@
     }
 }
 
+
+#pragma mark http请求
+/**
+ *  获取用户实名认证数据
+ */
+- (void)getUserInfo
+{
+    APPDataCenter.userInfoDict = nil;
+    NSDictionary *infodict = @{kTranceCode:@"P77023",
+                               kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME]}};
+    
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+     {
+         
+         
+                 if ([obj isKindOfClass:[NSDictionary class]])
+                 {
+                     
+//                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+//                     {
+                        // 认证状态 0开通 1关闭 2审核通过3审核未通过4黑名单5审核中6初始状态7只提交了文本信息
+                         APPDataCenter.userInfoDict = obj;
+                         if (![APPDataCenter.userInfoDict[@"STATUS"] isEqualToString:@"6"])
+                         {
+                             [resultDict setObject:APPDataCenter.userInfoDict[@"ACTNAM"] forKey:kUserName];
+                             [resultDict setObject:APPDataCenter.userInfoDict[@"CORPORATEIDENTITY"] forKey:kUserIdCard];
+                             [resultDict setObject:APPDataCenter.userInfoDict[@"MERCNAM"] forKey:kMerchantName];
+                             [resultDict setObject:APPDataCenter.userInfoDict[@"SCOBUS"] forKey:kServiceType];
+                             [resultDict setObject:APPDataCenter.userInfoDict[@"ADDRESS"] forKey:kServicePlace];
+                             [resultDict setObject:APPDataCenter.userInfoDict[@"TERMNO"] forKey:kDeviceNumber];
+                             [self.listTableView reloadData];
+                         }
+//                     }
+//                     else
+//                     {
+//                         [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+//                     }
+                     
+                 }
+                 
+             }
+                                                      failure:^(NSString *errMsg)
+             {
+                 [SVProgressHUD showErrorWithStatus:@"用户数据获取失败"];
+                 
+             }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:@"正在加载" completeBlock:^(NSArray *operations) {
+    }];
+}
+
+/**
+ *  验证设备终端号
+ */
+- (void)authTerminalId
+{
+    NSDictionary *infodict = @{kTranceCode:@"P77024",
+                               kParamName:@{@"TERMID":resultDict[kDeviceNumber]}};
+    
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 
+                                                 
+                                                 if ([obj isKindOfClass:[NSDictionary class]])
+                                                 {
+                                                     
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                     {
+                                                       
+                                                         APPDataCenter.comDict = [[NSMutableDictionary alloc]initWithDictionary:resultDict];
+                                                         
+                                                         AccountInfoViewController *accountInfoController = [[AccountInfoViewController alloc]init];
+                                                         [self.navigationController pushViewController:accountInfoController animated:YES];
+                                                     }
+                                                     else
+                                                     {
+                                                         [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     }
+                                                     
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:^(NSString *errMsg)
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:@"设备ID验证失败"];
+                                                 
+                                             }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:@"正在加载" completeBlock:^(NSArray *operations) {
+    }];
+    
+}
 
 #pragma mark -UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -252,6 +350,10 @@
         inputTextField.font = [UIFont systemFontOfSize:16];
         inputTextField.returnKeyType = UIReturnKeyDone;
         [cell.contentView addSubview:inputTextField];
+        if (![APPDataCenter canEditAuthInfo])
+        {
+            inputTextField.enabled = NO;
+        }
         
         if (indexPath.row==3)
         {
@@ -259,7 +361,11 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             button.tag = Button_Tag_TypeSelect;
             [button setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            if ([APPDataCenter canEditAuthInfo])
+            {
+              [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            }
+         
             button.frame = CGRectMake(110, 8, 200, 35);
             [cell.contentView insertSubview:button belowSubview:inputTextField];
             

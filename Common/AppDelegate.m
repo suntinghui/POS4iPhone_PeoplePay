@@ -184,7 +184,7 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
     
     if (application.applicationState == UIApplicationStateActive) {
         // Nothing to do if applicationState is Inactive, the iOS already displayed an alert view.
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"众付宝"
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"众易付"
                                                             message:alert
                                                            delegate:self
                                                   cancelButtonTitle:@"知道了"

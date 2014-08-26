@@ -55,6 +55,23 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (addKeyBoardNotification)
+    {
+        [self addKeyboardNotification];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -112,6 +129,48 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark -keyboardDelegate
+/**
+ *  增加键盘显示、隐藏的通知
+ */
+- (void)addKeyboardNotification
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardWillHideNotification object:nil];
+}
+
+-(void)keyboardWasShown:(NSNotification *)notification
+{
+    NSValue  *valu_=[notification.userInfo objectForKey:@"UIKeyboardBoundsUserInfoKey"];
+    CGRect rectForkeyBoard=[valu_ CGRectValue];
+    keyBoardLastHeight=rectForkeyBoard.size.height;
+    
+    [self keyBoardShowWithHeight:keyBoardLastHeight];
+}
+
+-(void)keyboardWasHidden:(NSNotification *)notification
+{
+    keyBoardLastHeight=0;
+    [self keyBoardHidden];
+}
+
+/**
+ *  键盘显示时调用 需要处理键盘弹出的可在子类重写该函数
+ *
+ *  @param height 键盘高度
+ */
+- (void)keyBoardShowWithHeight:(float)height
+{
+    
+}
+
+//键盘隐藏时调用 需要处理键盘隐藏的可在子类重写该函数
+- (void)keyBoardHidden
+{
+    
+}
+
 /*
 #pragma mark - Navigation
 

@@ -21,7 +21,18 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseViewController : UIViewController
+{
+    BOOL addKeyBoardNotification; //是否添加键盘通知
+    float keyBoardLastHeight;
+}
 
+//导航栏返回按钮被点击
 - (void)back;
+
+//键盘显示时调用
+- (void)keyBoardShowWithHeight:(float)height;
+
+//键盘隐藏时调用
+- (void)keyBoardHidden;
 
 @end

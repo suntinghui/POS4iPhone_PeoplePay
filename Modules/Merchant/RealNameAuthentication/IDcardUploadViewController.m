@@ -219,8 +219,9 @@
 - (void)realNameAutoentication
 {
     NSMutableDictionary *comDict = APPDataCenter.comDict;
+    
     NSMutableDictionary *infoDic = [NSMutableDictionary dictionaryWithDictionary:
-       @{@"PHONENUMBER":@"15112341234",//[UserDefaults objectForKey:KUSERNAME],
+       @{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
         @"USERNAME":comDict[kUserName], //申请人姓名
         @"IDNUMBER":comDict[kUserIdCard],//身份证号码
         @"MERNAME":comDict[kMerchantName],//商户名称
@@ -231,15 +232,15 @@
         @"BANKAREA":comDict[kCity][@"name"], //开户行所在城市
         @"BIGBANKCOD":comDict[kBank][@"code"], //开户行编号
         @"BIGBANKNAM":comDict[kBank][@"name"], //开户行名称
-        @"BANKCOD":comDict[kBankPlace][@"code"], //开户支行编号
-        @"BANKNAM":comDict[kBankPlace][@"name"], //开户支行编号
+        @"BANKCOD":comDict[kBank][@"number"], //开户支行编号
+        @"BANKNAM":comDict[kBankPlace], //开户支行名称
         @"BANKACCOUNT":comDict[kCardNumber], //开户账户
         @"MYPIC":resultDict[kMyPicUrl]==nil?@"":resultDict[kMyPicUrl], //申请人照片
         @"IDPICURL":resultDict[kIdPicOneUrl]==nil?@"":resultDict[kIdPicOneUrl], //身份证正面照片
         @"CARDPIC2":resultDict[kIdPicTwoUrl]==nil?@"":resultDict[kIdPicTwoUrl], //身份证反面照片
         @"CARDPIC":resultDict[kCardPicUrl]==nil?@"":resultDict[kCardPicUrl]}];
                                     
-    NSDictionary *dict = @{kTranceCode:@"199030",
+    NSDictionary *dict = @{kTranceCode:@"P77022",
                            kParamName:infoDic};
 
     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict

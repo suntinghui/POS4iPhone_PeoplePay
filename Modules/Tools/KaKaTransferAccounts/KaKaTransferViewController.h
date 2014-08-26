@@ -26,7 +26,6 @@
 {
     NSArray *titles;
     NSArray *placeHolds;
-    float keyBoardLastHeight;
     int currentEditIndex;
     NSArray *credentials; //保存证件类型
     NSMutableArray *results; //保存输入内容

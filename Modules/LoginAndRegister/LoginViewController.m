@@ -42,6 +42,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    addKeyBoardNotification = YES;
     if (IsIPhone5)
     {
         self.bgImgView.image = [UIImage imageNamed:@"ip_dl-bj5"];
@@ -62,9 +64,6 @@
     {
         self.nameTxtField.text = lastName;
     }
-    
-  
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -242,24 +241,34 @@
 #pragma mark -UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-  
-    [UIView animateWithDuration:0.3 animations:^{
-        self.view.frame = CGRectMake(0, -100, self.view.frame.size.width, self.view.frame.size.height);
-    }];
-    
+    currentTxtField = textField;    
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-
-    if (self.nameTxtField.isFirstResponder||self.pwdTxtField.isFirstResponder)
-    {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-            [self.view endEditing:YES];
-        }];
-    }
+    [self.view endEditing:YES];
     return YES;
 }
+
+#pragma mark -keyboard
+- (void)keyBoardShowWithHeight:(float)height
+{
+    CGRect rectForRow=currentTxtField.frame;
+    float touchSetY = [[UIScreen mainScreen] bounds].size.height-height;
+    if (rectForRow.origin.y+rectForRow.size.height>touchSetY)
+    {
+        [UIView animateWithDuration:0.3 animations:^{
+            
+            self.view.frame = CGRectMake(0, -(rectForRow.origin.y+rectForRow.size.height-touchSetY), self.view.frame.size.width, self.view.frame.size.height);
+        }];
+    }
+}
+- (void)keyBoardHidden
+{
+    [UIView animateWithDuration:0.3 animations:^{
+      self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
+}
+
 #pragma mark- HTTP请求
 - (void)loginAction
 {

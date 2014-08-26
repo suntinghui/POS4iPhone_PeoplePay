@@ -24,7 +24,6 @@
 {
     NSArray *titles;
     NSArray *placeHolds;
-    float keyBoardLastHeight;
     int currentEditIndex;
     NSMutableDictionary *resultDict; //保存输入内容
     NSArray *serviceTypes;   //所有的经营范围

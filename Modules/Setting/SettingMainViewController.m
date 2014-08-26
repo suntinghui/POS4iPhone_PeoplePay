@@ -98,7 +98,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section==0?1:4;
+    return section==0?1:6;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -163,13 +163,21 @@
         }
         if (indexPath.row==1)
         {
-            titleLabel.text = @"关于系统";
+            titleLabel.text = @"意见反馈";
         }
         else if (indexPath.row==2)
         {
-            titleLabel.text = @"意见反馈";
+            titleLabel.text = @"通知中心";
         }
         else if (indexPath.row==3)
+        {
+            titleLabel.text = @"常见问题";
+        }
+        else if(indexPath.row==4)
+        {
+            titleLabel.text = @"关于系统";
+        }
+        else if(indexPath.row==5)
         {
             titleLabel.text = @"帮助";
         }
@@ -203,19 +211,28 @@
             [self.navigationController pushViewController:changePswController animated:YES];
             changePswController.hidesBottomBarWhenPushed = YES;
         }
-        if (indexPath.row==1) //关于系统
-        {
-            AbountViewController *aboutController = [[AbountViewController alloc]init];
-            [self.navigationController pushViewController:aboutController animated:YES];
-
-        }
-        else if(indexPath.row==2) //意见反馈
+        if (indexPath.row==1) //意见反馈
         {
             FeedBckViewController *feedBackController = [[FeedBckViewController alloc]init];
             [self.navigationController pushViewController:feedBackController animated:YES];
+        }
+        else if(indexPath.row==2) //通知中心
+        {
+            WebViewViewController *webViewController = [[WebViewViewController alloc]initWithWebUrl:@"http://211.147.87.20:8092/Vpm/199023.tran?EPOSFLG=1" title:@"通知中心"];
+            [self.navigationController pushViewController:webViewController animated:YES];
             
         }
-        else if(indexPath.row == 3) //帮助
+        else if(indexPath.row == 3) //常见问题
+        {
+            WebViewViewController *webViewController = [[WebViewViewController alloc]initWithWebUrl:@"http://211.147.87.20:8092/Vpm/200132.tran?EPOSFLG=2" title:@"常见问题"];
+            [self.navigationController pushViewController:webViewController animated:YES];
+        }
+        else if(indexPath.row==4) //关于系统
+        {
+            AbountViewController *aboutController = [[AbountViewController alloc]init];
+            [self.navigationController pushViewController:aboutController animated:YES];
+        }
+        else if(indexPath.row==5) //帮助
         {
             WebViewViewController *webViewController = [[WebViewViewController alloc]initWithBundleFileName:@"help" type:@"html"title:@"帮助"];
             [self.navigationController pushViewController:webViewController animated:YES];

@@ -36,6 +36,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    addKeyBoardNotification = YES;
+    
     self.navigationItem.title = @"账户信息(2/3)";
     
     [StaticTools setExtraCellLineHidden:self.listTableView];
@@ -43,11 +45,22 @@
     titles = @[@"开户名",@"开户地点",@"开户银行",@"银行网点",@"银行账户"];
     keys = @[kCardName,kProvince,kCity,kBank,kBankPlace,kCardNumber];
     resultDict = [[NSMutableDictionary alloc]init];
+        
+    if ([StaticTools isEmptyString:APPDataCenter.userInfoDict[@"ACTNO"]])
+    {
+        [self getProviceData];
+    }
+    else
+    {
+        NSLog(@"ddd:%@",APPDataCenter.userInfoDict);
+        [resultDict setValue:APPDataCenter.userInfoDict[@"ACTNAM"] forKey:kCardName];
+        [resultDict setValue:APPDataCenter.userInfoDict[@"ACTNO"] forKey:kCardNumber];
+        [resultDict setValue:@{@"name":APPDataCenter.userInfoDict[@"PRONAM"],@"code":APPDataCenter.userInfoDict[@"PROCOD"]} forKey:kProvince];
+        [resultDict setValue:@{@"name":APPDataCenter.userInfoDict[@"AREANAM"],@"code":APPDataCenter.userInfoDict[@"AREA"]} forKey:kCity];
+        [resultDict setValue:@{@"name":APPDataCenter.userInfoDict[@"BIGBANKNAM"],@"code":APPDataCenter.userInfoDict[@"BIGBANKCOD"]} forKey:kBank];
+        [resultDict setValue:APPDataCenter.userInfoDict[@"OPNBNKNAM"] forKey:kBankPlace];
+    }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
-    
-    [self getProviceData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -105,7 +118,7 @@
                                                      
                                                      [self getBankData];
                                                      
-                                                     [self getBankPlaces];
+//                                                     [self getBankPlaces];
                                                      
                                                  }
                                                  else
@@ -207,7 +220,7 @@
                                                      [resultDict setObject:dict forKey:kBank];
                                                      [self.listTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                                                      
-                                                     [self getBankPlaces];
+//                                                     [self getBankPlaces];
                                                      
                                                  }
                                                  else
@@ -298,6 +311,65 @@
     }];
 }
 
+
+/**
+ *  上传文本信息
+ */
+- (void)uploadBaseInfo
+{
+    NSMutableDictionary *comDict = APPDataCenter.comDict;
+    NSDictionary *infodict = @{kTranceCode:@"P77025",
+                               kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
+                                            @"USERNAME":comDict[kUserName], //申请人姓名
+                                            @"IDNUMBER":comDict[kUserIdCard],//身份证号码
+                                            @"MERNAME":comDict[kMerchantName],//商户名称
+                                            @"SCOBUS":comDict[kServiceType], //经营范围
+                                            @"MERADDRESS":comDict[kServicePlace], //经营地址
+                                            @"TERMID":comDict[kDeviceNumber], //设备序列号
+                                            @"BANKUSERNAME":comDict[kCardName],//开户名
+                                            @"BANKAREA":comDict[kCity][@"name"], //开户行所在城市
+                                            @"BIGBANKCOD":comDict[kBank][@"code"], //开户行编号
+                                            @"BIGBANKNAM":comDict[kBank][@"name"], //开户行名称
+                                            @"BANKCOD":comDict[kBank][@"number"], //开户支行编号
+                                            @"BANKNAM":comDict[kBankPlace], //开户支行名称
+                                            @"BANKACCOUNT":comDict[kCardNumber], //开户账户
+                                            }};
+    
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 
+                                                 
+                                                 if ([obj isKindOfClass:[NSDictionary class]])
+                                                 {
+                                                     
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                                                     {
+                                                         
+                                                         IDcardUploadViewController *idCardUploadController = [[IDcardUploadViewController alloc]init];
+                                                         [self.navigationController pushViewController:idCardUploadController animated:YES];
+                                                     }
+                                                     else
+                                                     {
+                                                         [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                     }
+                                                     
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:^(NSString *errMsg)
+                                             {
+                                                 [SVProgressHUD showErrorWithStatus:@"设备ID验证失败"];
+                                                 
+                                             }];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:@"正在加载" completeBlock:^(NSArray *operations) {
+    }];
+}
+
+
+
 #pragma mark -UITextfieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
@@ -310,6 +382,10 @@
     if (textField.tag == 100) //开户名
     {
         [resultDict setObject:textField.text forKey:kCardName];
+    }
+    else if (textField.tag == 103)
+    {
+        [resultDict setObject:textField.text forKey:kBankPlace];
     }
     else if(textField.tag == 104) //银行账户
     {
@@ -332,18 +408,13 @@
     return YES;
 }
 
-#pragma mark -keyboardDelegate
--(void)keyboardWasShown:(NSNotification *)notification
+#pragma mark -keyboard
+- (void)keyBoardShowWithHeight:(float)height
 {
-    
-    NSValue  *valu_=[notification.userInfo objectForKey:@"UIKeyboardBoundsUserInfoKey"];
-    CGRect rectForkeyBoard=[valu_ CGRectValue];
-    keyBoardLastHeight=rectForkeyBoard.size.height;
-    
     NSIndexPath * indexPath=[NSIndexPath indexPathForRow:currentEditIndex inSection:0];
     CGRect rectForRow=[self.listTableView rectForRowAtIndexPath:indexPath];
     
-    float touchSetY=(IsIPhone5?548:460)-rectForkeyBoard.size.height-rectForRow.size.height-self.listTableView.frame.origin.y-49;
+    float touchSetY=(IsIPhone5?548:460)-height-rectForRow.size.height-self.listTableView.frame.origin.y-49;
     if (rectForRow.origin.y>touchSetY) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.3];
@@ -351,11 +422,11 @@
         [UIView commitAnimations];
     }
 }
-
--(void)keyboardWasHidden:(NSNotification *)notification
+- (void)keyBoardHidden
 {
-    keyBoardLastHeight=0;
+
 }
+
 
 #pragma mark -按钮点击事件
 - (void)buttonClickHandle:(UIButton*)button
@@ -379,7 +450,7 @@
                         
                         [self getBankData];
                         
-                        [self getBankPlaces];
+//                        [self getBankPlaces];
                     }
                 }];
             }
@@ -403,7 +474,7 @@
                         [resultDict setObject:arr[0] forKey:kCity];
                         [self.listTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                         
-                        [self getBankPlaces];
+//                        [self getBankPlaces];
                     }
                 }];
             }
@@ -425,7 +496,7 @@
                         [resultDict setObject:arr[0] forKey:kBank];
                         [self.listTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                         
-                        [self getBankPlaces];
+//                        [self getBankPlaces];
                     }
                 }];
             }
@@ -451,11 +522,11 @@
             }
             else
             {
-                [self getBankPlaces];
+//                [self getBankPlaces];
             }
         }
             break;
-        case Button_Tag_Commit:
+        case Button_Tag_Commit: //下一步
         {
             
             [self resetTabelView];
@@ -475,16 +546,19 @@
                 }
             }
             
-            if ([resultDict[kBankPlace][@"code"] isEqualToString:@"-1"])
-            {
-                [SVProgressHUD showErrorWithStatus:@"网点信息为空，请重新选择。"];
-                return;
-            }
             
             [APPDataCenter.comDict addEntriesFromDictionary:resultDict];
     
-            IDcardUploadViewController *idCardUploadController = [[IDcardUploadViewController alloc]init];
-            [self.navigationController pushViewController:idCardUploadController animated:YES];
+            if ([APPDataCenter canEditAuthInfo])
+            {
+               [self uploadBaseInfo];
+            }
+            else
+            {
+                [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-3] animated:YES];
+            }
+            
+       
             
         }
             break;
@@ -513,7 +587,7 @@
     {
         return 70;
     }
-    else if(indexPath.row==2||indexPath.row==3)
+    else if(indexPath.row==2/*||indexPath.row==3*/)
     {
         NSDictionary *dict = indexPath.row==2?resultDict[kBank]:resultDict[kBankPlace];
         float height = [StaticTools getLabelHeight:dict[@"name"]  defautWidth:200 defautHeight:480 fontSize:16];
@@ -553,7 +627,11 @@
             //省份选择
             UIButton *ProviceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [ProviceBtn setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
-            [ProviceBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            if ([APPDataCenter canEditAuthInfo])
+            {
+                 [ProviceBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            }
+           
             ProviceBtn.tag = Button_Tag_ProvinceSelect;
             ProviceBtn.frame = CGRectMake(80, 9, 100, 35);
             [cell.contentView addSubview:ProviceBtn];
@@ -573,7 +651,11 @@
             //城市选择
             UIButton *CityBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             [CityBtn setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
-            [CityBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            if ([APPDataCenter canEditAuthInfo])
+            {
+                [CityBtn addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            }
+           
             CityBtn.frame = CGRectMake(210, 9, 100, 35);
             CityBtn.tag = Button_Tag_CitySelect;
             [cell.contentView addSubview:CityBtn];
@@ -590,7 +672,7 @@
             }
             
         }
-        else if(indexPath.row==2||indexPath.row==3)
+        else if(indexPath.row==2/*||indexPath.row==3*/)
         {
             
             UILabel *textLabel = [[UILabel alloc]initWithFrame:CGRectMake(85, 10, 200, 40)];
@@ -602,7 +684,11 @@
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setBackgroundImage:[UIImage imageNamed:@"selectbg"] forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            if ([APPDataCenter canEditAuthInfo])
+            {
+                [button addTarget:self action:@selector(buttonClickHandle:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            
             button.frame = CGRectMake(80, 8, 230, 35);
             [cell.contentView insertSubview:button belowSubview:textLabel];
             if (indexPath.row==2)
@@ -615,15 +701,15 @@
                 }
                 
             }
-            else
-            {
-                button.tag = Button_Tag_BankPlaceSelect;
-                NSDictionary *dict = resultDict[kBankPlace];
-                if (dict!=nil)
-                {
-                    textLabel.text = dict[@"name"];
-                }
-            }
+//            else
+//            {
+//                button.tag = Button_Tag_BankPlaceSelect;
+//                NSDictionary *dict = resultDict[kBankPlace];
+//                if (dict!=nil)
+//                {
+//                    textLabel.text = dict[@"name"];
+//                }
+//            }
             
             float height = [StaticTools getLabelHeight:textLabel.text defautWidth:textLabel.frame.size.width defautHeight:480 fontSize:16];
             height=height<30?30:height;
@@ -639,8 +725,12 @@
             inputTextField.font = [UIFont systemFontOfSize:16];
             inputTextField.returnKeyType = UIReturnKeyDone;
             [cell.contentView addSubview:inputTextField];
+            if (![APPDataCenter canEditAuthInfo])
+            {
+                inputTextField.enabled = NO;
+            }
             
-            if (indexPath.row==0||indexPath.row==4)
+            if (indexPath.row==0||indexPath.row==4||indexPath.row==3)
             {
                 UIImageView *bgImgView = [[UIImageView alloc] initWithFrame:CGRectMake(80, 8, 230, 35)];
                 bgImgView.image = [UIImage imageNamed:@"textInput"];
@@ -650,6 +740,11 @@
                 {
                    inputTextField.placeholder = @"请输入开户名";
                     inputTextField.text = resultDict[kCardName];
+                }
+                else if(indexPath.row==3)
+                {
+                    inputTextField.placeholder = @"请输入银行网点";
+                    inputTextField.text = resultDict[kBankPlace];
                 }
                 else
                 {

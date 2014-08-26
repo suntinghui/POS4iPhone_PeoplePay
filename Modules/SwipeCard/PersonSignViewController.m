@@ -10,6 +10,7 @@
 #import "SuccessViewController.h"
 #import "ConvertUtil.h"
 #import "TradeSuccessViewController.h"
+#import "StringUtil.h"
 
 #define Button_Tag_Clear  100
 #define Button_Tag_Send   101
@@ -69,7 +70,7 @@
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:titleImg.frame];
     titleLabel.backgroundColor = [UIColor clearColor];
     titleLabel.textAlignment = UITextAlignmentCenter;
-    titleLabel.text = @"众付宝";
+    titleLabel.text = @"众易付";
     titleLabel.textColor = [UIColor whiteColor];
     [self.view addSubview:titleLabel];
     
@@ -205,52 +206,96 @@
         
         NSLog(@"图片处理完成");
         
-        [self performSelectorOnMainThread:@selector(uploadSignWithImage:) withObject:hexStr waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(swipeCardWithSignImage:) withObject:hexStr waitUntilDone:NO];
     }
 }
 #pragma mark -http请求
 /**
- *  上传签名图片 转成png格式上传
+ *  消费s
  */
-- (void)uploadSignWithImage:(NSString*)imgStr
+- (void)swipeCardWithSignImage:(NSString*)image
 {
     [SVProgressHUD dismiss];
+    [self.infoDict setObject:image forKey:@"ELESIGNA"];
     
-    NSDictionary *dict = @{kTranceCode:@"199010",
-             kParamName:@{@"LOGNO":self.logNum,
-                          @"ELESIGNA":imgStr}};
-
-     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
-                                                                               prompt:nil
-                                                                              success:^(id obj)
-                                     {
-                                         if ([obj isKindOfClass:[NSDictionary class]])
-                                         {
-                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
-                                             {
-                                               
-                                                 TradeSuccessViewController *tradeSucController = [[TradeSuccessViewController alloc] init];
-                                                 tradeSucController.logNum = self.logNum;
-                                                 [self.navigationController pushViewController:tradeSucController animated:YES];
-                                                 
-                                             }
-                                             else
-                                             {
-                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
-                                             }
-                                             
-                                         }
-                                         
-                                     }
-                                                                              failure:^(NSString *errMsg)
-                                     {
-                                         [SVProgressHUD showErrorWithStatus:@"上传失败，请稍后再试!"];
-                                         
-                                     }];
-
-    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在上传..." completeBlock:^(NSArray *operations) {
-    }];
-
+    NSDictionary *dict = @{kTranceCode:@"199053",
+                              kParamName:self.infoDict};
+       
+    AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+                                                                                      prompt:nil
+                                                                                     success:^(id obj)
+                {
+                    
+                    if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+                    {
+                        TradeSuccessViewController *tradeSucController = [[TradeSuccessViewController alloc] init];
+                        tradeSucController.logNum = obj[@"LOGNO"];
+                        [self.navigationController pushViewController:tradeSucController animated:YES];
+                    }
+                    else
+                    {
+                        
+                        [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:^{
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                        }];
+                    }
+                    
+                }
+                                                         failure:^(NSString *errMsg)
+                {
+                    
+                    
+                    [StaticTools showErrorPageWithMess:@"操作失败，请稍后再试!" clickHandle:nil];
+                    
+                }];
+    
+   [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在加载..." completeBlock:^(NSArray *operations) {
+   }];
 
 }
+
+///**
+// *  上传签名图片 转成png格式上传
+// */
+//- (void)uploadSignWithImage:(NSString*)imgStr
+//{
+//    [SVProgressHUD dismiss];
+//    
+//    NSDictionary *dict = @{kTranceCode:@"199010",
+//             kParamName:@{@"LOGNO":self.logNum,
+//                          @"ELESIGNA":imgStr}};
+//
+//     AFHTTPRequestOperation *operation = [[Transfer sharedTransfer] TransferWithRequestDic:dict
+//                                                                               prompt:nil
+//                                                                              success:^(id obj)
+//                                     {
+//                                         if ([obj isKindOfClass:[NSDictionary class]])
+//                                         {
+//                                             if ([obj[@"RSPCOD"] isEqualToString:@"00"])
+//                                             {
+//                                               
+//                                                 TradeSuccessViewController *tradeSucController = [[TradeSuccessViewController alloc] init];
+//                                                 tradeSucController.logNum = self.logNum;
+//                                                 [self.navigationController pushViewController:tradeSucController animated:YES];
+//                                                 
+//                                             }
+//                                             else
+//                                             {
+//                                                 [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+//                                             }
+//                                             
+//                                         }
+//                                         
+//                                     }
+//                                                                              failure:^(NSString *errMsg)
+//                                     {
+//                                         [SVProgressHUD showErrorWithStatus:@"上传失败，请稍后再试!"];
+//                                         
+//                                     }];
+//
+//    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在上传..." completeBlock:^(NSArray *operations) {
+//    }];
+//
+//
+//}
 @end

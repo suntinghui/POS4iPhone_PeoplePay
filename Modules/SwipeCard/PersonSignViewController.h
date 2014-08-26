@@ -24,5 +24,5 @@
     PaintMaskView *painCanvasView;
 }
 @property (assign, nonatomic) int pageType;  //0:交易成功签名  1：撤销成功签名
-@property (strong, nonatomic) NSString *logNum; //流水号
+@property (strong, nonatomic) NSMutableDictionary *infoDict; //刷卡的信息 前一个页面传过来
 @end

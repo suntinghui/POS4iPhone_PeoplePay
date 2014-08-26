@@ -35,6 +35,7 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationItem.title = @"用户注册";
+    addKeyBoardNotification = YES;
     self.selectBtn.selected = YES;
 
     self.txtView.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -181,35 +182,41 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.view.frame = CGRectMake(0, IOS7_OR_LATER?64:0, self.view.frame.size.width, self.view.frame.size.height);
-    }];
-    
 }
 #pragma mark -UITextfieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self.view endEditing:YES];
-    
-    [UIView animateWithDuration:0.3 animations:^{
-        
-        self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    }];
-    
+    [self.view endEditing:YES];    
     return YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField==self.pswTxtField||textField==self.pswConfirmTxtField)
+    currentTxtField = textField;
+}
+
+#pragma mark -keyboard
+- (void)keyBoardShowWithHeight:(float)height
+{
+    CGRect rect=currentTxtField.frame;
+    CGRect rectForRow = [self.view convertRect:rect fromView:self.inputView];
+    
+    float touchSetY = [[UIScreen mainScreen] bounds].size.height-height-64;
+    
+    if (rectForRow.origin.y+rectForRow.size.height>touchSetY)
     {
         [UIView animateWithDuration:0.3 animations:^{
             
-            self.view.frame = CGRectMake(0, -150, self.view.frame.size.width, self.view.frame.size.height);
+            self.view.frame = CGRectMake(0, -(rectForRow.origin.y+rectForRow.size.height-touchSetY)+(IOS7_OR_LATER?64:0), self.view.frame.size.width, self.view.frame.size.height);
         }];
     }
+}
+- (void)keyBoardHidden
+{
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        self.view.frame = CGRectMake(0, IOS7_OR_LATER?64:0, self.view.frame.size.width, self.view.frame.size.height);
+    }];
 }
 
 #pragma mark -http请求
