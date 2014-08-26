@@ -235,7 +235,7 @@
                                                     }
                                                     else
                                                     {
-                                                        [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                        [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
                                                     }
                                                     
                                                 }

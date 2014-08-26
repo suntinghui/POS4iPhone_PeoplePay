@@ -204,8 +204,6 @@
 		B85546CE19594B9100EEEFE6 /* KaKaTransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546CC19594B9100EEEFE6 /* KaKaTransferViewController.xib */; };
 		B85546D319596E5400EEEFE6 /* PhoneRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546D119596E5400EEEFE6 /* PhoneRechargeViewController.m */; };
 		B85546D419596E5400EEEFE6 /* PhoneRechargeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546D219596E5400EEEFE6 /* PhoneRechargeViewController.xib */; };
-		B85546D81959755400EEEFE6 /* AddressBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546D61959755400EEEFE6 /* AddressBookViewController.m */; };
-		B85546D91959755400EEEFE6 /* AddressBookViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546D71959755400EEEFE6 /* AddressBookViewController.xib */; };
 		B85546E019597F0900EEEFE6 /* TKAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546DF19597F0900EEEFE6 /* TKAddressBook.m */; };
 		B85546E219597F1B00EEEFE6 /* TKContactsMultiPickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B85546E119597F1B00EEEFE6 /* TKContactsMultiPickerController.xib */; };
 		B85546E519597F2100EEEFE6 /* TKContactsMultiPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B85546E419597F2100EEEFE6 /* TKContactsMultiPickerController.m */; };
@@ -593,9 +591,6 @@
 		B85546D019596E5400EEEFE6 /* PhoneRechargeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneRechargeViewController.h; sourceTree = "<group>"; };
 		B85546D119596E5400EEEFE6 /* PhoneRechargeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneRechargeViewController.m; sourceTree = "<group>"; };
 		B85546D219596E5400EEEFE6 /* PhoneRechargeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneRechargeViewController.xib; sourceTree = "<group>"; };
-		B85546D51959755400EEEFE6 /* AddressBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBookViewController.h; sourceTree = "<group>"; };
-		B85546D61959755400EEEFE6 /* AddressBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBookViewController.m; sourceTree = "<group>"; };
-		B85546D71959755400EEEFE6 /* AddressBookViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookViewController.xib; sourceTree = "<group>"; };
 		B85546DE19597F0900EEEFE6 /* TKAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKAddressBook.h; sourceTree = "<group>"; };
 		B85546DF19597F0900EEEFE6 /* TKAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TKAddressBook.m; sourceTree = "<group>"; };
 		B85546E119597F1B00EEEFE6 /* TKContactsMultiPickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TKContactsMultiPickerController.xib; sourceTree = "<group>"; };
@@ -1511,9 +1506,6 @@
 				B85546D019596E5400EEEFE6 /* PhoneRechargeViewController.h */,
 				B85546D119596E5400EEEFE6 /* PhoneRechargeViewController.m */,
 				B85546D219596E5400EEEFE6 /* PhoneRechargeViewController.xib */,
-				B85546D51959755400EEEFE6 /* AddressBookViewController.h */,
-				B85546D61959755400EEEFE6 /* AddressBookViewController.m */,
-				B85546D71959755400EEEFE6 /* AddressBookViewController.xib */,
 			);
 			path = PhoneRecharge;
 			sourceTree = "<group>";
@@ -1903,7 +1895,6 @@
 				B82A95F4192DDE840099E97E /* SinaWeibo.bundle in Resources */,
 				B82A961F192DDE840099E97E /* composesentbtnhover.png in Resources */,
 				B82A960C192DDE840099E97E /* composeEmotionBg@2x.png in Resources */,
-				B85546D91959755400EEEFE6 /* AddressBookViewController.xib in Resources */,
 				B8537D21190B7EC4000F353D /* alertView_bg@2x.png in Resources */,
 				B82A961E192DDE840099E97E /* composesentbtn@2x.png in Resources */,
 				B8263C62192C33FC009EFABC /* DeviceSearchViewController.xib in Resources */,
@@ -2018,7 +2009,6 @@
 				B899E788195A64E80094920B /* BasicInfoViewController.m in Sources */,
 				B8ACABD119381AA800493D9B /* SplitViewController.m in Sources */,
 				B843D158190F77F10000A60A /* SPLockScreen.m in Sources */,
-				B85546D81959755400EEEFE6 /* AddressBookViewController.m in Sources */,
 				B81C9F99190CF834004239FF /* DeviceHelper.m in Sources */,
 				B85D4BE619210701008241E0 /* CusWindow.m in Sources */,
 				B8D717E2192B2D7500868678 /* NSStream+SKPSMTPExtensions.m in Sources */,

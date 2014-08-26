@@ -78,8 +78,6 @@ static AppDataCenter *instance = nil;
  */
 - (BOOL)canEditAuthInfo
 {
-    return YES;
-    
     if (self.userInfoDict==nil)
     {
         return YES;

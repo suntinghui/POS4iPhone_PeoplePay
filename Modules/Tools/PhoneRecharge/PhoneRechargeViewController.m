@@ -37,7 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"手机充值";
     
-    moneys = @[@"1元",@"50元",@"100元"];
+    moneys = @[@"50元",@"100元",@"200元",@"300元"];
     self.moneyLabel.text = moneys[0];
     
     NSString *lastPhone = [UserDefaults objectForKey:kLastRechargPhone];
@@ -160,7 +160,7 @@
                                                         }
                                                         else
                                                         {
-                                                            [SVProgressHUD showErrorWithStatus:obj[@"RSPMSG"]];
+                                                            [StaticTools showErrorPageWithMess:obj[@"RSPMSG"] clickHandle:nil];
                                                         }
                                                         
                                                     }
