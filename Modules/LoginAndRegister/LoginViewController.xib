@@ -34,7 +34,7 @@
                         <action selector="buttonClickHandle:" destination="-1" eventType="touchUpInside" id="IuE-Io-3Vi"/>
                     </connections>
                 </button>
-                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-ip" id="WEY-fc-wj0">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-ip" id="WEY-fc-wj0">
                     <rect key="frame" x="83" y="92" width="154" height="39"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -132,6 +132,6 @@
         <image name="ip_dl-bj5" width="320" height="568"/>
         <image name="ip_dl-button" width="258" height="43"/>
         <image name="ip_dl-line" width="1" height="1"/>
-        <image name="logo-ip" width="308" height="77"/>
+        <image name="logo-ip" width="1108" height="345"/>
     </resources>
 </document>

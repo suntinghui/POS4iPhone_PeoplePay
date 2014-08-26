@@ -189,12 +189,13 @@
         TKAddressBook *address = data[0];
         self.phoneTxtField.text = address.tel;
     }
- 
 }
+
 - (void)contactsMultiPickerControllerDidCancel:(TKContactsMultiPickerController*)picker
 {
     
 }
+
 #pragma mark -UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -202,7 +203,6 @@
     {
           self.moneyLabel.text = moneys[buttonIndex-1];
     }
-  
 }
 
 @end

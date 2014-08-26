@@ -61,9 +61,6 @@
     NSMutableDictionary *mdict = results[2]; //默认为身份证
     [mdict setObject:credentials[0][@"name"] forKey:kContent];
     [mdict setObject:credentials[0][@"code"] forKey:@"code"];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
