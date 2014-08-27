@@ -200,11 +200,11 @@
                               kParamName:@{@"SELLTEL_B":[UserDefaults objectForKey:KUSERNAME],
                                            @"INCARDNAM_B":inName,
                                            @"OUTCARDNAM_B":outName,
-                                           @"OUT_IDTYP_B":idType[@"name"],
-                                           @"OUT_IDTYPNAM_B":idType[@"code"],
+                                           @"OUT_IDTYPNAM_B":idType[@"name"],
+                                           @"OUT_IDTYP_B":idType[@"code"],
                                            @"OUT_IDCARD_B":idNumber,
-                                           @"CARDNO1_B":cardNum,
-                                           @"phoneNumber_B":phone,
+                                           @"CRDNO1_B":cardNum,
+                                           @"MOBILE_B":phone,
                                            @"Track2_B":[mess[kCardTrac] substringFromIndex:2], //磁道信息
                                            @"TXNAMT_B":moneyStr, //交易金额
                                            @"POSTYPE_B":@"1",    //刷卡器类型
@@ -227,7 +227,10 @@
                                                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                     {
                                                         
-                                                       
+                                                        [StaticTools showSuccessPageWithMess:[NSString stringWithFormat:@"转账成功，%@",obj[@"RSPMSG"]] clickHandle:^{
+                                                            
+                                                            [self.navigationController popViewControllerAnimated:YES];
+                                                        }];
                                                         
                                                     }
                                                     else
@@ -260,7 +263,7 @@
     {
         NSDictionary *dict = credentials[buttonIndex-1];
         NSMutableDictionary *mdict = results[2];
-        [mdict setObject:dict[@"name"] forKey:kContent];
+        [mdict setObject:dict[@"name"] forKey:@"name"];
         [mdict setObject:dict[@"code"] forKey:@"code"];
         [self.listTableView reloadData];
     }

@@ -19,7 +19,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.messStr = @"交易成功";
     }
     return self;
 }
@@ -29,8 +28,12 @@
     self.navigationItem.hidesBackButton = YES;
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"交易成功";
-    self.messLabel.text = self.messStr;
+    self.navigationItem.title = @"操作成功";
+    
+    if (![StaticTools isEmptyString:self.messStr])
+    {
+        self.messLabel.text = self.messStr;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,13 +44,10 @@
 
 - (IBAction)buttonClickHandle:(UIButton*)button
 {
-    if ([self.messStr isEqualToString:@"撤销成功"])
+    [self.navigationController popViewControllerAnimated:YES];
+    if (self.clickBlock)
     {
-         [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-4]  animated:YES];
-    }
-    else
-    {
-        [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-3]  animated:YES];
+        self.clickBlock();
     }
    
 }

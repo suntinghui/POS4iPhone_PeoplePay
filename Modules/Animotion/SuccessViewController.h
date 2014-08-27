@@ -17,11 +17,12 @@
  //
  ----------------------------------------------------------------*/
 #import <UIKit/UIKit.h>
+typedef void(^ButtonClickBlock)();
 
 @interface SuccessViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *messLabel;
-
+@property (strong, nonatomic) ButtonClickBlock clickBlock;
 @property (strong, nonatomic) NSString *messStr;
 
 - (IBAction)buttonClickHandle:(UIButton*)button;

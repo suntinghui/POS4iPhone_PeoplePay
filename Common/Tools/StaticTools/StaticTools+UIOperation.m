@@ -98,6 +98,22 @@
 }
 
 /**
+ *  显示成功提示页面
+ *
+ *  @param mess  成提示信息
+ *  @param block 点击确定按钮后的操作
+ */
++ (void)showSuccessPageWithMess:(NSString*)mess clickHandle:(ButtonClickBlock)block;
+{
+    SuccessViewController *sucController = [[SuccessViewController alloc]initWithNibName:@"SuccessViewController" bundle:nil];
+    sucController.clickBlock = block;
+    sucController.messStr = mess;
+    UINavigationController *rootNav = (UINavigationController*)ApplicationDelegate.window.rootViewController;
+    [rootNav pushViewController:sucController animated:YES];
+    
+}
+
+/**
  *  根据交易码和交易状态获取交易信息
  *
  *  @param code  交易码

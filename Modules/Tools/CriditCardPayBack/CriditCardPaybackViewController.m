@@ -88,7 +88,7 @@
                                            @"Track2_B":[mess[kCardTrac] substringFromIndex:2], //磁道信息
                                            @"TXNAMT_B":moneyStr, //交易金额
                                            @"POSTYPE_B":@"1",    //刷卡器类型
-                                           @"CHECKX":@"0.0",     //当前经度
+                                           @"CHECKX_B":@"0.0",     //当前经度
                                            @"CHECKY_B":@"0.0",   //当前纬度
                                            @"TERMINALNUMBER_B":[mess[kPsamNum] stringByReplacingOccurrencesOfString:@"554E" withString:@"UN"],//机器psam号
                                            @"CRDNOJLN_B":mess[kCardPin],
@@ -107,8 +107,9 @@
                                                     if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                     {
                                                         
-                                                        [SVProgressHUD showSuccessWithStatus:@"还款成功"];
-                                                        [self.navigationController popViewControllerAnimated:YES];
+                                                        [StaticTools showSuccessPageWithMess:@"还款成功" clickHandle:^{
+                                                            [self.navigationController popViewControllerAnimated:YES];
+                                                        }];
                                                     }
                                                     else
                                                     {

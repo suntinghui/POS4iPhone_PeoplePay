@@ -154,9 +154,10 @@
                                                             [UserDefaults setObject:self.phoneTxtField.text forKey:kLastRechargPhone];
                                                             [UserDefaults synchronize];
                                                             
-                                                            [SVProgressHUD showSuccessWithStatus:@"充值成功"];
-                                                            [self.navigationController popViewControllerAnimated:YES];
-                                                            
+                                                            [StaticTools showSuccessPageWithMess:@"充值成功" clickHandle:^{
+                                                                
+                                                                 [self.navigationController popViewControllerAnimated:YES];
+                                                            }];
                                                         }
                                                         else
                                                         {
