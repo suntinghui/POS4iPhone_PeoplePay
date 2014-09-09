@@ -59,6 +59,7 @@
         self.inputBgView.frame = CGRectMake(self.inputBgView.frame.origin.x, self.inputBgView.frame.origin.y+20, self.inputBgView.frame.size.width, self.inputBgView.frame.size.height);
     }
     [self clearDisplay];
+    
 }
 
 - (void)didReceiveMemoryWarning

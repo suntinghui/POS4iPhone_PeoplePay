@@ -29,7 +29,6 @@
     {
         [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
         
-        
         SplitViewController *splitController = [[SplitViewController alloc]init];
         nav = [[UINavigationController alloc]initWithRootViewController:splitController ];
         

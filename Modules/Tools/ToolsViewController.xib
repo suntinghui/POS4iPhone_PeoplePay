@@ -22,7 +22,7 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ip_sygg" id="ROc-hS-3w4">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tool_top(1)" id="ROc-hS-3w4">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <inset key="insetFor6xAndEarlier" minX="0.0" minY="20" maxX="0.0" maxY="-20"/>
@@ -137,10 +137,10 @@
         <image name="ip_jyfx" width="94" height="75"/>
         <image name="ip_kkzz" width="94" height="75"/>
         <image name="ip_sjcz" width="188" height="151"/>
-        <image name="ip_sygg" width="360" height="252"/>
         <image name="ip_tjwm" width="94" height="75"/>
         <image name="ip_xyk" width="94" height="75"/>
         <image name="ip_yecx" width="94" height="75"/>
         <image name="ip_zfb" width="94" height="75"/>
+        <image name="tool_top(1)" width="480" height="338"/>
     </resources>
 </document>

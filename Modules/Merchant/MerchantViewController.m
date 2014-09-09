@@ -14,6 +14,7 @@
 #import "Base64.h"
 #import "BasicInfoViewController.h"
 #import "MyAccountViewController.h"
+#import "MyQRcodeViewController.h"
 
 #define Button_Tag_Logout        100 //退出登录
 #define Button_Tag_ChangeHeadImg 101 //修改头像
@@ -621,15 +622,20 @@
             }
             else if(indexPath.row==1)
             {
+               titleLabel.text = @"我的二维码";
+                headImgView.image = [UIImage imageNamed:@"icon_saoyisao"];
+            }
+            else if(indexPath.row==2)
+            {
                 titleLabel.text = @"实名认证";
                 headImgView.image = [UIImage imageNamed:@"ip-gdsz"];
             }
-            else if (indexPath.row==2)
+            else if (indexPath.row==3)
             {
                 titleLabel.text = @"更多设置";
                 headImgView.image = [UIImage imageNamed:@"ip_gdtb1"]; 
             }
-            else if (indexPath.row==3)
+            else if (indexPath.row==4)
             {
                 titleLabel.text = @"联系客服";
                 headImgView.image = [UIImage imageNamed:@"ip-lxkf"];
@@ -669,19 +675,25 @@
             myAccountController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myAccountController animated:YES];
         }
-        else if (indexPath.row==1) //实名认证
+        else if(indexPath.row==1) //我的二维码
+        {
+            MyQRcodeViewController *myqrCodeController = [[MyQRcodeViewController alloc]init];
+            myqrCodeController.nameStr = self.nameLabel.text;
+            [self.navigationController pushViewController:myqrCodeController animated:YES];
+        }
+        else if (indexPath.row==2) //实名认证
         {
             BasicInfoViewController *basicInfoController = [[BasicInfoViewController alloc]init];
             basicInfoController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:basicInfoController animated:YES];
         }
-        else if(indexPath.row==2) //更多设置
+        else if(indexPath.row==3) //更多设置
         {
             SettingMainViewController *settingMainController = [[SettingMainViewController alloc]init];
             settingMainController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:settingMainController animated:YES];
         }
-        else if(indexPath.row==3) //联系客服
+        else if(indexPath.row==4) //联系客服
         {
          
             UIActionSheet *sheet=[[UIActionSheet alloc]initWithTitle:@"客服热线" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拨打--4006269987", nil];

@@ -83,9 +83,9 @@
 
 
 //*********新浪微博*************************
-#define kAppKey             @"1288753078"
-#define kAppSecret          @"ed8d44e640de2aed3888eeea19dbc24b"
-#define kAppRedirectURI     @"http://www.baidu.com"
+#define kAppKey             @"2061002670"
+#define kAppSecret          @"030bcde0d64cdde1bbadde29f930f3af"
+#define kAppRedirectURI     @"http://www.people2000.net"
 
 //#define kAppKey             @"4156530697"
 //#define kAppSecret          @"63b17a75c4c04e959006090b5cb07b2f"

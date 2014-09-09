@@ -14,6 +14,7 @@
 #import "FeedBckViewController.h"
 #import "WebViewViewController.h"
 #import "ChangePasswordViewController.h"
+#import "MyQRcodeViewController.h"
 
 @interface SettingMainViewController ()
 
@@ -132,7 +133,7 @@
         [view removeFromSuperview];
     }
     
-       UIImageView *headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 20, 19)];
+    UIImageView *headImgView = [[UIImageView alloc]initWithFrame:CGRectMake(10, 13, 20, 19)];
     headImgView.backgroundColor = [UIColor clearColor];
     [cell.contentView addSubview:headImgView];
     
@@ -146,12 +147,15 @@
     
     if (indexPath.section==0)
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        headImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"ip_gdtb%d",1]];
-        titleLabel.text = @"设置锁屏手势";
-        if (![cell.contentView.subviews containsObject:lockSwitch])
+        if (indexPath.row==0)
         {
-            [cell.contentView addSubview:lockSwitch];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            headImgView.image = [UIImage imageNamed:[NSString stringWithFormat:@"ip_gdtb%d",1]];
+            titleLabel.text = @"设置锁屏手势";
+            if (![cell.contentView.subviews containsObject:lockSwitch])
+            {
+                [cell.contentView addSubview:lockSwitch];
+            }
         }
     }
     else if(indexPath.section==1)
