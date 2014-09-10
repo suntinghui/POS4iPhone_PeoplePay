@@ -31,10 +31,15 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"我的二维码";
     
+    self.bgImageView.layer.cornerRadius = 8;
+    self.nameLabel.text = self.nameStr;
+    
     NSString *info = [NSString stringWithFormat:@"%@|%@",[UserDefaults objectForKey:KUSERNAME],self.nameStr] ;
     info = [AESUtil encryptUseAES:info];
     
     self.qrImageView.image = [QRCodeGenerator qrImageForString:info imageSize:self.qrImageView.frame.size.width];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

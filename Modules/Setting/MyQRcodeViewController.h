@@ -21,6 +21,8 @@
 @interface MyQRcodeViewController : BaseViewController
 
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bgImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
 @property (strong, nonatomic) NSString *nameStr; //商户姓名 前一个页面传过来
 

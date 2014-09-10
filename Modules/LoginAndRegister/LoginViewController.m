@@ -17,9 +17,9 @@
 #import "MyTabBarController.h"
 #import "RegisterViewController.h"
 
-#define Button_Tag_Login  100
-#define Button_Tag_ForgetPwd 101
-#define Button_Tag_Regiter  102
+#define Button_Tag_Login         100 //登录按钮
+#define Button_Tag_ForgetPwd     101 //
+#define Button_Tag_Regiter       102
 #define button_Tag_SpeciaAccount 103
 #define Button_Tag_NormalAccount 104
 
@@ -138,8 +138,6 @@
     ToolsViewController *toolsController = [[ToolsViewController alloc]init];
     UINavigationController *nav4 = [[UINavigationController alloc]initWithRootViewController:toolsController];
     [StaticTools setNavigationBarBackgroundImage:nav4.navigationBar withImg:image];
-    
-    NSArray *ctlArr = @[nav1,nav2,nav3,nav4];
     
     NSMutableDictionary *imgDic1 = [NSMutableDictionary dictionaryWithCapacity:3];
 	[imgDic1 setObject:[UIImage imageNamed:@"ip_sk"] forKey:@"Default"];

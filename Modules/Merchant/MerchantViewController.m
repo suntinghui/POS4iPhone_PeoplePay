@@ -679,6 +679,7 @@
         {
             MyQRcodeViewController *myqrCodeController = [[MyQRcodeViewController alloc]init];
             myqrCodeController.nameStr = self.nameLabel.text;
+            myqrCodeController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myqrCodeController animated:YES];
         }
         else if (indexPath.row==2) //实名认证
