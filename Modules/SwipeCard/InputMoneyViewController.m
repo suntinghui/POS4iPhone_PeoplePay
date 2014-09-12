@@ -310,6 +310,8 @@
        personSignController.infoDict = [NSMutableDictionary dictionaryWithDictionary:infoDict];
        personSignController.hidesBottomBarWhenPushed = YES;
        [self.navigationController pushViewController:personSignController animated:YES];
+    
+        self.inputTxtField.text = nil;
 
     }];
 }

@@ -15,6 +15,8 @@
 #import "BasicInfoViewController.h"
 #import "MyAccountViewController.h"
 #import "MyQRcodeViewController.h"
+#import "QRCodeGenerator.h"
+#import "AESUtil.h"
 
 #define Button_Tag_Logout        100 //退出登录
 #define Button_Tag_ChangeHeadImg 101 //修改头像
@@ -23,6 +25,7 @@
 #define Alert_Tag_Logout         200 //退出登录alert
 
 #define View_Tag_StateImg        300
+#define View_Tag_QRcodeView      301 //我的二维码视图
 
 #define Action_Tag_Phone         400
 #define Action_Tag_Camara        401
@@ -64,6 +67,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [[self.view viewWithTag:View_Tag_QRcodeView] removeFromSuperview];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -103,6 +107,31 @@
     
 }
 
+
+/**
+ *  显示我的二维码
+ */
+- (void)showQrcodeView
+{
+    UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
+    view.tag  = View_Tag_QRcodeView;
+    view.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+    
+    NSString *info = [NSString stringWithFormat:@"%@|%@",[UserDefaults objectForKey:KUSERNAME],self.nameLabel.text] ;
+    info = [AESUtil encryptUseAES:info];
+    
+    UIImageView *imgView = [[UIImageView alloc]initWithFrame:CGRectMake(50, (self.view.frame.size.height-220)/2, 220, 220)];
+    imgView.backgroundColor = [UIColor whiteColor];
+    imgView.image =[QRCodeGenerator qrImageForString:info imageSize:imgView.frame.size.width];
+    [view addSubview:imgView];
+    view.alpha = 0;
+    [self.view addSubview:view];
+    [UIView animateWithDuration:0.5 animations:^{
+        
+        view.alpha = 1;
+    }];
+    
+}
 - (NSString*)getText:(NSString*)text
 {
     if ([StaticTools isEmptyString:text])
@@ -151,6 +180,20 @@
     }
 }
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    UIView *qrView = [self.view viewWithTag:View_Tag_QRcodeView];
+    if (qrView!=nil)
+    {
+        [UIView animateWithDuration:0.5 animations:^{
+            qrView.alpha = 0;
+        } completion:^(BOOL finished) {
+           
+            [qrView removeFromSuperview];
+        }];
+    }
+    
+}
 #pragma mark -UIActionSheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -677,10 +720,16 @@
         }
         else if(indexPath.row==1) //我的二维码
         {
+            [self showQrcodeView];
+            return;
+            
             MyQRcodeViewController *myqrCodeController = [[MyQRcodeViewController alloc]init];
             myqrCodeController.nameStr = self.nameLabel.text;
             myqrCodeController.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:myqrCodeController animated:YES];
+            
+            
+            
         }
         else if (indexPath.row==2) //实名认证
         {

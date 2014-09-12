@@ -2269,7 +2269,7 @@
 					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cdbe115a-a4bd-4368-ba42-231bdac3be6e";
+				PROVISIONING_PROFILE = "32645E98-7BF7-48BB-B021-52D070BD9BCA";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -2307,7 +2307,7 @@
 					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cdbe115a-a4bd-4368-ba42-231bdac3be6e";
+				PROVISIONING_PROFILE = "32645E98-7BF7-48BB-B021-52D070BD9BCA";
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
