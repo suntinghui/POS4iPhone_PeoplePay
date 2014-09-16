@@ -311,7 +311,7 @@
        personSignController.hidesBottomBarWhenPushed = YES;
        [self.navigationController pushViewController:personSignController animated:YES];
     
-        self.inputTxtField.text = nil;
+        self.inputTxtField.text = @"0";
 
     }];
 }

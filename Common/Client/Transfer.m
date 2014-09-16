@@ -331,8 +331,8 @@ static NSString *totalSize = nil;
     }
     else if ([postType isEqualToString:@""]) //内部服务地址
     {
+        //http://192.168.4.234:8080/
         //http://111.198.29.38:8891/
-        //192.168.4.100:8080 周
         
         [self setRequestUrl:@"http://111.198.29.38:8891/"];
         path = @"zfb/mpos/transProcess.do";

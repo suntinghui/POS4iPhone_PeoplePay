@@ -60,7 +60,7 @@
     
     [self.window makeKeyAndVisible];
     
-    [WXApi registerApp:@"wx1e4484ab6b577a3d"];
+    [WXApi registerApp:@"wx685188ae331de13a"]; 
     
 //    [BPush setupChannel:launchOptions];
 //    [BPush setDelegate:self];

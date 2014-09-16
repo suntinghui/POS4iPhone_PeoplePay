@@ -78,6 +78,7 @@ static AppDataCenter *instance = nil;
  */
 - (BOOL)canEditAuthInfo
 {
+    
     if (self.userInfoDict==nil)
     {
         return YES;
@@ -86,7 +87,8 @@ static AppDataCenter *instance = nil;
     if ([self.userInfoDict[@"STATUS"] isEqualToString:@"1"]||
         [self.userInfoDict[@"STATUS"] isEqualToString:@"3"]||
         [self.userInfoDict[@"STATUS"] isEqualToString:@"6"]||
-        [self.userInfoDict[@"STATUS"] isEqualToString:@"7"]) {
+        [self.userInfoDict[@"STATUS"] isEqualToString:@"7"])
+    {
         return YES;
     }
     

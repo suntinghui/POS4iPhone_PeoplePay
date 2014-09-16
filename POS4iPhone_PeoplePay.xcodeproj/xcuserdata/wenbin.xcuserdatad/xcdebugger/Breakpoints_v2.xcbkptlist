@@ -374,22 +374,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Modules/SwipeCard/InputMoneyViewController.m"
-            timestampString = "430723129.836452"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
-            landmarkName = "-getRateData"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Modules/SwipeCard/InputMoneyViewController.m"
             timestampString = "430723185.579443"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
