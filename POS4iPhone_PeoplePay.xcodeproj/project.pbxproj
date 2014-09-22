@@ -128,6 +128,14 @@
 		B843D156190F77F10000A60A /* SPLine.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D150190F77F10000A60A /* SPLine.m */; };
 		B843D157190F77F10000A60A /* SPLockOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D152190F77F10000A60A /* SPLockOverlay.m */; };
 		B843D158190F77F10000A60A /* SPLockScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = B843D154190F77F10000A60A /* SPLockScreen.m */; };
+		B846E53719C92BE70091514B /* icon-114.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E53419C92BE70091514B /* icon-114.png */; };
+		B846E53819C92BE70091514B /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E53519C92BE70091514B /* icon-120.png */; };
+		B846E53919C92BE70091514B /* icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E53619C92BE70091514B /* icon-144.png */; };
+		B846E53C19C931CA0091514B /* icon-57.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E53A19C931CA0091514B /* icon-57.png */; };
+		B846E53D19C931CA0091514B /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E53B19C931CA0091514B /* icon-72.png */; };
+		B846E53F19C934E50091514B /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E53E19C934E50091514B /* Default-568h@2x.png */; };
+		B846E54119C936770091514B /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E54019C936770091514B /* icon-152.png */; };
+		B846E54319C9367F0091514B /* icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = B846E54219C9367F0091514B /* icon-76.png */; };
 		B8537C1F190B7769000F353D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C1E190B7769000F353D /* Foundation.framework */; };
 		B8537C21190B7769000F353D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C20190B7769000F353D /* CoreGraphics.framework */; };
 		B8537C23190B7769000F353D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8537C22190B7769000F353D /* UIKit.framework */; };
@@ -286,7 +294,6 @@
 		B8F291301966411800890E41 /* NewPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F2912E1966411800890E41 /* NewPasswordViewController.xib */; };
 		B8F5C2061921BB08006B199F /* SetMoveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */; };
 		B8F5C2071921BB08006B199F /* SetMoveLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */; };
-		B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B8F5C21B19223683006B199F /* Default-568h@2x.png */; };
 		B8F788A11934374700C07BE5 /* PersonSignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F7889F1934374700C07BE5 /* PersonSignViewController.m */; };
 		B8F788A21934374700C07BE5 /* PersonSignViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8F788A01934374700C07BE5 /* PersonSignViewController.xib */; };
 		B8F788A619344CFE00C07BE5 /* PaintMaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = B8F788A519344CFE00C07BE5 /* PaintMaskView.m */; };
@@ -476,6 +483,14 @@
 		B843D152190F77F10000A60A /* SPLockOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLockOverlay.m; sourceTree = "<group>"; };
 		B843D153190F77F10000A60A /* SPLockScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPLockScreen.h; sourceTree = "<group>"; };
 		B843D154190F77F10000A60A /* SPLockScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPLockScreen.m; sourceTree = "<group>"; };
+		B846E53419C92BE70091514B /* icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-114.png"; sourceTree = "<group>"; };
+		B846E53519C92BE70091514B /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
+		B846E53619C92BE70091514B /* icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-144.png"; sourceTree = "<group>"; };
+		B846E53A19C931CA0091514B /* icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-57.png"; sourceTree = "<group>"; };
+		B846E53B19C931CA0091514B /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-72.png"; sourceTree = "<group>"; };
+		B846E53E19C934E50091514B /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
+		B846E54019C936770091514B /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152.png"; sourceTree = "<group>"; };
+		B846E54219C9367F0091514B /* icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-76.png"; sourceTree = "<group>"; };
 		B8537C1B190B7769000F353D /* POS4iPhone_PeoplePay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS4iPhone_PeoplePay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8537C1E190B7769000F353D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B8537C20190B7769000F353D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -742,7 +757,6 @@
 		B8F5C2031921BB08006B199F /* SetMoveLockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetMoveLockViewController.h; sourceTree = "<group>"; };
 		B8F5C2041921BB08006B199F /* SetMoveLockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetMoveLockViewController.m; sourceTree = "<group>"; };
 		B8F5C2051921BB08006B199F /* SetMoveLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetMoveLockViewController.xib; sourceTree = "<group>"; };
-		B8F5C21B19223683006B199F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "Images.xcassets/LaunchImage.launchimage/Default-568h@2x.png"; sourceTree = "<group>"; };
 		B8F7889E1934374700C07BE5 /* PersonSignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSignViewController.h; sourceTree = "<group>"; };
 		B8F7889F1934374700C07BE5 /* PersonSignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSignViewController.m; sourceTree = "<group>"; };
 		B8F788A01934374700C07BE5 /* PersonSignViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonSignViewController.xib; sourceTree = "<group>"; };
@@ -1124,6 +1138,20 @@
 			path = Trande;
 			sourceTree = "<group>";
 		};
+		B846E52D19C92B6E0091514B /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				B846E54219C9367F0091514B /* icon-76.png */,
+				B846E54019C936770091514B /* icon-152.png */,
+				B846E53A19C931CA0091514B /* icon-57.png */,
+				B846E53B19C931CA0091514B /* icon-72.png */,
+				B846E53419C92BE70091514B /* icon-114.png */,
+				B846E53519C92BE70091514B /* icon-120.png */,
+				B846E53619C92BE70091514B /* icon-144.png */,
+			);
+			name = icon;
+			sourceTree = "<group>";
+		};
 		B8537C12190B7769000F353D = {
 			isa = PBXGroup;
 			children = (
@@ -1185,7 +1213,8 @@
 		B8537C25190B7769000F353D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B8F5C21B19223683006B199F /* Default-568h@2x.png */,
+				B846E53E19C934E50091514B /* Default-568h@2x.png */,
+				B846E52D19C92B6E0091514B /* icon */,
 				B8537C39190B7769000F353D /* Images.xcassets */,
 				B8537C26190B7769000F353D /* POS4iPhone_PeoplePay-Info.plist */,
 				B8537C27190B7769000F353D /* InfoPlist.strings */,
@@ -1863,6 +1892,7 @@
 				B85546E219597F1B00EEEFE6 /* TKContactsMultiPickerController.xib in Resources */,
 				B82A9602192DDE840099E97E /* composeAthover@2x.png in Resources */,
 				B8537C3A190B7769000F353D /* Images.xcassets in Resources */,
+				B846E53D19C931CA0091514B /* icon-72.png in Resources */,
 				B8F12C81192EEFD5008928C8 /* CashTableViewCell.xib in Resources */,
 				B82A961A192DDE840099E97E /* composequxiaobtn@2x.png in Resources */,
 				B82A9611192DDE840099E97E /* composeImageDel.png in Resources */,
@@ -1880,14 +1910,16 @@
 				B82A961B192DDE840099E97E /* composereturnbtn.png in Resources */,
 				B8537D20190B7EC4000F353D /* alertView_bg.png in Resources */,
 				B839FDA71934E6A200EECA18 /* SuccessViewController.xib in Resources */,
+				B846E53F19C934E50091514B /* Default-568h@2x.png in Resources */,
 				B899E798195A9FD60094920B /* CustomSelectViewController.xib in Resources */,
-				B8F5C21C19223683006B199F /* Default-568h@2x.png in Resources */,
 				B8537D29190B7EC4000F353D /* alertView_button_green_pressed@2x.png in Resources */,
 				B82A9606192DDE840099E97E /* composeCamerahover@2x.png in Resources */,
 				B89CEA05191F2F2E008DFF31 /* TradeDetailViewController.xib in Resources */,
 				B82A95FB192DDE840099E97E /* compose#.png in Resources */,
 				B82A95FC192DDE840099E97E /* compose#@2x.png in Resources */,
+				B846E53C19C931CA0091514B /* icon-57.png in Resources */,
 				B82E47E01920CA8E00D0D356 /* SettingMainViewController.xib in Resources */,
+				B846E54319C9367F0091514B /* icon-76.png in Resources */,
 				B8C219FD19BEA6910094E59A /* MyQRcodeViewController.xib in Resources */,
 				B82A9600192DDE840099E97E /* composeAt@2x.png in Resources */,
 				B82A9620192DDE840099E97E /* composesentbtnhover@2x.png in Resources */,
@@ -1911,6 +1943,7 @@
 				B82A960A192DDE840099E97E /* composedingweihover@2x.png in Resources */,
 				B82A9607192DDE840099E97E /* composedingwei.png in Resources */,
 				B82A9609192DDE840099E97E /* composedingweihover.png in Resources */,
+				B846E54119C936770091514B /* icon-152.png in Resources */,
 				B82A9608192DDE840099E97E /* composedingwei@2x.png in Resources */,
 				B82A9623192DDE840099E97E /* composevideo_pic.png in Resources */,
 				B8537C29190B7769000F353D /* InfoPlist.strings in Resources */,
@@ -1959,6 +1992,8 @@
 				B899E793195A78300094920B /* IDcardUploadViewController.xib in Resources */,
 				B82A960B192DDE840099E97E /* composeEmotionBg.png in Resources */,
 				B85546D419596E5400EEEFE6 /* PhoneRechargeViewController.xib in Resources */,
+				B846E53719C92BE70091514B /* icon-114.png in Resources */,
+				B846E53819C92BE70091514B /* icon-120.png in Resources */,
 				B8AC77C91963DFBF008C344E /* CriditCardPaybackViewController.xib in Resources */,
 				B82609CF191E1090003FE222 /* MerchantViewController.xib in Resources */,
 				B82A9614192DDE840099E97E /* composeImageFrame@2x.png in Resources */,
@@ -1970,6 +2005,7 @@
 				B82609DC191E1A99003FE222 /* ToolsViewController.xib in Resources */,
 				B82A9632192DDE840099E97E /* Language.strings in Resources */,
 				B82A960E192DDE840099E97E /* composehuatiinput@2x.png in Resources */,
+				B846E53919C92BE70091514B /* icon-144.png in Resources */,
 				B82609E1191E1AC1003FE222 /* TradeListViewController.xib in Resources */,
 				B899E79E195ACAD80094920B /* MyAccountViewController.xib in Resources */,
 				B8788C3B1931BA2C003E8338 /* BPushConfig.plist in Resources */,
@@ -2241,10 +2277,9 @@
 		B8537C51190B7769000F353D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Chao Hou (87AJP22Y78)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chao Hou (87AJP22Y78)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tinghui Sun (H77CWMAVK8)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tinghui Sun (H77CWMAVK8)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -2269,7 +2304,8 @@
 					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cdbe115a-a4bd-4368-ba42-231bdac3be6e";
+				PROVISIONING_PROFILE = "5eee9ed6-a3d1-434c-ab27-ccf68b163257";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -2279,10 +2315,9 @@
 		B8537C52190B7769000F353D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: YunFu Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: YunFu Co., Ltd.";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing PeoplePay Information Technology Co., Ltd. (NH9YA9847R)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing PeoplePay Information Technology Co., Ltd. (NH9YA9847R)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
@@ -2307,7 +2342,8 @@
 					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cdbe115a-a4bd-4368-ba42-231bdac3be6e";
+				PROVISIONING_PROFILE = "5eee9ed6-a3d1-434c-ab27-ccf68b163257";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

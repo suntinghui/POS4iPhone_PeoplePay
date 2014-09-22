@@ -263,7 +263,7 @@
     {
         NSDictionary *dict = credentials[buttonIndex-1];
         NSMutableDictionary *mdict = results[2];
-        [mdict setObject:dict[@"name"] forKey:@"name"];
+        [mdict setObject:dict[@"name"] forKey:kContent];
         [mdict setObject:dict[@"code"] forKey:@"code"];
         [self.listTableView reloadData];
     }

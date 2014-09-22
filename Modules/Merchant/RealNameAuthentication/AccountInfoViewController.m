@@ -318,6 +318,7 @@
 - (void)uploadBaseInfo
 {
     NSMutableDictionary *comDict = APPDataCenter.comDict;
+    NSLog(@"comDict:%@",comDict);
     NSDictionary *infodict = @{kTranceCode:@"P77025",
                                kParamName:@{@"PHONENUMBER":[UserDefaults objectForKey:KUSERNAME],
                                             @"USERNAME":comDict[kUserName], //申请人姓名
@@ -330,7 +331,8 @@
                                             @"BANKAREA":comDict[kCity][@"name"], //开户行所在城市
                                             @"BIGBANKCOD":comDict[kBank][@"code"], //开户行编号
                                             @"BIGBANKNAM":comDict[kBank][@"name"], //开户行名称
-                                            @"BANKCOD":comDict[kBank][@"number"], //开户支行编号
+                                            @"BANKCOD":comDict[kBank][@"number"]==nil?@"":comDict[kBank][@"number"], //开户支行编号（修改为了BANKNO 为了与公司内部服务器保持一致 保留此字段）
+                                            @"BANKNO":comDict[kBank][@"number"]==nil?@"":comDict[kBank][@"number"], //开户支行编号
                                             @"BANKNAM":comDict[kBankPlace], //开户支行名称
                                             @"BANKACCOUNT":comDict[kCardNumber], //开户账户
                                             }};
@@ -529,12 +531,19 @@
         case Button_Tag_Commit: //下一步
         {
             
+            if (![APPDataCenter canEditAuthInfo])
+            {
+                [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-3] animated:YES];
+                return;
+            }
+            
             [self resetTabelView];
             
             for (int i=0; i<keys.count; i++)
             {
                 NSString *key = keys[i];
-                if (resultDict[key]==nil)
+                if (([resultDict[key] isKindOfClass:[NSString class]]&&resultDict[key]==nil)||
+                    ([resultDict[key] isKindOfClass:[NSDictionary class]]&&[StaticTools isEmptyString:resultDict[key][@"code"]]))
                 {
                     int j=i;
                     if (j>=2)
@@ -553,10 +562,7 @@
             {
                [self uploadBaseInfo];
             }
-            else
-            {
-                [self.navigationController popToViewController:self.navigationController.viewControllers[self.navigationController.viewControllers.count-3] animated:YES];
-            }
+          
             
        
             

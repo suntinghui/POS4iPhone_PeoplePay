@@ -233,6 +233,7 @@
         @"BIGBANKCOD":comDict[kBank][@"code"], //开户行编号
         @"BIGBANKNAM":comDict[kBank][@"name"], //开户行名称
         @"BANKCOD":comDict[kBank][@"number"], //开户支行编号
+        @"BANKNO":comDict[kBank][@"number"], //开户支行编号
         @"BANKNAM":comDict[kBankPlace], //开户支行名称
         @"BANKACCOUNT":comDict[kCardNumber], //开户账户
         @"MYPIC":resultDict[kMyPicUrl]==nil?@"":resultDict[kMyPicUrl], //申请人照片
