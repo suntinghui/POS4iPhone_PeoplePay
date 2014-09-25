@@ -30,7 +30,7 @@
 @property (strong, nonatomic) NSDictionary *userInfoDict;    //实名认证时获取到的用户数据
 @property (strong, nonatomic) UserInfoUploader *userinfoUploader;
 @property (strong, nonatomic) NSArray *rateList;  //扣率数据
-
+@property (strong, nonatomic) NSMutableDictionary *userLocationDic;  //用户的地理位置信息
 //获取交易流水号
 - (NSString *)getTradeNumber;
 

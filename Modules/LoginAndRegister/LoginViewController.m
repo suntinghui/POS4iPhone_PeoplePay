@@ -16,12 +16,14 @@
 #import "SwipeCardNoticeViewController.h"
 #import "MyTabBarController.h"
 #import "RegisterViewController.h"
+#import "LocationHelper.h"
 
 #define Button_Tag_Login         100 //登录按钮
 #define Button_Tag_ForgetPwd     101 //
 #define Button_Tag_Regiter       102
 #define button_Tag_SpeciaAccount 103
 #define Button_Tag_NormalAccount 104
+#define Button_Tag_RemenberPwd   105 //记住密码
 
 @interface LoginViewController ()
 
@@ -54,11 +56,14 @@
     }
     
     [self.nameTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
-    [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"];
+    [self.pwdTxtField setValue:RGBCOLOR(255, 255, 255)forKeyPath:@"_placeholderLabel.textColor"
+     ];
     
-//    self.nameTxtField.text = @"18811068526";
-//    self.pwdTxtField.text = @"Asdf1234"; //TODO
-    
+    self.remenberPwdBtn.selected = [UserDefaults boolForKey:kREMEBERPWD];
+    if (self.remenberPwdBtn.selected)
+    {
+        self.pwdTxtField.text = [UserDefaults objectForKey:kPASSWORD];
+    }
     NSString *lastName = [UserDefaults objectForKey:KUSERNAME];
     if (lastName!=nil)
     {
@@ -162,7 +167,6 @@
     
     
 	MyTabBarController *tabcon = [[MyTabBarController alloc] init];
-    tabcon.delegate = self;
     tabcon.viewControllers = [NSArray arrayWithObjects:nav1, nav2, nav3,nav4,nil];
 	[tabcon setImages:imgArr];
     [tabcon setSelectedIndex:0];
@@ -199,6 +203,13 @@
             ForgetPasswordViewController *forgetPswController = [[ForgetPasswordViewController alloc]init];
             [self.navigationController pushViewController:forgetPswController animated:YES];
            
+        }
+            break;
+        case Button_Tag_RemenberPwd: //记住密码
+        {
+            self.remenberPwdBtn.selected = !self.remenberPwdBtn.selected;
+            [UserDefaults setBool:self.remenberPwdBtn.selected forKey:kREMEBERPWD];
+            [UserDefaults synchronize];
         }
             break;
         case Button_Tag_Regiter: //用户注册
@@ -268,10 +279,12 @@
 }
 
 #pragma mark- HTTP请求
+/**
+ *  登录
+ */
 - (void)loginAction
 {
     
-    //测试账号：13838387438 88888888   18811068526 88888888
     NSDictionary *dict;
     if (APPDataCenter.accountType==0)
     {
@@ -298,11 +311,15 @@
                                                  if ([obj[@"RSPCOD"] isEqualToString:@"00"])
                                                  {
                                                      [UserDefaults setObject:self.nameTxtField.text forKey:KUSERNAME];
+                                                     [UserDefaults setObject:self.pwdTxtField.text forKey:kPASSWORD];
                                                      [UserDefaults synchronize];
                                                      
-//                                                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
                                                      [self gotoHome];
                                                      
+                                                     if (APPDataCenter.userInfoDict!=nil)
+                                                     {
+                                                         [self uplaodUserLocatonWithName];
+                                                     }
                                                    
                                                  }
                                                  else
@@ -320,6 +337,46 @@
                                          }];
     
     [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:operation, nil] prompt:@"正在登录..." completeBlock:^(NSArray *operations) {
+    }];
+    
+}
+
+/**
+ *  将用户地址信息发送到公司的内部服务器
+ */
+- (void)uplaodUserLocatonWithName
+{
+    NSDictionary *infodict = @{kTranceCode:@"200012",
+                               kParamName:@{@"MerName":self.nameTxtField.text,
+                                            @"Address":APPDataCenter.userInfoDict[kAddress],
+                                            @"Latitude":APPDataCenter.userInfoDict[kLatitude],
+                                            @"Longitude":APPDataCenter.userInfoDict[kLongitude],
+                                            @"operationId":@"setMerAddressInfo"}};
+    
+    AFHTTPRequestOperation *infoOperation = [[Transfer sharedTransfer] TransferWithRequestDic:infodict
+                                                                                       prompt:nil
+                                                                                      success:^(id obj)
+                                             {
+                                                 
+                                                 if ([obj isKindOfClass:[NSDictionary class]])
+                                                 {
+                                                     
+                                                     if ([obj[@"RSPCOD"] isEqualToString:@"000000"])
+                                                     {
+                                                         NSLog(@"商户地理位置信息上传成功");
+                                                         
+                                                     }
+                                                     else
+                                                     {
+                                                         NSLog(@"商户地理位置信息上传失败");
+                                                     }
+                                                     
+                                                 }
+                                                 
+                                             }
+                                                                                      failure:nil];
+    
+    [[Transfer sharedTransfer] doQueueByTogether:[NSArray arrayWithObjects:infoOperation, nil] prompt:nil completeBlock:^(NSArray *operations) {
     }];
     
 }

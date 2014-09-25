@@ -157,7 +157,7 @@ static NSString *totalSize = nil;
                                 success:^(id obj) {
                                  success(obj);
                              } failure:^(NSString *errMsg) {
-                                 failure(errMsg);
+                                 failure==nil?nil:failure(errMsg);
                              }];
 }
 
@@ -315,7 +315,8 @@ static NSString *totalSize = nil;
             [rspCode isEqualToString:@"200008"]||//用户登录
             [rspCode isEqualToString:@"200009"]||//修改密码
             [rspCode isEqualToString:@"200010"]||//上传实名认证图片
-            [rspCode isEqualToString:@"200011"]  //上传实名认证填写的资料
+            [rspCode isEqualToString:@"200011"]||  //上传实名认证填写的资料
+            [rspCode isEqualToString:@"200012"]   //上传商户的地址信息
             )
     {
         postType = @"";
@@ -331,7 +332,7 @@ static NSString *totalSize = nil;
     }
     else if ([postType isEqualToString:@""]) //内部服务地址
     {
-        //http://192.168.4.234:8080/
+        //http://192.168.4.102:8080/
         //http://111.198.29.38:8891/
         
         [self setRequestUrl:@"http://111.198.29.38:8891/"];
@@ -432,9 +433,12 @@ static NSString *totalSize = nil;
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alert show];
         }
+        if (failure!=nil)
+        {
+            failure([Transfer getErrorMsg:[error.userInfo objectForKey:@"NSLocalizedDescription"]]);
+        }
         
         
-        failure([Transfer getErrorMsg:[error.userInfo objectForKey:@"NSLocalizedDescription"]]);
     }];
     
     return operation;

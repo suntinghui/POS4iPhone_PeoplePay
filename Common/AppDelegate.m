@@ -11,6 +11,7 @@
 #import "TimedoutUtil.h"
 #import "BaiduMobStat.h"
 #import "SplitViewController.h"
+#import "LocationHelper.h"
 
 
 @implementation AppDelegate
@@ -28,6 +29,8 @@
     if ([UserDefaults objectForKey:kMoveUnlockState]==nil)
     {
         [UserDefaults setObject:@"0" forKey:kMoveUnlockState];
+        [UserDefaults setBool:NO forKey:kREMEBERPWD];
+        [UserDefaults synchronize];
         
         SplitViewController *splitController = [[SplitViewController alloc]init];
         nav = [[UINavigationController alloc]initWithRootViewController:splitController ];
@@ -60,7 +63,9 @@
     
     [self.window makeKeyAndVisible];
     
-    [WXApi registerApp:@"wx685188ae331de13a"]; 
+    [WXApi registerApp:@"wx685188ae331de13a"];
+    
+    [[LocationHelper sharedLocationHelper] startLocate];
     
 //    [BPush setupChannel:launchOptions];
 //    [BPush setDelegate:self];

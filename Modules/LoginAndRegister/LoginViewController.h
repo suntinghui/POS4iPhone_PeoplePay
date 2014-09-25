@@ -27,6 +27,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bgImgView;
 @property (weak, nonatomic) IBOutlet UITextField *nameTxtField;
 @property (weak, nonatomic) IBOutlet UITextField *pwdTxtField;
+@property (weak, nonatomic) IBOutlet UIButton *remenberPwdBtn;
 
 - (IBAction)buttonClickHandle:(id)sender;
 

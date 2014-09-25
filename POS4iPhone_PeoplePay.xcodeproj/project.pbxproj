@@ -236,6 +236,7 @@
 		B8788C681931BF1E003E8338 /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5C1931BF1E003E8338 /* CJSONScanner.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C691931BF1E003E8338 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C5E1931BF1E003E8338 /* CJSONSerializer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		B8788C6C1931C2AA003E8338 /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = B8788C6B1931C2AA003E8338 /* Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B87B5DC019D29090009D98F0 /* LocationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B87B5DBF19D29090009D98F0 /* LocationHelper.m */; };
 		B887EF0B19874814006770F1 /* UserInfoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = B887EF0A19874814006770F1 /* UserInfoUploader.m */; };
 		B89525ED1934887400F04685 /* libZftQposLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B89525EC1934887400F04685 /* libZftQposLib.a */; };
 		B897C073196A9A9E001BD4B5 /* register.txt in Resources */ = {isa = PBXBuildFile; fileRef = B897C072196A9A9E001BD4B5 /* register.txt */; };
@@ -661,6 +662,8 @@
 		B8788C5F1931BF1E003E8338 /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		B8788C6A1931C2AA003E8338 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
 		B8788C6B1931C2AA003E8338 /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		B87B5DBE19D29090009D98F0 /* LocationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationHelper.h; sourceTree = "<group>"; };
+		B87B5DBF19D29090009D98F0 /* LocationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationHelper.m; sourceTree = "<group>"; };
 		B887EF0919874814006770F1 /* UserInfoUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoUploader.h; sourceTree = "<group>"; };
 		B887EF0A19874814006770F1 /* UserInfoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoUploader.m; sourceTree = "<group>"; };
 		B89525EC1934887400F04685 /* libZftQposLib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libZftQposLib.a; sourceTree = "<group>"; };
@@ -1277,6 +1280,8 @@
 				B8537D2F190B803E000F353D /* FileManagerUtil.m */,
 				B82A9644192DE1D80099E97E /* WeiBoShare.h */,
 				B82A9645192DE1D80099E97E /* WeiBoShare.m */,
+				B87B5DBE19D29090009D98F0 /* LocationHelper.h */,
+				B87B5DBF19D29090009D98F0 /* LocationHelper.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -2031,6 +2036,7 @@
 				B899E792195A78300094920B /* IDcardUploadViewController.m in Sources */,
 				B8788C3E1931BA2C003E8338 /* OpenUDID.m in Sources */,
 				B813BB0D192B25C600654A45 /* FeedBckViewController.m in Sources */,
+				B87B5DC019D29090009D98F0 /* LocationHelper.m in Sources */,
 				B8D717E3192B2D7500868678 /* SKPSMTPMessage.m in Sources */,
 				B8263C65192C54DF009EFABC /* StringUtil.mm in Sources */,
 				B8F788A619344CFE00C07BE5 /* PaintMaskView.m in Sources */,
@@ -2304,7 +2310,7 @@
 					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5eee9ed6-a3d1-434c-ab27-ccf68b163257";
+				PROVISIONING_PROFILE = "007eda4d-41e5-4c81-b10a-d0960a721a6e";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
@@ -2342,7 +2348,7 @@
 					/Users/wenbin/Downloads,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5eee9ed6-a3d1-434c-ab27-ccf68b163257";
+				PROVISIONING_PROFILE = "007eda4d-41e5-4c81-b10a-d0960a721a6e";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				VALID_ARCHS = "armv7 armv7s";
