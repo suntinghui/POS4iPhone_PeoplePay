@@ -10,31 +10,48 @@
 	<string>POS4iPhone_PeoplePay</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2C837378-6F17-42EB-8E17-2BC77445B060</key>
+		<key>4739d231-d466-104a-8556-d00368a6a59c++1660</key>
+		<string>https://22.7.17.140/svn/mlife/trunk/HManager/Resources/Lib/SinaWeibo</string>
+		<key>FEB73E681CEEF0BDDA7ABBEE187AE48F85ED4E66</key>
 		<string>ssh://github.com/suntinghui/POS4iPhone_PeoplePay.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>POS4iPhone_PeoplePay.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2C837378-6F17-42EB-8E17-2BC77445B060</key>
+		<key>4739d231-d466-104a-8556-d00368a6a59c++1660</key>
+		<string>../../Resources/External/SinaWeibo</string>
+		<key>FEB73E681CEEF0BDDA7ABBEE187AE48F85ED4E66</key>
 		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>4739d231-d466-104a-8556-d00368a6a59c++1660</key>
+		<string>https://22.7.17.140/svn/mlife</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/suntinghui/POS4iPhone_PeoplePay.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2C837378-6F17-42EB-8E17-2BC77445B060</string>
+	<string>FEB73E681CEEF0BDDA7ABBEE187AE48F85ED4E66</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2C837378-6F17-42EB-8E17-2BC77445B060</string>
+			<string>FEB73E681CEEF0BDDA7ABBEE187AE48F85ED4E66</string>
 			<key>IDESourceControlWCCName</key>
 			<string>POS4iPhone_PeoplePay</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4739d231-d466-104a-8556-d00368a6a59c++1660</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SinaWeibo</string>
 		</dict>
 	</array>
 </dict>
